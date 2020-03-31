@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>personal on Mragank Shekhar</title>
+    <link>https://mgeeeek.github.io/categories/personal/</link>
+    <description>Recent content in personal on Mragank Shekhar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://mgeeeek.github.io/categories/personal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>First BlogPost (on this site)</title>
+      <link>https://mgeeeek.github.io/posts/2020/03/first-blogpost-on-this-site/</link>
+      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mgeeeek.github.io/posts/2020/03/first-blogpost-on-this-site/</guid>
+      <description>This is really to just get started, I don&amp;rsquo;t have anything in my mind right now except for thinking about ongoing situation because of the pandemic. Coming to the point I&amp;rsquo;ll document all the major experiences I&amp;rsquo;ve gained involving opensource development, research, and other exciting stuff like game AI, philosophy, and ongoing topics. Till then goodbye&amp;hellip; and stay safe.</description>
+    </item>
+    
+  </channel>
+</rss>
