@@ -1,8 +1,4 @@
-let num = 60;
-let range = 20;
-
-let ax = [];
-let ay = [];
+let t = 0; // time variable
 
 function setup() {
   var body = document.body,
@@ -10,53 +6,37 @@ function setup() {
 
   var height = Math.max( body.scrollHeight, body.offsetHeight, 
                        html.clientHeight, html.scrollHeight, html.offsetHeight );            
-  var myCanvas = createCanvas(html.clientWidth, height - (0.12*html.clientHeight));
+  var myCanvas = createCanvas(html.clientWidth, height);
   myCanvas.class('backgroundsketch');
-
-  var t = Math.random();
-  for ( let i = 0; i < num; i++ ) {
-
-    ax[i] = width * t * t;
-    ay[i] = height * t * t;
-  }
-  frameRate(10);
-}
-function mouseClicked() {
-  
-  for ( let i = 0; i < num; i++ ) {
-      ax[i] = mouseX;
-      ay[i] = mouseY;
-    }
+  noStroke();
+  fill(242, 80, 86);
 }
 
 function draw() {
   var co =  window.getComputedStyle( document.body ,null).getPropertyValue('background-color').split("(")[1].split(")")[0];
   co = parseInt(co.slice(0, co.indexOf(',')));
-  background(co);
+  background(co); // translucent background (creates trails)
 
-  // Shift all elements 1 place to the left
-  for ( let i = 1; i < num; i++ ) {
-    ax[i - 1] = ax[i];
-    ay[i - 1] = ay[i];
+  // make a x and y grid of ellipses
+  for (let x = 0; x <= width; x = x + 200) {
+      for (let y = 0; y <= height; y = y + 150) {
+        // starting point of each circle depends on mouse position
+
+        const xAngle = map(mouseX, 0, width, -4 * PI, 4 * PI, true);
+        const yAngle = map(mouseY, 0, height, -4 * PI, 4 * PI, true);
+        // and also varies based on the particle's location
+        const angle = xAngle * (x / width) + yAngle * (y / height);
+
+        // each particle moves in a circle
+        const myX = x + 20 * cos(2 * PI * t + angle);
+        const myY = y + 20 * sin(2 * PI * t + angle);
+
+        ellipse(myX, myY, 5); // draw particle
+      }
   }
 
-  // Put a new value at the end of the array
-  ax[num - 1] += random(-(range), range);
-  ay[num - 1] += random(-(range), range);
-
-  // Constrain all points to the screen
-  ax[num - 1] = constrain(ax[num - 1], 0, width);
-  ay[num - 1] = constrain(ay[num - 1], 0, height);
-
-  // Draw a line connecting the points
-  for ( let j = 1; j < num; j++ ) {
-    if (co < 204) var val = j / num * 204.0 + co;
-    else if (co > 204) var val = (num-j) / num * co;
-    stroke(val);
-    line(ax[j - 1], ay[j - 1], ax[j], ay[j]);
-  }
+  t = t + 0.005; // update time
 }
-
 
 function windowResized(){
   var w = window.innerWidth;
@@ -66,5 +46,4 @@ function windowResized(){
 
 window.addEventListener('resize',function(){
   document.body.style['overflow-x'] = 'hidden';
-  document.body.style['overflow-y'] = 'auto';
 });
