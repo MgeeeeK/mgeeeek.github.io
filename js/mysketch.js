@@ -18,5 +18,4 @@ function windowResized(){
 
 window.addEventListener('resize',function(){
   document.body.style['overflow-x'] = 'hidden';
-  document.body.style['overflow-y'] = 'auto';
 });
