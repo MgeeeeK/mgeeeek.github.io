@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>First Blog (on the site)</title>
-      <link>https://mgeeeek.github.io/posts/2020/03/first-blog-on-the-site/</link>
+      <title>$ blog init</title>
+      <link>https://mgeeeek.github.io/posts/2020/03/blog-init/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://mgeeeek.github.io/posts/2020/03/first-blog-on-the-site/</guid>
-      <description>This is really to just get started, I don&amp;rsquo;t have anything in my mind right now except for thinking about ongoing situation because of the pandemic. Coming to the point I&amp;rsquo;ll document all the major experiences I&amp;rsquo;ve gained involving opensource development, research, and other exciting stuff like game AI, philosophy, and ongoing topics. Till then goodbye&amp;hellip; and stay safe.</description>
+      <guid>https://mgeeeek.github.io/posts/2020/03/blog-init/</guid>
+      <description>This is really to just get started, I don&amp;rsquo;t have anything in my mind right now except for thinking about ongoing situation because of the pandemic. Coming to the point I&amp;rsquo;ll document all the major experiences I&amp;rsquo;ve gained involving opensource development, research, and other exciting stuff like game-theory, AI, philosophy, and ongoing topics. Till then goodbye&amp;hellip; and stay safe.</description>
     </item>
     
     <item>
@@ -26,8 +26,10 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mgeeeek.github.io/about/</guid>
-      <description>Education BENNETT UNIVERSITY Greater Noida, India
-B.Tech. In Computer Science And Engineering July. 2017 - May. 2021(expected)  CGPA (till 5th semester) – 7.69/10 Relevant Coursework:Data Structures, OS, DBMS, Algorithms, OOPs with JAVA, Machine learning, Big Data, Linear Algebra, Probability and Statistics, Numerical Methods.  Publications TRAINING MULTI-LAYER PERCEPTRON USING POPULATION BASED YIN-YANG-PAIR OPTIMIZATION
+      <description>Education BENNETT UNIVERSITY
+B.Tech. in Computer Science And Engineering
+2017 - 2021(expected) | Greater Noida, UP
+ CGPA (till 5th semester) – 7.69/10 Relevant Coursework:Data Structures, OS, DBMS, Algorithms, OOPs with JAVA, Machine learning, Big Data, Linear Algebra, Probability and Statistics, Numerical Methods.  Publications TRAINING MULTI-LAYER PERCEPTRON USING POPULATION BASED YIN-YANG-PAIR OPTIMIZATION
  M. Shekhar, accepted and presented in The International Conference on Artificial Intelligence and Applications (ICAIA’2020), to appear in the Springer proc.</description>
     </item>
     
@@ -37,7 +39,7 @@ B.Tech. In Computer Science And Engineering July. 2017 - May. 2021(expected)  CG
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mgeeeek.github.io/short/</guid>
-      <description>CSE 💻 undergrad who&amp;rsquo;s quite passionate about opensource development, data science, and 📱 android-app development. I&amp;rsquo;m always looking for new ways to optimize existing solution. My current work revolves around recommender systems, reinforcement learning, and evolutionary computing. Apart from this I&amp;rsquo;m huge fan of thriller/sci-fi/psychological anime, movies, and souls-like 🎮 (really ❤ them but no 🕦 to invest 😞).
+      <description>CSE 💻 undergrad who&amp;rsquo;s quite passionate about opensource development, machine learning, and 📱 android app-development. I&amp;rsquo;m always looking for new ways to optimize existing solution. My current work revolves around android app-development, recommender systems, and evolutionary computing. Apart from this I&amp;rsquo;m huge fan of thriller/sci-fi/psychological anime, movies, and souls-like 🎮 (really ❤️ them but no 🕦 to invest 😞).
 Get to know me better</description>
     </item>
     
