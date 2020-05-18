@@ -5,8 +5,24 @@
         <description>Recent content in Posts on Mragank Shekhar</description>
         <generator>Hugo -- gohugo.io</generator>
         <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-        <lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Mon, 18 May 2020 00:00:00 +0000</lastBuildDate>
         <atom:link href="https://mgeeeek.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>$ sudo make my summer thrilling</title>
+            <link>https://mgeeeek.github.io/posts/2020/05/sudo-make-my-summer-thrilling/</link>
+            <pubDate>Mon, 18 May 2020 00:00:00 +0000</pubDate>
+            
+            <guid>https://mgeeeek.github.io/posts/2020/05/sudo-make-my-summer-thrilling/</guid>
+            <description>How one of the worst semester turned out the absolutely horrible&amp;hellip; really exciting news at the end though!!! It&amp;rsquo;s been a while since I posted or blogged about something. This year is one of the most tragic and hard-hitting year for all of us, I don&amp;rsquo;t want to stretch over current situation so lets jump straight on to my worst experience with any semester till now.
+The worst thing for me, personally is the ongoing semester which is taking forever to end.</description>
+            <content type="html"><![CDATA[<h3 id="how-one-of-the-worst-semester-turned-out-the-absolutely-horrible-really-exciting-news-at-the-end-though">How one of the worst semester turned out the absolutely horrible&hellip; really exciting news at the end though!!!</h3>
+<p>It&rsquo;s been a while since I posted or blogged about something. This year is one of the most tragic and hard-hitting year for all of us, I don&rsquo;t want to stretch over current situation so lets jump straight on to my worst experience with any semester till now.</p>
+<p>The worst thing for me, personally is the ongoing semester which is taking forever to end. I guess this semester is bad for everyone from students to professors as well as parents. Let me first give you some background, even semester in my university is structured in a way such that more than 70% of the total weightage is awarded in the evaluations conducted during last month of the semester. Now because of the current lockdown the management decided to change nothing (yeah nothing has been changed except for the way professors take lectures), moreover they have further extended this semester and not even provided any exam schedule. Currently every pre-final year student have 3 assignments, 1 survey paper, 3 presentations and whole end semester exam due and this all will take one whole month (in the worst case) to get completely wrap up 😞. On the bright side exams will be bit easy for me since most the courses are really interesting except HPC (High Performance Computing is one of the hardest CS course till now, on top of that it is not properly structured which makes it even more hard). I don&rsquo;t know how many times I said this to my friends but I just want this semester to get over asap so that I can focus more on real and practical stuff.</p>
+<p>Now coming to some good news&hellip; My last blog ended with submission of my GSoC proposal. From the framing of my sentence you would&rsquo;ve guessed already that my GSoC2020 proposal got accepted. I wanted to tell about this on the day I received my acceptance letter but this semester drained the soul out of me just like what happened to prison mike in prison. But on the serious note, I&rsquo;ll work under NumFOCUS which is an umbrella organization supporting relatively small scientific computing related organizations. The organization I&rsquo;ve chose under NumFOCUS is PySAL (an abbreviation of Python Spatial Analysis Library) mainly used in geospatial data science. My project <strong><em>Raster awareness in PySAL</em></strong> proposes an interface which will support PySAL&rsquo;s statistical operations on raster objects (more details can be obtained from the <a href="https://summerofcode.withgoogle.com/projects/5775104799145984">abstract</a>). The project focuses more on the core part of the library, which make it really interesting and therefore I&rsquo;m really excited to work on it this summer.</p>
+<p>Time for me to take the leave. I hope this situation gets over as soon as possible&hellip; till then goodbye, lock yourself at home and stay safe, more importantly wait for my next blog which will be related to my initial work on the project.</p>
+]]></content>
+        </item>
         
         <item>
             <title>$ blog init</title>

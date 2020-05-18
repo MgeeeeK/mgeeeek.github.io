@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Mragank Shekhar</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mgeeeek.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>gsoc</title>
+      <link>https://mgeeeek.github.io/categories/gsoc/</link>
+      <pubDate>Mon, 18 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mgeeeek.github.io/categories/gsoc/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>personal</title>

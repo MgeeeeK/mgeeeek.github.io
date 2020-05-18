@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mragank Shekhar</title>
-    <link>https://mgeeeek.github.io/</link>
-    <description>Recent content on Mragank Shekhar</description>
+    <title>corona on Mragank Shekhar</title>
+    <link>https://mgeeeek.github.io/tags/corona/</link>
+    <description>Recent content in corona on Mragank Shekhar</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Mon, 18 May 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://mgeeeek.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mgeeeek.github.io/tags/corona/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -28,29 +28,6 @@ The worst thing for me, personally is the ongoing semester which is taking forev
       
       <guid>https://mgeeeek.github.io/posts/2020/03/blog-init/</guid>
       <description>From now on I&amp;rsquo;ll try to document all the major experiences I&amp;rsquo;ve gained involving opensource development, research work, and exciting stuff like game-theory, python-libraries, linux-distro-kernel(this is what I really come to when I&amp;rsquo;m super bored), philosophy-morality-religion(I&amp;rsquo;m being pretentious now), and most importantly trending topics in the field of AI/ML&amp;hellip; lets leave right here cos I don&amp;rsquo;t have anything in my mind right now except for thinking about ongoing situation because of the pandemic.</description>
-    </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>https://mgeeeek.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://mgeeeek.github.io/about/</guid>
-      <description>Education BENNETT UNIVERSITY
-B.Tech. in Computer Science And Engineering
-2017 - 2021(expected) | Greater Noida, UP
- CGPA (till 5th semester) – 7.69/10 Relevant Coursework:Data Structures, OS, DBMS, Algorithms, OOPs with JAVA, Machine learning, Big Data, Linear Algebra, Probability and Statistics, Numerical Methods.  Publications TRAINING MULTI-LAYER PERCEPTRON USING POPULATION BASED YIN-YANG-PAIR OPTIMIZATION
- M. Shekhar, accepted and presented in The International Conference on Artificial Intelligence and Applications (ICAIA’2020), to appear in the Springer proc.</description>
-    </item>
-    
-    <item>
-      <title>Shortnote</title>
-      <link>https://mgeeeek.github.io/short/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://mgeeeek.github.io/short/</guid>
-      <description>CSE 💻 undergrad who&amp;rsquo;s quite passionate about opensource development, machine learning, and 📱 android app-development. I&amp;rsquo;m always looking for new ways to optimize existing solution. My current work revolves around android app-development, recommender systems, and evolutionary computing. Apart from this I&amp;rsquo;m huge fan of thriller/sci-fi/psychological anime, movies, and souls-like 🎮 (really ❤️ them but no 🕦 to invest 😞).
-Get to know me better</description>
     </item>
     
   </channel>
