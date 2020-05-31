@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Mragank Shekhar]">
+<meta name="description" content="Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&amp;rsquo;ll share my experience with the PySAL community during the community bonding period. The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts." />
+<meta name="keywords" content="blog,developer,personal, gsoc, cpb" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="https://mgeeeek.github.io/posts/2020/05/gsocs-community-bonding-period-wrap-up/" />
+
+
+    <title>
+        
+            GSoC&#39;s Community Bonding Period wrap-up :: Mragank Shekhar 
+        
+    </title>
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://mgeeeek.github.io/main.min.1a82fce3e67e89eaadce1b92ba2f322a11be767a9f2d81a9b53a3a82dd213a5f.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mgeeeek.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mgeeeek.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mgeeeek.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://mgeeeek.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://mgeeeek.github.io/safari-pinned-tab.svg" color="#252627">
+    <link rel="shortcut icon" href="https://mgeeeek.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+<meta itemprop="name" content="GSoC&#39;s Community Bonding Period wrap-up">
+<meta itemprop="description" content="Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&rsquo;ll share my experience with the PySAL community during the community bonding period. The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts.">
+<meta itemprop="datePublished" content="2020-05-31T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-05-31T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="722">
+<meta itemprop="image" content="https://mgeeeek.github.io"/>
+
+
+
+<meta itemprop="keywords" content="gsoc,cpb," /><meta property="og:title" content="GSoC&#39;s Community Bonding Period wrap-up" />
+<meta property="og:description" content="Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&rsquo;ll share my experience with the PySAL community during the community bonding period. The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mgeeeek.github.io/posts/2020/05/gsocs-community-bonding-period-wrap-up/" />
+<meta property="og:image" content="https://mgeeeek.github.io"/>
+<meta property="article:published_time" content="2020-05-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-31T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://mgeeeek.github.io"/>
+
+<meta name="twitter:title" content="GSoC&#39;s Community Bonding Period wrap-up"/>
+<meta name="twitter:description" content="Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&rsquo;ll share my experience with the PySAL community during the community bonding period. The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts."/>
+
+
+
+    <meta property="article:section" content="gsoc" />
+
+
+
+    <meta property="article:published_time" content="2020-05-31 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <main class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://mgeeeek.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   background-color:#f25056;
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://mgeeeek.github.io/about/">About</a></li><li><a href="https://mgeeeek.github.io/posts/">Blogs</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>4 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="https://mgeeeek.github.io/posts/2020/05/gsocs-community-bonding-period-wrap-up/">GSoC&rsquo;s Community Bonding Period wrap-up</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <h3 id="today-marks-the-end-of-the-community-bonding-period-and-the-beginning-of-the-coding-period-of-gsoc-in-this-blog-ill-share-my-experience-with-the-pysal-community-during-the-community-bonding-period">Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&rsquo;ll share my experience with the PySAL community during the community bonding period.</h3>
+<p>The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts. Additionally, students are also expected to become familiar with documentations, open-source practices, and procedures.</p>
+<p>Most of my time during the community bonding period was devoted to studying the <code>libpysal</code>'s codebase thoroughly to comprehend its structure, internal functions and testing procedures, I also worked on the examples and read documentation of <code>rasterio</code> and <code>xarray</code> to understand these libraries in depth. Because of my semester getting extended by one month I was not able to dedicate more time to the project as planned earlier in my proposal, I tried to wrap up my coursework, assignments and end-sem exam preparation so that I can completely focus on the project in the coming week.</p>
+<h3 id="meetings-and-progress">Meetings and Progress</h3>
+<p>In total 3 projects were selected by the PySAL community for this summer. To keep the project-related meetings and interaction more efficient and productive, it was decided by the mentors to coordinate every other week with all gsoc project members and separately in the off-weeks with individual project members. During the community bonding period 3 meetings/calls occurred, one call every Friday.</p>
+<ul>
+<li>The first call was an introductory meeting involving all students and mentors from each project. This meeting was more about getting to know each other, everyone introduced themselves and also discussed about current state of PySAL and how community use it in their research work. Additionally, we talked about git conventions and setting up the development environment using anaconda. The first meeting was really fruitful and everyone was very friendly and welcoming.</li>
+</ul>
+<p>Before the next meeting, my project mentors Dani and Stefanie provided me with some additional resources related to the project. Since I&rsquo;m very new in the field of geospatial data science and GIS, I’ve been heavily involved with reading a lot of documentation and learning new things which will help me to get familiar with different statistical methods in PySAL and how they use different data structure as input.</p>
+<ul>
+<li>The project-specific meeting which happened one week after the first meeting only involved the mentors and student working on that project, mine was related to my project which is Raster awareness in PySAL. I updated the mentors with my proposed approach provided in the proposal, discussed the roadmap for integrating the interface to the library and talked about possible changes in the proposal, it was also cleared by the mentors that the interface with minimal changes in the core computational structure takes priority over making use of Dask since this might require a lot of research and time. The rest of our discussion was related to possible features and functionality to be included after the completion of phase 1. We also discussed about project progress tracking/management and later decided to use issue and PRs with project tag as project tracking diary.</li>
+</ul>
+<p>Since I&rsquo;d my exams during this week, I was not able to contribute/submit any patch related to the project. Instead, I worked and explored an efficient way to transform <code>xarray.dataArray</code> object to PySAL weight object as discussed during the last meeting. I noticed that while using the <code>Lat2W</code> function I was able to transform correctly, but building a weight object using <code>Lat2W</code> with large values of rows and columns resulted in memory overflow as it uses lists for storing the neighbors, weights, and ids in the dictionary. I&rsquo;m planning to explore this in-depth next week and push a patch related to this.</p>
+<ul>
+<li>In the last meeting of the community bonding period, mentors cleared some doubts which students had and discussed possible ways of project tracking and management. I also had a call with my project mentors to discuss deliverables I&rsquo;m supposed to work on during the first week of the coding period.</li>
+</ul>
+<p>With my exams finishing up in the mid of next week, I am looking forward to having a really productive and wonderful summer ahead, learning and contributing exciting stuff to PySAL. Till then, adios !!</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://mgeeeek.github.io/tags/gsoc">gsoc</a></span><span class="tag"><a href="https://mgeeeek.github.io/tags/cpb">cpb</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>722 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-31 05:30 &#43;0530</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+
+                    
+                        <span class="button next">
+                            <a href="https://mgeeeek.github.io/posts/2020/05/sudo-make-my-summer-thrilling/">
+                                <span class="button__text">$ sudo make my summer thrilling</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+
+
+
+
+    </main>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+
+
+
+
+</html>

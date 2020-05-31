@@ -5,8 +5,35 @@
         <description>Recent content in Posts on Mragank Shekhar</description>
         <generator>Hugo -- gohugo.io</generator>
         <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-        <lastBuildDate>Mon, 18 May 2020 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Sun, 31 May 2020 00:00:00 +0000</lastBuildDate>
         <atom:link href="https://mgeeeek.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>GSoC&#39;s Community Bonding Period wrap-up</title>
+            <link>https://mgeeeek.github.io/posts/2020/05/gsocs-community-bonding-period-wrap-up/</link>
+            <pubDate>Sun, 31 May 2020 00:00:00 +0000</pubDate>
+            
+            <guid>https://mgeeeek.github.io/posts/2020/05/gsocs-community-bonding-period-wrap-up/</guid>
+            <description>Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&amp;rsquo;ll share my experience with the PySAL community during the community bonding period. The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts.</description>
+            <content type="html"><![CDATA[<h3 id="today-marks-the-end-of-the-community-bonding-period-and-the-beginning-of-the-coding-period-of-gsoc-in-this-blog-ill-share-my-experience-with-the-pysal-community-during-the-community-bonding-period">Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&rsquo;ll share my experience with the PySAL community during the community bonding period.</h3>
+<p>The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts. Additionally, students are also expected to become familiar with documentations, open-source practices, and procedures.</p>
+<p>Most of my time during the community bonding period was devoted to studying the <code>libpysal</code>'s codebase thoroughly to comprehend its structure, internal functions and testing procedures, I also worked on the examples and read documentation of <code>rasterio</code> and <code>xarray</code> to understand these libraries in depth. Because of my semester getting extended by one month I was not able to dedicate more time to the project as planned earlier in my proposal, I tried to wrap up my coursework, assignments and end-sem exam preparation so that I can completely focus on the project in the coming week.</p>
+<h3 id="meetings-and-progress">Meetings and Progress</h3>
+<p>In total 3 projects were selected by the PySAL community for this summer. To keep the project-related meetings and interaction more efficient and productive, it was decided by the mentors to coordinate every other week with all gsoc project members and separately in the off-weeks with individual project members. During the community bonding period 3 meetings/calls occurred, one call every Friday.</p>
+<ul>
+<li>The first call was an introductory meeting involving all students and mentors from each project. This meeting was more about getting to know each other, everyone introduced themselves and also discussed about current state of PySAL and how community use it in their research work. Additionally, we talked about git conventions and setting up the development environment using anaconda. The first meeting was really fruitful and everyone was very friendly and welcoming.</li>
+</ul>
+<p>Before the next meeting, my project mentors Dani and Stefanie provided me with some additional resources related to the project. Since I&rsquo;m very new in the field of geospatial data science and GIS, I’ve been heavily involved with reading a lot of documentation and learning new things which will help me to get familiar with different statistical methods in PySAL and how they use different data structure as input.</p>
+<ul>
+<li>The project-specific meeting which happened one week after the first meeting only involved the mentors and student working on that project, mine was related to my project which is Raster awareness in PySAL. I updated the mentors with my proposed approach provided in the proposal, discussed the roadmap for integrating the interface to the library and talked about possible changes in the proposal, it was also cleared by the mentors that the interface with minimal changes in the core computational structure takes priority over making use of Dask since this might require a lot of research and time. The rest of our discussion was related to possible features and functionality to be included after the completion of phase 1. We also discussed about project progress tracking/management and later decided to use issue and PRs with project tag as project tracking diary.</li>
+</ul>
+<p>Since I&rsquo;d my exams during this week, I was not able to contribute/submit any patch related to the project. Instead, I worked and explored an efficient way to transform <code>xarray.dataArray</code> object to PySAL weight object as discussed during the last meeting. I noticed that while using the <code>Lat2W</code> function I was able to transform correctly, but building a weight object using <code>Lat2W</code> with large values of rows and columns resulted in memory overflow as it uses lists for storing the neighbors, weights, and ids in the dictionary. I&rsquo;m planning to explore this in-depth next week and push a patch related to this.</p>
+<ul>
+<li>In the last meeting of the community bonding period, mentors cleared some doubts which students had and discussed possible ways of project tracking and management. I also had a call with my project mentors to discuss deliverables I&rsquo;m supposed to work on during the first week of the coding period.</li>
+</ul>
+<p>With my exams finishing up in the mid of next week, I am looking forward to having a really productive and wonderful summer ahead, learning and contributing exciting stuff to PySAL. Till then, adios !!</p>
+]]></content>
+        </item>
         
         <item>
             <title>$ sudo make my summer thrilling</title>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>gsoc on Mragank Shekhar</title>
-    <link>https://mgeeeek.github.io/categories/gsoc/</link>
-    <description>Recent content in gsoc on Mragank Shekhar</description>
+    <title>cpb on Mragank Shekhar</title>
+    <link>https://mgeeeek.github.io/tags/cpb/</link>
+    <description>Recent content in cpb on Mragank Shekhar</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Sun, 31 May 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://mgeeeek.github.io/categories/gsoc/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mgeeeek.github.io/tags/cpb/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,16 +18,6 @@
       
       <guid>https://mgeeeek.github.io/posts/2020/05/gsocs-community-bonding-period-wrap-up/</guid>
       <description>Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&amp;rsquo;ll share my experience with the PySAL community during the community bonding period. The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts.</description>
-    </item>
-    
-    <item>
-      <title>$ sudo make my summer thrilling</title>
-      <link>https://mgeeeek.github.io/posts/2020/05/sudo-make-my-summer-thrilling/</link>
-      <pubDate>Mon, 18 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://mgeeeek.github.io/posts/2020/05/sudo-make-my-summer-thrilling/</guid>
-      <description>It’s been a while since I posted or blogged about something, and the situation looks still the same&amp;hellip;
-Coming to some good news&amp;hellip; My last blog ended with the submission of my GSoC proposal. From the framing of my sentence you would&amp;rsquo;ve guessed already that my GSoC2020 proposal got accepted. I wanted to tell you about this on the day I received my acceptance letter but this semester drained the soul out of me just like what happened to prison mike in prison.</description>
     </item>
     
   </channel>
