@@ -9,11 +9,11 @@
         <atom:link href="https://mgeeeek.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>GSoC&#39;s Community Bonding Period wrap-up</title>
-            <link>https://mgeeeek.github.io/posts/2020/05/gsocs-community-bonding-period-wrap-up/</link>
+            <title>Community Bonding Period wrap-up</title>
+            <link>https://mgeeeek.github.io/posts/2020/05/community-bonding-period-wrap-up/</link>
             <pubDate>Sun, 31 May 2020 00:00:00 +0000</pubDate>
             
-            <guid>https://mgeeeek.github.io/posts/2020/05/gsocs-community-bonding-period-wrap-up/</guid>
+            <guid>https://mgeeeek.github.io/posts/2020/05/community-bonding-period-wrap-up/</guid>
             <description>Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&amp;rsquo;ll share my experience with the PySAL community during the community bonding period. The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts.</description>
             <content type="html"><![CDATA[<h3 id="today-marks-the-end-of-the-community-bonding-period-and-the-beginning-of-the-coding-period-of-gsoc-in-this-blog-ill-share-my-experience-with-the-pysal-community-during-the-community-bonding-period">Today marks the end of the community bonding period and the beginning of the coding period of GSoC. In this blog, I&rsquo;ll share my experience with the PySAL community during the community bonding period.</h3>
 <p>The community bonding period is the starting phase in the GSoC timeline which lasts for almost a month. This period is specially designed for students to get introduced to the community and to understand and learn more about the project before the coding period starts. Additionally, students are also expected to become familiar with documentations, open-source practices, and procedures.</p>
