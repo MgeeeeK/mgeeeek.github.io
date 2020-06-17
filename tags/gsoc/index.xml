@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>Coding period phase 1 part 1</title>
-      <link>https://mgeeeek.github.io/posts/2020/06/coding-period-phase-1-part-1/</link>
+      <title>GSoC Coding period: first phase part 1</title>
+      <link>https://mgeeeek.github.io/posts/2020/06/gsoc-coding-period-first-phase-part-1/</link>
       <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://mgeeeek.github.io/posts/2020/06/coding-period-phase-1-part-1/</guid>
+      <guid>https://mgeeeek.github.io/posts/2020/06/gsoc-coding-period-first-phase-part-1/</guid>
       <description>Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.
 What I did before coding period As stated in the last blog, during the community bonding period my focus was to grow my understanding of libpysal&#39;s structure, codebase, and API design paradigms.</description>
     </item>
