@@ -20,15 +20,15 @@ Overview of 2 Spatial Weight Objects During the community bonding period my focu
 <h2 id="overview-of-2-spatial-weight-objects">Overview of 2 Spatial Weight Objects</h2>
 <p>During the community bonding period my focus was to grow my understanding of <code>libpysal</code>'s structure, codebase, and API design paradigms. Along with this, I was looking deeply at the 2 types of spatial class objects used in PySAL namely <code>W</code> &amp; <code>WSP</code> objects which are used to construct spatial weight matrices, specifically I was understanding the logic and structure of each object and ways in which both of them are created. Lemme provides a bit overview of each object (this is a fairly basic explanation, please refer to this <a href="https://youtu.be/fc1f4MNLzdQ?t=5424">video</a> or the main <a href="https://pysal.org/libpysal/">documentation</a> of <code>libpysal</code>).</p>
 <p><strong>Spatial Weights Matrix</strong>: In general, it expresses the relationship of a spatial point with its neighboring points. It can be viewed as an adjacency matrix of a weighted graph where each node is connected to other node and these connections follow a specific spatial-contiguity like rook or queen (there are other contiguities as well but these 2 are intuitive to understand).</p>
-<p><strong><code>W object</code></strong>: Also known as dense weight object, it is used to construct spatial weight and represent it in the form of 2 dictionaries-</p>
+<p><strong>W object</strong>: It&rsquo;s used to construct spatial weight and represent it in the form of 2 dictionaries-</p>
 <ul>
-<li><code>neighbor dictionary</code>, where each key specifies a selected point, and the corresponding value is a list containing neighbors of the selected point.</li>
-<li><code>weight dictionary</code>, similar to the neighbor dictionary but instead of specifying neighbors, the list contains the weight of each connection of the key to the neighbor listed in the neighbor dictionary.</li>
+<li><code>neighbors dictionary</code>, where each key specifies a selected point, and the corresponding value is a list containing neighbors of the selected point.</li>
+<li><code>weights dictionary</code>, similar to the neighbor dictionary but instead of specifying neighbors, the list contains the weight of each connection of the key to the neighbor listed in the neighbor dictionary.</li>
 </ul>
-<p><strong><code>WSP object</code></strong>: It is also used to construct spatial weight but unlike <code>W</code> object it represents the spatial weights in the form of a sparse matrix where each row shows the relationship of a point with every other point.</p>
-<p>Constructing a <code>WSP</code> object requires fewer computations when compared to constructing a <code>W</code> object, but it does not contain the same amount of information as a <code>W</code> object. PySAL&rsquo;s statistical methods operate on these two objects and until now these two objects are mainly derived from vector data (which can be presented in the form of different structures like data frame, shapefiles).</p>
+<p><strong>WSP object</strong>: It is also used to construct spatial weight but unlike <code>W</code> object it represents the spatial weights in the form of a sparse matrix where each row shows the relationship of a point with every other point.</p>
+<p>Constructing a <code>WSP</code> object requires fewer computation when compared to constructing a <code>W</code> object, but it does not contain the same amount of information as a <code>W</code> object. PySAL&rsquo;s statistical methods operate on these two objects and until now these two objects are mainly derived from vector data (which can be presented in the form of different structures like data frame, shapefiles).</p>
 <h2 id="what-did-i-do-this-week">What did I do this week?</h2>
-<p>Coming back to the coding period, in my project proposal I listed out the following tasks to be done in the first 2 weeks. Slight changes have been made in the timeline.</p>
+<p>Coming back to the coding period, in my project proposal I listed out the following tasks that I&rsquo;ll work on during first 2 weeks. Slight changes have been made in the timeline after having discussion with my mentors during CBPeriod, it was decided that <code>xarray</code> will be used for the project instead of <code>rasterio</code> because <code>xarray</code> provides a proper structure to the raster&rsquo;s metadata which makes it easy for users to manipulate and access the properties of raster file using <code>xarray.DataArray</code> object.</p>
 <blockquote>
 <p><em>Week 1 &amp; 2</em> (1st June - 14th June) :</p>
 <ul>
@@ -40,9 +40,8 @@ Overview of 2 Spatial Weight Objects During the community bonding period my focu
 <li>Discuss the proposed design of the API of interface and this will be worked upon in the next week.</li>
 </ul>
 </blockquote>
-<p>During the CBP I&rsquo;d several discussions with my mentors and it was decided that <code>xarray</code> will be used for the project instead of <code>rasterio</code> because <code>xarray</code> provides a proper structure to the raster&rsquo;s metadata which makes it easy for a user to manipulate and access the properties of raster file using <code>xarray.DataArray</code> object.</p>
 <p>Unfortunately, I had my exams going on during the first week of the coding period, therefore I was a little unproductive and could not completely focus on the project. During this time I set up my development environment, looked at <code>georasters</code> library, and worked on how I can convert <code>xarray.DataArray</code> to weight object.</p>
-<p>Since my exams were over by next week I was able to devote more time to the project. My main task this week was to work on prototype transformational methods that are going to be used in transforming the raster file accessed using <code>xarray</code> to <code>W</code> and <code>SW</code> objects. Along with this I also worked on converting results back to <code>xarray.Dataframe</code> object.</p>
+<p>Since my exams were over by first week, I was able to devote more time to the project. My main task this week was to work on prototype transformational methods that are going to be used in transforming the raster file accessed using <code>xarray</code> to <code>W</code> and <code>SW</code> objects. Along with this I also worked on converting results back to <code>xarray.Dataframe</code> object.</p>
 <p>PRs made during this period:</p>
 <ul>
 <li><a href="https://github.com/MgeeeeK/libpysal/pull/1">Added rast2(W,SW)</a></li>
