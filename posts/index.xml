@@ -9,11 +9,11 @@
         <atom:link href="https://mgeeeek.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>GSoC Coding period: first phase part 1</title>
-            <link>https://mgeeeek.github.io/posts/2020/06/gsoc-coding-period-first-phase-part-1/</link>
+            <title>Coding period: first phase part 1</title>
+            <link>https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-1/</link>
             <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
             
-            <guid>https://mgeeeek.github.io/posts/2020/06/gsoc-coding-period-first-phase-part-1/</guid>
+            <guid>https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-1/</guid>
             <description>Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.
 What I did before coding period As stated in the last blog, during the community bonding period my focus was to grow my understanding of libpysal&#39;s structure, codebase, and API design paradigms.</description>
             <content type="html"><![CDATA[<p><em>Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.</em></p>
@@ -28,7 +28,7 @@ What I did before coding period As stated in the last blog, during the community
 <p><strong><code>WSP object</code></strong>: It is also used to construct spatial weight but unlike <code>W</code> object it represents the spatial weights in the form of a sparse matrix where each row shows the relationship of a point with every other point.</p>
 <p>Constructing a <code>WSP</code> object requires fewer computations when compared to constructing a <code>W</code> object, but it does not contain the same amount of information as a <code>W</code> object. PySAL&rsquo;s statistical methods operate on these two objects and until now these two objects are mainly derived from vector data (which can be presented in the form of different structures like data frame, shapefiles).</p>
 <h2 id="what-did-i-do-this-week">What did I do this week?</h2>
-<p>Coming back to the coding period, in my project proposal I listed out the following tasks to be done in the first 2 weeks.</p>
+<p>Coming back to the coding period, in my project proposal I listed out the following tasks to be done in the first 2 weeks. Slight changes have been made in the timeline.</p>
 <blockquote>
 <p><em>Week 1 &amp; 2</em> (1st June - 14th June) :</p>
 <ul>
@@ -40,10 +40,10 @@ What I did before coding period As stated in the last blog, during the community
 <li>Discuss the proposed design of the API of interface and this will be worked upon in the next week.</li>
 </ul>
 </blockquote>
-<p>During the CBP I&rsquo;d several discussions with my mentors and it was decided that <code>xarray</code> will be used for the project instead of <code>rasterio</code> because <code>xarray</code> provides a proper structure to the raster&rsquo;s metadata which makes it easy for a user to manipulate and access properties of raster file using <code>xarray.DataArray</code> object.</p>
+<p>During the CBP I&rsquo;d several discussions with my mentors and it was decided that <code>xarray</code> will be used for the project instead of <code>rasterio</code> because <code>xarray</code> provides a proper structure to the raster&rsquo;s metadata which makes it easy for a user to manipulate and access the properties of raster file using <code>xarray.DataArray</code> object.</p>
 <p>Unfortunately, I had my exams going on during the first week of the coding period, therefore I was a little unproductive and could not completely focus on the project. During this time I set up my development environment, looked at <code>georasters</code> library, and worked on how I can convert <code>xarray.DataArray</code> to weight object.</p>
-<p>Since my exams were over by next week I was able to devote my time to the project. My main task this week was to work on prototype transformational methods that can be used in transforming the raster file accessed using <code>xarray</code> to <code>W</code> and <code>SW</code> objects. Along with this I also worked on converting results back to <code>xarray.Dataframe</code> object.</p>
-<p>PR made during this period:</p>
+<p>Since my exams were over by next week I was able to devote more time to the project. My main task this week was to work on prototype transformational methods that are going to be used in transforming the raster file accessed using <code>xarray</code> to <code>W</code> and <code>SW</code> objects. Along with this I also worked on converting results back to <code>xarray.Dataframe</code> object.</p>
+<p>PRs made during this period:</p>
 <ul>
 <li><a href="https://github.com/MgeeeeK/libpysal/pull/1">Added rast2(W,SW)</a></li>
 <li><a href="https://github.com/MgeeeeK/libpysal/pull/2">Added func for creating xr.dataarray</a></li>
