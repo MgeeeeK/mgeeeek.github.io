@@ -5,8 +5,55 @@
         <description>Recent content in Posts on Mragank Shekhar</description>
         <generator>Hugo -- gohugo.io</generator>
         <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-        <lastBuildDate>Sun, 31 May 2020 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
         <atom:link href="https://mgeeeek.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Coding period phase 1 part 1</title>
+            <link>https://mgeeeek.github.io/posts/2020/06/coding-period-phase-1-part-1/</link>
+            <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+            
+            <guid>https://mgeeeek.github.io/posts/2020/06/coding-period-phase-1-part-1/</guid>
+            <description>Community Bonding period ended on 31st may, I covered my experience with PySAL community during CB period in my last blog. Coding period has already started in the beginning of this month and We&amp;rsquo;ve reached mid way of the first phase. Through this blog I&amp;rsquo;ll share what all I&amp;rsquo;ve been working on during these couple of weeks.
+What I did before coding period As stated in the last blog, during community bonding period my focus was to grow my understanding of libpysal&#39;s structure, code base and API design paradigms.</description>
+            <content type="html"><![CDATA[<p><em>Community Bonding period ended on 31st may, I covered my experience with PySAL community during CB period in my last blog. Coding period has already started in the beginning of this month and We&rsquo;ve reached mid way of the first phase. Through this blog I&rsquo;ll share what all I&rsquo;ve been working on during these couple of weeks.</em></p>
+<h2 id="what-i-did-before-coding-period">What I did before coding period</h2>
+<p>As stated in the last blog, during community bonding period my focus was to grow my understanding of <code>libpysal</code>'s structure, code base and API design paradigms. Along with this I was looking deeply at the 2 types of spatial class objects used in PySAL namely <code>W</code> &amp; <code>WSP</code> object which are used to construct spatial weight matrices, specifically I was understanding the logic and structure of each object and ways in which both of them are created. Lemme provide a bit overview of each object (this is fairly basic explanation, please refer to this <a href="https://youtu.be/fc1f4MNLzdQ?t=5424">video</a> or the main <a href="https://pysal.org/libpysal/">documentation</a> of <code>libpysal</code>).</p>
+<p><strong>Spatial Weights Matrix</strong>: In general it expresses the relationship of a spatial point with its neighboring points, it can be viewed as an adjacency matrix of a weighted graph where each node is connected to other node and these connections follow a specific spatial-contiguity like rook or queen (there are other contiguities as well but these 2 are intuitive to understand).</p>
+<p><strong><code>W object</code></strong>: Also known as dense weight object, it is used to construct spatial weight and represent it in the form of 2 dictionaries:</p>
+<ul>
+<li><code>neighbor dictionary</code>, where each key specifies a selected point and the corresponding value is a list containing neighbors of the selected point.</li>
+<li><code>weight dictionary</code>, similar to neighbor dictionary but instead of specifying neighbors, the list contains the weight of each connections of the key to the neighbor listed in neighbor dictionary.</li>
+</ul>
+<p><strong><code>WSP object</code></strong>: It is also used to construct spatial weight but unlike <code>W</code> object it represents the spatial weights in the form of sparse matrix where each row shows the relationship of a point with every other points.</p>
+<p>Constructing a <code>WSP</code> object requires less computations when compared to constructing a <code>W</code> object, but it does not contain same amount of information as a <code>W</code> object. PySAL&rsquo;s statistical methods operate on these two objects and until now these two objects are mainly derived from vector data (which can be presented in the form of different structure like dataframe, shapefiles).</p>
+<h2 id="what-did-i-do-this-week">What did I do this week?</h2>
+<p>Coming back to coding period, in my project proposal I listed out following tasks to be done in the first 2 weeks.</p>
+<blockquote>
+<p><em>Week 1 &amp; 2</em> (1st June - 14th June) :</p>
+<ul>
+<li>List out initial functionalities to be incorporated in the interface.</li>
+<li>Implement necessary methods for streamlining the access to raster data using <code>rasterio</code> inside PySAL.</li>
+<li>Add methods to extract extract metadata from rasters.</li>
+<li>Create an optimized functionality for handling missing values in the raster data used by prototype transformational methods.</li>
+<li>Investigate inner working of <code>georasters</code> methods, since some of its functionality can be improved and used for this project.</li>
+<li>Discuss the proposed design of the API of interface and this will be worked upon in the next week.</li>
+</ul>
+</blockquote>
+<p>During CBP I&rsquo;d several discussions with my mentors and it was decided that <code>xarray</code> will be used for the project instead of <code>rasterio</code> because <code>xarray</code> provides a proper structure to the raster&rsquo;s metadata which makes it easy for user to manipulate and access properties of raster file using <code>xarray.DataArray</code> object.</p>
+<p>Unfortunately I had my exams going on during the first week of the coding period, therefore I was little unproductive and could not completely focus on the project. During this time I setup my development environment, looked at <code>georasters</code> library and worked on how I can convert <code>xarray.DataArray</code> to weight object.</p>
+<p>Since my exams were over by next week I was able to devote my time to the project. My main task this week was to work on prototype transformational methods which can be used in transforming raster file accessed using <code>xarray</code> to <code>W</code> and <code>SW</code> objects. Along with this I also worked on converting results back to <code>xarray.Dataframe</code> object.</p>
+<p>PR made during this period:</p>
+<ul>
+<li><a href="https://github.com/MgeeeeK/libpysal/pull/1">Added rast2(W,SW)</a></li>
+<li><a href="https://github.com/MgeeeeK/libpysal/pull/2">Added func for creating xr.dataarray</a></li>
+</ul>
+<p>Since I used <code>lat2W</code> method, I noticed that the <code>W</code> object stores the neighbors in the list and for large values of rows and columns (2 arguments of the function) the computation runs out of memory, this problem will exist since the methods uses eager evaluation. I plan to create additional method which compute the dictionary values of <code>W</code> object lazily, working with generator objects is tough in this situation since some of the PySAL&rsquo;s methods require all data of <code>W</code> object in memory. This requires more time and I will see if it can be modified in a way so that the PySAL library can work with it.</p>
+<h2 id="whats-next">What&rsquo;s next?</h2>
+<p>During my recent project call both mentors reviewed my work and suggested some corrections in the API and the function implementation. In the coming weeks, I have to incorporate the suggested changes and finalize both transformational methods (their APIs and return object) and also work on the optimization part.</p>
+<p>Wait for my next blog which will show the working of my contributed methods&hellip; Till then goodbye 👋.</p>
+]]></content>
+        </item>
         
         <item>
             <title>Community bonding period wrap-up</title>
