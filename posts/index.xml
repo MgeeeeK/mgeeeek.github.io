@@ -41,7 +41,7 @@ Overview of 2 Spatial Weight Objects During the community bonding period my focu
 </ul>
 </blockquote>
 <p>Unfortunately, I had my exams going on during the first week of the coding period, therefore I was a little unproductive and could not completely focus on the project. During this time I set up my development environment, looked at <code>georasters</code> library, and worked on how I can convert <code>xarray.DataArray</code> to weight object.</p>
-<p>Since my exams were over by first week, I was able to devote more time to the project. My main task this week was to work on prototype transformational methods that are going to be used in transforming the raster file accessed using <code>xarray</code> to <code>W</code> and <code>SW</code> objects. Along with this I also worked on converting results back to <code>xarray.Dataframe</code> object.</p>
+<p>My exams were over by the first week and I was able to devote more time to the project. My main task for this week was to work on prototype transformational methods that are going to be used in transforming the raster file accessed using <code>xarray</code> to <code>W</code> and <code>SW</code> objects. Along with this I also worked on converting results back to <code>xarray.Dataframe</code> object.</p>
 <p>PRs made during this period:</p>
 <ul>
 <li><a href="https://github.com/MgeeeeK/libpysal/pull/1">Added rast2(W,SW)</a></li>
