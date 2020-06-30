@@ -17,8 +17,8 @@
       <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-2/</guid>
-      <description>Phase 1 of the coding period is about to get over and 2 weeks have already passed since I gave an update on my GSoC project. As per my last blog, I successfully implemented the prototype transformation methods of base interface, let&amp;rsquo;s look at the developments happened after first 2 weeks.
-Progress on the Project The main goal of the first phase was to implement and finalize the base raster interface, in other words I had to incorporate all methods which can be utilized to make the transformations from xarray.</description>
+      <description>Phase 1 of the coding period is about to get over and 2 weeks have already passed since I gave an update on my GSoC project. As per my last blog, I successfully implemented the prototype transformation methods of the base interface, let’s look at the developments happened after the first 2 weeks.
+Progress on the Project The main goal of the first phase was to implement and finalize the base raster interface, in other words, I had to incorporate all methods which can be utilized to make the transformations from xarray.</description>
     </item>
     
     <item>
