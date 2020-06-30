@@ -14,8 +14,9 @@
             <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
             
             <guid>https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-2/</guid>
-            <description>Phase 1 of the coding period is about to get over and 2 weeks have already passed since I gave an update on my GSoC project. Without a doubt, this summer has been very interesting and worthwhile with tons of knowledge gained and new things explored related to the project. After every interaction with my mentors, my appreciation for PySAL grew even more, I was able to clearly understand the design decisions went behind the creation of APIs, different methods and overall structure of each module in PySAL library.</description>
-            <content type="html"><![CDATA[<p><em>Phase 1 of the coding period is about to get over and 2 weeks have already passed since I gave an update on my GSoC project. Without a doubt, this summer has been very interesting and worthwhile with tons of knowledge gained and new things explored related to the project. After every interaction with my mentors, my appreciation for PySAL grew even more, I was able to clearly understand the design decisions went behind the creation of APIs, different methods and overall structure of each module in PySAL library. As per my last <a href="">blog</a>, I successfully implemented the prototype transformation methods of base interface, let&rsquo;s look at the developments happened after first 2 weeks.</em></p>
+            <description>Phase 1 of the coding period is about to get over and 2 weeks have already passed since I gave an update on my GSoC project. As per my last blog, I successfully implemented the prototype transformation methods of base interface, let&amp;rsquo;s look at the developments happened after first 2 weeks.
+Progress on the Project The main goal of the first phase was to implement and finalize the base raster interface, in other words I had to incorporate all methods which can be utilized to make the transformations from xarray.</description>
+            <content type="html"><![CDATA[<p><em>Phase 1 of the coding period is about to get over and 2 weeks have already passed since I gave an update on my GSoC project. As per my last <a href="https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-1/">blog</a>, I successfully implemented the prototype transformation methods of base interface, let&rsquo;s look at the developments happened after first 2 weeks.</em></p>
 <h2 id="progress-on-the-project">Progress on the Project</h2>
 <p>The main goal of the first phase was to implement and finalize the base raster interface, in other words I had to incorporate all methods which can be utilized to make the transformations from <code>xarray.DataArray</code> to both weight objects of PySAL (explained in my previous blog) and convert data back to <code>xarray.Dataarray</code>. In the first 2 weeks of coding period we discussed the potential API of these methods and I worked on the prototype functions (this pr shows the initial prototype).</p>
 <p>The proposed timeline in the project proposal for last 2 weeks is listed below:</p>
@@ -29,7 +30,7 @@
 </ul>
 <p>Most of the tasks were achieved during the this period except 3rd one which is not in our plan currently but I will look into it in the later stage.</p>
 <h2 id="new-api-designenhancements">New API Design/Enhancements</h2>
-<p>After several discussions with my mentors it was decided that the better way to present the transformational methods to the user is by using class methods for the contiguity classes (<code>Rook</code> and <code>Queen</code> for now). This required some modification in the existing weights object, current approach adds one additional attribute to store the coordinates of non missing values (this will be further discussed with rest of the community during this weeks group call). After finalizing the base interface by adding necessary changes targeting to the community feedback I&rsquo;ll add the tests.</p>
+<p>After several discussions with my mentors it was decided that the better way to present the transformational methods to the user is by using class methods through the contiguity classes (<code>Rook</code> and <code>Queen</code> for now). This required some modification in the existing weights object, current approach adds one additional attribute to store the coordinates of non missing values (this will be further discussed with rest of the community during this weeks group call). After finalizing the base interface by adding necessary changes targeting to the community feedback I&rsquo;ll add the tests.</p>
 <h2 id="example-notebook-for-raster-interface">Example Notebook for Raster Interface</h2>
 <p>This notebook will provide an overview of ways we can use newly added raster interface to operate on raster data.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>matplotlib inline
@@ -41,16 +42,17 @@
 </code></pre></div><pre><code>/data/GSoC/libpysal/libpysal/weights/util.py:20: UserWarning: geopandas not available. Some functionality will be disabled.
   warn('geopandas not available. Some functionality will be disabled.')
 </code></pre>
-<p>Currently each methods inside this interface only accepts <code>xarray.DataArray</code> as input, let&rsquo;s read in some data using <code>open_rasterio()</code> method:</p>
+<p>Currently each method inside this interface only accepts <code>xarray.DataArray</code> as input, let&rsquo;s read in some data using <code>open_rasterio()</code> method:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Multiband band raster data with no missing values</span>
 da1 <span style="color:#f92672">=</span> xr<span style="color:#f92672">.</span>open_rasterio(<span style="color:#e6db74">&#39;HARV_RGB_Ortho.tif&#39;</span>)
 <span style="color:#75715e"># Slicing the dataarray</span>
 da1 <span style="color:#f92672">=</span> da1[:, <span style="color:#ae81ff">600</span>:<span style="color:#ae81ff">700</span>, <span style="color:#ae81ff">700</span>:<span style="color:#ae81ff">800</span>] 
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Ploting only first band of the da</span>
 da1[:<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>plot()
-</code></pre></div><pre><code>&lt;matplotlib.collections.QuadMesh at 0x7f833c54e610&gt;
-</code></pre>
-<p><img src="images/Untitled_4_1.png" alt="png"></p>
+</code></pre></div>
+    <img src="/images/Untitled_4_1.png"  alt="png"  class="center"  />
+
+
 <p>After accessing the raster data we will create weights object using method called <code>from_xarray</code> from Rook class</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Let&#39;s check the method first</span>
 help(Rook<span style="color:#f92672">.</span>from_xarray)
@@ -130,9 +132,10 @@ to_xarray(data, indices=None, attrs=None) method of libpysal.weights.weights.W i
 moran_da1 <span style="color:#f92672">=</span> w_rook<span style="color:#f92672">.</span>to_xarray(lisa<span style="color:#f92672">.</span>p_sim, da1<span style="color:#f92672">.</span>coords, da1<span style="color:#f92672">.</span>attrs)
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Plotting the converted DataArray</span>
 moran_da1<span style="color:#f92672">.</span>plot()
-</code></pre></div><pre><code>&lt;matplotlib.collections.QuadMesh at 0x7f833bbf1d50&gt;
-</code></pre>
-<p><img src="images/Untitled_17_1.png" alt="png"></p>
+</code></pre></div>
+    <img src="/images/Untitled_17_1.png"  alt="png"  class="center"  />
+
+
 <p>We&rsquo;ll now perform same operations on different raster data</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># single band raster data with missing values</span>
 da2 <span style="color:#f92672">=</span> xr<span style="color:#f92672">.</span>open_rasterio(<span style="color:#e6db74">&#39;nasadem_sd.tif&#39;</span>)
@@ -140,9 +143,10 @@ da2 <span style="color:#f92672">=</span> xr<span style="color:#f92672">.</span>o
 da2 <span style="color:#f92672">=</span> da2[:, :<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">300</span>:<span style="color:#ae81ff">400</span>]
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># ploting dataarray after removing missing values</span>
 da2<span style="color:#f92672">.</span>where(da2<span style="color:#f92672">.</span>data<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>plot()
-</code></pre></div><pre><code>&lt;matplotlib.collections.QuadMesh at 0x7f833bb3a890&gt;
-</code></pre>
-<p><img src="images/Untitled_20_1.png" alt="png"></p>
+</code></pre></div>
+    <img src="/images/Untitled_20_1.png"  alt="png"  class="center"  />
+
+
 <p>This time we will create weights object using <code>Queen</code> class</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Creating weight of object from raster</span>
 w_queen <span style="color:#f92672">=</span> Queen<span style="color:#f92672">.</span>from_xarray(da2)
@@ -164,9 +168,15 @@ lisa <span style="color:#f92672">=</span> Moran_Local(data2,w_queen)
 moran_da2 <span style="color:#f92672">=</span> w_queen<span style="color:#f92672">.</span>to_xarray(lisa<span style="color:#f92672">.</span>p_sim, da2<span style="color:#f92672">.</span>coords, da2<span style="color:#f92672">.</span>attrs)
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Plotting the converted DataArray</span>
 moran_da2<span style="color:#f92672">.</span>where(moran_da2<span style="color:#f92672">.</span>data<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>plot()
-</code></pre></div><pre><code>&lt;matplotlib.collections.QuadMesh at 0x7f833a023c50&gt;
-</code></pre>
-<p><img src="images/Untitled_26_1.png" alt="png"></p>
+</code></pre></div>
+    <img src="/images/Untitled_26_1.png"  alt="png"  class="center"  />
+
+
+<h2 id="experience">Experience</h2>
+<p>Without a doubt, this summer has been very interesting and worthwhile with tons of knowledge gained and new things explored related to the project. After every interaction with my mentors, my appreciation for PySAL grow even more, I&rsquo;m able to understand the design decisions went behind the creation of APIs, different methods and overall structure of each module in PySAL library.</p>
+<h2 id="whats-next">What’s next?</h2>
+<p>There are some API fixes which my mentors suggested I&rsquo;ll work on those side by side I&rsquo;ll also work on the feedback and suggestions which will be given by the community in the upcoming group call and will try to finalize the interface before next week, after that I&rsquo;ll add remaining tests and docstring examples.</p>
+<p>Wait for my next blog which will shed some light on the optimization part along with the integration of the interface with other parts of the library&hellip; Till then adios amigos 👋.</p>
 ]]></content>
         </item>
         
