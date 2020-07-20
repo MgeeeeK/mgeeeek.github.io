@@ -6,10 +6,20 @@
     <description>Recent content in gsoc on Mragank Shekhar</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 29 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mgeeeek.github.io/tags/gsoc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Coding period: second phase part 1</title>
+      <link>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-1/</link>
+      <pubDate>Fri, 17 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-1/</guid>
+      <description>Phase 1 of the coding period has already completed and we&amp;rsquo;ve had almost reached the midpoint of the coding period. This blog will provide a short update of the work done in the last couple of weeks.
+API Status At the end of Phase 1, there were some bug fixes and API changes that my mentors suggested, these were minor changes that were quickly included in the project in the following week.</description>
+    </item>
     
     <item>
       <title>Coding period: first phase part 2</title>
