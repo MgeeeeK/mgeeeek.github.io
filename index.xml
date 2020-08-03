@@ -6,10 +6,20 @@
     <description>Recent content on Mragank Shekhar</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 17 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mgeeeek.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Coding period: second phase part 2</title>
+      <link>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-2/</link>
+      <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-2/</guid>
+      <description>Phase two of GSoC2020 is over, this blog is little late cos my laptop&amp;rsquo;s HDD died and I was unable to save my Hugo environment. Overall the summer has been really productive and the API design of the interface is finally reached beta period, let&amp;rsquo;s look at the progress.
+Final API of the Interface After several weeks of coding, design discussions, and code review, phase 1 of my project which consisted of designing API and all the functionality for the base raster interface is completed.</description>
+    </item>
     
     <item>
       <title>Coding period: second phase part 1</title>

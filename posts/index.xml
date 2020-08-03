@@ -5,8 +5,180 @@
         <description>Recent content in Posts on Mragank Shekhar</description>
         <generator>Hugo -- gohugo.io</generator>
         <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-        <lastBuildDate>Fri, 17 Jul 2020 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Fri, 31 Jul 2020 00:00:00 +0000</lastBuildDate>
         <atom:link href="https://mgeeeek.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Coding period: second phase part 2</title>
+            <link>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-2/</link>
+            <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+            
+            <guid>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-2/</guid>
+            <description>Phase two of GSoC2020 is over, this blog is little late cos my laptop&amp;rsquo;s HDD died and I was unable to save my Hugo environment. Overall the summer has been really productive and the API design of the interface is finally reached beta period, let&amp;rsquo;s look at the progress.
+Final API of the Interface After several weeks of coding, design discussions, and code review, phase 1 of my project which consisted of designing API and all the functionality for the base raster interface is completed.</description>
+            <content type="html"><![CDATA[<p><em>Phase two of GSoC2020 is over, this blog is little late cos my laptop&rsquo;s HDD died and I was unable to save my Hugo environment. Overall the summer has been really productive and the API design of the interface is finally reached beta period, let&rsquo;s look at the progress.</em></p>
+<h2 id="final-api-of-the-interface">Final API of the Interface</h2>
+<p>After several weeks of coding, design discussions, and code review, phase 1 of my project which consisted of designing API and all the functionality for the base raster interface is completed. In the last couple of weeks, I had to work on refactoring the methods to align them with the future design of the weights object, along with this there were some new test cases that I had to deal with as my earlier approach was focused only on <code>GDAL raster formats</code> and <code>open_rasterio</code> method which restricted the interface from being used with other datasets like <code>NetCDF</code> and therefore I&rsquo;d to work on refactoring and thinking what will be the best way to introduce this functionality in the interface.</p>
+<p>These new changes were finalized after project meeting with my mentors, they explained that it&rsquo;ll be ideal if the support for other datasets is extended and the methods could be made more generalized. For this, a parameter <code>dims</code> was added to the weight builders, this argument will accept a dictionary, if dimensions of the <code>DataArray</code> does not match default dimensions which are <code>['band', 'time', 'lat', 'y', 'lon', 'x']</code>.</p>
+<p>e.g. <code>dims</code> dictionary:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># none of the dimension belong to the default dimension list</span>
+<span style="color:#f92672">&gt;&gt;&gt;</span> da<span style="color:#f92672">.</span>dims                  
+(<span style="color:#e6db74">&#39;year&#39;</span>, <span style="color:#e6db74">&#39;height&#39;</span>, <span style="color:#e6db74">&#39;width&#39;</span>)
+<span style="color:#75715e"># dimension values should be properly aligned with the following keys</span>
+<span style="color:#f92672">&gt;&gt;&gt;</span> dims <span style="color:#f92672">=</span> {
+        <span style="color:#e6db74">&#34;layer&#34;</span>: <span style="color:#e6db74">&#34;year&#34;</span>,
+        <span style="color:#e6db74">&#34;lat&#34;</span>: <span style="color:#e6db74">&#34;height&#34;</span>,
+        <span style="color:#e6db74">&#34;lon&#34;</span>: <span style="color:#e6db74">&#34;width&#34;</span>
+    }
+</code></pre></div><p>After adding new fixes, I worked on adding documentation and tests which took me a while to get my head around. After a few iterations of code review by my mentors, they notified me that I need to follow the <code>NumPy</code> doc convention for adding docstring. And in the last week of phase 2, I was able to finalize most of the work, you can check this pr which itself documents my progress in the second phase.</p>
+<ul>
+<li><a href="https://github.com/pysal/libpysal/pull/318">[WIP] : Base Raster Interface</a></li>
+</ul>
+<p>I&rsquo;ve provided an example notebook, which will try to cover the functionality offered by the raster interface.</p>
+<h2 id="example-notebook-for-raster-awareness-api">Example Notebook for Raster awareness API</h2>
+<p>This notebook will give an overview of newly developed raster interface. We&rsquo;ll cover
+basic usage of the functionality offered by the interface which mainly involves:</p>
+<ol>
+<li>converting <code>xarray.DataArray</code> object to the PySAL&rsquo;s weights object (<code>libpysal.weights.W</code>/<code>WSP</code>).</li>
+<li>going back to the <code>xarray.DataArray</code> from weights object.</li>
+</ol>
+<p>using different datasets:</p>
+<ul>
+<li>with missing values.</li>
+<li>with multiple layers.</li>
+<li>with non conventional dimension names.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>matplotlib inline
+
+<span style="color:#f92672">from</span> libpysal.weights <span style="color:#f92672">import</span> Rook, Queen, KNN
+<span style="color:#f92672">from</span> libpysal.weights <span style="color:#f92672">import</span> raster
+<span style="color:#f92672">import</span> libpysal <span style="color:#f92672">as</span> lp
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> xarray <span style="color:#f92672">as</span> xr
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> esda <span style="color:#f92672">import</span> Moran_Local
+</code></pre></div><h3 id="loading-data">Loading Data</h3>
+<p><em>The interface only accepts <code>xarray.DataArray</code></em>, this can be easily obtained from raster data
+format using <code>xarray</code>'s I/O functionality which can read from a variety of data formats some of them are listed below:</p>
+<ul>
+<li><a href="https://svn.osgeo.org/gdal/tags/gdal_1_2_5/frmts/formats_list.html">GDAL Raster Formats</a> via <code>open_rasterio</code> method.</li>
+<li><a href="https://www.unidata.ucar.edu/software/netcdf/">NetCDF</a> via <code>open_dataset</code> method.</li>
+</ul>
+<p>In this notebook we&rsquo;ll work with <code>NetCDF</code> and <code>GeoTIFF</code> data.</p>
+<h4 id="using-local-netcdf-dataset">Using local <code>NetCDF</code> dataset</h4>
+<p>In this small example we&rsquo;ll build <code>KNN</code> distance weight object using a local <code>NetCDF</code> dataset with different dimensions names which doesn&rsquo;t belong to the default list of dimensions.</p>
+<p>We&rsquo;ll also see how to speed up the reverse journey (from weights object to <code>DataArray</code>) by passing prebuilt <code>coords</code> and <code>attrs</code> to <code>w2da</code> method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Lets load a netCDF Surface dataset</span>
+ds <span style="color:#f92672">=</span> xr<span style="color:#f92672">.</span>open_dataset(<span style="color:#e6db74">&#39;ECMWF_ERA-40_subset.nc&#39;</span>)    <span style="color:#75715e"># After loading netCDF dataset we obtained a xarray.Dataset object</span>
+<span style="color:#66d9ef">print</span>(ds)                                         <span style="color:#75715e"># This Dataset object containes several data variables</span>
+</code></pre></div><pre><code>&lt;xarray.Dataset&gt;
+Dimensions:    (latitude: 73, longitude: 144, time: 62)
+Coordinates:
+  * longitude  (longitude) float32 0.0 2.5 5.0 7.5 ... 350.0 352.5 355.0 357.5
+  * latitude   (latitude) float32 90.0 87.5 85.0 82.5 ... -85.0 -87.5 -90.0
+  * time       (time) datetime64[ns] 2002-07-01T12:00:00 ... 2002-07-31T18:00:00
+Data variables:
+    tcw        (time, latitude, longitude) float32 ...
+    tcwv       (time, latitude, longitude) float32 ...
+    lsp        (time, latitude, longitude) float32 ...
+    cp         (time, latitude, longitude) float32 ...
+    msl        (time, latitude, longitude) float32 ...
+    blh        (time, latitude, longitude) float32 ...
+    tcc        (time, latitude, longitude) float32 ...
+    p10u       (time, latitude, longitude) float32 ...
+    p10v       (time, latitude, longitude) float32 ...
+    p2t        (time, latitude, longitude) float32 ...
+    p2d        (time, latitude, longitude) float32 ...
+    e          (time, latitude, longitude) float32 ...
+    lcc        (time, latitude, longitude) float32 ...
+    mcc        (time, latitude, longitude) float32 ...
+    hcc        (time, latitude, longitude) float32 ...
+    tco3       (time, latitude, longitude) float32 ...
+    tp         (time, latitude, longitude) float32 ...
+Attributes:
+    Conventions:  CF-1.0
+    history:      2004-09-15 17:04:29 GMT by mars2netcdf-0.92
+</code></pre>
+<p>Out of 17 data variables we&rsquo;ll use <code>p2t</code> for our analysis. This will give us our desired <code>DataArray</code> object <code>da</code>, we will further group <code>da</code> by day, taking average over the <code>time</code> dimension.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">da <span style="color:#f92672">=</span> ds[<span style="color:#e6db74">&#34;p2t&#34;</span>]  <span style="color:#75715e"># this will give us the required DataArray with p2t (2 metre temperature) data variable</span>
+da <span style="color:#f92672">=</span> da<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;time.day&#39;</span>)<span style="color:#f92672">.</span>mean()
+<span style="color:#66d9ef">print</span>(da<span style="color:#f92672">.</span>dims)
+</code></pre></div><pre><code>('day', 'latitude', 'longitude')
+</code></pre>
+<p><strong>Weight builders (<code>from_xarray</code>, <code>da2W</code>, <code>da2WSP</code>) can recognise dimensions belonging to this list <code>[band, time, lat, y, lon, x]</code>, if any of the dimension in the <code>DataArray</code> does not belong to the mentioned list then we need to pass a dictionary (specifying that dimension’s name) to the weight builder. We can see that the none of dimensions of <code>da</code> matches with the default dimensions (<code>[band, time, lat, y, lon, x]</code>)</strong></p>
+<p>This means we have to create a dictionary mentioning the dimensions and ship it to weight builder, similar to our last example.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dims <span style="color:#f92672">=</span> {}
+dims[<span style="color:#e6db74">&#34;lat&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;latitude&#34;</span>
+dims[<span style="color:#e6db74">&#34;lon&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;longitude&#34;</span>
+dims[<span style="color:#e6db74">&#34;layer&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;day&#34;</span>
+w_knn <span style="color:#f92672">=</span> KNN<span style="color:#f92672">.</span>from_xarray(da, layer<span style="color:#f92672">=</span><span style="color:#ae81ff">13</span>, dims<span style="color:#f92672">=</span>dims, k<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data <span style="color:#f92672">=</span> da<span style="color:#f92672">.</span>to_series()[w_knn<span style="color:#f92672">.</span>index]  <span style="color:#75715e"># we derived the data from DataArray similar to our last example </span>
+</code></pre></div><p>We can now speed up <code>w2da</code> by passing <code>coords</code> from the existing <code>DataArray</code> <code>da</code> which we used earlier.</p>
+<p>Along with <code>coords</code> we can also pass <code>attrs</code> of the same <code>DataArray</code> this will help <code>w2da</code> to retain all the properties of original <code>DataArray</code>.</p>
+<p>Let&rsquo;s compare the <code>DataArray</code> returned by <code>w2da</code> and original <code>DataArray</code>. For this we&rsquo;ll ship the derived data straight to <code>w2da</code> without any statistical analysis.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">da1 <span style="color:#f92672">=</span> raster<span style="color:#f92672">.</span>w2da(data, w_knn, attrs<span style="color:#f92672">=</span>da<span style="color:#f92672">.</span>attrs, coords<span style="color:#f92672">=</span>da[<span style="color:#ae81ff">12</span>:<span style="color:#ae81ff">13</span>]<span style="color:#f92672">.</span>coords)
+xr<span style="color:#f92672">.</span>DataArray<span style="color:#f92672">.</span>equals(da[<span style="color:#ae81ff">12</span>:<span style="color:#ae81ff">13</span>], da1)  <span style="color:#75715e"># method to compare 2 DataArray, if true then w2da was successfull</span>
+</code></pre></div><pre><code>True
+</code></pre>
+<h4 id="using-local-geotiff-dataset">Using local <code>GeoTIFF</code> dataset</h4>
+<p>Up until now we&rsquo;ve only played with <code>netCDF</code> datasets but in this example we&rsquo;ll use a <code>raster.tif</code> file to see how interface interacts with it. We&rsquo;ll also see how these methods handle missing data.</p>
+<p>Unlike earlier we&rsquo;ll use weight builder methods from <code>raster.py</code>, which we can call directly. Just a reminder that <code>from_xarray</code> uses methods from <code>raster.py</code> and therefore only difference exists in the API.</p>
+<p>To access GDAL Raster Formats xarray offers <code>open_rasterio</code> method which uses <code>rasterio</code> as backend. It loads metadata, coordinate values from the raster file and assign them to the <code>DataArray</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Loading raster data with missing values</span>
+da <span style="color:#f92672">=</span> xr<span style="color:#f92672">.</span>open_rasterio(<span style="color:#e6db74">&#39;lux_ppp_2019.tif&#39;</span>)
+<span style="color:#66d9ef">print</span>(da)
+</code></pre></div><pre><code>&lt;xarray.DataArray (band: 1, y: 880, x: 940)&gt;
+[827200 values with dtype=float32]
+Coordinates:
+  * band     (band) int64 1
+  * y        (y) float64 50.18 50.18 50.18 50.18 ... 49.45 49.45 49.45 49.45
+  * x        (x) float64 5.745 5.746 5.747 5.747 ... 6.525 6.526 6.527 6.527
+Attributes:
+    transform:      (0.0008333333297872345, 0.0, 5.744583325, 0.0, -0.0008333...
+    crs:            +init=epsg:4326
+    res:            (0.0008333333297872345, 0.0008333333295454553)
+    is_tiled:       0
+    nodatavals:     (-99999.0,)
+    scales:         (1.0,)
+    offsets:        (0.0,)
+    AREA_OR_POINT:  Area
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">da<span style="color:#f92672">.</span>where(da<span style="color:#f92672">.</span>values<span style="color:#f92672">&gt;</span>da<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#34;nodatavals&#34;</span>][<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>plot() <span style="color:#75715e"># we can see that the DataArray contains missing values.</span>
+</code></pre></div><pre><code>&lt;matplotlib.collections.QuadMesh at 0x7f27287a3550&gt;
+</code></pre>
+
+    <img src="/images/Raster_awareness_API_29_1.png"  alt="png"  class="center"  />
+
+
+<p>We&rsquo;ll look at how weight builders handle missing values. Firstly we&rsquo;ll slice the <code>DataArray</code> to reduce overall size for easier visualization.</p>
+<p>This time we&rsquo;ll create <code>WSP</code> object using <code>da2WSP</code> method inside <code>raster.py</code>. Since our DataArray is single banded and all of its dimensions belong to the default list, we&rsquo;ve to only ship the DataArray to the <code>da2WSP</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Slicing the dataarray</span>
+da_s <span style="color:#f92672">=</span> da[:, <span style="color:#ae81ff">330</span>:<span style="color:#ae81ff">340</span>, <span style="color:#ae81ff">129</span>:<span style="color:#ae81ff">139</span>]
+w_queen <span style="color:#f92672">=</span> raster<span style="color:#f92672">.</span>da2WSP(da_s)  <span style="color:#75715e"># default contiguity is queen</span>
+w_rook <span style="color:#f92672">=</span> raster<span style="color:#f92672">.</span>da2WSP(da_s, <span style="color:#e6db74">&#34;rook&#34;</span>)
+</code></pre></div><p>After plotting both contiguities and sliced <code>DataArray</code>, we can see that the missing values are ignored by the <code>da2WSP</code> method and only indices of non missing values are stored in <code>index</code> attribute of <code>WSP</code> object.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">f,ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span><span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>), subplot_kw<span style="color:#f92672">=</span>dict(aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;equal&#39;</span>))
+da_s<span style="color:#f92672">.</span>where(da_s<span style="color:#f92672">.</span>values<span style="color:#f92672">&gt;</span>da_s<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#34;nodatavals&#34;</span>][<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>plot(ax<span style="color:#f92672">=</span>ax[<span style="color:#ae81ff">0</span>])
+ax[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;Sliced raster&#34;</span>)
+plot_spatial_weights(w_rook, da_s, ax<span style="color:#f92672">=</span>ax[<span style="color:#ae81ff">1</span>])
+ax[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;Rook contiguity&#34;</span>)
+plot_spatial_weights(w_queen, da_s, ax<span style="color:#f92672">=</span>ax[<span style="color:#ae81ff">2</span>])
+ax[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;Queen contiguity&#34;</span>)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div>
+    <img src="/images/Raster_awareness_API_33_0.png"  alt="png"  class="center"  />
+
+
+<h3 id="additional-resources">Additional resources</h3>
+<ol>
+<li><a href="http://xarray.pydata.org/en/stable/io.html">Reading and writing files using Xarray</a></li>
+<li><a href="http://xarray.pydata.org/en/stable/data-structures.html">Xarray Data Structures</a></li>
+</ol>
+<h2 id="whats-next">What&rsquo;s next?</h2>
+<p>My first deliverable is almost complete (few bugs here and there stills exists and beta testing is still going on). This coding phase is dedicated towards optimizing and integration of raster interface. Regarding optimization, I&rsquo;ve succesfully built a faster raster weight builder using <code>numba</code> and <code>COO_matrix</code>, I&rsquo;m working on the multicore implementation for the same. After finishing high performant weight builder, I&rsquo;ll look into efficiently increasing the neighbors in the weights object.</p>
+<p>Find out what happens next in the episode of GSoC2020&hellip; until then bye-bye 👋.</p>
+]]></content>
+        </item>
         
         <item>
             <title>Coding period: second phase part 1</title>
