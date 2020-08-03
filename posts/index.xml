@@ -68,9 +68,10 @@ format using <code>xarray</code>'s I/O functionality which can read from a varie
 <h4 id="using-local-netcdf-dataset">Using local <code>NetCDF</code> dataset</h4>
 <p>In this small example we&rsquo;ll build <code>KNN</code> distance weight object using a local <code>NetCDF</code> dataset with different dimensions names which doesn&rsquo;t belong to the default list of dimensions.</p>
 <p>We&rsquo;ll also see how to speed up the reverse journey (from weights object to <code>DataArray</code>) by passing prebuilt <code>coords</code> and <code>attrs</code> to <code>w2da</code> method.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Lets load a netCDF Surface dataset</span>
-ds <span style="color:#f92672">=</span> xr<span style="color:#f92672">.</span>open_dataset(<span style="color:#e6db74">&#39;ECMWF_ERA-40_subset.nc&#39;</span>)    <span style="color:#75715e"># After loading netCDF dataset we obtained a xarray.Dataset object</span>
-<span style="color:#66d9ef">print</span>(ds)                                         <span style="color:#75715e"># This Dataset object containes several data variables</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># After loading netCDF dataset we obtained a xarray.Dataset object</span>
+ds <span style="color:#f92672">=</span> xr<span style="color:#f92672">.</span>open_dataset(<span style="color:#e6db74">&#39;ECMWF_ERA-40_subset.nc&#39;</span>)
+<span style="color:#75715e"># This Dataset object containes several data variables    </span>
+<span style="color:#66d9ef">print</span>(ds)                                         
 </code></pre></div><pre><code>&lt;xarray.Dataset&gt;
 Dimensions:    (latitude: 73, longitude: 144, time: 62)
 Coordinates:
@@ -100,7 +101,8 @@ Attributes:
     history:      2004-09-15 17:04:29 GMT by mars2netcdf-0.92
 </code></pre>
 <p>Out of 17 data variables we&rsquo;ll use <code>p2t</code> for our analysis. This will give us our desired <code>DataArray</code> object <code>da</code>, we will further group <code>da</code> by day, taking average over the <code>time</code> dimension.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">da <span style="color:#f92672">=</span> ds[<span style="color:#e6db74">&#34;p2t&#34;</span>]  <span style="color:#75715e"># this will give us the required DataArray with p2t (2 metre temperature) data variable</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># this will give us the required DataArray with p2t (2 metre temperature) data variable</span>
+da <span style="color:#f92672">=</span> ds[<span style="color:#e6db74">&#34;p2t&#34;</span>]  
 da <span style="color:#f92672">=</span> da<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;time.day&#39;</span>)<span style="color:#f92672">.</span>mean()
 <span style="color:#66d9ef">print</span>(da<span style="color:#f92672">.</span>dims)
 </code></pre></div><pre><code>('day', 'latitude', 'longitude')
@@ -112,12 +114,14 @@ dims[<span style="color:#e6db74">&#34;lat&#34;</span>] <span style="color:#f9267
 dims[<span style="color:#e6db74">&#34;lon&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;longitude&#34;</span>
 dims[<span style="color:#e6db74">&#34;layer&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;day&#34;</span>
 w_knn <span style="color:#f92672">=</span> KNN<span style="color:#f92672">.</span>from_xarray(da, layer<span style="color:#f92672">=</span><span style="color:#ae81ff">13</span>, dims<span style="color:#f92672">=</span>dims, k<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data <span style="color:#f92672">=</span> da<span style="color:#f92672">.</span>to_series()[w_knn<span style="color:#f92672">.</span>index]  <span style="color:#75715e"># we derived the data from DataArray similar to our last example </span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># we can derive the data from DataArray using index attribute</span>
+data <span style="color:#f92672">=</span> da<span style="color:#f92672">.</span>to_series()[w_knn<span style="color:#f92672">.</span>index]  
 </code></pre></div><p>We can now speed up <code>w2da</code> by passing <code>coords</code> from the existing <code>DataArray</code> <code>da</code> which we used earlier.</p>
 <p>Along with <code>coords</code> we can also pass <code>attrs</code> of the same <code>DataArray</code> this will help <code>w2da</code> to retain all the properties of original <code>DataArray</code>.</p>
 <p>Let&rsquo;s compare the <code>DataArray</code> returned by <code>w2da</code> and original <code>DataArray</code>. For this we&rsquo;ll ship the derived data straight to <code>w2da</code> without any statistical analysis.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">da1 <span style="color:#f92672">=</span> raster<span style="color:#f92672">.</span>w2da(data, w_knn, attrs<span style="color:#f92672">=</span>da<span style="color:#f92672">.</span>attrs, coords<span style="color:#f92672">=</span>da[<span style="color:#ae81ff">12</span>:<span style="color:#ae81ff">13</span>]<span style="color:#f92672">.</span>coords)
-xr<span style="color:#f92672">.</span>DataArray<span style="color:#f92672">.</span>equals(da[<span style="color:#ae81ff">12</span>:<span style="color:#ae81ff">13</span>], da1)  <span style="color:#75715e"># method to compare 2 DataArray, if true then w2da was successfull</span>
+<span style="color:#75715e"># method to compare 2 DataArray, if true then w2da was successfull</span>
+xr<span style="color:#f92672">.</span>DataArray<span style="color:#f92672">.</span>equals(da[<span style="color:#ae81ff">12</span>:<span style="color:#ae81ff">13</span>], da1)  
 </code></pre></div><pre><code>True
 </code></pre>
 <h4 id="using-local-geotiff-dataset">Using local <code>GeoTIFF</code> dataset</h4>
@@ -143,7 +147,8 @@ Attributes:
     offsets:        (0.0,)
     AREA_OR_POINT:  Area
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">da<span style="color:#f92672">.</span>where(da<span style="color:#f92672">.</span>values<span style="color:#f92672">&gt;</span>da<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#34;nodatavals&#34;</span>][<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>plot() <span style="color:#75715e"># we can see that the DataArray contains missing values.</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># we can see that the DataArray contains missing values.</span>
+da<span style="color:#f92672">.</span>where(da<span style="color:#f92672">.</span>values<span style="color:#f92672">&gt;</span>da<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#34;nodatavals&#34;</span>][<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>plot() 
 </code></pre></div><pre><code>&lt;matplotlib.collections.QuadMesh at 0x7f27287a3550&gt;
 </code></pre>
 
