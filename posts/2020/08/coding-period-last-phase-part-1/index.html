@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Mragank Shekhar]">
+<meta name="description" content="We are in the end phase of GSOC now and less than 2 weeks are remaining for finishing up our project. My last blog focused on the working of base raster interface API which is in the beta phase as it is still being reviewed by other community members. Most of my time in the first half of this phase went in optimizing the weights builder and efficiently increasing the neighbors of the focal point, let&amp;rsquo;s jump straight to the exciting stuff." />
+<meta name="keywords" content="blog,developer,personal, gsoc, coding period" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="https://mgeeeek.github.io/posts/2020/08/coding-period-last-phase-part-1/" />
+
+
+    <title>
+        
+            Coding period: last phase part 1 :: Mragank Shekhar 
+        
+    </title>
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://mgeeeek.github.io/main.min.1a82fce3e67e89eaadce1b92ba2f322a11be767a9f2d81a9b53a3a82dd213a5f.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mgeeeek.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mgeeeek.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mgeeeek.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://mgeeeek.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://mgeeeek.github.io/safari-pinned-tab.svg" color="#252627">
+    <link rel="shortcut icon" href="https://mgeeeek.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+<meta itemprop="name" content="Coding period: last phase part 1">
+<meta itemprop="description" content="We are in the end phase of GSOC now and less than 2 weeks are remaining for finishing up our project. My last blog focused on the working of base raster interface API which is in the beta phase as it is still being reviewed by other community members. Most of my time in the first half of this phase went in optimizing the weights builder and efficiently increasing the neighbors of the focal point, let&rsquo;s jump straight to the exciting stuff.">
+<meta itemprop="datePublished" content="2020-08-17T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-08-17T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1522">
+<meta itemprop="image" content="https://mgeeeek.github.io"/>
+
+
+
+<meta itemprop="keywords" content="gsoc,coding period," />
+<meta property="og:title" content="Coding period: last phase part 1" />
+<meta property="og:description" content="We are in the end phase of GSOC now and less than 2 weeks are remaining for finishing up our project. My last blog focused on the working of base raster interface API which is in the beta phase as it is still being reviewed by other community members. Most of my time in the first half of this phase went in optimizing the weights builder and efficiently increasing the neighbors of the focal point, let&rsquo;s jump straight to the exciting stuff." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mgeeeek.github.io/posts/2020/08/coding-period-last-phase-part-1/" />
+<meta property="og:image" content="https://mgeeeek.github.io"/>
+<meta property="article:published_time" content="2020-08-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://mgeeeek.github.io"/>
+
+<meta name="twitter:title" content="Coding period: last phase part 1"/>
+<meta name="twitter:description" content="We are in the end phase of GSOC now and less than 2 weeks are remaining for finishing up our project. My last blog focused on the working of base raster interface API which is in the beta phase as it is still being reviewed by other community members. Most of my time in the first half of this phase went in optimizing the weights builder and efficiently increasing the neighbors of the focal point, let&rsquo;s jump straight to the exciting stuff."/>
+
+
+
+    <meta property="article:section" content="gsoc" />
+
+
+
+    <meta property="article:published_time" content="2020-08-17 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <main class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://mgeeeek.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   background-color:#f25056;
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://mgeeeek.github.io/about/">About</a></li><li><a href="https://mgeeeek.github.io/posts/">Blogs</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>8 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="https://mgeeeek.github.io/posts/2020/08/coding-period-last-phase-part-1/">Coding period: last phase part 1</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p><em>We are in the end phase of GSOC now and less than 2 weeks are remaining for finishing up our project. My last blog focused on the working of base raster interface API which is in the beta phase as it is still being reviewed by other community members. Most of my time in the first half of this phase went in optimizing the weights builder and efficiently increasing the neighbors of the focal point, let&rsquo;s jump straight to the exciting stuff.</em></p>
+<h2 id="existing-weights-builder-design">Existing Weights Builder Design</h2>
+<p>The current approach uses <code>lat2SW</code> method which provides main functionality for constructing a sparse matrix for the regular lattice. <code>lat2SW</code> calculates diagonals and offsets for building <code>scipy.sparse.dia_matrix</code> which is then converted to <code>csr_matrix</code>, this is straightforward as regular lattice does not contain missing data or any irregularities and therefore neighbors can be calculated using the predefined method for <code>rook</code> and <code>queen</code> contiguity. The main issue while using <code>lat2SW</code> was when we&rsquo;re dealing with data consisting of missing values, in this case, boolean indexing is used for removing missing rows and columns from the created sparse matrix. Performance takes a hit due to boolean indexing of <code>csr_matrix</code> and this raised concerns for building weight objects for larger data. Memory consumption in <code>lat2SW</code> is also high due to the use of <code>lists</code> instead of <code>np.array</code>.</p>
+<p>This made us consider to think about another route for creating weight objects, a route where the builder only includes elements from the (non-missing) data from the beginning, unlike the approach I talked about earlier.</p>
+<p>To create a matrix with only non-missing values in mind, <code>lat2SW</code>/<code>dia_matrix</code> was out of the question since it is highly oriented towards building regular lattice. Next options were to build either <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.dok_matrix.html#scipy.sparse.dok_matrix">DOK</a>, <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html#scipy.sparse.csr_matrix">CSR/CSC</a>, or <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html#scipy.sparse.coo_matrix">COO</a>&hellip;</p>
+<ul>
+<li>It was impossible (for me) to Numba-fy <code>DOK</code> builder due to its structure and without <code>numba</code> it was too slow.</li>
+<li>In case of <code>CSR/CSC</code> I was not able to think of a multithreaded implementation.</li>
+<li>From the start I was biased towards <code>COO</code> as its structure is quite simple, can be numba-fied, fairly easy to incorporate multithreading, and fast conversion to <code>CSR/CSC</code> matrix.</li>
+</ul>
+<p>And therefore I went ahead with <code>coo_matrix</code>, next part explains this in detail.</p>
+<h2 id="new-weights-builder">New Weights Builder</h2>
+<p>Constructing <code>coo_matrix</code> with only non-missing data was still a tricky problem since I had to know the original ids and the position ids after removing all the missing data. To solve this issue I had to create an <code>id_map</code> (1d array) of length = (missing + non-missing)data, where each ids of non-missing values contained the index values of non-missing data after removing all missing data. After this, the method uses modular arithmetic and continuous checking for creating row and col arrays only for non-missing neighbors and since this is not vectorized there was a high requirement of incorporating <code>numba</code> to the builder.</p>
+<p>Up until now I never knew what <code>numba</code> really was or how it worked, luckily I was familiar with technical details of <code>cython</code> and after reading <code>numba</code> documentation I got a clear idea of how <code>numba</code> worked.</p>
+<blockquote>
+<p>How does Numba work?</p>
+<p>Numba reads the Python bytecode for a decorated function and combines this with information about the types of the input arguments to the function. It analyzes and optimizes your code, and finally uses the LLVM compiler library to generate a machine code version of your function, tailored to your CPU capabilities. This compiled version is then used every time your function is called.</p>
+</blockquote>
+<p>Since the new sparse matrix implementation involved traversing a huge for loop, <code>numba</code> substantially improved the performance of builder, please check <a href="https://github.com/MgeeeeK/GSoC2020/blob/master/raster%20weights%20builder.ipynb">this notebook</a> for performance overview. It can be seen that the new method is much better in terms of both scalability and efficiency, we can also see that without numba the new method will be of no use as the difference is of night and day. Now if you thought that this is it (if you&rsquo;re someone who is not familiar with the project already) then nope, there is one more level to make this more efficient which is through parallel processing.</p>
+<h2 id="parallel-implementation">Parallel Implementation</h2>
+<p>For making the program run parallelly there was a need for restructuring how it handles passed data, we&rsquo;ve to divide the workload into smaller workloads which will run on each thread or a process simultaneously, after all the workloads are finished we&rsquo;ll combine all the results thus obtaining desired output. Luckily this <a href="https://github.com/pysal/esda/pull/116">pr #116</a> helped me a lot to understand proper implementation for making weights builder work parallelly. Let&rsquo;s go through the implementation:</p>
+<ul>
+<li>There are 3 main components to build parallel pipeline, first is the base compute method which in our case is numbafied method that generates <code>rows</code> and <code>cols</code> array, second is the method which will divide our data for smaller workload, and third is the main method which will be called to initiate the parallel pipeline, this method creates the parallel instance and then combines the output of each instance into the desired results.</li>
+<li>First step in my case was to analyze the arguments that the new weight builder needed, which are 2 arrays and 4 static variables. <code>id_map</code> and <code>ids</code> are the 2 arrays where <code>ids</code> contained the index of non-missing data (<code>id_map</code> is already explained earlier). We needed complete <code>id_map</code> to build <code>rows</code> and <code>cols</code> arrays so there was no need of modifying it, but to divide workload we sliced the <code>ids</code> array into n equal parts, where n is the number of workloads we have to divide (typically n this is equal to the total number of threads in our computer).</li>
+<li>We can use an iterator or a generator to create equal parts of <code>ids</code>. Let&rsquo;s say if the length of our <code>ids</code> array is 100 and the value of <code>n</code> is 4 then the generator we&rsquo;ll generate 4 chunks of <code>ids</code> array. In this case, we created an array which consisted of starting index of each chunk in this case it consists <code>[0, 25, 50, 75]</code>.
+<ul>
+<li>chunk1 -&gt; ids[0:25]</li>
+<li>chunk2 -&gt; ids[25:50]</li>
+<li>chunk2 -&gt; ids[50:75]</li>
+<li>chunk2 -&gt; ids[75:100]</li>
+</ul>
+</li>
+<li>After creating the required chunk generator, we implemented the main method we use delayed function to create n lists of workload for each parallel instance and each <code>ids</code> argument in this list consisted of the <code>ids_chunk</code> calculated in the second step. After the processing is finished we obtained a tuple containing the output of n instances.</li>
+<li>The final step is to assemble and combine the parallel output into our desired results which in this case was merging n <code>rows</code> and n <code>cols</code>.</li>
+</ul>
+<p>Now there are different ways to parallelize the workloads. <code>joblib</code> offers 3 backends <code>loky</code>, <code>threading</code>, and <code>multiprocessing</code>. This opens up the discussion of threads-based vs process-based parallelism:</p>
+<blockquote>
+<p>Thread-based parallelism vs Process-based parallelism</p>
+<p>By default <code>joblib.Parallel</code> uses the <code>loky</code> backend module to start separate Python worker processes to execute tasks concurrently on separate CPUs. This is a reasonable default for generic Python programs but can induce a significant overhead as the input and output data need to be serialized in a queue for communication with the worker processes (see Serialization &amp; Processes).</p>
+<p>When you know that the function you are calling is based on a compiled extension that releases the Python Global Interpreter Lock (GIL) during most of its computation then it is more efficient to use threads instead of Python processes as concurrent workers. For instance, this is the case if you write the CPU intensive part of your code inside a with nogil block of a Cython function.</p>
+</blockquote>
+<p><a href="https://github.com/pysal/esda/pull/116">pr #116</a> uses <code>loky</code> backend and therefore I started with the same. But in the case of rasters the memory footprint of using <code>loky</code> backend was huge, combined with worse performance than the single-threaded approach I had to think of another way. I stumbled upon <code>threading</code> backend but this required me to release the Python Global Interpreter Lock which can be risky otherwise threads will not run parallely (here I ask you to <a href="https://www.google.com/search?q=python+release+gil+disadvantages">google</a> those risks, this blog has already become enormous). But in the current builder all the arguments are static and are not bound to change during the computations and therefore I continued with <code>threading</code> backend and since the compute method uses <code>numba</code> it was relatively easy to release the <code>gil</code> through <code>nogil=True</code> argument inside the decorator.</p>
+<p>The multi-threading approach resulted in a small performance boost as the main bottleneck was still constructing <code>COO_matrix</code> and then converting it to <code>csr_matrix</code>. But overall this was superior to the <code>lat2SW</code> approach in every way, here is the <a href="https://github.com/MgeeeeK/GSoC2020/blob/master/.ipynb_checkpoints/optimized_weight_builder-checkpoint.ipynb">link</a> to the second notebook for performance overview. I&rsquo;ve also provided the link to the <code>numba</code> and <code>joblib</code> documentation for a better understanding of the subject.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ol>
+<li><a href="https://numba.pydata.org/numba-doc/latest/user/5minguide.html">A ~5-minute guide to Numba</a></li>
+<li><a href="https://joblib.readthedocs.io/en/latest/parallel.html">Embarrassingly parallel for loops</a></li>
+</ol>
+<h2 id="whats-next">What&rsquo;s next?</h2>
+<p>I&rsquo;m glad that I was able to become part of the PySAL community, I&rsquo;ve developed in so many aspects during GSoC. The program is about to end in 2 weeks, I&rsquo;m still working on efficiently increasing the neighbors in the weights object alongside visualization part of the raster interface.</p>
+<p>Wait for my last blog which will be little light and casual, and will tell about what is coming in future&hellip; goodbye moonmen 👋.</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://mgeeeek.github.io/tags/gsoc">gsoc</a></span><span class="tag"><a href="https://mgeeeek.github.io/tags/coding-period">coding period</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1522 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-08-17 05:30 &#43;0530</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+
+                    
+                        <span class="button next">
+                            <a href="https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-2/">
+                                <span class="button__text">Coding period: second phase part 2</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+
+
+
+
+    </main>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+
+
+
+
+</html>
