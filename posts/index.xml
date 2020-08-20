@@ -9,7 +9,7 @@
         <atom:link href="https://mgeeeek.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Coding period: last phase part 1</title>
+            <title>Coding Period: Last Phase Part 1</title>
             <link>https://mgeeeek.github.io/posts/2020/08/coding-period-last-phase-part-1/</link>
             <pubDate>Mon, 17 Aug 2020 00:00:00 +0000</pubDate>
             
@@ -70,7 +70,7 @@
         </item>
         
         <item>
-            <title>Coding period: second phase part 2</title>
+            <title>Coding Period: Second Phase Part 2</title>
             <link>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-2/</link>
             <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
             
@@ -247,7 +247,7 @@ plt<span style="color:#f92672">.</span>show()
         </item>
         
         <item>
-            <title>Coding period: second phase part 1</title>
+            <title>Coding Period: Second Phase Part 1</title>
             <link>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-1/</link>
             <pubDate>Fri, 17 Jul 2020 00:00:00 +0000</pubDate>
             
@@ -283,7 +283,7 @@ This required some changes in my existing implementation, since the API was fina
         </item>
         
         <item>
-            <title>Coding period: first phase part 2</title>
+            <title>Coding Period: First Phase Part 2</title>
             <link>https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-2/</link>
             <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
             
@@ -456,7 +456,7 @@ moran_da2<span style="color:#f92672">.</span>where(moran_da2<span style="color:#
         </item>
         
         <item>
-            <title>Coding period: first phase part 1</title>
+            <title>Coding Period: First Phase Part 1</title>
             <link>https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-1/</link>
             <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
             
