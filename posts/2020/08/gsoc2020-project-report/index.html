@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Mragank Shekhar]">
+<meta name="description" content="Project Details    Field Value     Project Title Raster Awareness in PySAL   Project Link https://summerofcode.withgoogle.com/projects/#5775104799145984   Organization NumFOCUS (Sub-Org: PySAL)   Mentors Stefanie Lumnitz, Dani Arribas-Bel, Levi John Wolf   Contributed Repo libpysal, splot   Working Repo Mgeeeek/libpysal   Gitter Room https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL   Project Blog https://mgeeeek.github.io/tags/gsoc/    Project Description From early on, PySAL was designed with the focus of performing vector-based spatial analysis and therefore it didn&amp;rsquo;t have tools to handle input-output of large raster data." />
+<meta name="keywords" content="blog,developer,personal, gsoc, coding period" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/" />
+
+
+    <title>
+        
+            GSoC2020 Project Report :: Mragank Shekhar 
+        
+    </title>
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://mgeeeek.github.io/main.min.a86997de01ba6412b68fa1f7eaebe3bf6bd9b56fbde4cad716be5cc26af315b2.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mgeeeek.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://mgeeeek.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://mgeeeek.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://mgeeeek.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://mgeeeek.github.io/safari-pinned-tab.svg" color="#252627">
+    <link rel="shortcut icon" href="https://mgeeeek.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+<meta itemprop="name" content="GSoC2020 Project Report">
+<meta itemprop="description" content="Project Details    Field Value     Project Title Raster Awareness in PySAL   Project Link https://summerofcode.withgoogle.com/projects/#5775104799145984   Organization NumFOCUS (Sub-Org: PySAL)   Mentors Stefanie Lumnitz, Dani Arribas-Bel, Levi John Wolf   Contributed Repo libpysal, splot   Working Repo Mgeeeek/libpysal   Gitter Room https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL   Project Blog https://mgeeeek.github.io/tags/gsoc/    Project Description From early on, PySAL was designed with the focus of performing vector-based spatial analysis and therefore it didn&rsquo;t have tools to handle input-output of large raster data.">
+<meta itemprop="datePublished" content="2020-08-30T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-08-30T00:00:00+00:00" />
+<meta itemprop="wordCount" content="3425">
+<meta itemprop="image" content="https://mgeeeek.github.io"/>
+
+
+
+<meta itemprop="keywords" content="gsoc,coding period," />
+<meta property="og:title" content="GSoC2020 Project Report" />
+<meta property="og:description" content="Project Details    Field Value     Project Title Raster Awareness in PySAL   Project Link https://summerofcode.withgoogle.com/projects/#5775104799145984   Organization NumFOCUS (Sub-Org: PySAL)   Mentors Stefanie Lumnitz, Dani Arribas-Bel, Levi John Wolf   Contributed Repo libpysal, splot   Working Repo Mgeeeek/libpysal   Gitter Room https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL   Project Blog https://mgeeeek.github.io/tags/gsoc/    Project Description From early on, PySAL was designed with the focus of performing vector-based spatial analysis and therefore it didn&rsquo;t have tools to handle input-output of large raster data." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/" />
+<meta property="og:image" content="https://mgeeeek.github.io"/>
+<meta property="article:published_time" content="2020-08-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-30T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://mgeeeek.github.io"/>
+
+<meta name="twitter:title" content="GSoC2020 Project Report"/>
+<meta name="twitter:description" content="Project Details    Field Value     Project Title Raster Awareness in PySAL   Project Link https://summerofcode.withgoogle.com/projects/#5775104799145984   Organization NumFOCUS (Sub-Org: PySAL)   Mentors Stefanie Lumnitz, Dani Arribas-Bel, Levi John Wolf   Contributed Repo libpysal, splot   Working Repo Mgeeeek/libpysal   Gitter Room https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL   Project Blog https://mgeeeek.github.io/tags/gsoc/    Project Description From early on, PySAL was designed with the focus of performing vector-based spatial analysis and therefore it didn&rsquo;t have tools to handle input-output of large raster data."/>
+
+
+
+    <meta property="article:section" content="gsoc" />
+
+
+
+    <meta property="article:published_time" content="2020-08-30 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <main class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://mgeeeek.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   background-color:#f25056;
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://mgeeeek.github.io/about/">About</a></li><li><a href="https://mgeeeek.github.io/posts/">Blogs</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>17 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/">GSoC2020 Project Report</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <h2 id="project-details">Project Details</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Project Title</em></td>
+<td>Raster Awareness in PySAL</td>
+</tr>
+<tr>
+<td><em>Project Link</em></td>
+<td><a href="https://summerofcode.withgoogle.com/projects/#5775104799145984">https://summerofcode.withgoogle.com/projects/#5775104799145984</a></td>
+</tr>
+<tr>
+<td><em>Organization</em></td>
+<td><a href="https://numfocus.org/">NumFOCUS</a> (Sub-Org: <a href="http://pysal.org/pysal">PySAL</a>)</td>
+</tr>
+<tr>
+<td><em>Mentors</em></td>
+<td><a href="https://github.com/slumnitz">Stefanie Lumnitz</a>, <a href="https://github.com/darribas">Dani Arribas-Bel</a>, <a href="https://github.com/ljwolf">Levi John Wolf</a></td>
+</tr>
+<tr>
+<td><em>Contributed Repo</em></td>
+<td><a href="https://github.com/pysal/libpysal">libpysal</a>, <a href="https://github.com/pysal/splot">splot</a></td>
+</tr>
+<tr>
+<td><em>Working Repo</em></td>
+<td><a href="https://github.com/MgeeeeK/libpysal">Mgeeeek/libpysal</a></td>
+</tr>
+<tr>
+<td><em>Gitter Room</em></td>
+<td><a href="https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL">https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL</a></td>
+</tr>
+<tr>
+<td><em>Project Blog</em></td>
+<td><a href="https://mgeeeek.github.io/tags/gsoc/">https://mgeeeek.github.io/tags/gsoc/</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="project-description">Project Description</h2>
+<p>From early on, <code>PySAL</code> was designed with the focus of performing vector-based spatial analysis and therefore it didn&rsquo;t have tools to handle input-output of large raster data. This restricted some folks in the geospatial community to use <code>PySAL</code>'s analytical functionality over raster data. Furthermore, in recent years several geographic data organizations started releasing data in raster format which earlier came in vector format mostly because of advancement in computational capabilities and high storage availability. This led to an increase in the demand for the functionality offered by <code>PySAL</code> to make it work with raster data.</p>
+<p>Taking this into consideration, my main motive was to design and implement a lightweight interface which will provide the functionality for streamlining raster data access and making it more accessible to build the data structure accepted by the analytical methods of the PySAL library (mainly <code>libpysal.weights.W/WSP</code> objects) from accessed raster data (which will be an instance of <code>xarray.DataArray</code>). Ultimately, this functionality will open up the use of analytical methods like <code>esda</code>, <code>spatial regression</code> over raster data.</p>
+<p>Following were the major milestones that we planned to finish for successfully building raster interface:</p>
+<ul>
+<li>Design quality APIs which followed existing structure used across PySAL.</li>
+<li>Deal with different properties of raster including missing data values, different data alignment, and multi-layer data.</li>
+<li>Add transformational methods to support conversion to and from PySAL weights object and <code>xarray.DataArray</code> object.</li>
+<li>Integrate the interface with PySAL without causing any disturbance to other parts of the library.</li>
+<li>Study performance and memory efficiency of the conversion methods and optimize the interface to support computations for large raster datasets.</li>
+<li>Add proper documentation, tests, and an example notebook.</li>
+</ul>
+<p>Since in this report we&rsquo;ll talk a lot about raster data and weights object, let&rsquo;s look at the visualization of these 2 things. Weights object in <code>PySAL</code> is a graph like structure which expresses the relationship of a spatial point with its neighboring points. We can now take a look at the visual example below:
+<img src="https://user-images.githubusercontent.com/40512095/91647853-83b96b80-ea7d-11ea-8002-641ce7dc621d.png" alt="Fig. 1">
+<em>This figure consist of 2 plots of weights object (which are listed below) and 2 of raster data. These weights objects were obtained using a sliced raster. We can see the relationship of spatial points is different in <code>Rook</code> and <code>Queen</code> contiguity, interface dealt with <code>nodatavals</code> while creating the weights object thats why we are seeing those empty pixels.</em><br>
+<img src="https://user-images.githubusercontent.com/40512095/91647893-325dac00-ea7e-11ea-84d3-ac6882fc5231.png" alt="Fig. 2"></p>
+<p><em>The development timeline for building the project was divided into 3 phases:</em></p>
+<ol>
+<li><em>API design phase</em></li>
+<li><em>Integration phase</em></li>
+<li><em>Optimization phase</em></li>
+</ol>
+<h3 id="api-design-phase">API design phase</h3>
+<p><strong>Quick Overview</strong></p>
+<p>Main goals achieved:</p>
+<ul>
+<li>Studied data structures provided by <code>xarray</code> and PySAL&rsquo;s <code>W</code> and <code>WSP</code> objects.</li>
+<li>Created an initial skeletal implementation of the interface.</li>
+<li>Iteratively designed and experimented with different APIs structures.</li>
+<li>Created a working prototype of the Base Raster Interface.</li>
+</ul>
+<p>Pull Requests, Commits and Issues created:</p>
+<ul>
+<li><strong>Issue:</strong> <strong>[open]</strong> <a href="https://github.com/pysal/libpysal/issues/293#issue-629986294">Idea collection/discussion for Raster awareness project</a></li>
+<li><strong>Commit:</strong> <a href="https://github.com/MgeeeeK/libpysal/commit/9eb8311605bba5f942678d7694edcc746b7ce6ee">final API with working prototype</a></li>
+</ul>
+<p>Blog posts published:</p>
+<ul>
+<li><a href="https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-1/">Coding Period: First Phase Part 1</a></li>
+<li><a href="https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-2/">Coding Period: First Phase Part 2</a></li>
+</ul>
+<p>Contents:</p>
+<ol>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#io-dependency-for-accessing-raster">I/O dependency for accessing raster</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#planning-main-functionality-for-the-interface">Planning main functionality for the interface</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#designing-interfaces-api-weights-builder">Designing interface&rsquo;s API (<em>weights builder</em>)</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#designing-interfaces-api-return-journey-to-xarraydataarray">Designing interface&rsquo;s API (<em>return journey to <code>xarray.DataArray</code></em>)</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#iterative-approach-for-api-design">Iterative approach for API design</a></li>
+</ol>
+<p><strong>Detailed Summary</strong></p>
+<ol>
+<li>
+<h4 id="io-dependency-for-accessing-raster">I/O dependency for accessing raster</h4>
+<p>The original plan involved using <code>rasterio</code> as the main library for raster data access but from the start of the community bonding period, my mentors suggested a shift from <code>rasterio</code> to <code>xarray</code>. After going through the documentation of <code>xarray</code> it felt superior in terms of usability and accessibility as the features it provided outweighed that of <code>rasterio</code> and it also featured <code>rasterio</code> backend to access the raster data formats easily. Moreover, building the interface to work with the data structure provided by the <code>xarray</code> library made the project available to a broader audience. Therefore I continued with the <code>xarray</code> or <code>xarray.DataArray</code> to be specific, as users can easily obtain <code>xarray.DataArray</code> object from raster data format using <code>xarray</code>'s I/O functionality which can read from a variety of data formats some of them are listed below:</p>
+<ul>
+<li><a href="https://svn.osgeo.org/gdal/tags/gdal_1_2_5/frmts/formats_list.html">GDAL Raster Formats</a> via <code>open_rasterio</code> method.</li>
+<li><a href="https://www.unidata.ucar.edu/software/netcdf/">NetCDF</a> via <code>open_dataset</code> method.</li>
+</ul>
+</li>
+<li>
+<h4 id="planning-main-functionality-for-the-interface">Planning main functionality for the interface</h4>
+<p>After understanding the structure of <code>xarray.DataArray</code>, it was time to create an initial skeletal implementation of the interface which provided details of the functionality that the interface will offer. As described by Dani in this <a href="https://github.com/pysal/libpysal/issues/293#issuecomment-638446405">thread</a>:</p>
+<ul>
+<li>The interface would provide the functionality to create both weights object <code>libpysal.weights.W</code> &amp; <code>WSP</code> from user-provided data though <code>xarray.DataArray</code> object.</li>
+<li>It should also support the return journey of the data obtained after an analytical operation on the weights object to <code>xarray.DataArray</code>.</li>
+</ul>
+</li>
+<li>
+<h4 id="designing-interfaces-api-_weights-builder_">Designing interface&rsquo;s API (<em>weights builder</em>)</h4>
+<p>Once the main functionality was finalized, we jumped on to the API designing part of the project. My mentors explained how PySAL was inclined towards an object-oriented paradigm and the majority of the operations are achieved through creating an instance of a particular object using the class method and then calling the instance method. But it was also in the transitioning phase of incorporating functional programming though it was not on the top of their priority list. This motivated us to provide the functionality of direct function calling to convert <code>DataArray</code> and create respective weights object, but also implement these methods as a class method using contiguity classes (<code>Rook</code> and <code>Queen</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> libpysal.weights <span style="color:#f92672">import</span> raster, Rook
+<span style="color:#f92672">import</span> xarray <span style="color:#f92672">as</span> xr
+
+<span style="color:#75715e"># Accessing raster data using xarray</span>
+da <span style="color:#f92672">=</span> xr<span style="color:#f92672">.</span>open_rasterio(<span style="color:#e6db74">&#34;raster.tif&#34;</span>)
+
+<span style="color:#75715e"># Method 1</span>
+wsp1 <span style="color:#f92672">=</span> raster<span style="color:#f92672">.</span>da2WSP(da, criterion<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rook&#34;</span>)
+data1 <span style="color:#f92672">=</span> da<span style="color:#f92672">.</span>to_series()[wsp1<span style="color:#f92672">.</span>index]
+
+<span style="color:#75715e"># Method 2</span>
+wsp2 <span style="color:#f92672">=</span> Rook<span style="color:#f92672">.</span>from_xarray(da, sparse<span style="color:#f92672">=</span>True)
+data2 <span style="color:#f92672">=</span> da<span style="color:#f92672">.</span>to_series()[wsp2<span style="color:#f92672">.</span>index]
+
+data1<span style="color:#f92672">.</span>equals(data2)
+</code></pre></div><pre><code>True
+</code></pre>
+</li>
+<li>
+<h4 id="designing-interfaces-api-_return-journey-to-xarraydataarray_">Designing interface&rsquo;s API (<em>return journey to <code>xarray.DataArray</code></em>)</h4>
+<p>In the above example, <code>.from_xarray</code> method uses direct methods like <code>da2W</code> or <code>da2WSP</code> under the hood to build weights object from <code>xarray.DataArray</code>. A new module called <code>raster</code> was introduced to hold all the functionalities offered by the interface, it also helped in structuring the interface by separating it with other areas of the library. Just like what we saw with <code>.from_xarray</code> method, all the work related to the raster conversion is dispatched to one of the methods in the <code>raster</code> module.</p>
+<p>A similar approach was taken for designing the API for the return journey. We implemented 2 types of methods:</p>
+<ul>
+<li><code>toDataArray</code> which can be called directly.</li>
+<li>Another way was to call the instance method <code>.to_xarray</code> which provided similar functionality to the direct methods.</li>
+</ul>
+<p>In the later phase, <code>.to_xarray</code> method was removed due to several limitations because the structure of created weights object was different from the normal ones (more on this later), and therefore these methods would fail if the user passed the weights object not created using the interface.</p>
+</li>
+<li>
+<h4 id="iterative-approach-for-api-design">Iterative approach for API design</h4>
+<p>It took quite a few iterations to finalize the correct API of the base interface. Below are the early pull requests that I pushed to get feedbacks for the API of the transformational functions. These are far from clean as I was still experimenting with different design decisions.</p>
+<ul>
+<li><strong>PR:</strong> [<strong>Closed</strong>] <a href="https://github.com/MgeeeeK/libpysal/pull/1">Raster Interface v1</a></li>
+<li><strong>PR:</strong> [<strong>Closed</strong>] <a href="https://github.com/MgeeeeK/libpysal/pull/3">Raster Interface v2</a></li>
+<li><strong>PR:</strong> [<strong>Closed</strong>] <a href="https://github.com/MgeeeeK/libpysal/pull/4">Raster Interface v3</a></li>
+</ul>
+<p>Commit <a href="https://github.com/MgeeeeK/libpysal/commit/9eb8311605bba5f942678d7694edcc746b7ce6ee">9eb8311</a> was the point of the 1st phase where the majority of the APIs were locked. There were still some areas left where the community was divided particularly in structuring and naming the parameters of the methods, but these were minor issues that were solved in the later stages.</p>
+</li>
+</ol>
+<h3 id="integration-phase">Integration phase</h3>
+<p><strong>Quick Overview</strong></p>
+<p>Main goals achieved:</p>
+<ul>
+<li>Restructured interface by aligning the methods with future weights object design.</li>
+<li>Made <code>toDataArray</code> method work independent of raster metadata.</li>
+<li>Added <code>KNN</code> weights support to the interface.</li>
+<li>Fixed documentation, by following the NumPy-Doc convention for docstrings.</li>
+<li>Added unit-tests and an example notebook.</li>
+<li>Explored different ways to optimize the interface.</li>
+</ul>
+<p>Pull Requests, Commits and Issues created:</p>
+<ul>
+<li><strong>PR:</strong> <strong>[merged]</strong> <a href="https://github.com/pysal/libpysal/pull/318">Base raster interface</a></li>
+<li><strong>Issue:</strong> <strong>[open]</strong> <a href="https://github.com/pysal/libpysal/issues/293#issuecomment-651636142">Idea collection/discussion for Raster awareness project</a></li>
+</ul>
+<p>Blog posts published:</p>
+<ul>
+<li><a href="https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-1/">Coding Period: Second Phase Part 1</a></li>
+<li><a href="https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-2/">Coding Period: Second Phase Part 2</a></li>
+</ul>
+<p>Contents:</p>
+<ol>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#refactoring-weights-object">Refactoring weights object</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#refactoring-todataarray-method-making-it-work-with-only-weights-object-and-independent-of-metadata">Refactoring <code>toDataArray</code> method</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#adding-distance-based-weights-object-support">Adding distance-based weights object support</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#adding-tests-documentation-example-notebook-and-finalizing-base-raster-interface">Finalzing base raster interface</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#identifying-areas-to-optimize-for-adding-support-for-large-rasters">Identifying areas to optimize</a></li>
+</ol>
+<p><strong>Detailed Summary</strong></p>
+<ol>
+<li>
+<h4 id="refactoring-weights-object">Refactoring weights object</h4>
+<p>In the second phase, we focused on how to integrate the interface with the libpysal. One major issue related to the integration was that the output weights of the transformation methods (<code>da2W</code>/<code>da2WSP</code>) were different from the normal weights object, this was due to the extra attributes added to the weights object namely <code>attrs</code> and <code>coords</code>. This addition was implemented in the builder method to make the weights object more interactable with <code>xarray.DataArray</code> as the user will want to access the raster data easily after building the weights from the DataArray. Therefore <code>coords</code> attribute stored the coordinates indices of non-missing values in the form of <code>pandas.MultiIndex</code>, and <code>attrs</code> stored the metadata which was required when going back to the <code>xarray.DataArray</code>. This issue was addressed in the community meeting. After a detailed meeting with community members regarding the weights object, one of the major change that was proposed was to shift towards <code>WSP</code> object (here are the <a href="https://hackmd.io/Fozkz1IRQlK6GYVKI8mF9Q?both">meeting notes</a>). Additionally, the <code>id_order</code> attribute will be replaced by <code>index</code> which will contain an instance of <code>pandas.Index</code> aligned with the <code>ids</code> of the weight object.</p>
+<p>This required a few changes in my existing implementation:</p>
+<ul>
+<li>Renamed <code>coords</code> to <code>index</code> and removed <code>attrs</code> attribute.</li>
+<li>Added <code>index</code> parameter in the <code>__init__</code> method of <code>WSP</code> class.</li>
+<li>Fixed creation of <code>W</code> from <code>xarray.DataArray</code> which now only relies on <code>da2WSP</code> method.</li>
+</ul>
+</li>
+<li>
+<h4 id="refactoring-todataarray-method-making-it-work-with-only-weights-object-and-independent-of-metadata">Refactoring <code>toDataArray</code> method, making it work with only weights object and independent of metadata</h4>
+<p>A few of the major changes added during the second phase involved the <code>toDataArray</code> method. To make the interface more accessible we decided to only build the <code>DataArray</code> from <em>weights object</em> and <em>data values aligned to the weights object</em>. This was tricky as the weights object does not contain any information related to the missing values except the coordinates in the <code>index</code> attribute. After several tries of my own, I shifted towards the source code of the <code>pandas.MultiIndex</code>. From my earlier impressions, the data structure of <code>pandas.MultiIndex</code> was very different. Once I understood the architecture of <code>pandas.MultiIndex</code> I pushed a patch with the required changes, this patch refactored the logic and used the <code>codes</code> and <code>levels</code> property to construct all the coordinates of the <code>DataArray</code>. Commit <a href="https://github.com/MgeeeeK/libpysal/commit/e5cd4e69cbc840fb9eb229e31f126068efd476af">e5cd4e6</a> reflects the changes made targeting this method. Later <code>toDataArray</code> was split into 2 separate functions <code>w2da</code> and <code>wsp2da</code>. We can see the use of this functionality below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> libpysal.weights <span style="color:#f92672">import</span> raster, Queen
+
+<span style="color:#75715e"># Creating test DataArray</span>
+da <span style="color:#f92672">=</span> raster<span style="color:#f92672">.</span>testDataArray(
+    shape<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">56</span>, <span style="color:#ae81ff">49</span>),
+    time<span style="color:#f92672">=</span>False,
+    rand<span style="color:#f92672">=</span>False,
+    missing_vals<span style="color:#f92672">=</span>True
+)
+
+wsp <span style="color:#f92672">=</span> Queen<span style="color:#f92672">.</span>from_xarray(
+    da<span style="color:#f92672">=</span>da,
+    z_value<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+    coords_label<span style="color:#f92672">=</span>None,
+    sparse<span style="color:#f92672">=</span>True
+)
+
+<span style="color:#75715e"># Accessing data from da using index attribute</span>
+data <span style="color:#f92672">=</span> da<span style="color:#f92672">.</span>to_series()[wsp<span style="color:#f92672">.</span>index]
+
+<span style="color:#75715e"># Converting back to the DataArray</span>
+da_back <span style="color:#f92672">=</span> wsp2da(data, wsp)
+da_back
+</code></pre></div><pre><code>&lt;xarray.DataArray (band: 1, y: 56, x: 49)&gt;
+-1 211 -1 -1 -1 41 37 -1 62 -1 ... -1 171 118 135 28 151 -1 -1 -1 146
+Coordinates:
+* band     (band) int64 5
+* y        (y) float64 66.1 66.2 66.3 66.4 66.5 ... 71.2 71.3 71.4 71.5 71.6
+* x        (x) float64 92.1 92.2 92.3 92.4 92.5 ... 96.5 96.6 96.7 96.8 96.9
+Attributes:
+    nodatavals:  (-1,)
+</code></pre>
+</li>
+<li>
+<h4 id="adding-distance-based-weights-object-support">Adding distance-based weights object support</h4>
+<p><code>Rook</code> and <code>Queen</code> contiguities were not sufficient when considered for further analysis on a raster data because <code>Rook</code> contiguity provided max 4 neighbors and <code>Queen</code> provided max 8. To tackle this, the next step was to implement distance weight builder either <code>KNN</code> or <code>DistanceBand</code>. We started with <code>KNN</code>, the initial implementation of <code>KNN</code> was very straight forward, we first converted cell centroids into points and then shipped them directly into the <code>KNN</code> builder which is based on <code>KDTree</code>. There were 2 major issues with this implementation first was very obvious as raster provided a regular lattice-like structure, <code>KNN</code> could have been more optimized since there was no need for building <code>KDTree</code>. Though the major issue was related to the ordering of the selected neighbors. Since in raster more than 2 neighbors can be equidistant from the focal point, the method inconsistently selected neighbors in a different environment. Therefore this was later removed from the project.</p>
+</li>
+<li>
+<h4 id="adding-tests-documentation-example-notebook-and-finalizing-base-raster-interface">Adding tests, documentation, example notebook, and finalizing base raster interface</h4>
+<p>Once all the components of the base raster Interface were finalized, we started working on the documentation and tests. From the beginning I followed the style of other methods inside libpysal when creating docstrings, luckily my mentors notified me early on to follow NumPy-Doc convention for docstrings. After fixing docstring we worked on adding unit-tests since we were not storing any raster dataset inside the project therefore we decided to create a <code>testDataArray</code> method (usage provided in the above example) which provided us with the different dataset to test interface correctly.</p>
+<p>I also added an example notebook that introduced the API of the interface and gave a brief overview of its use-case in different scenarios. The notebook can be accessed from here:</p>
+<ul>
+<li><a href="https://github.com/MgeeeeK/libpysal/blob/rast_interface/notebooks/Raster_awareness_API.ipynb">Example Notebook</a></li>
+</ul>
+<p>Commits <a href="https://github.com/MgeeeeK/libpysal/commit/6565dd0f84768203a1c5f5cd2833cf91d6f30af3">6565dd0</a> to <a href="https://github.com/MgeeeeK/libpysal/commit/94ec4f4bc9746a235cbaa3486d06b33d76350249">94ec4f4</a> contains the majority of work finalized in the second phase. Since the main API of the base interface was finalized, I created a pull request targeting the master branch of libpysal:</p>
+<ul>
+<li><strong>PR:</strong> <strong>[merged]</strong> <a href="https://github.com/pysal/libpysal/pull/318">Base raster interface</a></li>
+</ul>
+<p><strong>Note:</strong> All my main work for the <em>first</em> and <em>second</em> phase lives inside this pull request. The commit history doesn&rsquo;t look clean as for some reason I forced pushed a few changes.</p>
+</li>
+<li>
+<h4 id="identifying-areas-to-optimize-for-adding-support-for-large-rasters">Identifying areas to optimize for adding support for large rasters.</h4>
+<p>Along with working on the interface we were also identifying and exploring the different optimization methods to optimize the interface. This thread documents list of ideas we went through during exploration.</p>
+<ul>
+<li><a href="https://github.com/pysal/libpysal/issues/293#issuecomment-651636142">Idea collection for Raster awareness project</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="optimization-phase">Optimization phase</h3>
+<p><strong>Quick Overview</strong></p>
+<p>Main goals achieved:</p>
+<ul>
+<li>Shifted away from <code>lat2SW</code>-based weight builder.</li>
+<li>Redesigned sparse matrix builder based on <code>COO_matrix</code>.</li>
+<li>Numba-fied all possible methods using <code>njit</code> decorator.</li>
+<li>Added multi-threaded implementation for WSP builder using <code>joblib</code>.</li>
+<li>Added <code>higher_order</code> functionality to the modified weight builder.</li>
+<li>Added raster-based weights object support inside <code>plot_spatial_weights</code> method in <code>splot</code>.</li>
+</ul>
+<p>Pull Requests, Commits and Issues created:</p>
+<ul>
+<li><strong>PR:</strong> <strong>[WIP]</strong> <a href="https://github.com/pysal/libpysal/pull/343">Optimized raster-based weights builder</a></li>
+<li><strong>PR:</strong> <strong>[WIP]</strong> <a href="https://github.com/pysal/splot/pull/113">Added raster weights plotting functionality</a></li>
+<li><strong>Issue:</strong> <strong>[open]</strong> <a href="https://github.com/pysal/libpysal/issues/328">Distance Band functionality for Raster Interface weights</a></li>
+<li><strong>Issue:</strong> <strong>[open]</strong> <a href="https://github.com/pysal/splot/issues/112">plotting for <code>libpysal</code> raster functionality</a></li>
+</ul>
+<p>Blog posts published:</p>
+<ul>
+<li><a href="https://mgeeeek.github.io/posts/2020/08/coding-period-last-phase-part-1/">Coding Period: Last Phase Part 1</a>.</li>
+</ul>
+<p>Contents:</p>
+<ol>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#moving-on-from-lat2sw-based-which-uses-dia_matrix-to-new-coo_matrix-based-sparse-weight-builder">Moving on from <code>lat2SW</code>-based sparse weight builder</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#optimizing-the-addition-of-higher-order-neighbors">Optimizing the addition of higher-order neighbors</a></li>
+<li><a href="https://github.com/MgeeeeK/GSoC2020/blob/master/gsoc2020_report_mragank_shekhar.md#adding-visualization-support-for-the-interface">Adding visualization support for the interface</a></li>
+</ol>
+<p><strong>Detailed Summary</strong></p>
+<ol>
+<li>
+<h4 id="moving-on-from-lat2sw-based-which-uses-dia_matrix-to-new-coo_matrix-based-sparse-weight-builder">Moving on from <code>lat2SW</code>-based (which uses <code>dia_matrix</code>) to new <code>coo_matrix</code>-based sparse weight builder</h4>
+<p>Following the idea-collection issue, the first target for optimizing the interface was the weight builders. The existing approach used the <code>lat2SW</code> method which provided the main functionality for constructing a sparse matrix for the regular lattice. The main issue while using <code>lat2SW</code> was when we’re dealing with data consisting of missing values, in this case, boolean indexing was used for removing missing rows and columns from the created sparse matrix. The performance takes a hit due to boolean indexing of <code>csr_matrix</code> and this raised concerns for building weight objects for larger data. Memory consumption in <code>lat2SW</code> is also high due to the use of <code>lists</code> instead of <code>np.array</code>.</p>
+<p>A proper explanation of this issue and how it was solved is given in this blog post.</p>
+<ul>
+<li><strong>Blog:</strong> <a href="https://mgeeeek.github.io/posts/2020/08/coding-period-last-phase-part-1/">Coding Period: Last Phase Part 1</a>.</li>
+</ul>
+<p>Also, check out this <a href="https://github.com/MgeeeeK/GSoC2020/blob/master/raster%20weights%20builder.ipynb">notebook</a> for a performance overview. These enhancements provided huge benefits both in terms of memory efficiency and faster performance. This also made the interface usable with large datasets.</p>
+</li>
+<li>
+<h4 id="optimizing-the-addition-of-higher-order-neighbors">Optimizing the addition of higher-order neighbors</h4>
+<p>In the previous section, I explained how <code>KNN</code>-based weight object was not very consistent when dealing with the raster-based data. Therefore, we decided to implement <code>higher_order</code> functionality, and 2 approaches were taken when adding the higher-order neighbors:</p>
+<ul>
+<li>
+<p>Implementing the first approach was relatively easier than the second approach, as only a few changes were added inside the modified weights builder. An extra argument was provided which acted as a <code>threshold</code> and then using modular arithmetic conditions the algorithms added the neighbors lying inside the <code>threshold</code> radius also following contiguity criterion, though this implementation was different as it added higher order neighbors even if the lower order neighbors were missing and therefore it was more like <code>DistanceBand</code>. This thread provides some insightful discussion related to how <code>DistanceBand</code> behaves with raster data:</p>
+<ul>
+<li><strong>Issue:</strong> <a href="https://github.com/pysal/libpysal/issues/328">Distance Band functionality for Raster Interface</a></li>
+</ul>
+</li>
+<li>
+<p>As for the second approach, we were able to implement a correct algorithm for <code>higher_order</code> functionality inside weight builder, this algorithm used recursion to traverse nth-order neighbors or nodes because raster can be assumed as a graph. Unfortunately, we could not incorporate <code>numba</code> and <code>multi-threading</code> to the method and therefore the algorithm was very inefficient. But after some testing, we were able to add a proper algorithm for using the method that Martin suggested in this thread.</p>
+<ul>
+<li><strong>Issue:</strong> <a href="https://github.com/pysal/libpysal/issues/313">higher_order weights of &lt;= k</a></li>
+</ul>
+</li>
+</ul>
+<p>Since both approaches are different from each other we added <code>include_nas</code> argument which if <code>True</code>, computes weights using the first approach, and if <code>False</code> the builder uses the second approach. We can take a look at the visual example below which explains this more intuitively.
+<img src="https://user-images.githubusercontent.com/40512095/91647908-7b156500-ea7e-11ea-9785-a7745bd28edc.png" alt="Fig. 3">
+<em>Here we used <code>testDataArray</code> method to create a small raster data filled with random and missing values. <code>Fig. 2</code> shows the <code>Rook</code> contiguity with <code>k=1</code> which means all first-order rook neighbors are selected. <code>Fig. 3</code> shows the <code>Rook</code> contiguity with <code>k=2</code> but with <code>include_nas=False</code> which means all <code>non-missing</code> first and second-order rook neighbors are selected (this uses the second approach as described previously). <code>include_nas</code> is <code>True</code> for <code>Fig. 4</code>, we can see that in this figure all the first order neighbors are selected but while selecting second order neighbors, the method takes consideration of (missing + nonmissing) first-order neighbors.</em>
+<img src="https://user-images.githubusercontent.com/40512095/91647911-7d77bf00-ea7e-11ea-844e-8dd547057a35.png" alt="Fig. 4">
+After completion of these methods, a pull request was created targeting the master branch of <code>libpysal</code> which added optimized weights builder and <code>higher_order</code> functionality. This pull request describes how these approaches are different from each other:</p>
+<ul>
+<li><strong>[WIP]</strong> <a href="https://github.com/pysal/libpysal/pull/343">Optimized raster-based weights builder</a></li>
+</ul>
+</li>
+</ol>
+<p><strong>This marked the end of the optimization phase.</strong></p>
+<ol start="3">
+<li>
+<h4 id="adding-visualization-support-for-the-interface">Adding visualization support for the interface.</h4>
+<p>Along with optimization work, we also worked on adding the support for plotting functionality for a raster-based weight object. This required some changes inside the <code>plot_spatial_weights</code> method, mainly making it work with sparse weight objects instead of dense weight objects and adding a <code>da</code> argument for passing <code>DataArray</code> object.</p>
+<ul>
+<li><strong>Issue:</strong> <strong>[open]</strong> <a href="https://github.com/pysal/splot/issues/112">plotting for <code>libpysal</code> raster functionality</a></li>
+<li><strong>PR:</strong> <strong>[WIP]</strong> <a href="https://github.com/pysal/splot/pull/113">Added raster weights plotting functionality</a></li>
+</ul>
+<p>The visualization aspect of the project is still in progress, once this pull request gets reviewed. I&rsquo;ll add more enhancements which are listed in the issue.</p>
+</li>
+</ol>
+<h2 id="next-phase-post-gsoc">Next Phase (post-gsoc)</h2>
+<ul>
+<li>Since the weight object is being refactored to remove the legacy part and adopt new features from newly available libraries like <code>pandas</code> and <code>xarray</code>. I&rsquo;ll need to reflect these changes to the interface once they are incorporated into the <code>libpysal</code>.</li>
+<li>Additionally, the interface once merged will be in the alpha-testing phase and I&rsquo;m expecting new bugs to pop-in which we were not able to test. Therefore I&rsquo;ll have to be available to provide the bug fixes for a few initial months of merging the interface.</li>
+<li>However optimized the weights builder can be, there will be still a chance that the program will run out of memory as the raster size increases. One ambitious idea when working on the interface was related to lazily building the weights object. I did some early explorational prototyping for this part (<a href="https://github.com/MgeeeeK/libpysal/pull/7/files">[WIP] : Lazy weights object for raster interface</a>) but it&rsquo;ll require a massive change in the structure of the weights object probably a new class only supporting lazy operations. Once it is successfully implemented all the conversion and computation will be lazy which will allow users to use larger than memory rasters, albeit the computations will be slow.</li>
+<li>Even though <code>xarray</code> provides great support for <code>Dask</code>, the project has not yet taken advantage of or support <code>dask</code> structures. It&rsquo;ll be a nice functionality to add to the interface in the future.</li>
+</ul>
+<h2 id="huge-thanks-to-pysal-community">Huge thanks to PySAL Community</h2>
+<p>As a computer science undergrad this project was a breath of fresh air for me since I was relatively new to the PySAL library and the field of geospatial data science. I gained lots of experience working on this project especially working on somethings I wasn&rsquo;t completely familiar with.</p>
+<p>I like to thank my mentors Stefanie, Dani, Levi for taking the time to review the prs, clearing my doubts, and providing me with valuable feedback which helped me along the way of building this project. I also appreciate the work of other community members working on this cool library.</p>
+<p>I&rsquo;ll meet you in the new season of surviving 2020.</p>
+<p>Mragank Shekhar</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://mgeeeek.github.io/tags/gsoc">gsoc</a></span><span class="tag"><a href="https://mgeeeek.github.io/tags/coding-period">coding period</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3425 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-08-30 05:30 &#43;0530</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+
+                    
+                        <span class="button next">
+                            <a href="https://mgeeeek.github.io/posts/2020/08/coding-period-last-phase-part-1/">
+                                <span class="button__text">Coding Period: Last Phase Part 1</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+
+
+
+
+    </main>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+
+
+
+
+</html>

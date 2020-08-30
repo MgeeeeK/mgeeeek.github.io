@@ -6,10 +6,19 @@
     <description>Recent content on Mragank Shekhar</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 17 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mgeeeek.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GSoC2020 Project Report</title>
+      <link>https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/</link>
+      <pubDate>Sun, 30 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/</guid>
+      <description>Project Details    Field Value     Project Title Raster Awareness in PySAL   Project Link https://summerofcode.withgoogle.com/projects/#5775104799145984   Organization NumFOCUS (Sub-Org: PySAL)   Mentors Stefanie Lumnitz, Dani Arribas-Bel, Levi John Wolf   Contributed Repo libpysal, splot   Working Repo Mgeeeek/libpysal   Gitter Room https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL   Project Blog https://mgeeeek.github.io/tags/gsoc/    Project Description From early on, PySAL was designed with the focus of performing vector-based spatial analysis and therefore it didn&amp;rsquo;t have tools to handle input-output of large raster data.</description>
+    </item>
     
     <item>
       <title>Coding Period: Last Phase Part 1</title>
@@ -99,16 +108,6 @@ B.Tech. in Computer Science And Engineering
 2017 - 2021(expected) | Greater Noida, UP
  CGPA (till 5th semester) – 7.69/10 Relevant Coursework:Data Structures, OS, DBMS, Algorithms, OOPs with JAVA, Machine learning, Big Data, Linear Algebra, Probability and Statistics, Numerical Methods.  Publications TRAINING MULTI-LAYER PERCEPTRON USING POPULATION BASED YIN-YANG-PAIR OPTIMIZATION
  M. Shekhar, accepted and presented in The International Conference on Artificial Intelligence and Applications (ICAIA’2020), to appear in the Springer proc.</description>
-    </item>
-    
-    <item>
-      <title>Shortnote</title>
-      <link>https://mgeeeek.github.io/short/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://mgeeeek.github.io/short/</guid>
-      <description>CSE 💻 undergrad who&amp;rsquo;s quite passionate about opensource development, machine learning, and 📱 android app-development. I&amp;rsquo;m always looking for new ways to optimize existing solution. My current work revolves around android app-development, recommender systems, and evolutionary computing. Apart from this I&amp;rsquo;m huge fan of thriller/sci-fi/psychological anime, movies, and souls-like 🎮 (really ❤️ them but no 🕦 to invest 😞).
-Get to know me better</description>
     </item>
     
   </channel>

@@ -6,10 +6,19 @@
     <description>Recent content in gsoc on Mragank Shekhar</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 17 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mgeeeek.github.io/categories/gsoc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GSoC2020 Project Report</title>
+      <link>https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/</link>
+      <pubDate>Sun, 30 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/</guid>
+      <description>Project Details    Field Value     Project Title Raster Awareness in PySAL   Project Link https://summerofcode.withgoogle.com/projects/#5775104799145984   Organization NumFOCUS (Sub-Org: PySAL)   Mentors Stefanie Lumnitz, Dani Arribas-Bel, Levi John Wolf   Contributed Repo libpysal, splot   Working Repo Mgeeeek/libpysal   Gitter Room https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL   Project Blog https://mgeeeek.github.io/tags/gsoc/    Project Description From early on, PySAL was designed with the focus of performing vector-based spatial analysis and therefore it didn&amp;rsquo;t have tools to handle input-output of large raster data.</description>
+    </item>
     
     <item>
       <title>Coding Period: Last Phase Part 1</title>
