@@ -1,113 +1,69 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://mgeeeek.github.io/categories/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/tags/coding-period/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/tags/gsoc/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/categories/gsoc/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/tags/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/2020/08/coding-period-last-phase-part-1/</loc>
     <lastmod>2020-08-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-2/</loc>
     <lastmod>2020-07-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/2020/07/coding-period-second-phase-part-1/</loc>
     <lastmod>2020-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-2/</loc>
     <lastmod>2020-06-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-1/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/2020/05/community-bonding-period-wrap-up/</loc>
     <lastmod>2020-05-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/tags/cpb/</loc>
     <lastmod>2020-05-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/2020/05/sudo-make-my-summer-thrilling/</loc>
     <lastmod>2020-05-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/tags/corona/</loc>
     <lastmod>2020-05-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/posts/2020/03/blog-init/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/tags/firststep/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/categories/personal/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/about/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mgeeeek.github.io/short/</loc>
   </url>
-  
 </urlset>

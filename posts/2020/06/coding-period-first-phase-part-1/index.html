@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="map[name:Mragank Shekhar]">
 <meta name="description" content="Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.
-Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&#39;s structure, codebase, and API design paradigms." />
+Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&amp;rsquo;s structure, codebase, and API design paradigms." />
 <meta name="keywords" content="blog,developer,personal, gsoc, coding period" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="#252627" />
@@ -27,7 +27,7 @@ Overview of 2 Spatial Weight Objects During the community bonding period my focu
 
 
 
-<link rel="stylesheet" href="https://mgeeeek.github.io/main.min.a86997de01ba6412b68fa1f7eaebe3bf6bd9b56fbde4cad716be5cc26af315b2.css">
+<link rel="stylesheet" href="https://mgeeeek.github.io/main.min.05e59aa1fe58a89efd03107781c23fb2a18c4eb544a0dc7124dee242933b927c.css">
 
 
 
@@ -43,29 +43,23 @@ Overview of 2 Spatial Weight Objects During the community bonding period my focu
 
 <meta itemprop="name" content="Coding Period: First Phase Part 1">
 <meta itemprop="description" content="Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.
-Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&#39;s structure, codebase, and API design paradigms.">
-<meta itemprop="datePublished" content="2020-06-14T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2020-06-14T00:00:00+00:00" />
-<meta itemprop="wordCount" content="886">
-<meta itemprop="image" content="https://mgeeeek.github.io"/>
-
-
-
-<meta itemprop="keywords" content="gsoc,coding period," />
-<meta property="og:title" content="Coding Period: First Phase Part 1" />
+Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&rsquo;s structure, codebase, and API design paradigms."><meta itemprop="datePublished" content="2020-06-14T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-06-14T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="886"><meta itemprop="image" content="https://mgeeeek.github.io"/>
+<meta itemprop="keywords" content="gsoc,coding period," /><meta property="og:title" content="Coding Period: First Phase Part 1" />
 <meta property="og:description" content="Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.
-Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&#39;s structure, codebase, and API design paradigms." />
+Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&rsquo;s structure, codebase, and API design paradigms." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-1/" />
-<meta property="og:image" content="https://mgeeeek.github.io"/>
-<meta property="article:published_time" content="2020-06-14T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-06-14T00:00:00+00:00" />
+<meta property="og:url" content="https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-1/" /><meta property="og:image" content="https://mgeeeek.github.io"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-14T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-06-14T00:00:00&#43;00:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://mgeeeek.github.io"/>
 
 <meta name="twitter:title" content="Coding Period: First Phase Part 1"/>
 <meta name="twitter:description" content="Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.
-Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&#39;s structure, codebase, and API design paradigms."/>
+Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&rsquo;s structure, codebase, and API design paradigms."/>
 
 
 
@@ -150,7 +144,7 @@ Overview of 2 Spatial Weight Objects During the community bonding period my focu
             <div class="post-content">
                 <p><em>Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.</em></p>
 <h2 id="overview-of-2-spatial-weight-objects">Overview of 2 Spatial Weight Objects</h2>
-<p>During the community bonding period my focus was to grow my understanding of <code>libpysal</code>'s structure, codebase, and API design paradigms. Along with this, I was looking deeply at the 2 types of spatial class objects used in PySAL namely <code>W</code> &amp; <code>WSP</code> objects which are used to construct spatial weight matrices, specifically I was understanding the logic and structure of each object and ways in which both of them are created. Lemme provides a bit overview of each object (this is a fairly basic explanation, please refer to this <a href="https://youtu.be/fc1f4MNLzdQ?t=5424">video</a> or the main <a href="https://pysal.org/libpysal/">documentation</a> of <code>libpysal</code>).</p>
+<p>During the community bonding period my focus was to grow my understanding of <code>libpysal</code>&rsquo;s structure, codebase, and API design paradigms. Along with this, I was looking deeply at the 2 types of spatial class objects used in PySAL namely <code>W</code> &amp; <code>WSP</code> objects which are used to construct spatial weight matrices, specifically I was understanding the logic and structure of each object and ways in which both of them are created. Lemme provides a bit overview of each object (this is a fairly basic explanation, please refer to this <a href="https://youtu.be/fc1f4MNLzdQ?t=5424">video</a> or the main <a href="https://pysal.org/libpysal/">documentation</a> of <code>libpysal</code>).</p>
 <p><strong>Spatial Weights Matrix</strong>: In general, it expresses the relationship of a spatial point with its neighboring points. It can be viewed as an adjacency matrix of a weighted graph where each node is connected to other node and these connections follow a specific spatial-contiguity like rook or queen (there are other contiguities as well but these 2 are intuitive to understand).</p>
 <p><strong>W object</strong>: It&rsquo;s used to construct spatial weight and represent it in the form of 2 dictionaries-</p>
 <ul>
@@ -237,7 +231,7 @@ Overview of 2 Spatial Weight Objects During the community bonding period my focu
 
 
 
-<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.08ccaf9cef8b4e0ebd0b0158e66a7bfc0ddbb2194cdb0099e8814ddb89cc7628b27b1158846564e6e03d9ffc5f4d1bc7dfc274d359f9408d1c63d73a3f7332e9.js" integrity="sha512-CMyvnO&#43;LTg69CwFY5mp7/A3bshlM2wCZ6IFN24nMdiiyexFYhGVk5uA9n/xfTRvH38J001n5QI0cY9c6P3My6Q=="></script>
 
 
 
@@ -249,7 +243,7 @@ Overview of 2 Spatial Weight Objects During the community bonding period my focu
 
 
 
-<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.08ccaf9cef8b4e0ebd0b0158e66a7bfc0ddbb2194cdb0099e8814ddb89cc7628b27b1158846564e6e03d9ffc5f4d1bc7dfc274d359f9408d1c63d73a3f7332e9.js" integrity="sha512-CMyvnO&#43;LTg69CwFY5mp7/A3bshlM2wCZ6IFN24nMdiiyexFYhGVk5uA9n/xfTRvH38J001n5QI0cY9c6P3My6Q=="></script>
 
 
 

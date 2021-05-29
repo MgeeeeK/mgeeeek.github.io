@@ -6,11 +6,7 @@
     <description>Recent content in gsoc on Mragank Shekhar</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 30 Aug 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://mgeeeek.github.io/tags/gsoc/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 30 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://mgeeeek.github.io/tags/gsoc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GSoC2020 Project Report</title>
       <link>https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/</link>
@@ -66,7 +62,7 @@ Progress on the Project The main goal of the first phase was to implement and fi
       
       <guid>https://mgeeeek.github.io/posts/2020/06/coding-period-first-phase-part-1/</guid>
       <description>Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.
-Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&#39;s structure, codebase, and API design paradigms.</description>
+Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&amp;rsquo;s structure, codebase, and API design paradigms.</description>
     </item>
     
     <item>

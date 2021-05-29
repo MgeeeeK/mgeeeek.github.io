@@ -26,7 +26,7 @@
 
 
 
-<link rel="stylesheet" href="https://mgeeeek.github.io/main.min.a86997de01ba6412b68fa1f7eaebe3bf6bd9b56fbde4cad716be5cc26af315b2.css">
+<link rel="stylesheet" href="https://mgeeeek.github.io/main.min.05e59aa1fe58a89efd03107781c23fb2a18c4eb544a0dc7124dee242933b927c.css">
 
 
 
@@ -41,22 +41,16 @@
     <meta name="theme-color" content="#252627">
 
 <meta itemprop="name" content="GSoC2020 Project Report">
-<meta itemprop="description" content="Project Details    Field Value     Project Title Raster Awareness in PySAL   Project Link https://summerofcode.withgoogle.com/projects/#5775104799145984   Organization NumFOCUS (Sub-Org: PySAL)   Mentors Stefanie Lumnitz, Dani Arribas-Bel, Levi John Wolf   Contributed Repo libpysal, splot   Working Repo Mgeeeek/libpysal   Gitter Room https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL   Project Blog https://mgeeeek.github.io/tags/gsoc/    Project Description From early on, PySAL was designed with the focus of performing vector-based spatial analysis and therefore it didn&rsquo;t have tools to handle input-output of large raster data.">
-<meta itemprop="datePublished" content="2020-08-30T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2020-08-30T00:00:00+00:00" />
-<meta itemprop="wordCount" content="3425">
-<meta itemprop="image" content="https://mgeeeek.github.io"/>
-
-
-
-<meta itemprop="keywords" content="gsoc,coding period," />
-<meta property="og:title" content="GSoC2020 Project Report" />
+<meta itemprop="description" content="Project Details    Field Value     Project Title Raster Awareness in PySAL   Project Link https://summerofcode.withgoogle.com/projects/#5775104799145984   Organization NumFOCUS (Sub-Org: PySAL)   Mentors Stefanie Lumnitz, Dani Arribas-Bel, Levi John Wolf   Contributed Repo libpysal, splot   Working Repo Mgeeeek/libpysal   Gitter Room https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL   Project Blog https://mgeeeek.github.io/tags/gsoc/    Project Description From early on, PySAL was designed with the focus of performing vector-based spatial analysis and therefore it didn&rsquo;t have tools to handle input-output of large raster data."><meta itemprop="datePublished" content="2020-08-30T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-08-30T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="3425"><meta itemprop="image" content="https://mgeeeek.github.io"/>
+<meta itemprop="keywords" content="gsoc,coding period," /><meta property="og:title" content="GSoC2020 Project Report" />
 <meta property="og:description" content="Project Details    Field Value     Project Title Raster Awareness in PySAL   Project Link https://summerofcode.withgoogle.com/projects/#5775104799145984   Organization NumFOCUS (Sub-Org: PySAL)   Mentors Stefanie Lumnitz, Dani Arribas-Bel, Levi John Wolf   Contributed Repo libpysal, splot   Working Repo Mgeeeek/libpysal   Gitter Room https://gitter.im/GSoC2020-PySAL/Raster_awareness_in_PySAL   Project Blog https://mgeeeek.github.io/tags/gsoc/    Project Description From early on, PySAL was designed with the focus of performing vector-based spatial analysis and therefore it didn&rsquo;t have tools to handle input-output of large raster data." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/" />
-<meta property="og:image" content="https://mgeeeek.github.io"/>
-<meta property="article:published_time" content="2020-08-30T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-08-30T00:00:00+00:00" />
+<meta property="og:url" content="https://mgeeeek.github.io/posts/2020/08/gsoc2020-project-report/" /><meta property="og:image" content="https://mgeeeek.github.io"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-08-30T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-08-30T00:00:00&#43;00:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://mgeeeek.github.io"/>
 
@@ -188,7 +182,7 @@
 </tbody>
 </table>
 <h2 id="project-description">Project Description</h2>
-<p>From early on, <code>PySAL</code> was designed with the focus of performing vector-based spatial analysis and therefore it didn&rsquo;t have tools to handle input-output of large raster data. This restricted some folks in the geospatial community to use <code>PySAL</code>'s analytical functionality over raster data. Furthermore, in recent years several geographic data organizations started releasing data in raster format which earlier came in vector format mostly because of advancement in computational capabilities and high storage availability. This led to an increase in the demand for the functionality offered by <code>PySAL</code> to make it work with raster data.</p>
+<p>From early on, <code>PySAL</code> was designed with the focus of performing vector-based spatial analysis and therefore it didn&rsquo;t have tools to handle input-output of large raster data. This restricted some folks in the geospatial community to use <code>PySAL</code>&rsquo;s analytical functionality over raster data. Furthermore, in recent years several geographic data organizations started releasing data in raster format which earlier came in vector format mostly because of advancement in computational capabilities and high storage availability. This led to an increase in the demand for the functionality offered by <code>PySAL</code> to make it work with raster data.</p>
 <p>Taking this into consideration, my main motive was to design and implement a lightweight interface which will provide the functionality for streamlining raster data access and making it more accessible to build the data structure accepted by the analytical methods of the PySAL library (mainly <code>libpysal.weights.W/WSP</code> objects) from accessed raster data (which will be an instance of <code>xarray.DataArray</code>). Ultimately, this functionality will open up the use of analytical methods like <code>esda</code>, <code>spatial regression</code> over raster data.</p>
 <p>Following were the major milestones that we planned to finish for successfully building raster interface:</p>
 <ul>
@@ -240,7 +234,7 @@
 <ol>
 <li>
 <h4 id="io-dependency-for-accessing-raster">I/O dependency for accessing raster</h4>
-<p>The original plan involved using <code>rasterio</code> as the main library for raster data access but from the start of the community bonding period, my mentors suggested a shift from <code>rasterio</code> to <code>xarray</code>. After going through the documentation of <code>xarray</code> it felt superior in terms of usability and accessibility as the features it provided outweighed that of <code>rasterio</code> and it also featured <code>rasterio</code> backend to access the raster data formats easily. Moreover, building the interface to work with the data structure provided by the <code>xarray</code> library made the project available to a broader audience. Therefore I continued with the <code>xarray</code> or <code>xarray.DataArray</code> to be specific, as users can easily obtain <code>xarray.DataArray</code> object from raster data format using <code>xarray</code>'s I/O functionality which can read from a variety of data formats some of them are listed below:</p>
+<p>The original plan involved using <code>rasterio</code> as the main library for raster data access but from the start of the community bonding period, my mentors suggested a shift from <code>rasterio</code> to <code>xarray</code>. After going through the documentation of <code>xarray</code> it felt superior in terms of usability and accessibility as the features it provided outweighed that of <code>rasterio</code> and it also featured <code>rasterio</code> backend to access the raster data formats easily. Moreover, building the interface to work with the data structure provided by the <code>xarray</code> library made the project available to a broader audience. Therefore I continued with the <code>xarray</code> or <code>xarray.DataArray</code> to be specific, as users can easily obtain <code>xarray.DataArray</code> object from raster data format using <code>xarray</code>&rsquo;s I/O functionality which can read from a variety of data formats some of them are listed below:</p>
 <ul>
 <li><a href="https://svn.osgeo.org/gdal/tags/gdal_1_2_5/frmts/formats_list.html">GDAL Raster Formats</a> via <code>open_rasterio</code> method.</li>
 <li><a href="https://www.unidata.ucar.edu/software/netcdf/">NetCDF</a> via <code>open_dataset</code> method.</li>
@@ -535,7 +529,7 @@ After completion of these methods, a pull request was created targeting the mast
 
 
 
-<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.08ccaf9cef8b4e0ebd0b0158e66a7bfc0ddbb2194cdb0099e8814ddb89cc7628b27b1158846564e6e03d9ffc5f4d1bc7dfc274d359f9408d1c63d73a3f7332e9.js" integrity="sha512-CMyvnO&#43;LTg69CwFY5mp7/A3bshlM2wCZ6IFN24nMdiiyexFYhGVk5uA9n/xfTRvH38J001n5QI0cY9c6P3My6Q=="></script>
 
 
 
@@ -547,7 +541,7 @@ After completion of these methods, a pull request was created targeting the mast
 
 
 
-<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.2d5469329143160ae2456a69c3c76dc2d0a3b212b46afe291a51bd68650ed6f8697e001dab54f1c272c77ce08092a8c55e5bb4314e0ee334aab4b927ec896638.js" integrity="sha512-LVRpMpFDFgriRWppw8dtwtCjshK0av4pGlG9aGUO1vhpfgAdq1TxwnLHfOCAkqjFXlu0MU4O4zSqtLkn7IlmOA=="></script>
+<script type="text/javascript" src="https://mgeeeek.github.io/bundle.min.08ccaf9cef8b4e0ebd0b0158e66a7bfc0ddbb2194cdb0099e8814ddb89cc7628b27b1158846564e6e03d9ffc5f4d1bc7dfc274d359f9408d1c63d73a3f7332e9.js" integrity="sha512-CMyvnO&#43;LTg69CwFY5mp7/A3bshlM2wCZ6IFN24nMdiiyexFYhGVk5uA9n/xfTRvH38J001n5QI0cY9c6P3My6Q=="></script>
 
 
 
