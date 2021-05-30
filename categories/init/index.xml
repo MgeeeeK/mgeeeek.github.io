@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>init - Category - MgeeeeK Home</title>
+        <link>https://mgeeeek.github.io/categories/init/</link>
+        <description>init - Category - MgeeeeK Home</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yesthisismrshekhar@gmail.com (Mragank Shekhar)</managingEditor>
+            <webMaster>yesthisismrshekhar@gmail.com (Mragank Shekhar)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 30 Mar 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mgeeeek.github.io/categories/init/" rel="self" type="application/rss+xml" /><item>
+    <title>$ blog init</title>
+    <link>https://mgeeeek.github.io/first-blog/</link>
+    <pubDate>Mon, 30 Mar 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://mgeeeek.github.io/first-blog/</guid>
+    <description><![CDATA[From now on I&rsquo;ll try to document all the major experiences I&rsquo;ve gained involving opensource development, research work, and exciting stuff like game-theory, python-libraries, Linux-distro-kernel(this is what I come to when I&rsquo;m super bored), philosophy-morality-religion(I&rsquo;m being pretentious now), and most importantly trending topics in the field of AI/ML&hellip; let&rsquo;s leave right here cos I don&rsquo;t have anything in my mind right now except for thinking about the ongoing situation because of the pandemic.]]></description>
+</item></channel>
+</rss>

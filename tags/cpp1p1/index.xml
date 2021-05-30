@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CPP1P1 - Tag - MgeeeeK Home</title>
+        <link>https://mgeeeek.github.io/tags/cpp1p1/</link>
+        <description>CPP1P1 - Tag - MgeeeeK Home</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yesthisismrshekhar@gmail.com (Mragank Shekhar)</managingEditor>
+            <webMaster>yesthisismrshekhar@gmail.com (Mragank Shekhar)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 14 Jun 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mgeeeek.github.io/tags/cpp1p1/" rel="self" type="application/rss+xml" /><item>
+    <title>Coding Period: First Phase Part 1</title>
+    <link>https://mgeeeek.github.io/cdp11/</link>
+    <pubDate>Sun, 14 Jun 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://mgeeeek.github.io/cdp11/</guid>
+    <description><![CDATA[Community Bonding period ended on 31st May, I covered my experience with PySAL community during the CB period in my last blog. The coding period has started at the beginning of this month and we’ve already reached midway of the first phase. Through this blog, I’ll share what all I’ve been working on during these couple of weeks.
+Overview of 2 Spatial Weight Objects During the community bonding period my focus was to grow my understanding of libpysal&rsquo;s structure, codebase, and API design paradigms.]]></description>
+</item></channel>
+</rss>
