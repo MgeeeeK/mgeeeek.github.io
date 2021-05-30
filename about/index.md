@@ -5,7 +5,7 @@
 
 ### Hello! My name is Mragank Shekhar.
 
-I'm a Sofware/Data Engineer who recently graduated from [Bennett University](https://www.bennett.edu.in/), where I did my bachelors in _Computer Science and Engineering_.
+I'm a Sofware/Data Engineer who recently graduated from [Bennett University](https://www.bennett.edu.in/), from where I did my bachelors in _Computer Science and Engineering_.
 
 My past experiences include:
 1. **Data Engineering Intern @Amazon** (6 Months)
