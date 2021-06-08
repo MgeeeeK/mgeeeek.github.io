@@ -2,6 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://mgeeeek.github.io/sum_with_amz_and_arviz/</loc><lastmod>2020-06-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/final_report/</loc><lastmod>2020-08-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/categories/</loc><lastmod>2020-08-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/tags/final-report/</loc><lastmod>2020-08-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -20,10 +21,14 @@
             <loc>https://mgeeeek.github.io/tags/cpp1p2/</loc><lastmod>2020-06-29T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/cdp11/</loc><lastmod>2020-06-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/tags/cpp1p1/</loc><lastmod>2020-06-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://mgeeeek.github.io/tags/amazon/</loc><lastmod>2020-06-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://mgeeeek.github.io/tags/arviz/</loc><lastmod>2020-06-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://mgeeeek.github.io/categories/gsoc21/</loc><lastmod>2020-06-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://mgeeeek.github.io/categories/internship/</loc><lastmod>2020-06-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://mgeeeek.github.io/tags/start/</loc><lastmod>2020-06-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/tags/cb-period/</loc><lastmod>2020-05-31T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/cbpw/</loc><lastmod>2020-05-31T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/sgn/</loc><lastmod>2020-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://mgeeeek.github.io/tags/start/</loc><lastmod>2020-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/first-blog/</loc><lastmod>2020-03-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/tags/first/</loc><lastmod>2020-03-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://mgeeeek.github.io/categories/init/</loc><lastmod>2020-03-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
