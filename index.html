@@ -1,47 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epic Snake Game</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="game-container">
-        <div class="menu active" id="mainMenu">
-            <h1>EPIC SNAKE</h1>
-            <input type="file" id="snakeHeadUpload" accept="image/*">
-            <label for="snakeHeadUpload" class="custom-file-upload">
-                Choose Snake Head Image
-            </label>
-            <button id="startGame">Start Game</button>
-            <button id="howToPlay">How to Play</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Epic Arcade Games</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Game Selector Menu -->
+    <div class="game-selector active" id="gameSelector">
+      <h1>EPIC ARCADE</h1>
+      <div class="game-cards">
+        <div class="game-card" data-game="snake">
+          <img src="assets/snake-preview.png" alt="Snake Game" />
+          <h3>Epic Snake</h3>
+          <button>Play Snake</button>
         </div>
-
-        <div class="menu" id="gameOverMenu">
-            <h2>Game Over!</h2>
-            <p>Score: <span id="finalScore">0</span></p>
-            <p>High Score: <span id="highScore">0</span></p>
-            <button id="restartGame">Play Again</button>
-            <button id="mainMenuButton">Main Menu</button>
+        <div class="game-card" data-game="dino">
+          <img src="assets/dino-preview.png" alt="Dino Runner" />
+          <h3>Dino Runner</h3>
+          <button>Play Dino</button>
         </div>
-
-        <div class="game-wrapper">
-            <div class="game-header">
-                <div class="score">Score: <span id="score">0</span></div>
-                <div class="timer">Time: <span id="time">0:00</span></div>
-            </div>
-            <canvas id="gameCanvas"></canvas>
-            <div class="mobile-controls">
-                <button id="upButton">↑</button>
-                <div class="horizontal-controls">
-                    <button id="leftButton">←</button>
-                    <button id="rightButton">→</button>
-                </div>
-                <button id="downButton">↓</button>
-            </div>
-        </div>
+      </div>
     </div>
-    <script src="game.js"></script>
-</body>
+
+    <!-- Snake Game Container -->
+    <div class="game-container" id="snakeContainer" style="display: none">
+      <div class="back-button">← Back to Menu</div>
+      
+      <div class="menu active" id="snakeMainMenu">
+        <h1>EPIC SNAKE</h1>
+        <input type="file" id="snakeHeadUpload" accept="image/*" />
+        <label for="snakeHeadUpload" class="custom-file-upload">
+          Choose Snake Head Image
+        </label>
+        <button id="startSnake">Start Game</button>
+        <button id="snakeHowToPlay">How to Play</button>
+      </div>
+
+      <div class="menu" id="snakeGameOverMenu">
+        <h2>Game Over!</h2>
+        <p>Score: <span id="snakeFinalScore">0</span></p>
+        <p>High Score: <span id="snakeHighScore">0</span></p>
+        <button id="restartSnake">Play Again</button>
+        <button class="mainMenuButton">Main Menu</button>
+      </div>
+
+      <div class="game-wrapper">
+        <div class="game-header">
+          <div class="score">Score: <span id="snakeScore">0</span></div>
+          <div class="timer">Time: <span id="snakeTime">0:00</span></div>
+        </div>
+        <canvas id="snakeCanvas"></canvas>
+        <div class="mobile-controls">
+          <button id="upButton">↑</button>
+          <div class="horizontal-controls">
+            <button id="leftButton">←</button>
+            <button id="rightButton">→</button>
+          </div>
+          <button id="downButton">↓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dino Game Container -->
+    <div class="game-container" id="dinoContainer" style="display: none">
+      <div class="back-button">← Back to Menu</div>
+      
+      <div class="menu active" id="dinoMainMenu">
+        <h1>DINO RUNNER</h1>
+        <input type="file" id="dinoUpload" accept="image/*" />
+        <label for="dinoUpload" class="custom-file-upload">
+          Choose Dino Image
+        </label>
+        <button id="startDino">Start Game</button>
+        <button id="dinoHowToPlay">How to Play</button>
+      </div>
+
+      <div class="menu" id="dinoGameOverMenu">
+        <h2>Game Over!</h2>
+        <p>Score: <span id="dinoFinalScore">0</span></p>
+        <p>High Score: <span id="dinoHighScore">0</span></p>
+        <button id="restartDino">Play Again</button>
+        <button class="mainMenuButton">Main Menu</button>
+      </div>
+
+      <div class="game-wrapper">
+        <div class="game-header">
+          <div class="score">Score: <span id="dinoScore">0</span></div>
+          <div class="timer">Time: <span id="dinoTime">0:00</span></div>
+        </div>
+        <canvas id="dinoCanvas"></canvas>
+        <div class="mobile-controls">
+          <button id="jumpButton">JUMP</button>
+          <button id="duckButton">DUCK</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="gameSelector.js"></script>
+    <script src="snake.js"></script>
+    <script src="dino.js"></script>
+  </body>
 </html>
