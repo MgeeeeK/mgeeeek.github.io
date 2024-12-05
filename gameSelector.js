@@ -22,15 +22,17 @@ class GameSelector {
     document.getElementById("gameSelector").classList.remove("active");
 
     if (gameType === "snake") {
-      document.getElementById("snakeContainer").style.display = "block";
-      document.getElementById("dinoContainer").style.display = "none";
-      new SnakeGame();
+        document.getElementById("snakeContainer").style.display = "block";
+        document.getElementById("dinoContainer").style.display = "none";
+        document.getElementById("snakeMainMenu").classList.add("active");
+        new SnakeGame();
     } else if (gameType === "dino") {
-      document.getElementById("snakeContainer").style.display = "none";
-      document.getElementById("dinoContainer").style.display = "block";
-      new DinoGame();
+        document.getElementById("snakeContainer").style.display = "none";
+        document.getElementById("dinoContainer").style.display = "block";
+        document.getElementById("dinoMainMenu").classList.add("active");
+        new DinoGame();
     }
-  }
+}
 
   showGameSelector() {
     document.getElementById("gameSelector").classList.add("active");
@@ -39,7 +41,6 @@ class GameSelector {
   }
 }
 
-// Initialize game selector
 window.onload = () => {
   new GameSelector();
 };

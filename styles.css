@@ -15,6 +15,13 @@ body {
 }
 
 .game-container {
+    display: none;
+}
+
+.game-container.active {
+    display: block;
+}
+.game-container {
     position: relative;
     width: 100%;
     max-width: 800px;
@@ -76,10 +83,14 @@ body {
     border-radius: 10px 10px 0 0;
 }
 
-#gameCanvas {
+#snakeCanvas,
+#dinoCanvas {
     width: 100%;
-    background: #000;
     border-radius: 0 0 10px 10px;
+}
+
+#snakeCanvas {
+    background: #000;
 }
 
 .mobile-controls {
