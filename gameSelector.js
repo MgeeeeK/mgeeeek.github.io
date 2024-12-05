@@ -4,9 +4,9 @@ class GameSelector {
   }
 
   setupEventListeners() {
-    document.querySelectorAll(".game-card button").forEach((button) => {
-      button.addEventListener("click", (e) => {
-        const gameType = e.target.parentElement.dataset.game;
+    document.querySelectorAll(".game-card").forEach((card) => {
+      card.querySelector("button").addEventListener("click", () => {
+        const gameType = card.dataset.game;
         this.startGame(gameType);
       });
     });
@@ -22,17 +22,17 @@ class GameSelector {
     document.getElementById("gameSelector").classList.remove("active");
 
     if (gameType === "snake") {
-        document.getElementById("snakeContainer").style.display = "block";
-        document.getElementById("dinoContainer").style.display = "none";
-        document.getElementById("snakeMainMenu").classList.add("active");
-        new SnakeGame();
+      document.getElementById("snakeContainer").style.display = "block";
+      document.getElementById("dinoContainer").style.display = "none";
+      document.getElementById("snakeMainMenu").classList.add("active");
+      new SnakeGame();
     } else if (gameType === "dino") {
-        document.getElementById("snakeContainer").style.display = "none";
-        document.getElementById("dinoContainer").style.display = "block";
-        document.getElementById("dinoMainMenu").classList.add("active");
-        new DinoGame();
+      document.getElementById("snakeContainer").style.display = "none";
+      document.getElementById("dinoContainer").style.display = "block";
+      document.getElementById("dinoMainMenu").classList.add("active");
+      new DinoGame();
     }
-}
+  }
 
   showGameSelector() {
     document.getElementById("gameSelector").classList.add("active");
@@ -41,6 +41,6 @@ class GameSelector {
   }
 }
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
   new GameSelector();
-};
+});

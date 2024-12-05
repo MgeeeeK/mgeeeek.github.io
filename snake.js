@@ -5,7 +5,8 @@ class SnakeGame {
     this.score = 0;
     this.highScore = localStorage.getItem("snakeHighScore") || 0;
     this.gameTime = 0;
-    this.snakeHeadImage = null;
+    this.snakeHeadImage = new Image();
+    this.snakeHeadImage.src = "assets/profile.jpg";
     this.setupGame();
     this.setupEventListeners();
   }
@@ -244,35 +245,15 @@ class SnakeGame {
     // Window resize
     window.addEventListener("resize", () => this.resizeCanvas());
 
-    // Custom snake head upload
-    document
-      .getElementById("snakeHeadUpload")
-      .addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const img = new Image();
-            img.onload = () => {
-              this.snakeHeadImage = img;
-            };
-            img.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-
     // Menu buttons
     document.getElementById("startSnake").addEventListener("click", () => {
-      // Changed from 'startGame'
-      document.getElementById("snakeMainMenu").classList.remove("active"); // Changed from 'mainMenu'
+      document.getElementById("snakeMainMenu").classList.remove("active");
       this.resetGame();
       requestAnimationFrame(this.update.bind(this));
     });
 
     document.getElementById("restartSnake").addEventListener("click", () => {
-      // Changed from 'restartGame'
-      document.getElementById("snakeGameOverMenu").classList.remove("active"); // Changed from 'gameOverMenu'
+      document.getElementById("snakeGameOverMenu").classList.remove("active");
       this.resetGame();
       requestAnimationFrame(this.update.bind(this));
     });

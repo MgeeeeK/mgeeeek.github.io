@@ -5,7 +5,8 @@ class DinoGame {
     this.score = 0;
     this.highScore = localStorage.getItem("dinoHighScore") || 0;
     this.gameTime = 0;
-    this.dinoImage = null;
+    this.dinoImage = new Image();
+    this.dinoImage.src = "assets/profile.jpg";
     this.obstacles = [];
     this.clouds = [];
     this.birds = [];
@@ -242,22 +243,6 @@ class DinoGame {
 
     // Window resize
     window.addEventListener("resize", () => this.resizeCanvas());
-
-    // Custom dino upload
-    document.getElementById("dinoUpload").addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const img = new Image();
-          img.onload = () => {
-            this.dinoImage = img;
-          };
-          img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    });
 
     // Menu buttons
     document.getElementById("startDino").addEventListener("click", () => {
