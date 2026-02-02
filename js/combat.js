@@ -652,11 +652,11 @@ class SwordCombat {
             // Victory animation
             if (spriteAnimator) {
                 spriteAnimator.setPlayerState('victory');
-                spriteAnimator.setEnemyState('knocked_down');
-                // BLOOD SPLASH!
+                spriteAnimator.setEnemyState('exploded');
+                // BODY EXPLOSION!
                 const w = spriteSystem.canvas.width;
                 const h = spriteSystem.canvas.height;
-                spriteAnimator.addBloodSplash(w * 0.7, h * 0.7);
+                spriteAnimator.explodeEnemy(w * 0.7, h * 0.75, this.currentBoss);
             }
             audioManager.playVictory();
 

@@ -22,6 +22,11 @@ class AudioManager {
             this.masterGain.connect(this.audioContext.destination);
             this.masterGain.gain.value = 0.3;
             this.isInitialized = true;
+            
+            // Fix for iOS: Immediately try to resume if suspended
+            if (this.audioContext.state === 'suspended') {
+                this.audioContext.resume();
+            }
         } catch (e) {
             console.warn('Web Audio API not supported');
         }

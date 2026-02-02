@@ -445,6 +445,8 @@ class SpriteSystem {
     }
 
     drawEnemy(x, y, type, state = 'idle', frame = 0, emotion = 'neutral', mouthOpen = false) {
+        if (state === 'exploded') return;
+
         const char = this.getCharacterData(type);
         const c = char.colors;
         const isWide = type === 'Vi';
@@ -632,7 +634,8 @@ class SpriteSystem {
             this.ctx.save();
             this.ctx.translate((p.baseX + p.x) * s, (p.baseY + p.y) * s);
             this.ctx.rotate(p.rotation);
-            this.ctx.fillStyle = `rgba(${p.r}, ${p.g}, ${p.b}, ${p.alpha})`;
+            this.ctx.globalAlpha = p.alpha;
+            this.ctx.fillStyle = p.color || `rgb(${p.r}, ${p.g}, ${p.b})`;
             // Draw diamond shape instead of square
             this.ctx.beginPath();
             this.ctx.moveTo(0, -p.size * s);
@@ -694,6 +697,7 @@ class SpriteAnimator {
         this.slashEffects = [];
         this.impactParticles = [];
         this.damageNumbers = [];
+        this.bloodPools = []; // Pools on the floor
         this.isAnimating = false;
         this.animationId = null;
         this.location = null; // Current location for background
@@ -767,8 +771,77 @@ class SpriteAnimator {
                 rotSpeed: (Math.random() - 0.5) * 0.5,
                 size: Math.random() * 4 + 2,
                 alpha: 1,
-                r: 200, g: 0, b: 0, // BLOOD RED
+                color: '#8a0303', // BLOOD RED
                 baseX: x, baseY: y
+            });
+        }
+    }
+
+    explodeEnemy(x, y, type) {
+        this.triggerShake(30); // More shake
+        const char = this.sprites.getCharacterData(type);
+        const c = char.colors;
+        const debrisColors = [c.skin, c.shirt, c.pants, c.shoes, c.hair, '#8a0303', '#ff0000', '#600000']; 
+        
+        // SLOW MOTION EXPLOSION
+        
+        // 1. Body Parts (Chunks)
+        for (let i = 0; i < 120; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 10 + 2;
+            const color = debrisColors[Math.floor(Math.random() * debrisColors.length)];
+            
+            this.impactParticles.push({
+                x: 0, y: 0,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed - 6, // Higher upward arc
+                rotation: Math.random() * Math.PI,
+                rotSpeed: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 8 + 3,
+                alpha: 1,
+                color: color, 
+                baseX: x, baseY: y,
+                gravity: 0.15, // Low gravity for "floaty" feel
+                drag: 0.96, // Low drag
+                fade: 0.005 // Very slow fade
+            });
+        }
+        
+        // 2. Blood Mist (Fine spray)
+         for (let i = 0; i < 100; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 5 + 1;
+            this.impactParticles.push({
+                x: 0, y: 0,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                rotation: 0,
+                rotSpeed: 0,
+                size: Math.random() * 3 + 1, 
+                alpha: 1,
+                color: '#ff0000',
+                baseX: x, baseY: y,
+                gravity: 0.05,
+                drag: 0.95,
+                fade: 0.002 // Lingers in air
+            });
+        }
+
+        // 3. Blood Pools (Spilling on floor)
+        // Ensure they spawn at the feet level (y is center, so add some offset)
+        const feetY = y + 30 * this.sprites.scale; 
+        
+        for (let i = 0; i < 5; i++) {
+            this.bloodPools.push({
+                x: x + (Math.random() - 0.5) * 50,
+                y: y + 35, // Near feet
+                width: 1,
+                height: 0.5,
+                targetWidth: 40 + Math.random() * 60,
+                targetHeight: 15 + Math.random() * 20,
+                growthSpeed: 0.5 + Math.random() * 1,
+                color: '#8a0303',
+                alpha: 0.9
             });
         }
     }
@@ -817,6 +890,9 @@ class SpriteAnimator {
         const enemyX = w * 0.7;
         const enemyY = h * 0.75;
 
+        // Draw Blood Pools (Before characters, so they stand on it if alive, or under debris)
+        this.drawBloodPools();
+
         // Draw Characters
         // Draw shadow ellipses under feet
         this.sprites.ctx.fillStyle = 'rgba(0,0,0,0.3)';
@@ -843,18 +919,42 @@ class SpriteAnimator {
         this.animationId = requestAnimationFrame((t) => this.animate(t));
     }
 
+    drawBloodPools() {
+        const s = this.sprites.scale;
+        this.bloodPools.forEach(pool => {
+            this.sprites.ctx.save();
+            this.sprites.ctx.translate(pool.x, pool.y);
+            this.sprites.ctx.scale(s, s);
+            this.sprites.ctx.fillStyle = pool.color;
+            this.sprites.ctx.globalAlpha = pool.alpha;
+            this.sprites.ctx.beginPath();
+            this.sprites.ctx.ellipse(0, 0, pool.width, pool.height, 0, 0, Math.PI * 2);
+            this.sprites.ctx.fill();
+            this.sprites.ctx.restore();
+        });
+    }
+
     updateAndDrawEffects() {
         // Update
         this.slashEffects = this.slashEffects.filter(s => { s.progress += s.speed; return s.progress < 1; });
+        
+        // Update Particles (Physics)
         this.impactParticles = this.impactParticles.filter(p => {
             p.x += p.vx;
             p.y += p.vy;
-            p.vy += 0.5; // Gravity
-            p.vx *= 0.95; // Friction
+            p.vy += (p.gravity || 0.5); // Custom gravity
+            p.vx *= (p.drag || 0.95);   // Custom drag
             p.rotation += p.rotSpeed;
-            p.alpha -= 0.03;
+            p.alpha -= (p.fade || 0.03); // Custom fade
             return p.alpha > 0;
         });
+        
+        // Update Blood Pools (Growth)
+        this.bloodPools.forEach(pool => {
+            if (pool.width < pool.targetWidth) pool.width += pool.growthSpeed;
+            if (pool.height < pool.targetHeight) pool.height += pool.growthSpeed * 0.5;
+        });
+
         this.damageNumbers = this.damageNumbers.filter(d => { d.progress += d.speed; return d.progress < 1; });
 
         // Draw
@@ -957,6 +1057,7 @@ class SpriteAnimator {
         this.slashEffects = [];
         this.impactParticles = [];
         this.damageNumbers = [];
+        this.bloodPools = [];
         this.playerState = 'idle';
         this.enemyState = 'idle';
         this.frame = 0;
