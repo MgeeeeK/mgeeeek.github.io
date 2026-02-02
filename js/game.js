@@ -311,8 +311,11 @@ class Game {
         this.state = 'title';
 
         // Initialize audio on first interaction
-        document.addEventListener('click', () => audioManager.init(), { once: true });
-        document.addEventListener('touchstart', () => audioManager.init(), { once: true });
+        const unlockAudio = async () => {
+            await audioManager.init();
+        };
+        document.addEventListener('click', unlockAudio, { once: true });
+        document.addEventListener('touchstart', unlockAudio, { once: true });
         
         // Draw Title Characters
         if (window.spriteSystem) {

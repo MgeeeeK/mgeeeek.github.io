@@ -132,21 +132,21 @@ class SwordCombat {
 
         // Adjust difficulty parameters
         if (this.difficulty === 'easy') {
-            this.timingSpeed = 0.015;
-            this.perfectZoneStart = 0.35;
-            this.perfectZoneEnd = 0.65;
-            this.goodZoneStart = 0.2;
-            this.goodZoneEnd = 0.8;
-            this.enemyAttackChance = 0.1;
-            this.clashChance = 0.05;
+            this.timingSpeed = 0.012;      // Slower (was 0.015)
+            this.perfectZoneStart = 0.32;  // Wider (was 0.35)
+            this.perfectZoneEnd = 0.68;    // Wider (was 0.65)
+            this.goodZoneStart = 0.15;     // Wider (was 0.2)
+            this.goodZoneEnd = 0.85;       // Wider (was 0.8)
+            this.enemyAttackChance = 0.05; // Less frequent (was 0.1)
+            this.clashChance = 0.02;       // Less frequent (was 0.05)
         } else {
-            this.timingSpeed = 0.025;
-            this.perfectZoneStart = 0.42;
-            this.perfectZoneEnd = 0.58;
-            this.goodZoneStart = 0.3;
-            this.goodZoneEnd = 0.7;
-            this.enemyAttackChance = 0.4;
-            this.clashChance = 0.25;
+            this.timingSpeed = 0.02;       // Slower (was 0.025)
+            this.perfectZoneStart = 0.38;  // Wider (was 0.42)
+            this.perfectZoneEnd = 0.62;    // Wider (was 0.58)
+            this.goodZoneStart = 0.25;     // Wider (was 0.3)
+            this.goodZoneEnd = 0.75;       // Wider (was 0.7)
+            this.enemyAttackChance = 0.25; // Less frequent (was 0.4)
+            this.clashChance = 0.15;       // Less frequent (was 0.25)
         }
 
         // Update UI
@@ -316,7 +316,7 @@ class SwordCombat {
         setTimeout(() => {
             if (!this.isActive) return;
             if (spriteAnimator) {
-                spriteAnimator.setPlayerState('attack_follow');
+                spriteAnimator.setPlayerState('idle');
             }
         }, this.windupTime + this.swingTime);
 
@@ -513,7 +513,7 @@ class SwordCombat {
             if (!this.isActive) return;
 
             // Enemy attack lands
-            const damage = this.difficulty === 'hard' ? 15 : 8;
+            const damage = this.difficulty === 'hard' ? 12 : 6;
             this.damagePlayer(damage);
 
             this.screenShake(6);
@@ -701,6 +701,7 @@ class SwordCombat {
             spriteAnimator.stop();
             spriteAnimator.reset();
         }
+        audioManager.stopBGM();
         this.hideCombo();
     }
 }

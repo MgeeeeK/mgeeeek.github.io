@@ -13,7 +13,7 @@ class AudioManager {
         this.currentBGM = null;
     }
 
-    init() {
+    async init() {
         if (this.isInitialized) return;
 
         try {
@@ -21,20 +21,43 @@ class AudioManager {
             this.masterGain = this.audioContext.createGain();
             this.masterGain.connect(this.audioContext.destination);
             this.masterGain.gain.value = 0.3;
-            this.isInitialized = true;
-            
-            // Fix for iOS: Immediately try to resume if suspended
+
+            // Properly await resume on iOS
             if (this.audioContext.state === 'suspended') {
-                this.audioContext.resume();
+                await this.audioContext.resume();
             }
+
+            // Play silent buffer to fully unlock on iOS
+            await this.unlockAudio();
+
+            this.isInitialized = true;
         } catch (e) {
-            console.warn('Web Audio API not supported');
+            console.warn('Web Audio API not supported:', e);
         }
     }
 
-    resume() {
+    async resume() {
         if (this.audioContext && this.audioContext.state === 'suspended') {
-            this.audioContext.resume();
+            try {
+                await this.audioContext.resume();
+            } catch (e) {
+                console.warn('Failed to resume audio:', e);
+            }
+        }
+    }
+
+    async unlockAudio() {
+        if (!this.audioContext) return;
+
+        // Create and play a short silent buffer - required for iOS
+        const buffer = this.audioContext.createBuffer(1, 1, 22050);
+        const source = this.audioContext.createBufferSource();
+        source.buffer = buffer;
+        source.connect(this.audioContext.destination);
+        source.start(0);
+
+        if (this.audioContext.state === 'suspended') {
+            await this.audioContext.resume();
         }
     }
 
@@ -47,9 +70,14 @@ class AudioManager {
     }
 
     // Play a simple 8-bit beep
-    playTone(frequency, duration, type = 'square') {
+    async playTone(frequency, duration, type = 'square') {
         if (!this.isInitialized || this.isMuted) return;
-        this.resume();
+
+        // Ensure context is running
+        if (this.audioContext.state === 'suspended') {
+            await this.resume();
+        }
+        if (this.audioContext.state !== 'running') return;
 
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();

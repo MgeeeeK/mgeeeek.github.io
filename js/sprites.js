@@ -760,19 +760,24 @@ class SpriteAnimator {
 
     addBloodSplash(x, y) {
         this.triggerShake(15);
-        for (let i = 0; i < 60; i++) {
+        const bloodColors = ['#8a0303', '#aa0000', '#660000', '#990000'];
+
+        for (let i = 0; i < 80; i++) {  // More particles (was 60)
             const angle = Math.random() * Math.PI * 2;
-            const speed = Math.random() * 8 + 2;
+            const speed = Math.random() * 6 + 3;
             this.impactParticles.push({
                 x: 0, y: 0,
                 vx: Math.cos(angle) * speed,
-                vy: Math.sin(angle) * speed - 2, // Upward bias
+                vy: Math.sin(angle) * speed - 4,  // Stronger upward bias (was -2)
                 rotation: Math.random() * Math.PI,
-                rotSpeed: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 4 + 2,
+                rotSpeed: (Math.random() - 0.5) * 0.3,
+                size: Math.random() * 5 + 2,
                 alpha: 1,
-                color: '#8a0303', // BLOOD RED
-                baseX: x, baseY: y
+                color: bloodColors[Math.floor(Math.random() * bloodColors.length)],
+                baseX: x, baseY: y,
+                gravity: 0.2,   // Floatier (was 0.5 default)
+                drag: 0.97,     // More drag (was 0.95)
+                fade: 0.012     // Slower fade (was 0.03)
             });
         }
     }
@@ -790,7 +795,7 @@ class SpriteAnimator {
             const angle = Math.random() * Math.PI * 2;
             const speed = Math.random() * 10 + 2;
             const color = debrisColors[Math.floor(Math.random() * debrisColors.length)];
-            
+
             this.impactParticles.push({
                 x: 0, y: 0,
                 vx: Math.cos(angle) * speed,
@@ -799,16 +804,16 @@ class SpriteAnimator {
                 rotSpeed: (Math.random() - 0.5) * 0.5,
                 size: Math.random() * 8 + 3,
                 alpha: 1,
-                color: color, 
+                color: color,
                 baseX: x, baseY: y,
-                gravity: 0.15, // Low gravity for "floaty" feel
-                drag: 0.96, // Low drag
-                fade: 0.005 // Very slow fade
+                gravity: 0.08, // Lower gravity for floatier feel (was 0.15)
+                drag: 0.98, // More drag (was 0.96)
+                fade: 0.003 // Even slower fade (was 0.005)
             });
         }
         
         // 2. Blood Mist (Fine spray)
-         for (let i = 0; i < 100; i++) {
+         for (let i = 0; i < 150; i++) {  // More particles (was 100)
             const angle = Math.random() * Math.PI * 2;
             const speed = Math.random() * 5 + 1;
             this.impactParticles.push({
@@ -817,30 +822,30 @@ class SpriteAnimator {
                 vy: Math.sin(angle) * speed,
                 rotation: 0,
                 rotSpeed: 0,
-                size: Math.random() * 3 + 1, 
+                size: Math.random() * 3 + 1,
                 alpha: 1,
                 color: '#ff0000',
                 baseX: x, baseY: y,
-                gravity: 0.05,
-                drag: 0.95,
-                fade: 0.002 // Lingers in air
+                gravity: 0.02,  // Floatier (was 0.05)
+                drag: 0.99,     // More drag (was 0.95)
+                fade: 0.001     // Slower fade (was 0.002)
             });
         }
 
         // 3. Blood Pools (Spilling on floor)
         // Ensure they spawn at the feet level (y is center, so add some offset)
-        const feetY = y + 30 * this.sprites.scale; 
-        
-        for (let i = 0; i < 5; i++) {
+        const feetY = y + 30 * this.sprites.scale;
+
+        for (let i = 0; i < 7; i++) {  // More pools (was 5)
             this.bloodPools.push({
-                x: x + (Math.random() - 0.5) * 50,
+                x: x + (Math.random() - 0.5) * 80,  // Wider spread (was 50)
                 y: y + 35, // Near feet
                 width: 1,
                 height: 0.5,
-                targetWidth: 40 + Math.random() * 60,
+                targetWidth: 50 + Math.random() * 80,  // Larger pools (was 40 + 60)
                 targetHeight: 15 + Math.random() * 20,
-                growthSpeed: 0.5 + Math.random() * 1,
-                color: '#8a0303',
+                growthSpeed: 0.3 + Math.random() * 0.5,  // Slower growth (was 0.5 + 1)
+                color: Math.random() > 0.5 ? '#8a0303' : '#660000',  // Color variety
                 alpha: 0.9
             });
         }

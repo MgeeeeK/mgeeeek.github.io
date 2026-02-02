@@ -658,3 +658,16 @@ GET /js/scenes.js
 GET /js/game.js
 GET /favicon.ico
 GET /favicon.ico
+GET /
+GET /style.css
+GET /js/audio.js
+GET /js/dialogue.js
+GET /js/sprites.js
+GET /js/combat.js
+GET /js/game.js
+GET /js/scenes.js
+GET /favicon.ico
+GET /favicon.ico
+GET /style.css
+GET /
+GET /.well-known/appspecific/com.chrome.devtools.json
