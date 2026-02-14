@@ -49,46 +49,8 @@ class SpriteSystem {
     }
 
     getCharacterData(type) {
-        // Kept original data structure for compatibility, tweaked hex codes for vibrancy
-        const characters = {
-            mragank: {
-                name: 'MRAGANK',
-                colors: { hair: '#222222', skin: '#ffdbac', shirt: '#ff4785', pants: '#2c3e50', shoes: '#111111', sword: '#e0e0e0', swordHandle: '#5d4037', swordGlow: '#fff176' }
-            },
-            R: {
-                name: 'R', title: 'The DM Slider',
-                colors: { hair: '#3e2723', skin: '#ffdbac', shirt: '#2980b9', pants: '#34495e', shoes: '#1a1a2e', accessory: '#ecf0f1' }
-            },
-            A: {
-                name: 'A', title: 'The Situationship',
-                colors: { hair: '#1a1a1a', skin: '#eec0a0', shirt: '#8e44ad', pants: '#2c3e50', shoes: '#000000' }
-            },
-            K: {
-                name: 'K', title: 'The Emo Guitarist',
-                colors: { hair: '#000000', skin: '#f5e0d0', shirt: '#111111', pants: '#050505', shoes: '#000000', accessory: '#5d4037' }
-            },
-            Vi: {
-                name: 'Vi', title: 'The Gym Bro',
-                colors: { hair: '#3e2723', skin: '#cd853f', shirt: '#c0392b', pants: '#34495e', shoes: '#1a1a2e', accessory: '#2ecc71' }
-            },
-            V: {
-                name: 'V', title: 'The Comedian',
-                colors: { hair: '#222222', skin: '#ffdbac', shirt: '#f39c12', pants: '#2c3e50', shoes: '#1a1a2e', accessory: '#7f8c8d' }
-            },
-            P: {
-                name: 'P', title: 'The Pondicherry Guy',
-                colors: { hair: '#222222', skin: '#ffdbac', shirt: '#ff0066', pants: '#f0f0f0', shoes: '#8d6e63', accessory: '#111111' }
-            },
-            S: {
-                name: 'S', title: 'The 31-Year-Old Weirdo',
-                colors: { hair: '#555555', skin: '#e0e0e0', shirt: '#6c5ce7', pants: '#1a1a2e', shoes: '#000000', accessory: '#ff0000' }
-            },
-            abhinandhini: {
-                name: 'Abhinandhini', title: 'The One',
-                colors: { hair: '#222222', skin: '#ffdbac', shirt: '#e84393', pants: '#d63031', shoes: '#ffffff', accessory: '#d35400' }
-            }
-        };
-        return characters[type] || characters.mragank;
+        const characters = window.gameCharacters || {};
+        return characters[type] || characters.mragank || { name: type, colors: {} };
     }
 
     generateSpriteDataUrl(type, emotion = 'neutral', mouthOpen = false, view = 'portrait') {
@@ -544,6 +506,80 @@ class SpriteSystem {
         } else if (type === 'S') { // Balding
             this.drawShadedRect(-10, -20 + bodyY, 4, 6, c.hair);
             this.drawShadedRect(6, -20 + bodyY, 4, 6, c.hair);
+        } else if (type === 'abhinandhini') { // Curly hair, shoulder length
+            const s = this.scale;
+            this.ctx.fillStyle = c.hair;
+
+            // Top dome — wide curly top, lowered to cover forehead
+            this.ctx.beginPath();
+            this.ctx.arc(0 * s, (-14 + bodyY) * s, 13 * s, Math.PI, 0);
+            this.ctx.fill();
+
+            // Side hair dropping to shoulders
+            // Left side
+            this.ctx.beginPath();
+            this.ctx.moveTo(-12 * s, (-10 + bodyY) * s);
+            this.ctx.quadraticCurveTo(-14 * s, (0 + bodyY) * s, -12 * s, (4 + bodyY) * s);
+            this.ctx.lineTo(-9 * s, (4 + bodyY) * s);
+            this.ctx.quadraticCurveTo(-10 * s, (0 + bodyY) * s, -9 * s, (-10 + bodyY) * s);
+            this.ctx.fill();
+            // Right side
+            this.ctx.beginPath();
+            this.ctx.moveTo(12 * s, (-10 + bodyY) * s);
+            this.ctx.quadraticCurveTo(14 * s, (0 + bodyY) * s, 12 * s, (4 + bodyY) * s);
+            this.ctx.lineTo(9 * s, (4 + bodyY) * s);
+            this.ctx.quadraticCurveTo(10 * s, (0 + bodyY) * s, 9 * s, (-10 + bodyY) * s);
+            this.ctx.fill();
+
+            // Curly texture — circles across top and sides
+            const curls = [
+                [-9, -18, 3], [-3, -21, 3], [3, -21, 3], [9, -18, 3],
+                [0, -22, 2.5], [-6, -22, 2], [6, -22, 2],
+                [-12, -12, 2.5], [12, -12, 2.5],
+                [-13, -4, 2.5], [13, -4, 2.5],
+                [-12, 0, 2.5], [12, 0, 2.5],
+                [-11, 4, 2], [11, 4, 2]
+            ];
+            this.ctx.beginPath();
+            for (const [cx, cy, r] of curls) {
+                this.ctx.moveTo((cx + r) * s, (cy + bodyY) * s);
+                this.ctx.arc(cx * s, (cy + bodyY) * s, r * s, 0, Math.PI * 2);
+            }
+            this.ctx.fill();
+
+            // Darker curls for depth
+            this.ctx.fillStyle = this.adjustColor(c.hair, -0.15);
+            const darkCurls = [
+                [-6, -19, 2], [5, -20, 2], [0, -18, 1.5],
+                [-11, -8, 2], [11, -8, 2],
+                [-12, -2, 1.5], [12, -2, 1.5],
+                [-10, 3, 1.5], [10, 3, 1.5]
+            ];
+            this.ctx.beginPath();
+            for (const [cx, cy, r] of darkCurls) {
+                this.ctx.moveTo((cx + r) * s, (cy + bodyY) * s);
+                this.ctx.arc(cx * s, (cy + bodyY) * s, r * s, 0, Math.PI * 2);
+            }
+            this.ctx.fill();
+
+            // Highlight curls
+            this.ctx.fillStyle = this.adjustColor(c.hair, 0.2);
+            const highlights = [
+                [-4, -21, 1.5], [4, -22, 1.5], [0, -20, 1.2],
+                [-12, -2, 1.2], [12, -2, 1.2]
+            ];
+            this.ctx.beginPath();
+            for (const [cx, cy, r] of highlights) {
+                this.ctx.moveTo((cx + r) * s, (cy + bodyY) * s);
+                this.ctx.arc(cx * s, (cy + bodyY) * s, r * s, 0, Math.PI * 2);
+            }
+            this.ctx.fill();
+
+            // Hair shine highlight
+            this.ctx.fillStyle = this.adjustColor(c.hair, 0.3);
+            this.ctx.beginPath();
+            this.ctx.arc(-3 * s, (-20 + bodyY) * s, 2.5 * s, 0, Math.PI * 2);
+            this.ctx.fill();
         } else { // Standard
             this.drawShadedRect(-10, -24 + bodyY, 20, 8, c.hair);
             this.drawShadedRect(-11, -16 + bodyY, 4, 6, c.hair);

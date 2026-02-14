@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Dexter's Pet Lab - Tamagotchi Valentine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/style-base.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Audio Toggle -->
+        <button id="audio-toggle" aria-label="Toggle audio"></button>
+
+        <!-- ======================== -->
+        <!-- INTRO / VISUAL NOVEL -->
+        <!-- ======================== -->
+        <div id="intro-screen" class="screen active">
+            <div class="scene-area">
+                <canvas id="scene-canvas"></canvas>
+                <div class="character-area">
+                    <div id="left-character"></div>
+                    <div id="right-character"></div>
+                </div>
+                <div class="tap-hint">TAP TO CONTINUE</div>
+                <div class="dialogue-area">
+                    <div id="dialogue-box">
+                        <div id="speaker-name"></div>
+                        <div id="dialogue-text"></div>
+                        <div id="dialogue-continue">&#9660;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================== -->
+        <!-- TAMAGOTCHI DEVICE -->
+        <!-- ======================== -->
+        <div id="tamagotchi-screen" class="screen">
+            <div class="device-shell">
+                <div class="device-title">DEXTER'S PET LAB</div>
+                <div class="device-hearts">&#9829; &#9829; &#9829;</div>
+
+                <!-- LCD Screen -->
+                <div class="lcd-frame">
+                    <div class="lcd-screen">
+                        <canvas id="pet-canvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Pet info -->
+                <div class="pet-info">
+                    <span class="pet-name">DEXTER JR.</span>
+                    <span class="pet-age" id="pet-age-display">Day 0</span>
+                </div>
+
+                <!-- Buttons -->
+                <div class="device-buttons">
+                    <div class="btn-row">
+                        <button class="device-btn" id="btn-feed">
+                            <span class="btn-icon">&#127836;</span> FEED
+                        </button>
+                        <button class="device-btn" id="btn-stats">
+                            <span class="btn-icon">&#128202;</span> STATS
+                        </button>
+                        <button class="device-btn" id="btn-play">
+                            <span class="btn-icon">&#127918;</span> PLAY
+                        </button>
+                    </div>
+                    <div class="btn-row">
+                        <button class="device-btn" id="btn-sleep">
+                            <span class="btn-icon">&#128164;</span> SLEEP
+                        </button>
+                        <button class="device-btn" id="btn-discipline">
+                            <span class="btn-icon">&#9878;</span> TRAIN
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Overlay -->
+            <div id="stats-overlay">
+                <div class="stats-title">PET STATS</div>
+
+                <div class="stat-row">
+                    <span class="stat-label">HUNGER</span>
+                    <div class="stat-bar" id="hunger-pips">
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">HAPPY</span>
+                    <div class="stat-bar" id="happy-pips">
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">DISCIPLINE</span>
+                    <div class="stat-bar" id="disc-pips">
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                        <div class="stat-pip"></div>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">AGE</span>
+                    <span class="stat-value" id="stat-age">0d</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">WEIGHT</span>
+                    <span class="stat-value" id="stat-weight">5lb</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">HEALTH</span>
+                    <span class="stat-value" id="stat-health">100%</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">STAGE</span>
+                    <span class="stat-value" id="stat-stage">egg</span>
+                </div>
+
+                <button class="stats-close" id="stats-close">CLOSE</button>
+            </div>
+
+            <!-- Feed Overlay -->
+            <div id="feed-overlay">
+                <div class="overlay-title">FEED</div>
+                <button class="choice-btn" id="feed-meal">
+                    &#127858; MEAL
+                    <span class="choice-desc">+1 hunger, +1 weight</span>
+                </button>
+                <button class="choice-btn" id="feed-snack">
+                    &#127852; SNACK
+                    <span class="choice-desc">+1 happy, +2 weight</span>
+                </button>
+                <button class="cancel-btn" id="feed-cancel">CANCEL</button>
+            </div>
+
+            <!-- Discipline Overlay -->
+            <div id="discipline-overlay">
+                <div class="overlay-title">TRAIN</div>
+                <button class="choice-btn" id="disc-praise">
+                    &#128079; PRAISE
+                    <span class="choice-desc">+1 discipline, +1 happy</span>
+                </button>
+                <button class="choice-btn" id="disc-scold">
+                    &#128544; SCOLD
+                    <span class="choice-desc">+1 discipline, -1 happy</span>
+                </button>
+                <button class="cancel-btn" id="disc-cancel">CANCEL</button>
+            </div>
+        </div>
+
+        <!-- ======================== -->
+        <!-- DEATH SCREEN -->
+        <!-- ======================== -->
+        <div id="death-screen" class="screen">
+            <div class="death-content">
+                <div class="death-icon">&#128123;</div>
+                <div class="death-title">REST IN PEACE</div>
+                <div class="death-message" id="death-message">Your pet has passed away.</div>
+                <button class="restart-btn" id="restart-btn">NEW PET</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts: shared first, then game-specific -->
+    <script src="../../shared/audio.js"></script>
+    <script src="../../shared/sprites.js"></script>
+    <script src="../../shared/dialogue.js"></script>
+    <script src="visual-novel.js"></script>
+    <script src="sprites.js"></script>
+    <script src="pet.js"></script>
+    <script src="mini-game.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

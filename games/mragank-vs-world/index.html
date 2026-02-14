@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>MRAGANK vs. THE WORLD</title>
+    <link rel="stylesheet" href="../../shared/style-base.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="screen active">
+            <div class="loading-content">
+                <div class="loading-text">LOADING...</div>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Title Screen -->
+        <div id="title-screen" class="screen">
+            <div id="title-chars">
+                <div id="title-mragank" class="title-char"></div>
+                <div id="title-abhi" class="title-char"></div>
+            </div>
+            <div class="title-content">
+                <h1 class="game-title">MRAGANK</h1>
+                <h2 class="game-subtitle">vs. THE WORLD</h2>
+                <div class="hearts-decoration">&#9829; &#9829; &#9829;</div>
+                <p class="start-prompt blink">TAP TO START</p>
+
+            </div>
+        </div>
+
+        <!-- Location Marker (Bus Stop Sign) -->
+        <div id="location-sign" class="hidden">
+            <div class="sign-pole"></div>
+            <div class="sign-board">
+                <div class="sign-header">BMTC BUS STOP</div>
+                <div class="sign-text" id="location-text">KORAMANGALA</div>
+                <div class="sign-kannada">ಬೆಂಗಳೂರು</div>
+            </div>
+        </div>
+
+        <!-- Dialogue/Visual Novel Screen -->
+        <div id="dialogue-screen" class="screen">
+            <canvas id="scene-canvas"></canvas>
+            <div id="character-container">
+                <div id="left-character" class="character"></div>
+                <div id="right-character" class="character"></div>
+            </div>
+            <div id="dialogue-box">
+                <div id="speaker-name"></div>
+                <div id="dialogue-text"></div>
+                <div id="dialogue-continue" class="blink">&#9660;</div>
+            </div>
+        </div>
+
+        <!-- Boss Splash Screen -->
+        <div id="boss-splash" class="screen">
+            <div class="boss-content">
+                <div class="boss-number">EX #<span id="boss-num">1</span></div>
+                <div class="boss-sprite" id="boss-sprite-preview"></div>
+                <h2 class="boss-name" id="boss-name-display">???</h2>
+                <p class="boss-title" id="boss-title-display">"The DM Slider"</p>
+            </div>
+        </div>
+
+        <!-- Combat Screen -->
+        <div id="combat-screen" class="screen">
+            <div id="combat-hud">
+                <div class="health-container player-health">
+                    <span class="health-label">MRAGANK</span>
+                    <div class="health-bar">
+                        <div class="health-fill" id="player-health"></div>
+                    </div>
+                </div>
+                <div class="health-container enemy-health">
+                    <span class="health-label" id="enemy-name-hud">ENEMY</span>
+                    <div class="health-bar enemy">
+                        <div class="health-fill" id="enemy-health"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combat Arena with Canvas -->
+            <div id="combat-arena">
+                <canvas id="combat-canvas"></canvas>
+                <div id="combo-display"></div>
+                <div id="hit-feedback"></div>
+            </div>
+
+            <!-- Timing Meter -->
+            <div id="timing-meter-container">
+                <div id="timing-meter">
+                    <div id="timing-zone"></div>
+                    <div id="timing-fill"></div>
+                    <div id="timing-indicator"></div>
+                </div>
+                <div class="timing-labels">
+                    <span>MISS</span>
+                    <span class="perfect-label">PERFECT</span>
+                    <span>MISS</span>
+                </div>
+            </div>
+
+            <!-- Attack Button -->
+            <div id="attack-button-container">
+                <button id="attack-button" class="attack-btn">
+                    <span class="sword-icon">&#9876;</span>
+                    <span class="attack-text">ATTACK!</span>
+                </button>
+            </div>
+
+            <div id="combat-instructions">
+                <p>Tap ATTACK when the meter hits the center!</p>
+            </div>
+        </div>
+
+        <!-- Victory Screen (after each battle) -->
+        <div id="victory-screen" class="screen">
+            <div class="victory-content">
+                <h2 class="victory-text">K.O.!</h2>
+                <div id="coins-display">
+                    <span class="coin">$</span>
+                    <span class="coin">$</span>
+                    <span class="coin">$</span>
+                </div>
+                <p class="victory-message" id="victory-message">DEFEATED!</p>
+            </div>
+        </div>
+
+        <!-- Proposal Screen -->
+        <div id="proposal-screen" class="screen">
+            <canvas id="proposal-canvas"></canvas>
+            <div id="proposal-content">
+                <div id="proposal-character"></div>
+                <div id="proposal-dialogue"></div>
+                <div id="proposal-question" class="hidden">
+                    <div class="question-box">
+                        <p class="question-text">WILL YOU BE MY VALENTINE?</p>
+                        <div class="answer-buttons">
+                            <button id="yes-btn" class="answer-btn yes-btn">YES</button>
+                            <button id="no-btn" class="answer-btn no-btn">NO</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slash Animation Overlay -->
+        <div id="slash-overlay" class="hidden">
+            <div class="slash-effect"></div>
+        </div>
+
+        <!-- Ending Screen -->
+        <div id="ending-screen" class="screen">
+            <canvas id="confetti-canvas"></canvas>
+            <div class="ending-content">
+                <div class="hearts-burst">
+                    <span class="heart">&#9829;</span>
+                    <span class="heart">&#9829;</span>
+                    <span class="heart">&#9829;</span>
+                    <span class="heart">&#9829;</span>
+                    <span class="heart">&#9829;</span>
+                </div>
+                <h1 class="ending-title">Happy Valentine's Day</h1>
+                <h2 class="ending-name">Abhinandhini</h2>
+                <div id="couple-sprite"></div>
+                <p class="ending-message">&#9829; Forever Yours &#9829;</p>
+            </div>
+        </div>
+
+        <!-- Audio Toggle -->
+        <button id="audio-toggle" class="audio-btn" aria-label="Toggle audio"></button>
+    </div>
+
+    <script src="../../shared/audio.js"></script>
+    <script src="../../shared/dialogue.js"></script>
+    <script src="../../shared/sprites.js"></script>
+    <script src="characters.js"></script>
+    <script src="combat.js"></script>
+    <script src="scenes.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

@@ -1,64 +1,7 @@
 /* ========================================
    MRAGANK vs. THE WORLD
-   Valentine's Quest - Scott Pilgrim Edition
+   Game-Specific Styles
    ======================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --primary-pink: #ff6b9d;
-    --dark-pink: #c44569;
-    --light-pink: #ffb8d0;
-    --bg-dark: #1a1a2e;
-    --bg-darker: #0f0f1a;
-    --text-white: #ffffff;
-    --pixel-yellow: #f9ca24;
-    --pixel-green: #6ab04c;
-    --pixel-red: #eb4d4b;
-    --pixel-blue: #4834d4;
-    --pixel-purple: #9b59b6;
-    --shake-intensity: 5px;
-}
-
-@font-face {
-    font-family: 'PixelFont';
-    src: local('Press Start 2P');
-}
-
-body {
-    font-family: 'Press Start 2P', cursive;
-    background: var(--bg-darker);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
-
-#game-container {
-    width: 100%;
-    max-width: 500px;
-    height: 100vh;
-    max-height: 900px;
-    background: var(--bg-dark);
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 50px rgba(255, 107, 157, 0.3);
-}
-
-@media (min-width: 768px) {
-    #game-container {
-        height: 90vh;
-        border-radius: 20px;
-        border: 4px solid var(--primary-pink);
-    }
-}
 
 /* ========================================
    THEMES
@@ -78,31 +21,6 @@ body {
     --light-pink: #ffb8d0;
     border-color: #ff6b9d !important;
     box-shadow: 0 0 50px rgba(255, 107, 157, 0.5) !important;
-}
-
-/* ========================================
-   SCREENS
-   ======================================== */
-
-.screen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background: var(--bg-dark); /* Ensure background is set */
-    z-index: 5;
-    overflow: hidden; /* Prevent content spill */
-}
-
-.screen.active {
-    display: flex;
-    z-index: 10;
 }
 
 /* ========================================
@@ -147,7 +65,6 @@ body {
     background: linear-gradient(180deg, var(--bg-darker) 0%, var(--bg-dark) 50%, #2d1f3d 100%);
 }
 
-/* Title Screen Characters */
 #title-chars {
     position: absolute;
     bottom: 20%;
@@ -213,10 +130,6 @@ body {
     opacity: 0.7;
 }
 
-.blink {
-    animation: blink 1s step-end infinite;
-}
-
 /* ========================================
    LOCATION SIGN (BMTC Style)
    ======================================== */
@@ -245,7 +158,7 @@ body {
 }
 
 .sign-board {
-    background: #f1c40f; /* BMTC Yellow */
+    background: #f1c40f;
     border: 3px solid #000;
     border-radius: 8px;
     padding: 5px 10px;
@@ -257,7 +170,7 @@ body {
 
 .sign-header {
     font-size: 8px;
-    color: #c0392b; /* BMTC Red */
+    color: #c0392b;
     border-bottom: 2px solid #000;
     padding-bottom: 2px;
     margin-bottom: 4px;
@@ -307,15 +220,15 @@ body {
 
 #character-container {
     position: absolute;
-    bottom: 160px; /* Aligned with top of dialogue box */
+    bottom: 160px;
     left: 0;
     right: 0;
     display: flex;
     justify-content: space-between;
-    padding: 0 40px; /* Push them in slightly */
+    padding: 0 40px;
     z-index: 2;
-    pointer-events: none; /* Let clicks pass through to canvas/dialogue */
-    align-items: flex-end; /* Align feet */
+    pointer-events: none;
+    align-items: flex-end;
 }
 
 .character {
@@ -325,12 +238,10 @@ body {
     background-repeat: no-repeat;
     background-position: bottom center;
     transition: transform 0.3s, filter 0.3s;
-    /* Removed card styles */
 }
 
 .character.has-portrait {
     background-image: var(--char-portrait);
-    /* No border or background color for full body */
     border: none;
     box-shadow: none;
     background-color: transparent;
@@ -350,38 +261,6 @@ body {
 
 .character.inactive {
     filter: brightness(0.5);
-}
-
-#dialogue-box {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    background: linear-gradient(180deg, rgba(26, 26, 46, 0.95) 0%, rgba(15, 15, 26, 0.98) 100%);
-    border-top: 4px solid var(--primary-pink);
-    padding: 20px;
-    min-height: 160px;
-}
-
-#speaker-name {
-    font-size: 12px;
-    color: var(--pixel-yellow);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-#dialogue-text {
-    font-size: 11px;
-    color: var(--text-white);
-    line-height: 1.8;
-    min-height: 60px;
-}
-
-#dialogue-continue {
-    position: absolute;
-    bottom: 15px;
-    right: 20px;
-    color: var(--primary-pink);
-    font-size: 14px;
 }
 
 /* ========================================
@@ -432,10 +311,10 @@ body {
    ======================================== */
 
 #combat-screen {
-    background: #1a1a2e; /* Solid background to ensure no transparency */
+    background: #1a1a2e;
     padding: 10px;
     justify-content: space-between;
-    display: none; /* Changed from default flex */
+    display: none;
     flex-direction: column;
 }
 
@@ -1026,61 +905,12 @@ body {
 }
 
 /* ========================================
-   AUDIO BUTTON
+   GAME-SPECIFIC ANIMATIONS
    ======================================== */
-
-#audio-toggle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 44px;
-    height: 44px;
-    background: rgba(26, 26, 46, 0.8);
-    border: 2px solid var(--primary-pink);
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#audio-toggle.muted {
-    opacity: 0.5;
-}
-
-#audio-toggle::after {
-    content: '\1F50A';
-    font-size: 20px;
-}
-
-#audio-toggle.muted::after {
-    content: '\1F507';
-}
-
-/* ========================================
-   ANIMATIONS
-   ======================================== */
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
 
 @keyframes titleBounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
-}
-
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
 }
 
 @keyframes bossEnter {
@@ -1153,32 +983,6 @@ body {
 }
 
 /* ========================================
-   UTILITY CLASSES
-   ======================================== */
-
-.hidden {
-    display: none !important;
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease-out;
-}
-
-.fade-out {
-    animation: fadeOut 0.5s ease-out;
-}
-
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-@keyframes fadeOut {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-/* ========================================
    PIXEL ART SPRITES (CSS-based fallbacks)
    ======================================== */
 
@@ -1200,20 +1004,19 @@ body {
 /* Specific Character Definitions */
 #left-character {
     --char-gradient: linear-gradient(180deg,
-        #4a4a4a 0%,   /* Hair */
+        #4a4a4a 0%,
         #4a4a4a 15%,
-        #ffd5b4 15%, /* Face */
+        #ffd5b4 15%,
         #ffd5b4 35%,
-        #ff6b9d 35%, /* Shirt */
+        #ff6b9d 35%,
         #ff6b9d 65%,
-        #2c3e50 65%, /* Pants */
+        #2c3e50 65%,
         #2c3e50 90%,
-        #1a1a2e 90%  /* Shoes */
+        #1a1a2e 90%
     );
 }
 
 #right-character {
-    /* Default Right Character (will be overridden by JS) */
     --char-gradient: linear-gradient(180deg,
         #2c3e50 0%,
         #2c3e50 15%,
@@ -1242,21 +1045,21 @@ body {
     width: 60px;
     height: 120px;
     background: linear-gradient(180deg,
-        #4a4a4a 0%,   /* Hair */
+        #4a4a4a 0%,
         #4a4a4a 15%,
-        #ffd5b4 15%, /* Face */
+        #ffd5b4 15%,
         #ffd5b4 35%,
-        #ff6b9d 35%, /* Shirt */
+        #ff6b9d 35%,
         #ff6b9d 65%,
-        #2c3e50 65%, /* Pants */
+        #2c3e50 65%,
         #2c3e50 90%,
-        #1a1a2e 90%  /* Shoes */
+        #1a1a2e 90%
     );
     border-radius: 10px 10px 5px 5px;
     box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
 }
 
-/* Enemy sprites - different colors for each */
+/* Enemy sprites */
 #enemy-sprite {
     background-color: transparent;
     position: relative;

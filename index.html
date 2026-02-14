@@ -3,187 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>MRAGANK vs. THE WORLD</title>
-    <link rel="stylesheet" href="style.css">
+    <title>MGEEEEK Games</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-pink: #ff6b9d;
+            --bg-dark: #1a1a2e;
+            --bg-darker: #0f0f1a;
+            --text-white: #ffffff;
+            --pixel-yellow: #f9ca24;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: var(--bg-darker);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-white);
+        }
+
+        .hub-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .hub-title {
+            font-size: clamp(16px, 5vw, 28px);
+            color: var(--text-white);
+            text-shadow: 3px 3px 0 var(--primary-pink);
+            margin-bottom: 10px;
+        }
+
+        .hub-subtitle {
+            font-size: clamp(8px, 2.5vw, 12px);
+            color: var(--primary-pink);
+            opacity: 0.8;
+        }
+
+        .game-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .game-card {
+            width: 280px;
+            background: var(--bg-dark);
+            border: 4px solid var(--primary-pink);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .game-card-banner {
+            height: 120px;
+            background: linear-gradient(135deg, #2d1f3d 0%, #1a1a2e 50%, #0f0c29 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card-banner .hearts {
+            font-size: 40px;
+            color: var(--primary-pink);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .game-card-banner .hearts:nth-child(1) { top: 10px; left: 20px; }
+        .game-card-banner .hearts:nth-child(2) { bottom: 10px; right: 20px; font-size: 24px; }
+
+        .game-card-banner .icon {
+            font-size: 48px;
+            z-index: 1;
+        }
+
+        .game-card-info {
+            padding: 20px;
+        }
+
+        .game-card-title {
+            font-size: 11px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .game-card-desc {
+            font-size: 8px;
+            color: var(--primary-pink);
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        .game-card-play {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            color: var(--pixel-yellow);
+            border-top: 2px solid rgba(255, 107, 157, 0.3);
+            animation: blink 1.5s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .coming-soon {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .coming-soon .game-card-play {
+            animation: none;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-    <div id="game-container">
-        <!-- Loading Screen -->
-        <div id="loading-screen" class="screen active">
-            <div class="loading-content">
-                <div class="loading-text">LOADING...</div>
-                <div class="loading-bar">
-                    <div class="loading-progress"></div>
-                </div>
-            </div>
-        </div>
+    <header class="hub-header">
+        <h1 class="hub-title">MGEEEEK GAMES</h1>
+        <p class="hub-subtitle">SELECT A GAME</p>
+    </header>
 
-        <!-- Title Screen -->
-        <div id="title-screen" class="screen">
-            <div id="title-chars">
-                <div id="title-mragank" class="title-char"></div>
-                <div id="title-abhi" class="title-char"></div>
+    <div class="game-grid">
+        <a href="games/mragank-vs-world/" class="game-card">
+            <div class="game-card-banner">
+                <span class="hearts">&#9829;</span>
+                <span class="hearts">&#9829;</span>
+                <span class="icon">&#9876;</span>
             </div>
-            <div class="title-content">
-                <h1 class="game-title">MRAGANK</h1>
-                <h2 class="game-subtitle">vs. THE WORLD</h2>
-                <div class="hearts-decoration">&#9829; &#9829; &#9829;</div>
-                <p class="start-prompt blink">TAP TO START</p>
-
+            <div class="game-card-info">
+                <div class="game-card-title">MRAGANK vs. THE WORLD</div>
+                <div class="game-card-desc"></div>
             </div>
-        </div>
+            <div class="game-card-play">&#9654; PLAY</div>
+        </a>
 
-        <!-- Location Marker (Bus Stop Sign) -->
-        <div id="location-sign" class="hidden">
-            <div class="sign-pole"></div>
-            <div class="sign-board">
-                <div class="sign-header">BMTC BUS STOP</div>
-                <div class="sign-text" id="location-text">KORAMANGALA</div>
-                <div class="sign-kannada">ಬೆಂಗಳೂರು</div>
+        <a href="games/tamagotchi-valentine/" class="game-card">
+            <div class="game-card-banner">
+                <span class="hearts">&#9829;</span>
+                <span class="hearts">&#9829;</span>
+                <span class="icon">&#10084;</span>
             </div>
-        </div>
-
-        <!-- Dialogue/Visual Novel Screen -->
-        <div id="dialogue-screen" class="screen">
-            <canvas id="scene-canvas"></canvas>
-            <div id="character-container">
-                <div id="left-character" class="character"></div>
-                <div id="right-character" class="character"></div>
+            <div class="game-card-info">
+                <div class="game-card-title">VALENTINE'S EVE</div>
+                <div class="game-card-desc"></div>
             </div>
-            <div id="dialogue-box">
-                <div id="speaker-name"></div>
-                <div id="dialogue-text"></div>
-                <div id="dialogue-continue" class="blink">&#9660;</div>
-            </div>
-        </div>
-
-        <!-- Boss Splash Screen -->
-        <div id="boss-splash" class="screen">
-            <div class="boss-content">
-                <div class="boss-number">EX #<span id="boss-num">1</span></div>
-                <div class="boss-sprite" id="boss-sprite-preview"></div>
-                <h2 class="boss-name" id="boss-name-display">???</h2>
-                <p class="boss-title" id="boss-title-display">"The DM Slider"</p>
-            </div>
-        </div>
-
-        <!-- Combat Screen -->
-        <div id="combat-screen" class="screen">
-            <div id="combat-hud">
-                <div class="health-container player-health">
-                    <span class="health-label">MRAGANK</span>
-                    <div class="health-bar">
-                        <div class="health-fill" id="player-health"></div>
-                    </div>
-                </div>
-                <div class="health-container enemy-health">
-                    <span class="health-label" id="enemy-name-hud">ENEMY</span>
-                    <div class="health-bar enemy">
-                        <div class="health-fill" id="enemy-health"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Combat Arena with Canvas -->
-            <div id="combat-arena">
-                <canvas id="combat-canvas"></canvas>
-                <div id="combo-display"></div>
-                <div id="hit-feedback"></div>
-            </div>
-
-            <!-- Timing Meter -->
-            <div id="timing-meter-container">
-                <div id="timing-meter">
-                    <div id="timing-zone"></div>
-                    <div id="timing-fill"></div>
-                    <div id="timing-indicator"></div>
-                </div>
-                <div class="timing-labels">
-                    <span>MISS</span>
-                    <span class="perfect-label">PERFECT</span>
-                    <span>MISS</span>
-                </div>
-            </div>
-
-            <!-- Attack Button -->
-            <div id="attack-button-container">
-                <button id="attack-button" class="attack-btn">
-                    <span class="sword-icon">&#9876;</span>
-                    <span class="attack-text">ATTACK!</span>
-                </button>
-            </div>
-
-            <div id="combat-instructions">
-                <p>Tap ATTACK when the meter hits the center!</p>
-            </div>
-        </div>
-
-        <!-- Victory Screen (after each battle) -->
-        <div id="victory-screen" class="screen">
-            <div class="victory-content">
-                <h2 class="victory-text">K.O.!</h2>
-                <div id="coins-display">
-                    <span class="coin">$</span>
-                    <span class="coin">$</span>
-                    <span class="coin">$</span>
-                </div>
-                <p class="victory-message" id="victory-message">DEFEATED!</p>
-            </div>
-        </div>
-
-        <!-- Proposal Screen -->
-        <div id="proposal-screen" class="screen">
-            <canvas id="proposal-canvas"></canvas>
-            <div id="proposal-content">
-                <div id="proposal-character"></div>
-                <div id="proposal-dialogue"></div>
-                <div id="proposal-question" class="hidden">
-                    <div class="question-box">
-                        <p class="question-text">WILL YOU BE MY VALENTINE?</p>
-                        <div class="answer-buttons">
-                            <button id="yes-btn" class="answer-btn yes-btn">YES</button>
-                            <button id="no-btn" class="answer-btn no-btn">NO</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slash Animation Overlay -->
-        <div id="slash-overlay" class="hidden">
-            <div class="slash-effect"></div>
-        </div>
-
-        <!-- Ending Screen -->
-        <div id="ending-screen" class="screen">
-            <canvas id="confetti-canvas"></canvas>
-            <div class="ending-content">
-                <div class="hearts-burst">
-                    <span class="heart">&#9829;</span>
-                    <span class="heart">&#9829;</span>
-                    <span class="heart">&#9829;</span>
-                    <span class="heart">&#9829;</span>
-                    <span class="heart">&#9829;</span>
-                </div>
-                <h1 class="ending-title">Happy Valentine's Day</h1>
-                <h2 class="ending-name">Abhinandhini</h2>
-                <div id="couple-sprite"></div>
-                <p class="ending-message">&#9829; Forever Yours &#9829;</p>
-            </div>
-        </div>
-
-        <!-- Audio Toggle -->
-        <button id="audio-toggle" class="audio-btn" aria-label="Toggle audio"></button>
+            <div class="game-card-play">&#9654; PLAY</div>
+        </a>
     </div>
-
-    <script src="js/audio.js"></script>
-    <script src="js/dialogue.js"></script>
-    <script src="js/sprites.js"></script>
-    <script src="js/combat.js"></script>
-    <script src="js/scenes.js"></script>
-    <script src="js/game.js"></script>
 </body>
 </html>

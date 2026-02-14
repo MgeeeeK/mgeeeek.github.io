@@ -25,6 +25,7 @@ class DialogueSystem {
         this.currentEmotion = 'neutral';
         this.mouthOpen = false;
         this.speakingCharacter = null; // 'left' or 'right'
+        this.lastRightSpeakerType = null; // Track right character across dialogue lines
     }
 
     // Start a dialogue sequence
@@ -32,6 +33,7 @@ class DialogueSystem {
         this.currentDialogue = dialogues;
         this.currentIndex = 0;
         this.onComplete = onComplete;
+        this.lastRightSpeakerType = null; // Reset so stale characters don't leak between scenes
         this.showNext();
     }
 
@@ -92,12 +94,19 @@ class DialogueSystem {
             rightSpeakerType = dialogue.speaker; // Boss name matches type
         }
 
+        // Remember right character; fall back to last known when Mragank speaks
+        if (rightSpeakerType) {
+            this.lastRightSpeakerType = rightSpeakerType;
+        } else if (this.lastRightSpeakerType && dialogue.speaker === 'MRAGANK') {
+            rightSpeakerType = this.lastRightSpeakerType;
+        }
+
         if (rightSpeakerType) {
             // Only open mouth if Right Char is speaking
             const rightMouth = (this.speakingCharacter === 'right' && this.mouthOpen);
             // Only apply emotion if Right Char is speaking
             const rightEmotion = (this.speakingCharacter === 'right') ? this.currentEmotion : 'neutral';
-            
+
             const rightUrl = window.spriteSystem.generateSpriteDataUrl(rightSpeakerType, rightEmotion, rightMouth, 'fullbody');
             this.applyPortrait(this.rightCharacter, rightUrl);
         } else {
