@@ -1,0 +1,197 @@
+.hero {
+  background: var(--color-lime-green);
+  position: relative;
+  min-height: 680px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ── Decoratives (desktop only) ── */
+.decoratives {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star1 {
+  position: absolute;
+  width: 362px;
+  height: 362px;
+  left: 311px;
+  top: 248px;
+  object-fit: contain;
+}
+
+.ornamentA {
+  position: absolute;
+  width: 83.522px;
+  height: 83.522px;
+  left: 316.48px;
+  top: 193.04px;
+}
+
+.ornamentB {
+  position: absolute;
+  width: 29.536px;
+  height: 29.536px;
+  left: 306px;
+  top: 193px;
+}
+
+.ornamentC {
+  position: absolute;
+  width: 40.942px;
+  height: 40.942px;
+  left: 287px;
+  top: 234.8px;
+}
+
+.stampWrapper {
+  position: absolute;
+  left: 795.98px;
+  top: 187.98px;
+  width: 279.588px;
+  height: 279.588px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stamp {
+  width: 234.861px;
+  height: 234.861px;
+  object-fit: contain;
+  transform: rotate(12.33deg);
+}
+
+/* ── Headline ── */
+.content {
+  position: relative;
+  z-index: 1;
+  padding-top: 244px;
+  padding-left: 370px;
+}
+
+.welcomeLine {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.welcome {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-style: oblique;
+  font-size: 84px;
+  color: black;
+  line-height: normal;
+}
+
+.to {
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 48px;
+  color: black;
+  line-height: normal;
+}
+
+.title {
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 96px;
+  color: black;
+  line-height: 79.355%;
+  margin-left: 158px;
+  width: 408px;
+  margin-top: 0;
+}
+
+/* ── Buttons ── */
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  margin-top: 24px;
+  margin-left: 149px;
+  padding-bottom: 80px;
+}
+
+.btnPrimary {
+  width: 181px;
+  height: 61px;
+  background: var(--color-pink-mid);
+  border: 3px solid black;
+  border-radius: 63px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.115;
+}
+
+.btnSecondary {
+  width: 180px;
+  height: 60px;
+  background: var(--color-pink-light);
+  border: 3px solid black;
+  border-radius: 63px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.115;
+}
+
+.btnPrimary:hover,
+.btnSecondary:hover {
+  opacity: 0.9;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1279px) {
+  .hero { min-height: auto; }
+  .decoratives { display: none; }
+  .content {
+    padding-top: 80px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .title {
+    margin-left: 0;
+    width: auto;
+    font-size: 72px;
+  }
+  .welcome { font-size: 64px; }
+  .to { font-size: 36px; }
+  .buttons {
+    margin-left: 0;
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero { min-height: auto; }
+  .content {
+    padding-top: 60px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .welcome { font-size: 48px; }
+  .to { font-size: 28px; }
+  .title { font-size: 56px; }
+  .buttons {
+    flex-direction: column;
+    gap: 12px;
+    margin-left: 0;
+  }
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+  }
+}

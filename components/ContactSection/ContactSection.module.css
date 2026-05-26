@@ -1,0 +1,257 @@
+.section {
+  background: var(--color-purple);
+  position: relative;
+  width: 100%;
+  min-height: 1602px;
+  padding: 113px 80px 0 80px;
+  overflow: hidden;
+}
+
+/* ── Contact form area ── */
+.contactHeading {
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: black;
+  line-height: 83.655%;
+  width: 693px;
+  margin-bottom: 24px;
+}
+
+.emailLine {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #ddffb7;
+  line-height: 1.115;
+  margin-bottom: 37px;
+}
+
+.emailLink {
+  font-weight: 700;
+  font-style: oblique;
+  text-decoration: underline;
+  color: #ddffb7;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 614px;
+}
+
+.input {
+  width: 100%;
+  height: 54px;
+  background: var(--color-purple-pale);
+  border: 3px solid black;
+  border-radius: 57px;
+  padding: 0 20px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: black;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #737171;
+}
+
+.textarea {
+  width: 100%;
+  height: 114px;
+  background: var(--color-purple-pale);
+  border: 3px solid black;
+  border-radius: 47px;
+  padding: 16px 20px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: black;
+  resize: none;
+  outline: none;
+}
+
+.textarea::placeholder {
+  color: #737171;
+}
+
+.sendBtn {
+  width: 181px;
+  height: 61px;
+  background: var(--color-pink-mid);
+  border: 3px solid black;
+  border-radius: 63px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: black;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 0;
+}
+
+/* ── Decorative phone illustration ── */
+.phoneIllustration {
+  position: absolute;
+  left: 622px;
+  top: 66px;
+  width: 238px;
+  height: 1350px;
+  pointer-events: none;
+}
+
+.phoneAntenna {
+  position: absolute;
+  left: 164px; /* 786-622 so antenna is at x=786 within section */
+  top: 0;
+  width: 13px;
+  height: 699px;
+  background: var(--color-pink-light);
+  border: 3.757px solid var(--color-pink-hot);
+  border-radius: 5.486px;
+}
+
+.phoneBody {
+  position: absolute;
+  left: 0;
+  top: 699px; /* phone body at section top + 66 + 699 = 765px, matching Figma */
+  width: 233px;
+  height: 651px;
+  background: var(--color-pink-light);
+  border: 4.918px solid var(--color-pink-hot);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 12px;
+  gap: 12px;
+}
+
+.photoFrame {
+  width: 160px;
+  height: 430px;
+  flex-shrink: 0;
+  border: 5px solid var(--color-pink-hot);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.phoneKeypad {
+  display: grid;
+  grid-template-columns: repeat(3, 43px);
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.phoneKey {
+  width: 43px;
+  height: 43px;
+  background: var(--color-pink-btn);
+  border: 3.757px solid var(--color-pink-hot);
+  border-radius: 7.513px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: black;
+}
+
+/* ── About Me area ── */
+.aboutSection {
+  margin-top: 80px;
+  padding-bottom: 80px;
+  display: grid;
+  grid-template-columns: 401px;
+  gap: 60px;
+  align-items: start;
+}
+
+.aboutHeading {
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: black;
+  line-height: 83.655%;
+  margin-bottom: 32px;
+  grid-column: 1 / -1;
+}
+
+.bio {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: black;
+  line-height: 1.115;
+  white-space: pre-wrap;
+}
+
+/* ── Footer buttons ── */
+.footerButtons {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  grid-column: 1 / -1;
+}
+
+.btnBrowse {
+  width: 181px;
+  height: 61px;
+  background: var(--color-pink-mid);
+  border: 3px solid black;
+  border-radius: 63px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: black;
+  cursor: pointer;
+}
+
+.btnResume {
+  width: 181px;
+  height: 61px;
+  background: var(--color-pink-light);
+  border: 3px solid black;
+  border-radius: 63px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: black;
+  cursor: pointer;
+}
+
+/* ── Footer strip ── */
+.footerStrip {
+  height: 40px;
+  background: var(--color-light-green);
+  margin: 0 -80px;
+  margin-top: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1279px) {
+  .contactHeading { width: auto; font-size: 36px; }
+  .form { width: 100%; }
+  .phoneIllustration { display: none; }
+  .aboutSection { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 767px) {
+  .section { padding: 48px 24px 0 24px; }
+  .contactHeading { font-size: 28px; }
+  .emailLine { font-size: 15px; }
+  .footerButtons { flex-direction: column; }
+  .btnBrowse, .btnResume { width: 100%; }
+  .footerStrip { margin: 0 -24px; }
+}

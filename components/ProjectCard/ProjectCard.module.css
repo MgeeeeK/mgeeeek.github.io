@@ -1,0 +1,113 @@
+.card {
+  position: relative;
+  width: 200px;
+  height: 160px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+/* Pink variant (default) */
+.pink .blobTop {
+  background: var(--color-pink-pale);
+}
+.pink .blobCorner {
+  background: var(--color-pink-pale);
+}
+.pink .darkBlock {
+  background: var(--color-pink-hot);
+}
+
+/* Purple variant */
+.purple .blobTop {
+  background: var(--color-purple-light);
+}
+.purple .blobCorner {
+  background: var(--color-purple-light);
+}
+.purple .darkBlock {
+  background: var(--color-purple-hot);
+}
+
+.blobTop {
+  position: absolute;
+  left: 17.85px;
+  top: 11.72px;
+  width: 182.123px;
+  height: 80.7px;
+  border-radius: 23.963px;
+}
+
+.blobCorner {
+  position: absolute;
+  left: 0.1px;
+  top: 0;
+  width: 81.747px;
+  height: 80.701px;
+  border-radius: 19.969px;
+}
+
+.darkBlock {
+  position: absolute;
+  left: 0.06px;
+  top: 34.72px;
+  width: 199.822px;
+  height: 125.124px;
+  border-radius: 24.462px;
+}
+
+.label {
+  position: absolute;
+  left: 50%;
+  top: 96.49px;
+  transform: translate(-50%, -50%);
+  width: 179.559px;
+  height: 70.974px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-style: oblique;
+  font-size: 21px;
+  color: white;
+  text-align: center;
+  letter-spacing: -0.105px;
+  line-height: 1.45;
+  text-transform: capitalize;
+}
+
+.rotated {
+  transform: rotate(-24.88deg);
+}
+
+.rotated:hover {
+  transform: rotate(-24.88deg) scale(1.03);
+}
+
+.large {
+  width: 220px;
+}
+
+@media (max-width: 767px) {
+  .card {
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    height: auto;
+  }
+  .label {
+    top: 60%;
+    width: 85%;
+    font-size: 16px;
+  }
+  .large {
+    width: 100%;
+  }
+}
