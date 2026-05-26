@@ -132,8 +132,8 @@
 }
 
 .photoFrame {
-  width: 160px;
-  height: 430px;
+  width: 195px;
+  height: 462px;
   flex-shrink: 0;
   border: 5px solid var(--color-pink-hot);
   border-radius: 14px;

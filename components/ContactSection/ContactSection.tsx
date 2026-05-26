@@ -28,8 +28,8 @@ export default function ContactSection() {
             <Image
               src="/images/about-photo.jpg"
               alt="Abhi"
-              width={160}
-              height={380}
+              width={195}
+              height={462}
               className={styles.photo}
             />
           </div>
