@@ -1,21 +1,74 @@
-.section {
-  background: var(--color-purple);
+.panel {
   position: relative;
   width: 100%;
-  min-height: 1602px;
-  padding: 113px 80px 0 80px;
+  min-height: calc(100svh - 60px);
   overflow: hidden;
+  isolation: isolate;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
-/* ── Contact form area ── */
+.panel::after {
+  content: '';
+  position: absolute;
+  left: clamp(18px, 4vw, 58px);
+  right: clamp(18px, 4vw, 58px);
+  top: 36px;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgb(0 0 0 / 0.22) 0 18px,
+    transparent 18px 32px
+  );
+  pointer-events: none;
+}
+
+.aboutPage {
+  background: var(--color-purple);
+  padding: clamp(84px, 8vw, 116px) clamp(24px, 5.5vw, 80px) clamp(72px, 7vw, 96px);
+  /* allow the phone antenna to overflow upward into the contact section above */
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.aboutPage::before,
+.contactPage::before {
+  content: '';
+  position: absolute;
+  width: clamp(320px, 45vw, 680px);
+  height: clamp(320px, 45vw, 680px);
+  right: -220px;
+  top: 62px;
+  border: 3px dashed rgb(221 255 183 / 0.52);
+  border-radius: 999px;
+  animation: contactHalo 30s linear infinite;
+  pointer-events: none;
+}
+
+.contactPage {
+  background: var(--color-purple);
+  padding: clamp(84px, 8vw, 116px) clamp(24px, 5.5vw, 80px) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contactContent {
+  width: min(720px, 100%);
+  position: relative;
+  z-index: 1;
+}
+
 .contactHeading {
   font-family: var(--font-playfair), serif;
   font-weight: 700;
-  font-size: 48px;
+  font-size: clamp(44px, 5vw, 72px);
   color: black;
-  line-height: 83.655%;
-  width: 693px;
+  line-height: 0.92;
+  width: min(760px, 100%);
   margin-bottom: 24px;
+  text-shadow: 4px 4px 0 var(--color-pink-light);
+  text-wrap: balance;
 }
 
 .emailLine {
@@ -23,8 +76,9 @@
   font-weight: 400;
   font-size: 20px;
   color: #ddffb7;
-  line-height: 1.115;
+  line-height: 1.2;
   margin-bottom: 37px;
+  overflow-wrap: anywhere;
 }
 
 .emailLink {
@@ -32,13 +86,14 @@
   font-style: oblique;
   text-decoration: underline;
   color: #ddffb7;
+  overflow-wrap: anywhere;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 614px;
+  width: min(614px, 100%);
 }
 
 .input {
@@ -53,6 +108,7 @@
   font-size: 15px;
   color: black;
   outline: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .input::placeholder {
@@ -61,7 +117,7 @@
 
 .textarea {
   width: 100%;
-  height: 114px;
+  height: 124px;
   background: var(--color-purple-pale);
   border: 3px solid black;
   border-radius: 47px;
@@ -72,6 +128,7 @@
   color: black;
   resize: none;
   outline: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .textarea::placeholder {
@@ -91,35 +148,116 @@
   cursor: pointer;
   align-self: flex-start;
   margin-top: 0;
+  box-shadow: 0 7px 0 black;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
-/* ── Decorative phone illustration ── */
+.input:focus,
+.textarea:focus {
+  background: #f8e9ff;
+  box-shadow: 0 0 0 5px rgb(221 255 183 / 0.5);
+  transform: translateX(6px);
+}
+
+.sendBtn:hover,
+.btnBrowse:hover,
+.btnResume:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 11px 0 black;
+}
+
+.sendBtn:active,
+.btnBrowse:active,
+.btnResume:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 black;
+}
+
 .phoneIllustration {
+  /*
+   * Antenna dimensions — single source of truth.
+   * Changing these automatically updates every dependent top/height below.
+   */
+  --ant-top-h:      120px;
+  --ant-mid-h:      170px;
+  --ant-base-h:     210px;
+  --ant-total:      calc(var(--ant-top-h) + var(--ant-mid-h) + var(--ant-base-h)); /* 500px */
+  --body-h:         560px;
+  /* How far the phone body sits below the top of the about section */
+  --body-offset:    240px;
+  /*
+   * Right edge of the antenna from the illustration's right side.
+   * Phone body is 210px wide; antenna base (16px) aligns so its right edge
+   * is 51px from the container's right edge — keeps it over the top-right
+   * corner of the phone body.
+   */
+  --ant-right:      51px;
+
+  display: block;
   position: absolute;
-  left: 622px;
-  top: 66px;
-  width: 238px;
-  height: 1350px;
+  right: clamp(320px, 24vw, 390px);
+  /*
+   * Negative top = antenna total height minus the desired body offset.
+   * Result: the illustration container starts above the about section,
+   * the antenna is visible in the contact section, and the phone body
+   * lands --body-offset px below the about section's top edge.
+   */
+  top: calc(-1 * var(--ant-total) + var(--body-offset));
+  width: 210px;
+  height: calc(var(--ant-total) + var(--body-h));
   pointer-events: none;
+  animation: phoneFloat 8s ease-in-out infinite;
+  z-index: 1;
 }
 
-.phoneAntenna {
+/* ── 3-layer telescoping antenna ── */
+/* Each segment is right-aligned to --ant-right and centered relative to the base (16px). */
+
+.antennaTop {
   position: absolute;
-  left: 164px; /* 786-622 so antenna is at x=786 within section */
+  right: calc(var(--ant-right) + (16px - 8px) / 2); /* center 8px bar over 16px base */
   top: 0;
-  width: 13px;
-  height: 699px;
+  width: 8px;
+  height: var(--ant-top-h);
   background: var(--color-pink-light);
   border: 3.757px solid var(--color-pink-hot);
-  border-radius: 5.486px;
+  border-bottom: none;
+  border-radius: 5.486px 5.486px 0 0;
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.14);
+}
+
+.antennaMid {
+  position: absolute;
+  right: calc(var(--ant-right) + (16px - 12px) / 2); /* center 12px bar over 16px base */
+  top: var(--ant-top-h);
+  width: 12px;
+  height: var(--ant-mid-h);
+  background: var(--color-pink-light);
+  border: 3.757px solid var(--color-pink-hot);
+  border-bottom: none;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.14);
+}
+
+.antennaBase {
+  position: absolute;
+  right: var(--ant-right);
+  top: calc(var(--ant-top-h) + var(--ant-mid-h));
+  width: 16px;
+  height: var(--ant-base-h);
+  background: var(--color-pink-light);
+  border: 3.757px solid var(--color-pink-hot);
+  border-bottom: none;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.14);
 }
 
 .phoneBody {
   position: absolute;
   left: 0;
-  top: 699px; /* phone body at section top + 66 + 699 = 765px, matching Figma */
-  width: 233px;
-  height: 651px;
+  top: var(--ant-total);
+  width: 210px;
+  height: 560px;
   background: var(--color-pink-light);
   border: 4.918px solid var(--color-pink-hot);
   border-radius: 20px;
@@ -127,13 +265,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px 0 12px;
-  gap: 12px;
+  padding: 15px 0 14px;
+  gap: 14px;
+  box-shadow: 14px 16px 0 rgb(0 0 0 / 0.12);
 }
 
 .photoFrame {
-  width: 195px;
-  height: 462px;
+  width: 176px;
+  height: 370px;
   flex-shrink: 0;
   border: 5px solid var(--color-pink-hot);
   border-radius: 14px;
@@ -148,14 +287,14 @@
 
 .phoneKeypad {
   display: grid;
-  grid-template-columns: repeat(3, 43px);
-  gap: 10px;
+  grid-template-columns: repeat(3, 38px);
+  gap: 9px;
   flex-shrink: 0;
 }
 
 .phoneKey {
-  width: 43px;
-  height: 43px;
+  width: 38px;
+  height: 38px;
   background: var(--color-pink-btn);
   border: 3.757px solid var(--color-pink-hot);
   border-radius: 7.513px;
@@ -166,62 +305,57 @@
   font-weight: 700;
   font-size: 15px;
   color: black;
+  animation: keypadBlink 5s ease-in-out infinite;
 }
 
-/* ── About Me area ── */
+.phoneKey:nth-child(2n) {
+  animation-delay: 0.3s;
+}
+
+.phoneKey:nth-child(3n) {
+  animation-delay: 0.7s;
+}
+
 .aboutSection {
-  margin-top: 80px;
-  padding-bottom: 80px;
-  display: grid;
-  grid-template-columns: 401px;
-  gap: 60px;
-  align-items: start;
+  position: relative;
+  z-index: 1;
+  width: min(720px, 56vw);
+  min-height: calc(100svh - 60px - clamp(156px, 15vw, 212px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 4vw, 52px);
 }
 
 .aboutHeading {
   font-family: var(--font-playfair), serif;
   font-weight: 700;
-  font-size: 48px;
+  font-size: clamp(64px, 8vw, 118px);
   color: black;
-  line-height: 83.655%;
-  margin-bottom: 32px;
-  grid-column: 1 / -1;
+  line-height: 0.82;
+  text-shadow: 6px 6px 0 var(--color-pink-light);
 }
 
 .bio {
+  max-width: 580px;
   font-family: 'Helvetica', Arial, sans-serif;
   font-weight: 400;
-  font-size: 15px;
+  font-size: clamp(16px, 1.2vw, 19px);
   color: black;
-  line-height: 1.115;
+  line-height: 1.28;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
-/* ── Footer buttons ── */
 .footerButtons {
   display: flex;
   gap: 16px;
-  margin-top: 40px;
-  grid-column: 1 / -1;
 }
 
-.btnBrowse {
-  width: 181px;
-  height: 61px;
-  background: var(--color-pink-mid);
-  border: 3px solid black;
-  border-radius: 63px;
-  font-family: 'Helvetica', Arial, sans-serif;
-  font-weight: 700;
-  font-size: 17px;
-  color: black;
-  cursor: pointer;
-}
-
+.btnBrowse,
 .btnResume {
   width: 181px;
   height: 61px;
-  background: var(--color-pink-light);
   border: 3px solid black;
   border-radius: 63px;
   font-family: 'Helvetica', Arial, sans-serif;
@@ -229,29 +363,141 @@
   font-size: 17px;
   color: black;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 7px 0 black;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
-/* ── Footer strip ── */
+.btnBrowse {
+  background: var(--color-pink-mid);
+}
+
+.btnResume {
+  background: var(--color-pink-light);
+}
+
 .footerStrip {
   height: 40px;
   background: var(--color-light-green);
-  margin: 0 -80px;
-  margin-top: 0;
+  margin: 0 calc(clamp(24px, 5.5vw, 80px) * -1);
 }
 
-/* ── Responsive ── */
 @media (max-width: 1279px) {
-  .contactHeading { width: auto; font-size: 36px; }
-  .form { width: 100%; }
-  .phoneIllustration { display: none; }
-  .aboutSection { grid-template-columns: 1fr; gap: 40px; }
+  .aboutPage,
+  .contactPage {
+    padding-top: 76px;
+  }
+
+  .phoneIllustration {
+    display: none;
+  }
+
+  .aboutSection {
+    width: min(760px, 100%);
+    min-height: calc(100svh - 60px - 152px);
+  }
+
+  .contactHeading {
+    font-size: 54px;
+  }
+
+  .form {
+    width: min(680px, 100%);
+  }
 }
 
 @media (max-width: 767px) {
-  .section { padding: 48px 24px 0 24px; }
-  .contactHeading { font-size: 28px; }
-  .emailLine { font-size: 15px; }
-  .footerButtons { flex-direction: column; }
-  .btnBrowse, .btnResume { width: 100%; }
-  .footerStrip { margin: 0 -24px; }
+  .panel {
+    min-height: auto;
+    scroll-snap-align: none;
+  }
+
+  .aboutPage,
+  .contactPage {
+    padding: 56px clamp(18px, 6.4vw, 24px) 0;
+  }
+
+  .aboutPage::before,
+  .contactPage::before {
+    right: -210px;
+    top: 260px;
+  }
+
+  .aboutSection {
+    width: 100%;
+    min-height: auto;
+    gap: 36px;
+    padding-bottom: 72px;
+  }
+
+  .aboutHeading {
+    font-size: 56px;
+  }
+
+  .bio {
+    font-size: 15px;
+  }
+
+  .contactHeading {
+    font-size: 42px;
+    line-height: 1;
+  }
+
+  .emailLine {
+    font-size: 15px;
+  }
+
+  .form {
+    gap: 16px;
+    padding-bottom: 72px;
+  }
+
+  .footerButtons {
+    flex-direction: column;
+  }
+
+  .btnBrowse,
+  .btnResume {
+    width: 100%;
+  }
+
+  .footerStrip {
+    margin: 0 calc(clamp(18px, 6.4vw, 24px) * -1);
+  }
+}
+
+@keyframes contactHalo {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes phoneFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(1.5deg); }
+}
+
+@keyframes keypadBlink {
+  0%, 76%, 100% { background: var(--color-pink-btn); }
+  84% { background: var(--color-light-green); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutPage::before,
+  .contactPage::before,
+  .phoneIllustration,
+  .phoneKey {
+    animation: none;
+  }
+
+  .input,
+  .textarea,
+  .sendBtn,
+  .btnBrowse,
+  .btnResume {
+    transition: none;
+  }
 }

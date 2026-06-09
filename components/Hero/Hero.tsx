@@ -1,11 +1,5 @@
-'use client'
-
 import Image from 'next/image'
 import styles from './Hero.module.css'
-
-function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-}
 
 export default function Hero() {
   return (
@@ -18,6 +12,7 @@ export default function Hero() {
           width={362}
           height={362}
           className={styles.star1}
+          loading="eager"
         />
         <Image
           src="/images/ornament-a.svg"
@@ -47,6 +42,8 @@ export default function Hero() {
             width={235}
             height={235}
             className={styles.stamp}
+            loading="eager"
+            fetchPriority="high"
           />
         </div>
       </div>
@@ -60,18 +57,18 @@ export default function Hero() {
         <h1 className={styles.title}>Abhi&apos;s Portfolio</h1>
 
         <div className={styles.buttons}>
-          <button
+          <a
+            href="#work"
             className={styles.btnPrimary}
-            onClick={() => scrollTo('work')}
           >
             Browse Projects
-          </button>
-          <button
+          </a>
+          <a
+            href="#contact"
             className={styles.btnSecondary}
-            onClick={() => scrollTo('contact')}
           >
             Get in Touch
-          </button>
+          </a>
         </div>
       </div>
     </section>

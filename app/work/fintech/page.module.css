@@ -1,0 +1,283 @@
+.page {
+  min-height: 100svh;
+  background: #fbfff7;
+  color: black;
+}
+
+:global(html:has(.projectCasePage)) {
+  scroll-snap-type: none;
+  scroll-padding-top: 0;
+}
+
+.canvas {
+  position: relative;
+  width: min(100%, 1280px);
+  height: 1964px;
+  margin: 0 auto;
+  overflow: visible;
+  background: #fbfff7;
+}
+
+/* ===== Sticky header ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #ddffb7;
+}
+
+.nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 58px;
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  padding: 0 47px;
+}
+
+.nav a {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.08px;
+  color: #ff43b7;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.projectStrip {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background: #ff61cd;
+}
+
+.projectStrip span {
+  display: flex;
+  align-items: center;
+  width: min(100%, 1280px);
+  height: 100%;
+  margin: 0 auto;
+  padding-left: 80px;
+  color: #ddffb7;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.075px;
+  text-transform: capitalize;
+}
+
+/* ===== Shared absolute element ===== */
+.abs {
+  position: absolute;
+  margin: 0;
+}
+
+/* ===== Card primitives ===== */
+.card {
+  display: block;
+  position: absolute;
+  overflow: hidden;
+  border: 3px solid #ff43b7;
+  background: transparent;
+}
+
+.cardImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* dark scrim overlay rect (rgba(0,0,0,0.71)) */
+.cardOverlay {
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.71);
+}
+
+/* rotation wrapper: flex centering box (matches Figma flex wrapper) */
+.rotWrap {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* mask-group clip container */
+.maskClip {
+  position: absolute;
+  overflow: hidden;
+}
+
+/* ===== Footer buttons ===== */
+.btn {
+  display: block;
+  position: absolute;
+  text-decoration: none;
+}
+
+.btnFace {
+  position: absolute;
+  border: 3px solid #000000;
+  border-radius: 63px;
+}
+
+.btnLabel {
+  position: absolute;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.115;
+  color: #000000;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+/* ===== Mobile ===== */
+.mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .canvas {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+    background: #fbfff7;
+  }
+
+  .nav {
+    height: 56px;
+    gap: 24px;
+    padding: 0 22px;
+  }
+
+  .nav a {
+    font-size: 14px;
+  }
+
+  .projectStrip {
+    height: 34px;
+  }
+
+  .projectStrip span {
+    padding-left: 22px;
+    font-size: 13px;
+  }
+
+  .mobileHero {
+    padding: 30px 22px 56px;
+  }
+
+  .mobileHero h1 {
+    margin: 0;
+    font-family: var(--font-playfair), serif;
+    font-size: clamp(38px, 12vw, 48px);
+    font-weight: 700;
+    line-height: 0.9;
+    color: #000000;
+  }
+
+  .mobileSub {
+    margin: 12px 0 0;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ff1fa9;
+  }
+
+  .mobileIntro {
+    margin: 18px 0 0;
+    max-width: 58ch;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.3;
+    color: #000000;
+  }
+
+  .mobileGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .mobileCard {
+    position: relative;
+    display: block;
+    aspect-ratio: 158 / 281;
+    overflow: hidden;
+    border: 3px solid #ff43b7;
+    border-radius: 7px;
+    background: #000000;
+    text-decoration: none;
+  }
+
+  .mobileCard img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mobileCard span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 8px;
+    font-family: var(--font-playfair), serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: #bbff6c;
+    text-align: center;
+  }
+
+  .mobileButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+  }
+
+  .mobilePrimary,
+  .mobileSecondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 56px;
+    border: 3px solid #000000;
+    border-radius: 63px;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    text-decoration: none;
+    box-shadow: 0 4px 0 0 #000000;
+  }
+
+  .mobilePrimary {
+    background: #ff61cd;
+  }
+
+  .mobileSecondary {
+    background: #ffc4e8;
+  }
+}

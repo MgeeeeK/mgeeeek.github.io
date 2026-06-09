@@ -1,5 +1,3 @@
-'use client'
-
 import Image from 'next/image'
 import styles from './ContactSection.module.css'
 
@@ -13,73 +11,73 @@ P.S. I also have a Bachelor's degree in communication design and designed this p
 
 const PHONE_KEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-function scrollToWork() {
-  document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
-}
-
 export default function ContactSection() {
   return (
-    <section id="contact" className={styles.section}>
-      {/* Decorative phone illustration — desktop only */}
-      <div className={styles.phoneIllustration} aria-hidden="true">
-        <div className={styles.phoneAntenna} />
-        <div className={styles.phoneBody}>
-          <div className={styles.photoFrame}>
-            <Image
-              src="/images/about-photo.jpg"
-              alt="Abhi"
-              width={195}
-              height={462}
-              className={styles.photo}
-            />
-          </div>
-          <div className={styles.phoneKeypad}>
-            {PHONE_KEYS.map((n) => (
-              <div key={n} className={styles.phoneKey}>{n}</div>
-            ))}
+    <>
+      <section id="contact" className={`${styles.panel} ${styles.contactPage}`}>
+        <div className={styles.contactContent}>
+          <h2 className={styles.contactHeading}>Got a brief or role to discuss?</h2>
+          <p className={styles.emailLine}>
+            Send me an email at{' '}
+            <a href="mailto:abhiv1999@gmail.com" className={styles.emailLink}>
+              abhiv1999@gmail.com
+            </a>{' '}
+            or fill out the form below
+          </p>
+
+          <form
+            aria-label="Contact form"
+            className={styles.form}
+          >
+            <input className={styles.input} type="text"  placeholder="Name"     />
+            <input className={styles.input} type="text"  placeholder="Company"  />
+            <input className={styles.input} type="email" placeholder="Email-id" />
+            <textarea className={styles.textarea}        placeholder="Message"  />
+            <button type="button" className={styles.sendBtn}>Send</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="about" className={`${styles.panel} ${styles.aboutPage}`}>
+        <div className={styles.phoneIllustration} aria-hidden="true">
+          <div className={styles.antennaTop} />
+          <div className={styles.antennaMid} />
+          <div className={styles.antennaBase} />
+          <div className={styles.phoneBody}>
+            <div className={styles.photoFrame}>
+              <Image
+                src="/images/about-photo.jpg"
+                alt="Abhi"
+                width={195}
+                height={462}
+                className={styles.photo}
+              />
+            </div>
+            <div className={styles.phoneKeypad}>
+              {PHONE_KEYS.map((n) => (
+                <div key={n} className={styles.phoneKey}>{n}</div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Contact form */}
-      <h2 className={styles.contactHeading}>Got a brief or role to discuss?</h2>
-      <p className={styles.emailLine}>
-        Send me an email at{' '}
-        <a href="mailto:abhiv1999@gmail.com" className={styles.emailLink}>
-          abhiv1999@gmail.com
-        </a>{' '}
-        or fill out the form below
-      </p>
+        <div className={styles.aboutSection}>
+          <h2 className={styles.aboutHeading}>About Me</h2>
 
-      <form
-        aria-label="Contact form"
-        className={styles.form}
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <input className={styles.input} type="text"  placeholder="Name"     />
-        <input className={styles.input} type="text"  placeholder="Company"  />
-        <input className={styles.input} type="email" placeholder="Email-id" />
-        <textarea className={styles.textarea}        placeholder="Message"  />
-        <button type="submit" className={styles.sendBtn}>Send</button>
-      </form>
+          <p className={styles.bio}>{BIO}</p>
 
-      {/* About Me */}
-      <div className={styles.aboutSection}>
-        <h2 className={styles.aboutHeading}>About Me</h2>
-
-        <p className={styles.bio}>{BIO}</p>
-
-        <div className={styles.footerButtons}>
-          <button className={styles.btnBrowse} onClick={scrollToWork}>
-            Browse Projects
-          </button>
-          <button className={styles.btnResume}>
-            Download Resume
-          </button>
+          <div className={styles.footerButtons}>
+            <a className={styles.btnBrowse} href="#work">
+              Browse Projects
+            </a>
+            <button className={styles.btnResume} type="button">
+              Download Resume
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div className={styles.footerStrip} />
-    </section>
+        <div className={styles.footerStrip} />
+      </section>
+    </>
   )
 }

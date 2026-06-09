@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# brainstorming companion
+.superpowers/
+
+# local working scratch (screenshots, downloads, mcp cache)
+.playwright-mcp/
+/helvetica-255/
+/*.png

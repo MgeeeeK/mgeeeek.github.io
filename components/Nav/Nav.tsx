@@ -57,9 +57,9 @@ export default function Nav() {
             </div>
           )}
         </div>
-        <button className={styles.contactBtn} onClick={scrollToContact}>
+        <a className={styles.contactBtn} href="#contact" onClick={scrollToContact}>
           Contact &amp; About
-        </button>
+        </a>
       </div>
     </nav>
   )

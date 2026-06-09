@@ -1,9 +1,35 @@
 .hero {
   background: var(--color-lime-green);
   position: relative;
-  min-height: 680px;
+  min-height: calc(100svh - 60px);
   width: 100%;
   overflow: hidden;
+  isolation: isolate;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 78px clamp(20px, 5vw, 80px) 44px;
+  border: 3px solid rgb(0 0 0 / 0.16);
+  border-radius: 44px;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: clamp(280px, 38vw, 560px);
+  height: clamp(280px, 38vw, 560px);
+  right: max(-160px, -9vw);
+  bottom: max(-170px, -12vw);
+  border: 3px dashed var(--color-pink-hot);
+  border-radius: 999px;
+  opacity: 0.5;
+  animation: haloSpin 28s linear infinite;
+  pointer-events: none;
 }
 
 /* ── Decoratives (desktop only) ── */
@@ -11,39 +37,45 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
 }
 
 .star1 {
   position: absolute;
-  width: 362px;
-  height: 362px;
-  left: 311px;
-  top: 248px;
+  width: clamp(220px, 25vw, 362px);
+  height: auto;
+  left: clamp(18px, 20vw, 311px);
+  top: clamp(300px, 36vh, 350px);
   object-fit: contain;
+  animation: slowSpin 22s linear infinite;
+  opacity: 0.92;
 }
 
 .ornamentA {
   position: absolute;
-  width: 83.522px;
-  height: 83.522px;
-  left: 316.48px;
-  top: 193.04px;
+  width: clamp(58px, 6vw, 84px);
+  height: auto;
+  left: clamp(24px, 21vw, 316px);
+  top: clamp(148px, 22vh, 193px);
+  animation: twinkle 2.4s ease-in-out infinite;
 }
 
 .ornamentB {
   position: absolute;
-  width: 29.536px;
-  height: 29.536px;
-  left: 306px;
-  top: 193px;
+  width: clamp(26px, 3vw, 40px);
+  height: auto;
+  left: clamp(58px, 18vw, 306px);
+  top: clamp(118px, 18vh, 193px);
+  animation: twinkle 1.8s ease-in-out 0.8s infinite;
 }
 
 .ornamentC {
   position: absolute;
-  width: 40.942px;
-  height: 40.942px;
-  left: 287px;
-  top: 234.8px;
+  width: clamp(34px, 4vw, 52px);
+  height: auto;
+  left: clamp(22px, 17vw, 287px);
+  top: clamp(210px, 28vh, 235px);
+  animation: twinkle 2.1s ease-in-out 1.4s infinite;
 }
 
 .stampWrapper {
@@ -70,6 +102,7 @@
   z-index: 1;
   padding-top: 244px;
   padding-left: 370px;
+  padding-bottom: 80px;
 }
 
 .welcomeLine {
@@ -81,10 +114,10 @@
 .welcome {
   font-family: 'Helvetica', Arial, sans-serif;
   font-weight: 700;
-  font-style: oblique;
+  font-style: italic;
   font-size: 84px;
   color: black;
-  line-height: normal;
+  line-height: 97px;
 }
 
 .to {
@@ -102,10 +135,10 @@
   font-style: italic;
   font-size: 96px;
   color: black;
-  line-height: 79.355%;
+  line-height: 102px;
   margin-left: 158px;
   width: 408px;
-  margin-top: 0;
+  margin-top: -11px;
 }
 
 /* ── Buttons ── */
@@ -115,7 +148,6 @@
   gap: 13px;
   margin-top: 24px;
   margin-left: 149px;
-  padding-bottom: 80px;
 }
 
 .btnPrimary {
@@ -129,8 +161,14 @@
   font-size: 17px;
   color: black;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   text-align: center;
   line-height: 1.115;
+  box-shadow: 0 7px 0 black;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .btnSecondary {
@@ -144,54 +182,215 @@
   font-size: 17px;
   color: black;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   text-align: center;
   line-height: 1.115;
+  box-shadow: 0 7px 0 black;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .btnPrimary:hover,
 .btnSecondary:hover {
-  opacity: 0.9;
+  opacity: 1;
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 11px 0 black;
+}
+
+.btnPrimary:active,
+.btnSecondary:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 black;
 }
 
 /* ── Responsive ── */
 @media (max-width: 1279px) {
-  .hero { min-height: auto; }
-  .decoratives { display: none; }
+  .hero {
+    min-height: calc(100svh - 60px);
+  }
+  .hero::before {
+    inset: 76px 28px 32px;
+    border-radius: 34px;
+  }
   .content {
-    padding-top: 80px;
+    padding-top: 98px;
     padding-left: 40px;
-    padding-right: 40px;
   }
   .title {
     margin-left: 0;
     width: auto;
-    font-size: 72px;
+    font-size: clamp(72px, 10vw, 96px);
   }
-  .welcome { font-size: 64px; }
-  .to { font-size: 36px; }
+  .welcome { font-size: clamp(62px, 9vw, 84px); }
+  .to { font-size: clamp(36px, 4vw, 48px); }
+  .stampWrapper {
+    left: auto;
+    right: 42px;
+    top: 122px;
+    width: clamp(156px, 19vw, 240px);
+    height: clamp(156px, 19vw, 240px);
+  }
+  .stamp {
+    width: clamp(138px, 17vw, 210px);
+    height: auto;
+  }
+  .star1 {
+    left: auto;
+    right: 4px;
+    top: 344px;
+  }
+  .ornamentA {
+    left: auto;
+    right: 245px;
+    top: 222px;
+  }
+  .ornamentB {
+    left: auto;
+    right: 332px;
+    top: 184px;
+  }
+  .ornamentC {
+    left: auto;
+    right: 290px;
+    top: 292px;
+  }
   .buttons {
     margin-left: 0;
-    margin-top: 32px;
+    margin-top: 34px;
   }
 }
 
 @media (max-width: 767px) {
-  .hero { min-height: auto; }
-  .content {
-    padding-top: 60px;
-    padding-left: 24px;
-    padding-right: 24px;
+  .hero {
+    min-height: calc(100svh - 60px);
+    scroll-snap-align: none;
   }
-  .welcome { font-size: 48px; }
-  .to { font-size: 28px; }
-  .title { font-size: 56px; }
+  .hero::before {
+    inset: 74px 14px 24px;
+    border-radius: 26px;
+  }
+  .hero::after {
+    right: -170px;
+    bottom: -150px;
+  }
+  .content {
+    padding-top: 90px;
+    padding-left: 24px;
+    padding-bottom: 220px;
+  }
+  .welcome { font-size: clamp(49px, 15vw, 60px); }
+  .to { font-size: 30px; }
+  .title {
+    font-size: clamp(58px, 18vw, 72px);
+    width: auto;
+    margin-left: 0;
+    max-width: 320px;
+  }
+  .stampWrapper {
+    left: auto;
+    right: -22px;
+    top: 330px;
+    width: 150px;
+    height: 150px;
+    opacity: 0.96;
+  }
+  .stamp {
+    width: 132px;
+    height: auto;
+  }
+  .star1 {
+    width: 190px;
+    right: -64px;
+    top: 398px;
+    opacity: 0.75;
+  }
+  .ornamentA {
+    width: 58px;
+    left: 18px;
+    top: 410px;
+  }
+  .ornamentB {
+    width: 28px;
+    left: 92px;
+    top: 372px;
+  }
+  .ornamentC {
+    width: 38px;
+    left: 52px;
+    top: 482px;
+  }
   .buttons {
     flex-direction: column;
     gap: 12px;
     margin-left: 0;
+    width: min(100%, 340px);
   }
   .btnPrimary,
   .btnSecondary {
     width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .content {
+    padding-top: 84px;
+    padding-left: 18px;
+  }
+
+  .welcome { font-size: clamp(44px, 14vw, 54px); }
+  .to { font-size: 28px; }
+
+  .title {
+    font-size: clamp(52px, 16vw, 64px);
+    max-width: 280px;
+  }
+
+  .stampWrapper {
+    top: 316px;
+    right: -34px;
+    width: 132px;
+    height: 132px;
+  }
+
+  .stamp {
+    width: 118px;
+  }
+
+  .star1 {
+    width: 168px;
+    top: 386px;
+    right: -76px;
+  }
+}
+
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes haloSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { transform: scale(0.15); opacity: 0; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::after,
+  .star1,
+  .ornamentA,
+  .ornamentB,
+  .ornamentC {
+    animation: none;
+    opacity: 1;
+  }
+  .btnPrimary,
+  .btnSecondary {
+    transition: none;
   }
 }

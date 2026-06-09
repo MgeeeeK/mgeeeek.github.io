@@ -1,0 +1,857 @@
+/* ════════════════════════════════════════════════════════════════
+   Email Strategy — MyCheckins case study (Figma node 23:106)
+   Canvas 1280×2642. Desktop = absolutely-positioned, pixel-exact.
+   ════════════════════════════════════════════════════════════════ */
+
+.page {
+  min-height: 100svh;
+  background: #fbfff7;
+  color: black;
+}
+
+:global(html:has(.projectCasePage)) {
+  scroll-snap-type: none;
+  scroll-padding-top: 0;
+}
+
+.canvas {
+  position: relative;
+  width: min(100%, 1280px);
+  height: 2642px;
+  margin: 0 auto;
+  overflow: visible;
+  background: #fbfff7;
+}
+
+/* ── Shared font helpers ── */
+.canvas :is(p, h1, a, div, span) {
+  margin: 0;
+}
+
+/* ════════ Header (sticky) ════════ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #ddffb7;
+}
+
+.nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 58px;
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  padding: 0 47px;
+}
+
+.nav a {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.08px;
+  color: #ff43b7;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.projectStrip {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background: #ff61cd;
+}
+
+.projectStrip span {
+  display: flex;
+  align-items: center;
+  width: min(100%, 1280px);
+  height: 100%;
+  margin: 0 auto;
+  padding-left: 80px;
+  color: #ddffb7;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.075px;
+  text-transform: capitalize;
+}
+
+/* ════════ Hero ════════ */
+.title {
+  position: absolute;
+  left: 80px;
+  top: 153px;
+  width: 747px;
+  height: 47px;
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 0.836550064;
+  color: black;
+  white-space: pre-wrap;
+}
+
+.subtitle {
+  position: absolute;
+  left: 80px;
+  top: 222px;
+  width: 776px;
+  height: 23px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.115;
+  color: #ff1fa9;
+}
+
+.intro {
+  position: absolute;
+  left: 80px;
+  top: 280px;
+  width: 640px;
+  height: 164px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.hReg {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+}
+.hBoldPink {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  color: #ff1fa9;
+}
+.hObl {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ── The Problem ── */
+.problem {
+  position: absolute;
+  left: 80px;
+  top: 432px;
+  width: 708px;
+  height: 281px;
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.115;
+  color: black;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.pinkBig {
+  color: #ff1fa9;
+}
+
+/* ── The Solution (right-aligned) ── */
+.solution {
+  position: absolute;
+  left: 1204px;
+  top: 583px;
+  width: 675px;
+  height: 220px;
+  transform: translateX(-100%);
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.115;
+  color: black;
+  text-align: right;
+  word-break: break-word;
+}
+
+.solutionBody {
+  position: absolute;
+  left: 858px;
+  top: 733px;
+  width: 342px;
+  height: 492px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.solutionBody p {
+  line-height: 1.115;
+}
+.solutionBody p:first-child {
+  margin-bottom: 0;
+}
+
+/* ── Tone of Voice ── */
+.toneHeading {
+  position: absolute;
+  left: 858px;
+  top: 1219px;
+  width: 315px;
+  height: 34px;
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.115;
+  color: black;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.toneBody {
+  position: absolute;
+  left: 858px;
+  top: 1262px;
+  width: 220px;
+  height: 366px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.toneBody p {
+  line-height: 1.115;
+  margin-bottom: 0;
+}
+.toneLead {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  color: #ff43b7;
+  word-break: break-word;
+}
+
+/* ════════ Flowchart ════════ */
+.arrowBox {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Diamonds (vector shapes drawn as imgs) */
+.dia1 { position: absolute; left: 140px; top: 640px; width: 240px; height: 80px; }
+.dia2 { position: absolute; left: 70px;  top: 900px; width: 220px; height: 80px; }
+.dia3 { position: absolute; left: 230px; top: 962px; width: 220px; height: 80px; }
+.dia4 { position: absolute; left: 488px; top: 850px; width: 220px; height: 80px; }
+.dia5 { position: absolute; left: 412px; top: 1116px; width: 220px; height: 80px; }
+.dia6 { position: absolute; left: 572px; top: 1201px; width: 220px; height: 80px; }
+
+/* Flowchart text base */
+.fcBold { font-family: 'Helvetica', Arial, sans-serif; font-weight: 700; line-height: 1.115; }
+.fcReg { font-family: 'Helvetica', Arial, sans-serif; font-weight: 400; line-height: 1.115; }
+
+.route1Label {
+  position: absolute;
+  left: 262.5px;
+  top: 665px;
+  width: 183px;
+  height: 25px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.route2Label {
+  position: absolute;
+  left: 599.5px;
+  top: 871px;
+  width: 183px;
+  height: 25px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Route 1 pills (green capsule nodes) */
+.pillR1A {
+  position: absolute;
+  left: 140px;
+  top: 800px;
+  width: 240px;
+  height: 43px;
+  background: #d3ffa0;
+  border: 2px solid black;
+  border-radius: 64.178px;
+}
+.pillR1AText {
+  position: absolute;
+  left: 262px;
+  top: 808px;
+  width: 196px;
+  height: 25px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.pillR1B {
+  position: absolute;
+  left: 95px;
+  top: 1080px;
+  width: 190px;
+  height: 43px;
+  background: #d3ffa0;
+  border: 2px solid black;
+  border-radius: 64.178px;
+}
+.pillR1BText {
+  position: absolute;
+  left: 109px;
+  top: 1088px;
+  width: 184px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+
+.pillR1C {
+  position: absolute;
+  left: 259px;
+  top: 1239px;
+  width: 190px;
+  height: 43px;
+  background: #d3ffa0;
+  border: 2px solid black;
+  border-radius: 64.178px;
+}
+.pillR1CText {
+  position: absolute;
+  left: 354.5px;
+  top: 1248px;
+  width: 167px;
+  height: 25px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Scenario labels Route 1 */
+.scenA1 {
+  position: absolute;
+  left: 179.5px;
+  top: 919px;
+  width: 107px;
+  height: 40px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.scenB1 {
+  position: absolute;
+  left: 340.5px;
+  top: 978px;
+  width: 127px;
+  height: 41px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Route 2 pills */
+.pillR2A {
+  position: absolute;
+  left: 488px;
+  top: 1010px;
+  width: 220px;
+  height: 43px;
+  background: #d3ffa0;
+  border: 2px solid black;
+  border-radius: 64.178px;
+}
+.pillR2AText {
+  position: absolute;
+  left: 597.5px;
+  top: 1017px;
+  width: 191px;
+  height: 16px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  word-break: break-word;
+}
+
+.pillR2B {
+  position: absolute;
+  left: 423px;
+  top: 1358px;
+  width: 190px;
+  height: 43px;
+  background: #d3ffa0;
+  border: 2px solid black;
+  border-radius: 64.178px;
+}
+.pillR2BText {
+  position: absolute;
+  left: 442px;
+  top: 1366px;
+  width: 152px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+
+.pillR2C {
+  position: absolute;
+  left: 598px;
+  top: 1480px;
+  width: 190px;
+  height: 43px;
+  background: #d3ffa0;
+  border: 2px solid black;
+  border-radius: 64.178px;
+}
+.pillR2CText {
+  position: absolute;
+  left: 692.5px;
+  top: 1489px;
+  width: 167px;
+  height: 25px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Scenario labels Route 2 */
+.scenA2 {
+  position: absolute;
+  left: 521.5px;
+  top: 1136px;
+  width: 117px;
+  height: 40px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.scenB2 {
+  position: absolute;
+  left: 682px;
+  top: 1216px;
+  width: 158px;
+  height: 25px;
+  transform: translateX(-50%);
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12.283px;
+  line-height: 1.115;
+  color: black;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Mic illustration (rotated -28.62°) ── */
+.micBox {
+  position: absolute;
+  left: 1057.82px;
+  top: 1383.97px;
+  width: 369.797px;
+  height: 501.653px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.micRotate {
+  flex: none;
+  transform: rotate(-28.62deg);
+}
+.micImg {
+  display: block;
+  width: 155.85px;
+  height: 486.432px;
+}
+
+/* ════════ Click to Read E-mails ════════ */
+.readHeading {
+  position: absolute;
+  left: 80px;
+  top: 1617px;
+  width: 445px;
+  height: 30px;
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+
+.route1Tag {
+  position: absolute;
+  left: 80px;
+  top: 1657px;
+  width: 120px;
+  height: 23px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.115;
+  color: #ff43b7;
+  word-break: break-word;
+}
+.route2Tag {
+  position: absolute;
+  left: 80px;
+  top: 1757px;
+  width: 120px;
+  height: 40px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.115;
+  color: #ff43b7;
+  word-break: break-word;
+}
+
+.subj1 {
+  position: absolute;
+  left: 81px;
+  top: 1680px;
+  width: 850px;
+  height: 40px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  word-break: break-word;
+}
+.subj2 {
+  position: absolute;
+  left: 81px;
+  top: 1700px;
+  width: 442px;
+  height: 17px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+.subj3 {
+  position: absolute;
+  left: 81px;
+  top: 1720px;
+  white-space: nowrap;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+.subj4 {
+  position: absolute;
+  left: 80px;
+  top: 1785px;
+  white-space: nowrap;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+.subj5 {
+  position: absolute;
+  left: 80px;
+  top: 1805px;
+  width: 662px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+
+/* ════════ The Result ════════ */
+.resultHeading {
+  position: absolute;
+  left: 80px;
+  top: 1879.5px;
+  width: 306px;
+  height: 43px;
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+.resultPink {
+  position: absolute;
+  left: 80px;
+  top: 1921.5px;
+  width: 484px;
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.115;
+  color: #ff1fa9;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.resultBody {
+  position: absolute;
+  left: 80px;
+  top: 1970.5px;
+  width: 417px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+
+/* Stat labels (row 1) */
+.statLbl {
+  position: absolute;
+  height: 34px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+/* Stat values (row 1) */
+.statVal {
+  position: absolute;
+  height: 70px;
+  width: 99px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  line-height: 1.115;
+  color: black;
+  word-break: break-word;
+}
+.statFrom { font-size: 24px; color: black; }
+.statTo { font-size: 36px; color: #ff43b7; }
+
+/* Stat labels (row 2) */
+.statLbl2 {
+  position: absolute;
+  height: 80px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.statTo2 {
+  position: absolute;
+  height: 70px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 36px;
+  line-height: 1.115;
+  color: #ff43b7;
+  word-break: break-word;
+}
+
+/* Line graph */
+.graph {
+  position: absolute;
+  left: 538px;
+  top: 1783px;
+  width: 679.5px;
+  height: 475.5px;
+}
+
+/* Polygon star */
+.polyBox {
+  position: absolute;
+  left: 1198px;
+  top: 2380px;
+  width: 35.596px;
+  height: 35.833px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.polyRotate {
+  flex: none;
+  transform: rotate(144.53deg);
+}
+.polyImg {
+  display: block;
+  width: 25.103px;
+  height: 26.112px;
+}
+
+/* ════════ Footer buttons ════════ */
+.primaryButton,
+.secondaryButton {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 60px;
+  border: 3px solid black;
+  border-radius: 63px;
+  color: black;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.115;
+  text-align: center;
+  text-decoration: none;
+}
+.primaryButton {
+  left: 61px;
+  top: 2397.5px;
+  background: #ff61cd;
+}
+.secondaryButton {
+  left: 273px;
+  top: 2397.5px;
+  background: #ffc4e8;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Mobile (stacked, approximate)
+   ════════════════════════════════════════════════════════════════ */
+.mobile {
+  display: none;
+}
+
+.mobileButtons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .canvas {
+    display: none;
+  }
+  .mobile {
+    display: block;
+    padding-bottom: 48px;
+    background: #fbfff7;
+  }
+  .mobileSection {
+    padding: 24px 20px;
+  }
+  .mobileSection h1 {
+    font-family: var(--font-playfair), serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.05;
+    color: black;
+    margin-bottom: 8px;
+  }
+  .mobileSection h2 {
+    font-family: var(--font-playfair), serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.1;
+    color: black;
+    margin-bottom: 12px;
+  }
+  .mobileSub {
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #ff1fa9;
+    margin-bottom: 16px;
+  }
+  .mobileSection p {
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+    color: black;
+    margin-bottom: 12px;
+  }
+  .mobilePink {
+    color: #ff1fa9;
+    font-weight: 700;
+  }
+  .mobileStats {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+  }
+  .mobileStats li {
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: black;
+    margin-bottom: 8px;
+  }
+  .primaryButton,
+  .secondaryButton {
+    position: static;
+  }
+}

@@ -1,17 +1,38 @@
 .card {
   position: relative;
-  width: 200px;
-  height: 160px;
+  container-type: inline-size;
+  width: min(200px, 100%);
+  aspect-ratio: 5 / 4;
   overflow: hidden;
   cursor: pointer;
   text-decoration: none;
   display: block;
   flex-shrink: 0;
-  transition: transform 0.15s ease;
+  border-radius: 26px;
+  transform-origin: center;
+  transition: transform 220ms ease, filter 220ms ease;
+  filter: drop-shadow(0 8px 0 rgb(0 0 0 / 0.16));
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: translateY(-8px) rotate(-2deg);
+  filter: drop-shadow(0 14px 0 rgb(0 0 0 / 0.2));
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 2px dashed rgb(255 255 255 / 0.52);
+  border-radius: 18px;
+  opacity: 0;
+  transform: scale(0.9) rotate(4deg);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.card:hover::after {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
 }
 
 /* Pink variant (default) */
@@ -38,50 +59,73 @@
 
 .blobTop {
   position: absolute;
-  left: 17.85px;
-  top: 11.72px;
-  width: 182.123px;
-  height: 80.7px;
-  border-radius: 23.963px;
+  left: 8.9%;
+  top: 7.3%;
+  width: 91.1%;
+  height: 50.4%;
+  border-radius: 15%;
+  transition: transform 260ms ease;
 }
 
 .blobCorner {
   position: absolute;
-  left: 0.1px;
+  left: 0;
   top: 0;
-  width: 81.747px;
-  height: 80.701px;
-  border-radius: 19.969px;
+  width: 40.9%;
+  height: 50.4%;
+  border-radius: 12.5%;
+  transition: transform 260ms ease;
 }
 
 .darkBlock {
   position: absolute;
-  left: 0.06px;
-  top: 34.72px;
-  width: 199.822px;
-  height: 125.124px;
-  border-radius: 24.462px;
+  left: 0;
+  top: 21.7%;
+  width: 100%;
+  height: 78.2%;
+  border-radius: 15.3%;
+  transition: transform 260ms ease;
+}
+
+.card:hover .blobTop {
+  transform: translate(6px, -8px) rotate(3deg);
+}
+
+.card:hover .blobCorner {
+  transform: translate(-5px, -4px) rotate(-8deg) scale(1.12);
+}
+
+.card:hover .darkBlock {
+  transform: translateY(5px);
 }
 
 .label {
   position: absolute;
   left: 50%;
-  top: 96.49px;
+  top: 60.3%;
   transform: translate(-50%, -50%);
-  width: 179.559px;
-  height: 70.974px;
+  width: 86%;
+  min-height: 44%;
+  padding: 0 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Helvetica', Arial, sans-serif;
   font-weight: 700;
   font-style: oblique;
-  font-size: 21px;
+  font-size: clamp(15px, 10.5cqi, 21px);
   color: white;
   text-align: center;
-  letter-spacing: -0.105px;
-  line-height: 1.45;
+  letter-spacing: 0;
+  line-height: 1.08;
   text-transform: capitalize;
+  overflow-wrap: anywhere;
+  z-index: 1;
+  transition: transform 220ms ease;
+}
+
+.card:hover .label {
+  transform: translate(-50%, -54%) rotate(1deg);
 }
 
 .rotated {
@@ -89,25 +133,33 @@
 }
 
 .rotated:hover {
-  transform: rotate(-24.88deg) scale(1.03);
+  transform: rotate(-19deg) translateY(-8px);
 }
 
 .large {
-  width: 220px;
+  width: min(220px, 100%);
 }
 
 @media (max-width: 767px) {
   .card {
     width: 100%;
-    aspect-ratio: 5 / 4;
-    height: auto;
+    filter: drop-shadow(0 6px 0 rgb(0 0 0 / 0.14));
   }
   .label {
-    top: 60%;
-    width: 85%;
-    font-size: 16px;
+    font-size: clamp(14px, 5vw, 16px);
   }
   .large {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::after,
+  .blobTop,
+  .blobCorner,
+  .darkBlock,
+  .label {
+    transition: none;
   }
 }

@@ -1,0 +1,304 @@
+.page {
+  min-height: 100svh;
+  background: #fbfff7;
+  color: black;
+}
+
+:global(html:has(.projectCasePage)) {
+  scroll-snap-type: none;
+  scroll-padding-top: 0;
+}
+
+.canvas {
+  position: relative;
+  width: min(100%, 1280px);
+  height: 2723px;
+  margin: 0 auto;
+  overflow: visible;
+  background: #fbfff7;
+}
+
+/* ---- Sticky header ---- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #ddffb7;
+}
+
+.nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 58px;
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.nav a {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.08px;
+  color: #ff43b7;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.projectStrip {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background: #ff61cd;
+}
+
+.projectStrip span {
+  display: flex;
+  align-items: center;
+  width: min(100%, 1280px);
+  height: 100%;
+  margin: 0 auto;
+  padding-left: 80px;
+  color: #ddffb7;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.075px;
+  text-transform: capitalize;
+}
+
+/* ---- Absolutely positioned primitives ---- */
+.abs {
+  position: absolute;
+}
+
+.serifBold {
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.helv {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.helvBold {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.helvOblique {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* film cards (empty black frames with pink border) */
+.filmCard {
+  display: block;
+  background: black;
+  border: 6px solid #ff43b7;
+  border-radius: 28px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* TV body */
+.tvBody {
+  background: #ddffb7;
+  border: 5px solid #ff43b7;
+  border-radius: 20px;
+}
+
+.tvLegStraight {
+  background: #ff43b7;
+  border-radius: 44.764px;
+}
+
+.tvButton {
+  background: #ff43b7;
+  border-radius: 28px;
+}
+
+/* footer buttons */
+.footerBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid black;
+  border-radius: 63px;
+  color: black;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.115;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 7px 0 black;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.footerBtn:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 11px 0 black;
+}
+
+.footerBtn:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 black;
+}
+
+.footerBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 7px 0 black, 0 0 0 5px rgb(221 255 183 / 0.68);
+}
+
+.primaryBtn {
+  background: #ff61cd;
+}
+
+.secondaryBtn {
+  background: #ffc4e8;
+}
+
+/* ---- Mobile ---- */
+.mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .canvas {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+    background: #fbfff7;
+    padding-bottom: 56px;
+  }
+
+  .mobileHeader {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #ddffb7;
+  }
+
+  .mobileNav {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+    padding: 0 22px;
+  }
+
+  .mobileNav a {
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ff43b7;
+    text-decoration: none;
+  }
+
+  .mobileStrip {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    padding-left: 22px;
+    background: #ff61cd;
+    color: #ddffb7;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .mobileSection {
+    padding: 30px 22px 8px;
+  }
+
+  .mobileTitle {
+    font-family: var(--font-playfair), serif;
+    font-size: clamp(32px, 10vw, 48px);
+    font-weight: 700;
+    line-height: 1;
+    color: black;
+  }
+
+  .mobileSubtitle {
+    margin-top: 8px;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff1fa9;
+  }
+
+  .mobileHeading {
+    margin-top: 32px;
+    font-family: var(--font-playfair), serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+  }
+
+  .mobileBrand {
+    margin-top: 4px;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 20px;
+    font-style: italic;
+    color: #ff43b7;
+  }
+
+  .mobileBody {
+    margin-top: 14px;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: black;
+  }
+
+  .mobileCard {
+    display: block;
+    margin: 18px 0 0;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: black;
+    border: 6px solid #ff43b7;
+    border-radius: 24px;
+  }
+
+  .mobileNote {
+    margin-top: 8px;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 15px;
+    color: black;
+  }
+
+  .mobileButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 36px 22px 0;
+  }
+
+  .footerBtn {
+    width: 150px;
+    height: 52px;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footerBtn {
+    transition: none;
+  }
+}

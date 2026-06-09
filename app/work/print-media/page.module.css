@@ -1,0 +1,395 @@
+.page {
+  min-height: 100svh;
+  background: #fbfff7;
+  color: black;
+}
+
+:global(html:has(.projectCasePage)) {
+  scroll-snap-type: none;
+  scroll-padding-top: 0;
+}
+
+/* ---------- Desktop canvas (faithful 1280px Figma, node 23:105) ---------- */
+.canvas {
+  position: relative;
+  width: min(100%, 1280px);
+  height: 5691px;
+  margin: 0 auto;
+  overflow: visible;
+  background: #fbfff7;
+}
+
+/* Lower-section background band behind the Green Yodha work (683:189) */
+.greenBand {
+  position: absolute;
+  left: -1px;
+  top: 1380px;
+  width: 1281px;
+  height: 2080px;
+  background: #f0ffdf;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #ddffb7;
+}
+
+.nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 58px;
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.nav a {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #ff43b7;
+  text-decoration: none;
+}
+
+.projectStrip {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background: #ff61cd;
+  position: relative;
+  z-index: 20;
+}
+
+.projectStrip span {
+  display: flex;
+  align-items: center;
+  width: min(100%, 1280px);
+  height: 100%;
+  margin: 0 auto;
+  padding-left: 80px;
+  color: #ddffb7;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.075px;
+  line-height: 1.45;
+}
+
+/* ---------- Interactive Corporate Diary ---------- */
+.diaryTitle {
+  position: absolute;
+  left: 80px;
+  top: 140px;
+  width: 920px;
+  font-family: var(--font-playfair), serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 0.836;
+  color: black;
+}
+
+.diarySubtitle {
+  position: absolute;
+  left: 80px;
+  top: 209px;
+  width: 776px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.115;
+  color: #ff43b7;
+}
+
+.diaryBodyLeft {
+  position: absolute;
+  left: 80px;
+  top: 254px;
+  width: 300px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+}
+
+.diaryBodyRight {
+  position: absolute;
+  left: 594px;
+  top: 501px;
+  width: 258px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+}
+
+/* ---------- Driving Change with Print Innovation ---------- */
+.printTitle {
+  position: absolute;
+  left: 80px;
+  top: 1453px;
+  width: 1090px;
+  font-family: var(--font-playfair), serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.115;
+  color: black;
+}
+
+.printSubtitle {
+  position: absolute;
+  left: 80px;
+  top: 1522px;
+  width: 480px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.115;
+  color: #ff61cd;
+}
+
+.printBody {
+  position: absolute;
+  left: 80px;
+  top: 1557px;
+  width: 442px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+}
+
+/* Stars + option labels */
+.star1 {
+  position: absolute;
+  left: 80px;
+  top: 1782px;
+  width: 160px;
+  height: 160px;
+}
+
+.option1 {
+  position: absolute;
+  left: 129px;
+  top: 1852px;
+  width: 62px;
+  font-family: var(--font-playfair), serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.115;
+  text-align: justify;
+  color: black;
+}
+
+.star2 {
+  position: absolute;
+  left: 580px;
+  top: 2530px;
+  width: 160px;
+  height: 160px;
+}
+
+.option2 {
+  position: absolute;
+  left: 624px;
+  top: 2600px;
+  width: 72px;
+  font-family: var(--font-playfair), serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.115;
+  text-align: justify;
+  color: black;
+}
+
+/* Print images */
+.fragranceStrip {
+  position: absolute;
+  left: 300px;
+  top: 1807px;
+  width: 440px;
+  height: 640px;
+  overflow: hidden;
+}
+
+.fragranceBody {
+  position: absolute;
+  left: 80px;
+  top: 1967px;
+  width: 160px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+}
+
+.lake {
+  position: absolute;
+  left: 80px;
+  top: 2530px;
+  width: 440px;
+  height: 641px;
+  overflow: hidden;
+}
+
+.lakeBody {
+  position: absolute;
+  left: 580px;
+  top: 2727px;
+  width: 160px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.115;
+  color: black;
+}
+
+.printImg {
+  object-fit: cover;
+}
+
+/* ---------- Footer buttons ---------- */
+.footerButtons {
+  position: absolute;
+  left: 80px;
+  top: 3260px;
+  display: flex;
+  gap: 32px;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 60px;
+  border: 3px solid black;
+  border-radius: 63px;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: black;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.primaryButton {
+  background: #ff61cd;
+  box-shadow: 0 4px 0 0 black;
+}
+
+.secondaryButton {
+  background: #ffc4e8;
+}
+
+.primaryButton:hover,
+.secondaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 0 black;
+}
+
+/* ---------- Mobile layout ---------- */
+.mobile {
+  display: none;
+}
+
+.mobileHero {
+  padding: 32px 24px 8px;
+}
+
+.mobileHero h1 {
+  font-family: var(--font-playfair), serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 0.92;
+  margin: 0 0 10px;
+}
+
+.mobileSection {
+  padding: 24px 24px 8px;
+}
+
+.mobileSection h2 {
+  font-family: var(--font-playfair), serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 12px;
+}
+
+.mobileSubhead {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ff43b7;
+  margin: 0 0 18px;
+}
+
+.mobileSection .mobileSubhead {
+  color: #ff61cd;
+}
+
+.mobileIntro {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: black;
+  margin: 0 0 18px;
+}
+
+.mobileGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 0 0 18px;
+}
+
+.mobileFigure {
+  margin: 0;
+}
+
+.mobileImg {
+  position: relative;
+  display: block;
+  aspect-ratio: 440 / 640;
+  overflow: hidden;
+  background: black;
+  border-radius: 6px;
+}
+
+.mobileFigure figcaption {
+  margin-top: 8px;
+  font-family: var(--font-playfair), serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+}
+
+.mobileButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px;
+}
+
+@media (max-width: 767px) {
+  .canvas {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton,
+  .secondaryButton {
+    transition: none;
+  }
+}

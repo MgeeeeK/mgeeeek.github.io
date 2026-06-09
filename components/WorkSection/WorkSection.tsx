@@ -32,10 +32,10 @@ export default function WorkSection() {
       </div>
 
       {/* "Don't Look!" — rotated purple card, desktop only */}
-      <div className={styles.dontLookWrapper} aria-hidden="true">
+      <div className={styles.dontLookWrapper}>
         <ProjectCard
           label="don't Look!"
-          href="#"
+          href="/work/fun-stuff"
           variant="purple"
           rotated
           size="large"
