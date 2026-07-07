@@ -1,7 +1,12 @@
 import Link from 'next/link'
+import { AmbientLayer, Starburst, Halo, Sparkle } from '@/components/Ambient/Ambient'
+import Magnetic from '@/components/Fx/Magnetic'
+import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
+import { getNextProject } from '@/lib/projects'
 import styles from './page.module.css'
 
 const IMG = '/images/fintech'
+const NEXT = getNextProject('fintech')
 
 const playfairBold = {
   fontFamily: 'var(--font-playfair), serif',
@@ -35,12 +40,27 @@ function Header() {
 
 function DesktopCanvas() {
   return (
-    <div className={styles.canvas} aria-label="Fintech case study">
+    <ScaledCanvas className={styles.canvas} ariaLabel="Fintech case study" height={1964}>
       <Header />
+
+      <AmbientLayer>
+        <Halo right={-140} top={36} size={360} />
+        <Sparkle left={930} top={210} size={34} delay={0.2} />
+        <Sparkle left={1130} top={520} size={22} delay={1.1} />
+        <Sparkle left={700} top={470} size={18} delay={0.6} />
+        <Starburst left={636} top={600} size={560} opacity={0.5} />
+        <Halo lime right={-70} top={1080} size={320} />
+        <Sparkle left={900} top={1320} size={28} delay={0.9} />
+        <Sparkle left={150} top={1640} size={24} delay={1.4} />
+        <Sparkle left={60} top={740} size={20} delay={0.4} />
+        <Starburst reverse left={980} top={1660} size={380} opacity={0.4} />
+        <Sparkle left={540} top={1880} size={22} delay={1.7} />
+      </AmbientLayer>
 
       {/* ===== Title ===== */}
       <p
         className={styles.abs}
+        data-reveal="rise"
         style={{
           ...playfairBold,
           left: 80,
@@ -59,6 +79,8 @@ function DesktopCanvas() {
       {/* ===== Subtitle ===== */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="1"
         style={{
           ...helvBold,
           left: 80,
@@ -77,6 +99,8 @@ function DesktopCanvas() {
       {/* ===== Intro body ===== */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="2"
         style={{
           ...helvReg,
           left: 80,
@@ -118,9 +142,10 @@ function DesktopCanvas() {
       {/* rectangle96 — rotated -13.33deg wrapper, left 84 top 1061 w 283.712 h 325.296 */}
       <div
         className={styles.rotWrap}
+        data-reveal="pop"
         style={{ left: 84, top: 1061, width: 283.712, height: 325.296 }}
       >
-        <div style={{ transform: 'rotate(-13.33deg)', transformOrigin: 'center' }}>
+        <div className={styles.floaty} style={{ transform: 'rotate(-13.33deg)', transformOrigin: 'center' }}>
           <a
             className={styles.card}
             style={{ width: 225, height: 281, borderRadius: 7 }}
@@ -136,9 +161,10 @@ function DesktopCanvas() {
       {/* dark overlay over rectangle96 (rotated wrapper, same box) */}
       <div
         className={styles.rotWrap}
+        data-reveal="pop"
         style={{ left: 84, top: 1061, width: 283.725, height: 325.305 }}
       >
-        <div style={{ transform: 'rotate(-13.33deg)', transformOrigin: 'center' }}>
+        <div className={styles.floaty} style={{ transform: 'rotate(-13.33deg)', transformOrigin: 'center' }}>
           <a
             className={styles.cardOverlay}
             style={{ width: 225, height: 281, borderRadius: 7 }}
@@ -153,6 +179,7 @@ function DesktopCanvas() {
       {/* rectangle102 base bg card — left 352 top 866 w 224.8 h 281 */}
       <a
         className={styles.card}
+        data-reveal="pop"
         style={{ left: 352, top: 866, width: 224.8, height: 281, borderRadius: 7, background: '#ffc4e8' }}
         href="https://www.instagram.com/p/DMxlzIiSPOu/?img_index=1"
         target="_blank"
@@ -162,6 +189,7 @@ function DesktopCanvas() {
       {/* rectangle102 image */}
       <a
         className={styles.card}
+        data-reveal="pop"
         style={{ left: 352, top: 866, width: 224.8, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DMxlzIiSPOu/?img_index=1"
         target="_blank"
@@ -172,6 +200,7 @@ function DesktopCanvas() {
       {/* dark overlay over rectangle102 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
         style={{ left: 352, top: 866, width: 225, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DR6lWEBEswk/?img_index=1"
         target="_blank"
@@ -182,6 +211,8 @@ function DesktopCanvas() {
       {/* rectangle98 — left 549 top 1512 w 225 h 281 */}
       <a
         className={styles.card}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 549, top: 1512, width: 225, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DRW5nuSEThN/?img_index=1"
         target="_blank"
@@ -193,6 +224,7 @@ function DesktopCanvas() {
       {/* rectangle100 — left 350 top 1512 w 158 h 281 */}
       <a
         className={styles.card}
+        data-reveal="pop"
         style={{ left: 350, top: 1512, width: 158, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DRR5jH6iJ-R/"
         target="_blank"
@@ -204,9 +236,11 @@ function DesktopCanvas() {
       {/* rectangle106 — rotated 20.98deg + skewX 0.49, wrapper left 679.24 top 771 w 242.041 h 318.304 */}
       <div
         className={styles.rotWrap}
+        data-reveal="pop"
+        data-reveal-delay="2"
         style={{ left: 679.24, top: 771, width: 242.041, height: 318.304 }}
       >
-        <div style={{ transform: 'rotate(20.98deg) skewX(0.49deg)', transformOrigin: 'center' }}>
+        <div className={styles.floatyAlt} style={{ transform: 'rotate(20.98deg) skewX(0.49deg)', transformOrigin: 'center' }}>
           <a
             className={styles.card}
             style={{ width: 153.853, height: 281, borderRadius: 7 }}
@@ -222,6 +256,7 @@ function DesktopCanvas() {
       {/* ===== "Be educative" card (mask group 920:22) — pink base 403:5 (sits under the image) ===== */}
       <a
         className={styles.card}
+        data-reveal="pop"
         style={{ left: 152.58, top: 680.35, width: 158.308, height: 281.548, borderRadius: 7, background: '#ffc4e8', borderColor: '#ff1fa9' }}
         href="https://www.instagram.com/p/DU5lwkzkda-/"
         target="_blank"
@@ -231,6 +266,7 @@ function DesktopCanvas() {
       {/* mask image (image10) clipped to the 403:5 rect */}
       <div
         className={styles.maskClip}
+        data-reveal="pop"
         style={{ left: 152.58, top: 680.35, width: 158.308, height: 281.548, borderRadius: 7 }}
         aria-hidden
       >
@@ -252,6 +288,8 @@ function DesktopCanvas() {
       {/* rectangle97 — left 720 top 1189 w 158 h 281 */}
       <a
         className={styles.card}
+        data-reveal="pop"
+        data-reveal-delay="3"
         style={{ left: 720, top: 1189, width: 158, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DTIN5eOgQCW/"
         target="_blank"
@@ -263,6 +301,8 @@ function DesktopCanvas() {
       {/* rectangle95 — left 195 top 1189 w 225 h 281 */}
       <a
         className={styles.card}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 195, top: 1189, width: 225, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DR6lWEBEswk/?img_index=1"
         target="_blank"
@@ -273,6 +313,8 @@ function DesktopCanvas() {
       {/* dark overlay over rectangle95 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 195, top: 1189, width: 225, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DR6lWEBEswk/?img_index=1"
         target="_blank"
@@ -283,6 +325,8 @@ function DesktopCanvas() {
       {/* dark overlay over rectangle98 (959:278) — left 549 top 1512 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 549, top: 1512, width: 225, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DR6lWEBEswk/?img_index=1"
         target="_blank"
@@ -293,6 +337,8 @@ function DesktopCanvas() {
       {/* rectangle92 — left 461 top 1189 w 224 h 281 */}
       <a
         className={styles.card}
+        data-reveal="pop"
+        data-reveal-delay="2"
         style={{ left: 461, top: 1189, width: 224, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DQwkxA3jGas/"
         target="_blank"
@@ -304,6 +350,8 @@ function DesktopCanvas() {
       {/* ===== "Hop on a trend" card group 456:2 — pink base 403:6 + label 51:9 ===== */}
       <a
         className={styles.card}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 352, top: 543, width: 158, height: 281, borderRadius: 7, background: '#ffc4e8' }}
         href="https://www.instagram.com/p/DRqzsdRktBc/"
         target="_blank"
@@ -312,6 +360,8 @@ function DesktopCanvas() {
       />
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="2"
         style={{
           ...helvReg,
           left: 433,
@@ -332,6 +382,8 @@ function DesktopCanvas() {
       {/* pink base 403:8 (Address a problem) — left 553 top 543 */}
       <a
         className={styles.card}
+        data-reveal="pop"
+        data-reveal-delay="2"
         style={{ left: 553, top: 543, width: 158, height: 281, borderRadius: 7, background: '#ffc4e8' }}
         href="https://www.instagram.com/p/DS1bkqoj0yj/"
         target="_blank"
@@ -342,6 +394,8 @@ function DesktopCanvas() {
       {/* label "Add an interaction" 959:195 — center left 461 top 978 */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="1"
         style={{
           ...playfairBold,
           left: 461,
@@ -362,6 +416,8 @@ function DesktopCanvas() {
       {/* label "Provide proof" 959:284 — center left 307.5 top 1307 */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="2"
         style={{
           ...playfairBold,
           left: 307.5,
@@ -385,6 +441,8 @@ function DesktopCanvas() {
       {/* ===== "Hop on a trend" mask group 916:33 (image11 over 403:6 rect) ===== */}
       <div
         className={styles.maskClip}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 352, top: 543, width: 158, height: 281, borderRadius: 7 }}
         aria-hidden
       >
@@ -405,6 +463,8 @@ function DesktopCanvas() {
       {/* dark overlay over hop-on-a-trend card 916:35 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 352, top: 543, width: 158, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DRqzsdRktBc/"
         target="_blank"
@@ -415,6 +475,7 @@ function DesktopCanvas() {
       {/* dark overlay over Be-educative card 920:23 — left 152 top 679 w 159 h 283 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
         style={{ left: 152, top: 679, width: 159, height: 283, borderRadius: 7 }}
         href="https://www.instagram.com/p/DRqzsdRktBc/"
         target="_blank"
@@ -425,6 +486,8 @@ function DesktopCanvas() {
       {/* label "Be educative" 920:26 — center left 232 top 810 */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="1"
         style={{
           ...playfairBold,
           left: 232,
@@ -445,6 +508,8 @@ function DesktopCanvas() {
       {/* label "Hop on a trend" (two-line) 916:36 — center left 431 top 660 */}
       <div
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="2"
         style={{
           ...playfairBold,
           left: 431,
@@ -467,6 +532,8 @@ function DesktopCanvas() {
       {/* ===== "Address a problem" mask group 916:53 (screenshot2 over 403:8 rect) ===== */}
       <div
         className={styles.maskClip}
+        data-reveal="pop"
+        data-reveal-delay="2"
         style={{ left: 553, top: 543, width: 158, height: 281, borderRadius: 7 }}
         aria-hidden
       >
@@ -487,6 +554,8 @@ function DesktopCanvas() {
       {/* dark overlay over Address-a-problem card 916:54 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
+        data-reveal-delay="2"
         style={{ left: 553, top: 543, width: 158, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DRqzsdRktBc/"
         target="_blank"
@@ -497,6 +566,8 @@ function DesktopCanvas() {
       {/* label "Address a problem" 916:57 — center left 632 top 660 */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="3"
         style={{
           ...playfairBold,
           left: 632,
@@ -519,9 +590,11 @@ function DesktopCanvas() {
       {/* dark overlay rotated card 959:242 — wrapper left 677.08 top 771.03 w 248.135 h 318.942 rot 20.98 */}
       <div
         className={styles.rotWrap}
+        data-reveal="pop"
+        data-reveal-delay="2"
         style={{ left: 677.08, top: 771.03, width: 248.135, height: 318.942 }}
       >
-        <div style={{ transform: 'rotate(20.98deg)', transformOrigin: 'center' }}>
+        <div className={styles.floatyAlt} style={{ transform: 'rotate(20.98deg)', transformOrigin: 'center' }}>
           <a
             className={styles.cardOverlay}
             style={{ width: 158, height: 281, borderRadius: 7 }}
@@ -536,6 +609,8 @@ function DesktopCanvas() {
       {/* rectangle104 — left 618 top 866 w 158 h 281 */}
       <a
         className={styles.card}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 618, top: 866, width: 158, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DSZ39p-gWgz/"
         target="_blank"
@@ -547,6 +622,8 @@ function DesktopCanvas() {
       {/* dark overlay over rectangle97 (959:254) — left 720 top 1189 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
+        data-reveal-delay="3"
         style={{ left: 720, top: 1189, width: 158, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DRqzsdRktBc/"
         target="_blank"
@@ -557,6 +634,8 @@ function DesktopCanvas() {
       {/* label "Get a founder to speak from the heart" 959:288 — center left 799.5 top 1276 */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="4"
         style={{
           ...playfairBold,
           left: 799.5,
@@ -577,6 +656,7 @@ function DesktopCanvas() {
       {/* dark overlay over rectangle100 (959:266) — left 350 top 1512 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
         style={{ left: 350, top: 1512, width: 158, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DRqzsdRktBc/"
         target="_blank"
@@ -587,6 +667,8 @@ function DesktopCanvas() {
       {/* dark overlay over rectangle104 (959:257) — left 618 top 866 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 618, top: 866, width: 158, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DRqzsdRktBc/"
         target="_blank"
@@ -597,6 +679,8 @@ function DesktopCanvas() {
       {/* label "Reel 'em in with a hook" 403:12 — center left 695.5 top 978 */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="2"
         style={{
           ...playfairBold,
           left: 695.5,
@@ -617,6 +701,8 @@ function DesktopCanvas() {
       {/* dark overlay over rectangle92 (959:269) — left 460 top 1189 w 225 */}
       <a
         className={styles.cardOverlay}
+        data-reveal="pop"
+        data-reveal-delay="2"
         style={{ left: 460, top: 1189, width: 225, height: 281, borderRadius: 7 }}
         href="https://www.instagram.com/p/DR6lWEBEswk/?img_index=1"
         target="_blank"
@@ -627,6 +713,8 @@ function DesktopCanvas() {
       {/* label "Speak from the heart" 959:286 — center left 573 top 1313 */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="3"
         style={{
           ...playfairBold,
           left: 573,
@@ -650,6 +738,8 @@ function DesktopCanvas() {
       {/* label "Gameify it" 959:292 — center left 661 top 1642 */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="2"
         style={{
           ...playfairBold,
           left: 661,
@@ -670,6 +760,8 @@ function DesktopCanvas() {
       {/* label "Show the team" 959:290 — center left 433.5 top 1633 */}
       <p
         className={styles.abs}
+        data-reveal="rise"
+        data-reveal-delay="1"
         style={{
           ...playfairBold,
           left: 433.5,
@@ -688,34 +780,43 @@ function DesktopCanvas() {
       </p>
 
       {/* ===== Footer buttons ===== */}
-      <Link
-        href="/#work"
-        className={styles.btn}
+      <div
+        className={styles.btnSlot}
+        data-reveal="pop"
         style={{ left: 80, top: 1880, width: 181, height: 61 }}
       >
-        <span
-          className={styles.btnFace}
-          style={{ left: 1, top: 1, width: 180, height: 60, background: '#ff61cd', boxShadow: '0 4px 0 0 #000000' }}
-        />
-        <span className={styles.btnLabel} style={{ left: 91, top: 21, width: 134 }}>
-          Next Project
-        </span>
-      </Link>
+        <Magnetic>
+          <Link href={NEXT.href} className={styles.btn} style={{ width: 181, height: 61 }}>
+            <span
+              className={styles.btnFace}
+              style={{ left: 1, top: 1, width: 180, height: 60, background: '#ff61cd' }}
+            />
+            <span className={styles.btnLabel} style={{ left: 91, top: 21, width: 134 }}>
+              Next Project
+            </span>
+          </Link>
+        </Magnetic>
+      </div>
 
-      <Link
-        href="/#contact"
-        className={styles.btn}
+      <div
+        className={styles.btnSlot}
+        data-reveal="pop"
+        data-reveal-delay="1"
         style={{ left: 293, top: 1881, width: 180, height: 60 }}
       >
-        <span
-          className={styles.btnFace}
-          style={{ left: 0, top: 0, width: 180, height: 60, background: '#ffc4e8' }}
-        />
-        <span className={styles.btnLabel} style={{ left: 89.5, top: 20, width: 115, height: 20 }}>
-          Get in Touch
-        </span>
-      </Link>
-    </div>
+        <Magnetic>
+          <Link href="/#contact" className={styles.btn} style={{ width: 180, height: 60 }}>
+            <span
+              className={styles.btnFace}
+              style={{ left: 0, top: 0, width: 180, height: 60, background: '#ffc4e8' }}
+            />
+            <span className={styles.btnLabel} style={{ left: 89.5, top: 20, width: 115, height: 20 }}>
+              Get in Touch
+            </span>
+          </Link>
+        </Magnetic>
+      </div>
+    </ScaledCanvas>
   )
 }
 
@@ -726,7 +827,7 @@ const mobileLinks = [
   { href: 'https://www.instagram.com/p/DXEMmaDEzXV/', src: `${IMG}/rectangle106.png`, label: 'Reel ’em in with a hook' },
   { href: 'https://www.instagram.com/p/DR6lWEBEswk/?img_index=1', src: `${IMG}/rectangle95.png`, label: 'Add an interaction' },
   { href: 'https://www.instagram.com/p/DTIN5eOgQCW/', src: `${IMG}/rectangle97.png`, label: 'Get a founder to speak from the heart' },
-  { href: 'https://www.instagram.com/p/DQwkxA3jGas/', src: `${IMG}/rectangle92.png`, label: 'Provide proof' },
+  { href: 'https://www.instagram.com/p/DQwkxA3jGas/', src: `${IMG}/rectangle92.png`, label: 'Provide proof', objectPosition: 'left center' },
   { href: 'https://www.instagram.com/p/DSZ39p-gWgz/', src: `${IMG}/rectangle104.png`, label: 'Speak from the heart' },
   { href: 'https://www.instagram.com/p/DRR5jH6iJ-R/', src: `${IMG}/rectangle100.png`, label: 'Show the team' },
   { href: 'https://www.instagram.com/p/DRW5nuSEThN/?img_index=1', src: `${IMG}/rectangle98.png`, label: 'Gameify it' },
@@ -737,9 +838,11 @@ function MobileLayout() {
     <div className={styles.mobile}>
       <Header />
       <section className={styles.mobileHero}>
-        <h1>Nothing is boring.</h1>
-        <p className={styles.mobileSub}>A lesson in writing and strategising for fintech</p>
-        <p className={styles.mobileIntro}>
+        <h1 data-reveal="rise">Nothing is boring.</h1>
+        <p className={styles.mobileSub} data-reveal="rise" data-reveal-delay="1">
+          A lesson in writing and strategising for fintech
+        </p>
+        <p className={styles.mobileIntro} data-reveal="rise" data-reveal-delay="2">
           <strong>Brands: Bharat Connect, Razorpay, KreditBee</strong>
           <br />
           <br />
@@ -759,24 +862,30 @@ function MobileLayout() {
           Here are some of my favourite ways to do so:
         </p>
         <div className={styles.mobileGrid}>
-          {mobileLinks.map((link) => (
+          {mobileLinks.map((link, i) => (
             <a
               key={link.label + link.href}
               className={styles.mobileCard}
+              data-reveal="pop"
+              data-reveal-delay={i % 2}
               href={link.href}
               target="_blank"
               rel="noreferrer"
             >
-              <img src={link.src} alt="" />
+              <img
+                src={link.src}
+                alt=""
+                style={link.objectPosition ? { objectPosition: link.objectPosition } : undefined}
+              />
               <span>{link.label}</span>
             </a>
           ))}
         </div>
         <div className={styles.mobileButtons}>
-          <Link href="/#work" className={styles.mobilePrimary}>
+          <Link href={NEXT.href} className={styles.mobilePrimary} data-reveal="pop">
             Next Project
           </Link>
-          <Link href="/#contact" className={styles.mobileSecondary}>
+          <Link href="/#contact" className={styles.mobileSecondary} data-reveal="pop" data-reveal-delay="1">
             Get in Touch
           </Link>
         </div>

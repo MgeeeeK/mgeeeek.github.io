@@ -1,0 +1,331 @@
+/* ════════════════════════════════════════════════════════════════════
+   Site-wide motion & atmosphere layer.
+   Reveal animations use the individual `translate` / `scale` / `rotate`
+   properties ON PURPOSE: they compose with any `transform` already set
+   on an element, so absolutely-positioned Figma layouts stay intact.
+   Everything here is gated behind `html.fx-ready` (set by an inline
+   script + FxProvider, skipped under prefers-reduced-motion) so the
+   site is fully visible with JS disabled.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Scroll-reveal engine ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  html.fx-ready [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+    transition: none;
+  }
+
+  html.fx-ready [data-revealed] {
+    animation-name: fxRise;
+    animation-duration: 0.62s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-delay: calc(var(--rd, 0) * 80ms);
+    animation-fill-mode: both;
+  }
+
+  /* Sticker slapped onto the page — bouncy pop with a settle. */
+  html.fx-ready [data-revealed='pop'] {
+    animation-name: fxPop;
+    animation-duration: 0.58s;
+    animation-timing-function: cubic-bezier(0.3, 1.45, 0.45, 1);
+  }
+
+  /* Rubber stamp pressed down from above. */
+  html.fx-ready [data-revealed='stamp'] {
+    animation-name: fxStamp;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.2, 0.9, 0.3, 1.15);
+  }
+
+  /* Rises with a corrective tilt, like a card being placed. */
+  html.fx-ready [data-revealed='tilt'] {
+    animation-name: fxTilt;
+    animation-duration: 0.68s;
+  }
+
+  html.fx-ready [data-revealed='slide-left'] {
+    animation-name: fxSlideLeft;
+  }
+
+  html.fx-ready [data-revealed='slide-right'] {
+    animation-name: fxSlideRight;
+  }
+
+  html.fx-ready [data-revealed='fade'] {
+    animation-name: fxFade;
+    animation-duration: 0.9s;
+  }
+}
+
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+  }
+}
+
+/* Final keyframes deliberately omit `opacity` so each element eases back
+   to its own authored opacity (e.g. 0.86 ambient stars), not a forced 1. */
+@keyframes fxRise {
+  from { opacity: 0; translate: 0 30px; }
+  to { translate: 0 0; }
+}
+
+@keyframes fxPop {
+  from { opacity: 0; scale: 0.55; rotate: -5deg; }
+  60% { scale: 1.05; rotate: 1.5deg; }
+  to { scale: 1; rotate: 0deg; }
+}
+
+@keyframes fxStamp {
+  from { opacity: 0; scale: 1.55; rotate: 6deg; }
+  62% { scale: 0.96; rotate: -1deg; }
+  to { scale: 1; rotate: 0deg; }
+}
+
+@keyframes fxTilt {
+  from { opacity: 0; translate: 0 26px; rotate: -4deg; }
+  to { translate: 0 0; rotate: 0deg; }
+}
+
+@keyframes fxSlideLeft {
+  from { opacity: 0; translate: -42px 0; }
+  to { translate: 0 0; }
+}
+
+@keyframes fxSlideRight {
+  from { opacity: 0; translate: 42px 0; }
+  to { translate: 0 0; }
+}
+
+@keyframes fxFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Page-enter transition (app/template.tsx) ─────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .fx-page {
+    animation: fxPageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@keyframes fxPageEnter {
+  from { opacity: 0; translate: 0 22px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+/* ── Scroll progress ribbon (pure CSS, progressive enhancement) ───── */
+.fx-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 90;
+  background: linear-gradient(
+    90deg,
+    var(--color-pink-hot, #ff43b7),
+    var(--color-purple-hot, #ba43ff)
+  );
+  transform-origin: 0 50%;
+  scale: 0 1;
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fx-progress {
+      animation: fxProgressGrow linear;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes fxProgressGrow {
+  from { scale: 0 1; }
+  to { scale: 1 1; }
+}
+
+/* ── Paper grain ──────────────────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+/* ── Custom cursor ────────────────────────────────────────────────── */
+html.fx-cursor body,
+html.fx-cursor a,
+html.fx-cursor button,
+html.fx-cursor [role='button'],
+html.fx-cursor summary,
+html.fx-cursor label {
+  cursor: none;
+}
+
+/* Ink trail canvas — the wet stroke the nib leaves behind */
+.fx-ink {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9997;
+  pointer-events: none;
+}
+
+/* The quill — nib tip (3,41 in the 44×44 SVG) rides the pointer hotspot */
+.fx-quill {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 44px;
+  height: 44px;
+  margin: -41px 0 0 -3px;
+  transform-origin: 3px 41px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.fx-quill.is-on {
+  opacity: 1;
+}
+
+.fx-quill svg {
+  display: block;
+  transform-origin: 3px 41px;
+  transition:
+    rotate 240ms cubic-bezier(0.3, 1.45, 0.45, 1),
+    scale 240ms cubic-bezier(0.3, 1.45, 0.45, 1),
+    translate 140ms ease;
+}
+
+/* Over links/buttons the quill dips to writing angle and grows a touch */
+html.fx-cursor-hot .fx-quill svg {
+  rotate: -16deg;
+  scale: 1.12;
+}
+
+/* Click press — the nib jabs the page */
+.fx-quill.is-writing svg {
+  translate: 1px 2px;
+  scale: 0.94;
+}
+
+/* ── Click ink splat ──────────────────────────────────────────────── */
+.fx-splat {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.fx-splat i {
+  position: absolute;
+  left: -11px;
+  top: -11px;
+  width: 22px;
+  height: 22px;
+  background: var(--color-pink-hot, #ff43b7);
+  border-radius: 55% 45% 60% 40% / 48% 62% 38% 52%;
+  animation: fxSplatBlob 0.7s cubic-bezier(0.16, 0.8, 0.4, 1) forwards;
+}
+
+.fx-splat span {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c, #ff43b7);
+  animation: fxSplatDrop 0.66s cubic-bezier(0.16, 0.8, 0.4, 1) forwards;
+}
+
+.fx-splat b {
+  position: absolute;
+  left: -5px;
+  top: -8px;
+  font-family: var(--font-playfair, serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  color: black;
+  animation: fxSplatGlyph 0.8s cubic-bezier(0.16, 0.8, 0.4, 1) forwards;
+}
+
+@keyframes fxSplatBlob {
+  0% {
+    scale: 0.2;
+    opacity: 0.95;
+  }
+  45% {
+    scale: 1.15;
+    opacity: 0.9;
+  }
+  100% {
+    scale: 0.85;
+    opacity: 0;
+  }
+}
+
+@keyframes fxSplatDrop {
+  from {
+    translate: 0 0;
+    scale: 1;
+    opacity: 1;
+  }
+  to {
+    translate: calc(cos(var(--a, 0deg)) * var(--d, 36px))
+      calc(sin(var(--a, 0deg)) * var(--d, 36px));
+    scale: 0.15;
+    opacity: 0;
+  }
+}
+
+@keyframes fxSplatGlyph {
+  0% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 0.4;
+    opacity: 0;
+  }
+  25% {
+    scale: 1;
+    opacity: 1;
+  }
+  100% {
+    translate: calc(cos(var(--a, -90deg)) * var(--d, 40px))
+      calc(sin(var(--a, -90deg)) * var(--d, 40px) - 8px);
+    rotate: var(--r, 18deg);
+    scale: 0.9;
+    opacity: 0;
+  }
+}
+
+/* ── Art-print chrome: selection + scrollbar ──────────────────────── */
+::selection {
+  background: var(--color-pink-hot, #ff43b7);
+  color: var(--color-light-green, #ddffb7);
+}
+
+html {
+  scrollbar-color: var(--color-pink-hot, #ff43b7) var(--color-light-green, #ddffb7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-quill,
+  .fx-ink,
+  .fx-splat,
+  .fx-progress {
+    display: none;
+  }
+}

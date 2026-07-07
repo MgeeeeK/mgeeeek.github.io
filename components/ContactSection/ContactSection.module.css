@@ -8,41 +8,12 @@
   scroll-snap-stop: always;
 }
 
-.panel::after {
-  content: '';
-  position: absolute;
-  left: clamp(18px, 4vw, 58px);
-  right: clamp(18px, 4vw, 58px);
-  top: 36px;
-  height: 3px;
-  background: repeating-linear-gradient(
-    90deg,
-    rgb(0 0 0 / 0.22) 0 18px,
-    transparent 18px 32px
-  );
-  pointer-events: none;
-}
-
 .aboutPage {
   background: var(--color-purple);
-  padding: clamp(84px, 8vw, 116px) clamp(24px, 5.5vw, 80px) clamp(72px, 7vw, 96px);
+  padding: clamp(56px, 4vw, 72px) clamp(24px, 5.5vw, 80px) clamp(40px, 4vw, 56px);
   /* allow the phone antenna to overflow upward into the contact section above */
   overflow-x: clip;
   overflow-y: visible;
-}
-
-.aboutPage::before,
-.contactPage::before {
-  content: '';
-  position: absolute;
-  width: clamp(320px, 45vw, 680px);
-  height: clamp(320px, 45vw, 680px);
-  right: -220px;
-  top: 62px;
-  border: 3px dashed rgb(221 255 183 / 0.52);
-  border-radius: 999px;
-  animation: contactHalo 30s linear infinite;
-  pointer-events: none;
 }
 
 .contactPage {
@@ -51,6 +22,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .contactContent {
@@ -67,7 +39,6 @@
   line-height: 0.92;
   width: min(760px, 100%);
   margin-bottom: 24px;
-  text-shadow: 4px 4px 0 var(--color-pink-light);
   text-wrap: balance;
 }
 
@@ -94,6 +65,12 @@
   flex-direction: column;
   gap: 20px;
   width: min(614px, 100%);
+}
+
+/* The Magnetic wrapper around the Send button is a flex child — keep it
+   hugging the button so the magnetic field matches the pill, not the row. */
+.form > span {
+  align-self: flex-start;
 }
 
 .input {
@@ -152,6 +129,22 @@
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
+.formStatus {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  min-height: 20px;
+  margin: -4px 0 0;
+}
+
+.formStatus[data-variant='success'] {
+  color: #1f6b2b;
+}
+
+.formStatus[data-variant='error'] {
+  color: #b8203a;
+}
+
 .input:focus,
 .textarea:focus {
   background: #f8e9ff;
@@ -178,24 +171,24 @@
    * Antenna dimensions — single source of truth.
    * Changing these automatically updates every dependent top/height below.
    */
-  --ant-top-h:      120px;
-  --ant-mid-h:      170px;
-  --ant-base-h:     210px;
-  --ant-total:      calc(var(--ant-top-h) + var(--ant-mid-h) + var(--ant-base-h)); /* 500px */
-  --body-h:         560px;
+  --ant-top-h:      138px;
+  --ant-mid-h:      196px;
+  --ant-base-h:     242px;
+  --ant-total:      calc(var(--ant-top-h) + var(--ant-mid-h) + var(--ant-base-h)); /* 576px */
+  --body-h:         650px;
   /* How far the phone body sits below the top of the about section */
-  --body-offset:    240px;
+  --body-offset:    6px;
   /*
    * Right edge of the antenna from the illustration's right side.
-   * Phone body is 210px wide; antenna base (16px) aligns so its right edge
-   * is 51px from the container's right edge — keeps it over the top-right
+   * Phone body is 242px wide; antenna base (18px) aligns so its right edge
+   * is 59px from the container's right edge — keeps it over the top-right
    * corner of the phone body.
    */
-  --ant-right:      51px;
+  --ant-right:      59px;
 
   display: block;
   position: absolute;
-  right: clamp(320px, 24vw, 390px);
+  right: clamp(290px, 22vw, 360px);
   /*
    * Negative top = antenna total height minus the desired body offset.
    * Result: the illustration container starts above the about section,
@@ -203,7 +196,7 @@
    * lands --body-offset px below the about section's top edge.
    */
   top: calc(-1 * var(--ant-total) + var(--body-offset));
-  width: 210px;
+  width: 242px;
   height: calc(var(--ant-total) + var(--body-h));
   pointer-events: none;
   animation: phoneFloat 8s ease-in-out infinite;
@@ -215,67 +208,96 @@
 
 .antennaTop {
   position: absolute;
-  right: calc(var(--ant-right) + (16px - 8px) / 2); /* center 8px bar over 16px base */
+  right: calc(var(--ant-right) + (18px - 9px) / 2); /* center 9px bar over 18px base */
   top: 0;
-  width: 8px;
+  width: 9px;
   height: var(--ant-top-h);
   background: var(--color-pink-light);
-  border: 3.757px solid var(--color-pink-hot);
+  border: 4.3px solid var(--color-pink-hot);
   border-bottom: none;
-  border-radius: 5.486px 5.486px 0 0;
-  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.14);
+  border-radius: 6.3px 6.3px 0 0;
+  box-shadow: 4.6px 4.6px 0 rgb(0 0 0 / 0.14);
 }
 
 .antennaMid {
   position: absolute;
-  right: calc(var(--ant-right) + (16px - 12px) / 2); /* center 12px bar over 16px base */
+  right: calc(var(--ant-right) + (18px - 14px) / 2); /* center 14px bar over 18px base */
   top: var(--ant-top-h);
-  width: 12px;
+  width: 14px;
   height: var(--ant-mid-h);
   background: var(--color-pink-light);
-  border: 3.757px solid var(--color-pink-hot);
+  border: 4.3px solid var(--color-pink-hot);
   border-bottom: none;
   border-radius: 0;
-  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.14);
+  box-shadow: 4.6px 4.6px 0 rgb(0 0 0 / 0.14);
 }
 
 .antennaBase {
   position: absolute;
   right: var(--ant-right);
   top: calc(var(--ant-top-h) + var(--ant-mid-h));
-  width: 16px;
+  width: 18px;
   height: var(--ant-base-h);
   background: var(--color-pink-light);
-  border: 3.757px solid var(--color-pink-hot);
+  border: 4.3px solid var(--color-pink-hot);
   border-bottom: none;
   border-radius: 0;
-  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.14);
+  box-shadow: 4.6px 4.6px 0 rgb(0 0 0 / 0.14);
 }
 
 .phoneBody {
   position: absolute;
   left: 0;
   top: var(--ant-total);
-  width: 210px;
-  height: 560px;
+  width: 242px;
+  height: 650px;
   background: var(--color-pink-light);
-  border: 4.918px solid var(--color-pink-hot);
-  border-radius: 20px;
+  border: 5.7px solid var(--color-pink-hot);
+  border-radius: 23px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 0 14px;
-  gap: 14px;
-  box-shadow: 14px 16px 0 rgb(0 0 0 / 0.12);
+  padding: 17px 0 16px;
+  gap: 16px;
+  box-shadow: 16px 18px 0 rgb(0 0 0 / 0.12);
+}
+
+/* ── Entrance choreography: telescoping antenna ──
+   Triggered by the scroll-reveal engine marking the illustration container.
+   Each segment grows upward from its own bottom edge, staggered ~120ms,
+   with a springy overshoot — like an aerial being pulled out. */
+
+.antennaTop,
+.antennaMid,
+.antennaBase {
+  transform-origin: 50% 100%;
+}
+
+/* fx.css swaps animation-name on [data-revealed]; re-assert the ambient
+   float at higher specificity so the phone keeps drifting after reveal. */
+:global(html.fx-ready) .phoneIllustration[data-revealed] {
+  animation: phoneFloat 8s ease-in-out infinite;
+}
+
+:global(html.fx-ready) .phoneIllustration[data-revealed] .antennaBase {
+  animation: antennaGrow 0.5s cubic-bezier(0.3, 1.45, 0.45, 1) 0.1s both;
+}
+
+:global(html.fx-ready) .phoneIllustration[data-revealed] .antennaMid {
+  animation: antennaGrow 0.5s cubic-bezier(0.3, 1.45, 0.45, 1) 0.22s both;
+}
+
+:global(html.fx-ready) .phoneIllustration[data-revealed] .antennaTop {
+  animation: antennaGrow 0.5s cubic-bezier(0.3, 1.45, 0.45, 1) 0.34s both;
 }
 
 .photoFrame {
-  width: 176px;
-  height: 370px;
+  width: 202px;
+  height: 426px;
   flex-shrink: 0;
-  border: 5px solid var(--color-pink-hot);
-  border-radius: 14px;
+  border: 5.7px solid var(--color-pink-hot);
+  border-radius: 16px;
   overflow: hidden;
 }
 
@@ -287,44 +309,59 @@
 
 .phoneKeypad {
   display: grid;
-  grid-template-columns: repeat(3, 38px);
-  gap: 9px;
+  grid-template-columns: repeat(3, 44px);
+  gap: 10px;
   flex-shrink: 0;
 }
 
 .phoneKey {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   background: var(--color-pink-btn);
-  border: 3.757px solid var(--color-pink-hot);
-  border-radius: 7.513px;
+  border: 4.3px solid var(--color-pink-hot);
+  border-radius: 8.6px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Helvetica', Arial, sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 17px;
   color: black;
-  animation: keypadBlink 5s ease-in-out infinite;
+  animation: keypadBlink 4.5s ease-in-out infinite;
 }
 
-.phoneKey:nth-child(2n) {
-  animation-delay: 0.3s;
-}
+/* Each key dials at a different moment in the shared cycle, out of numeric
+   order, so the keypad reads as digits being pressed one at a time rather
+   than blinking together in sync. */
+.phoneKey:nth-child(1) { animation-delay: 2.5s; }
+.phoneKey:nth-child(2) { animation-delay: 0.5s; }
+.phoneKey:nth-child(3) { animation-delay: 3.5s; }
+.phoneKey:nth-child(4) { animation-delay: 1.5s; }
+.phoneKey:nth-child(5) { animation-delay: 4s; }
+.phoneKey:nth-child(6) { animation-delay: 0s; }
+.phoneKey:nth-child(7) { animation-delay: 2s; }
+.phoneKey:nth-child(8) { animation-delay: 3s; }
+.phoneKey:nth-child(9) { animation-delay: 1s; }
 
-.phoneKey:nth-child(3n) {
-  animation-delay: 0.7s;
+/* Centers the phone illustration + bio as a unit (matching the 1280px
+   canonical canvas every case-study page uses) instead of letting them sit
+   pinned to the raw viewport edges on very wide screens. */
+.aboutContentWrap {
+  position: relative;
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .aboutSection {
   position: relative;
   z-index: 1;
   width: min(720px, 56vw);
-  min-height: calc(100svh - 60px - clamp(156px, 15vw, 212px));
+  min-height: calc(100svh - 60px - clamp(96px, 8vw, 128px));
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(28px, 4vw, 52px);
+  gap: clamp(20px, 2.5vw, 32px);
 }
 
 .aboutHeading {
@@ -333,7 +370,6 @@
   font-size: clamp(64px, 8vw, 118px);
   color: black;
   line-height: 0.82;
-  text-shadow: 6px 6px 0 var(--color-pink-light);
 }
 
 .bio {
@@ -380,11 +416,6 @@
   background: var(--color-pink-light);
 }
 
-.footerStrip {
-  height: 40px;
-  background: var(--color-light-green);
-  margin: 0 calc(clamp(24px, 5.5vw, 80px) * -1);
-}
 
 @media (max-width: 1279px) {
   .aboutPage,
@@ -419,12 +450,6 @@
   .aboutPage,
   .contactPage {
     padding: 56px clamp(18px, 6.4vw, 24px) 0;
-  }
-
-  .aboutPage::before,
-  .contactPage::before {
-    right: -210px;
-    top: 260px;
   }
 
   .aboutSection {
@@ -465,14 +490,6 @@
     width: 100%;
   }
 
-  .footerStrip {
-    margin: 0 calc(clamp(18px, 6.4vw, 24px) * -1);
-  }
-}
-
-@keyframes contactHalo {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
 }
 
 @keyframes phoneFloat {
@@ -481,16 +498,31 @@
 }
 
 @keyframes keypadBlink {
-  0%, 76%, 100% { background: var(--color-pink-btn); }
-  84% { background: var(--color-light-green); }
+  0%, 8%, 100% { background: var(--color-pink-btn); }
+  3% { background: var(--color-light-green); }
+}
+
+/* Individual `scale` property — composes with the float's transform. */
+@keyframes antennaGrow {
+  from { scale: 1 0; }
+  to { scale: 1 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aboutPage::before,
-  .contactPage::before,
   .phoneIllustration,
-  .phoneKey {
+  .phoneKey,
+  .antennaTop,
+  .antennaMid,
+  .antennaBase,
+  .phoneBody {
     animation: none;
+  }
+
+  /* Stable end states: antenna fully extended. */
+  .antennaTop,
+  .antennaMid,
+  .antennaBase {
+    scale: none;
   }
 
   .input,

@@ -1,0 +1,68 @@
+/* Ambient decoration — sits behind content, never interactive. */
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.obj {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.starburst {
+  animation: ambientSpin 32s linear infinite;
+}
+
+.starburstReverse {
+  animation: ambientSpin 38s linear infinite reverse;
+}
+
+.halo {
+  border-radius: 50%;
+  border: 2px dashed var(--color-pink-hot, #ff43b7);
+  opacity: 0.32;
+  animation: ambientSpin 30s linear infinite;
+}
+
+.haloLime {
+  border-color: var(--color-lime-green, #bbff6c);
+  opacity: 0.5;
+}
+
+.sparkle {
+  animation: ambientTwinkle 2.4s ease-in-out infinite;
+}
+
+@keyframes ambientSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ambientTwinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starburst,
+  .starburstReverse,
+  .halo,
+  .sparkle {
+    animation: none;
+  }
+}

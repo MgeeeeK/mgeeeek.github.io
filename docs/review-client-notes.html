@@ -1,0 +1,602 @@
+<title>Portfolio Walkthrough — Client Notes</title>
+<style>
+  :root {
+    --paper: #eef1ec;
+    --paper-raised: #ffffff;
+    --ink: #14181a;
+    --ink-soft: #4b534f;
+    --ink-faint: #7c847e;
+    --line: #d3d9d0;
+    --crit: #b8203a;
+    --crit-bg: #fbe7ea;
+    --major: #96591a;
+    --major-bg: #f8ead4;
+    --moderate: #34586f;
+    --moderate-bg: #e2edf2;
+    --minor: #55624f;
+    --minor-bg: #e8ebe3;
+    --good: #2f6b46;
+    --good-bg: #e3f0e7;
+    --font-serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+    --font-mono: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #15181a;
+      --paper-raised: #1c2023;
+      --ink: #edf1ec;
+      --ink-soft: #a9b1ac;
+      --ink-faint: #737c76;
+      --line: #2b3134;
+      --crit: #ff7c8d;
+      --crit-bg: #3a1820;
+      --major: #eab363;
+      --major-bg: #372a15;
+      --moderate: #86bcdb;
+      --moderate-bg: #172630;
+      --minor: #a3b393;
+      --minor-bg: #1e231b;
+      --good: #74d69c;
+      --good-bg: #12251a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #15181a;
+    --paper-raised: #1c2023;
+    --ink: #edf1ec;
+    --ink-soft: #a9b1ac;
+    --ink-faint: #737c76;
+    --line: #2b3134;
+    --crit: #ff7c8d;
+    --crit-bg: #3a1820;
+    --major: #eab363;
+    --major-bg: #372a15;
+    --moderate: #86bcdb;
+    --moderate-bg: #172630;
+    --minor: #a3b393;
+    --minor-bg: #1e231b;
+    --good: #74d69c;
+    --good-bg: #12251a;
+  }
+  :root[data-theme="light"] {
+    --paper: #eef1ec;
+    --paper-raised: #ffffff;
+    --ink: #14181a;
+    --ink-soft: #4b534f;
+    --ink-faint: #7c847e;
+    --line: #d3d9d0;
+    --crit: #b8203a;
+    --crit-bg: #fbe7ea;
+    --major: #96591a;
+    --major-bg: #f8ead4;
+    --moderate: #34586f;
+    --moderate-bg: #e2edf2;
+    --minor: #55624f;
+    --minor-bg: #e8ebe3;
+    --good: #2f6b46;
+    --good-bg: #e3f0e7;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-serif);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  /* ---------- Masthead ---------- */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+    margin-bottom: 40px;
+  }
+  h1 {
+    font-size: clamp(34px, 5vw, 48px);
+    line-height: 1.08;
+    margin: 0 0 14px;
+    text-wrap: balance;
+    font-weight: 700;
+  }
+  .dek {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 32px;
+  }
+
+  .verdict {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--crit);
+    padding: 22px 26px;
+    margin-bottom: 40px;
+    border-radius: 3px;
+  }
+  .verdict .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--crit);
+    margin-bottom: 8px;
+  }
+  .verdict p {
+    margin: 0;
+    font-size: 17px;
+  }
+
+  /* ---------- Stat strip ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-bottom: 40px;
+    font-family: var(--font-mono);
+  }
+  .stat {
+    background: var(--paper-raised);
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .stat .n {
+    font-size: 26px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    display: block;
+  }
+  .stat .l {
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ---------- TOC ---------- */
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 56px;
+  }
+  .toc a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    color: var(--ink-soft);
+  }
+  .toc a:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  /* ---------- Section ---------- */
+  section.tier { margin-bottom: 52px; }
+  .tier-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .tier-head h2 {
+    font-size: 22px;
+    margin: 0;
+  }
+  .tier-head .count {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  .finding {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left-width: 5px;
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+  }
+  .finding.crit { border-left-color: var(--crit); }
+  .finding.major { border-left-color: var(--major); }
+  .finding.moderate { border-left-color: var(--moderate); }
+  .finding.minor { border-left-color: var(--minor); }
+
+  .finding .row1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  .crit .chip { background: var(--crit-bg); color: var(--crit); }
+  .major .chip { background: var(--major-bg); color: var(--major); }
+  .moderate .chip { background: var(--moderate-bg); color: var(--moderate); }
+  .minor .chip { background: var(--minor-bg); color: var(--minor); }
+
+  .finding h3 {
+    font-size: 18.5px;
+    margin: 0;
+  }
+  .finding p {
+    margin: 0 0 10px;
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+  .finding p:last-of-type { margin-bottom: 0; }
+  .finding .why {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 14.5px;
+  }
+  .ref {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    background: var(--paper);
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-top: 10px;
+    word-break: break-all;
+  }
+
+  /* ---------- Positives ---------- */
+  .good-box {
+    background: var(--good-bg);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--good);
+    border-radius: 3px;
+    padding: 22px 26px;
+    margin-bottom: 52px;
+  }
+  .good-box .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--good);
+    margin-bottom: 10px;
+  }
+  .good-box ul { margin: 0; padding-left: 20px; }
+  .good-box li { margin-bottom: 8px; font-size: 15.5px; }
+  .good-box li:last-child { margin-bottom: 0; }
+
+  /* ---------- Close ---------- */
+  .close {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
+  .close p { font-size: 16.5px; }
+  .sign {
+    margin-top: 24px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .eyebrow { flex-direction: column; gap: 4px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .finding, .verdict, .good-box { animation: rise 0.4s ease both; }
+  }
+  @keyframes rise {
+    from { opacity: 0; translate: 0 6px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="eyebrow">
+    <span>Client Walkthrough — Not for Publication</span>
+    <span>15 viewports · 8 routes · Chromium via Playwright</span>
+  </div>
+
+  <h1>I sat down to approve my own portfolio. Here's what stopped me.</h1>
+  <p class="dek">I went through every page of the site the way a stranger would — the way a recruiter half-interested in hiring me would. I clicked everything that looked clickable, filled in the form, then went back and did it again on my MacBook Air, my old MacBook Pro, a 1440p monitor, a borrowed 4K display, and an iPad in both orientations. This is the unfiltered list of what I found, worst first.</p>
+
+  <div class="verdict">
+    <div class="label">Gut reaction</div>
+    <p>The design is genuinely charming and nothing crashes — but the wider device sweep made things worse, not better. My resume link still 404s, an entire piece of diary work I apparently designed doesn't exist anywhere on the page, and if anyone opens this on an iPad my case studies are missing words. I can't send this to anyone until the critical list is clear.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span class="n">27</span><span class="l">Issues logged</span></div>
+    <div class="stat"><span class="n">8</span><span class="l">Critical</span></div>
+    <div class="stat"><span class="n">15</span><span class="l">Viewports tested</span></div>
+    <div class="stat"><span class="n">0</span><span class="l">Console errors</span></div>
+  </div>
+
+  <div class="toc">
+    <a href="#critical">Critical (8)</a>
+    <a href="#major">Major (8)</a>
+    <a href="#moderate">Moderate (7)</a>
+    <a href="#minor">Minor (5)</a>
+    <a href="#good">What actually works</a>
+    <a href="#verdict-final">Final call</a>
+  </div>
+
+  <!-- ============ CRITICAL ============ -->
+  <section class="tier" id="critical">
+    <div class="tier-head">
+      <h2>Critical</h2>
+      <span class="count">the ones I'd escalate before anything else</span>
+    </div>
+
+    <div class="finding crit">
+      <div class="row1"><span class="chip">Critical</span></div>
+      <h3>"Download Resume" points at a file that was never uploaded</h3>
+      <p>The button on the About Me section links to <code>/resume.pdf</code>. That file does not exist anywhere in the project — not in <code>public/</code>, not anywhere. Clicking it drops the visitor on a completely blank, unbranded Next.js 404 page with no nav, no way back, nothing. For a site whose entire job is "please hire me," the one button a recruiter is most likely to press is the one that's broken.</p>
+      <p class="why">Why it matters: this isn't a cosmetic gap, it's the call to action.</p>
+      <div class="ref">components/ContactSection/ContactSection.tsx → href="/resume.pdf" · file missing from public/</div>
+    </div>
+
+    <div class="finding crit">
+      <div class="row1"><span class="chip">Critical</span></div>
+      <h3>The contact form accepts nothing and confirms nothing</h3>
+      <p>I clicked Send with all four fields blank and it fired anyway — no required-field validation exists at all. It works by building a <code>mailto:</code> link and handing it to the browser. There's no success message, no error state, nothing on the page changes. On any machine without a default mail client configured — most Chromebooks, most work laptops where people live in Gmail-in-browser — pressing Send does visibly nothing, and the visitor has no way to know whether their message went anywhere.</p>
+      <div class="ref">components/ContactSection/ContactSection.tsx → onSubmit handler, no required attrs, no confirmation UI</div>
+    </div>
+
+    <div class="finding crit">
+      <div class="row1"><span class="chip">Critical</span></div>
+      <h3>Literal placeholder text is live on the Fully Filmy page</h3>
+      <p>The words "One line here" appear as visible captions under two different video thumbnails on the Ad Films case study — four times total once you count the mobile duplicate. This isn't subtle; it's sitting directly under real content in the same typeface as everything else. Anyone who scrolls this page will notice it in about two seconds.</p>
+      <div class="ref">app/work/fully-filmy/page.tsx: lines 326, 390, 484, 492, 563, 570, 582, 586</div>
+    </div>
+
+    <div class="finding crit">
+      <div class="row1"><span class="chip">Critical</span></div>
+      <h3>"Click to Read E-mails" doesn't do either</h3>
+      <p>The Email Strategy page has a whole banner instructing visitors to click through five subject lines. I checked all five: four of them were never wired up at all (no pointer cursor, no handler), and the one that does look interactive does precisely nothing when clicked — no expanded copy, no modal, no reaction. The section promises a reading experience that isn't there for a single one of the five emails.</p>
+      <div class="ref">app/work/email-strategy/page.tsx → .subj1–.subj5 elements; only .subj1 has cursor:pointer, and it has no click behavior</div>
+    </div>
+
+    <div class="finding crit">
+      <div class="row1"><span class="chip">Critical</span></div>
+      <h3>None of the three short stories can actually be read</h3>
+      <p>"Missing Milk & Buzzing TVs," "The Other Girl," and "By The Train Tracks" are rendered as tilted, shadowed book covers that look exactly like something you'd click to open. They're plain, non-interactive paragraphs — no href, no handler, no reading view anywhere on the site. Zero of three "stories" have any story behind them.</p>
+      <div class="ref">app/work/fun-stuff/page.tsx → book-cover cards, no &lt;a&gt;/onClick anywhere in the section</div>
+    </div>
+
+    <div class="finding crit">
+      <div class="row1"><span class="chip">Critical</span></div>
+      <h3>The whole point of the Print Media diary case study was never built</h3>
+      <p>The copy on that page describes, in detail, "six Changemakers" whose lives were turned into "interactive elements like pull tabs and flap lifts." I went looking for them at every screen size, assuming I'd scrolled past them or they were slow to load. They don't exist. I checked the source: the page jumps directly from that paragraph to the unrelated Schneider Electric section — no images, no interactive spreads, nothing was ever added. This isn't a rendering bug or a missing asset with a broken filename. An entire deliverable I apparently designed is described in loving detail and then simply isn't there.</p>
+      <p class="why">Why it matters: everything else on this list is a broken interaction. This one is a missing body of work, sitting right next to text that insists it exists.</p>
+      <div class="ref">app/work/print-media/page.tsx: lines 63–92 — diary copy present, zero images/interactive markup between it and the next section</div>
+    </div>
+
+    <div class="finding crit">
+      <div class="row1"><span class="chip">Critical</span></div>
+      <h3>Case-study text becomes unreadable on every iPad size between 768px and 1279px</h3>
+      <p>I checked every case study at iPad Air, iPad Pro 12.9", and iPad mini widths, portrait and landscape. Below the site's canonical 1280px width, the "canvas" container shrinks to fit the screen, but the text and images inside it are still pinned to the exact pixel coordinates built for 1280px — so they run straight off the visible edge instead of reflowing. On Email Strategy, the "Tone of Voice" section disappears entirely at 820px. On Social Media Brand Identity, Internal Comms, and Fully Filmy, whole lines of body copy and image cards are sliced off at the right edge — in places badly enough to lose entire words. It gets worse as the screen narrows and clears up completely at 1280px and above.</p>
+      <p class="why">Why it matters: this is every single iPad — far and away the most common device I'd expect a recruiter to skim a portfolio on after a phone and a laptop.</p>
+      <div class="ref">confirmed at 820×1180, 1024×1366, 1133×744, 1180×820 across social-media-brand-identity, internal-comms, fully-filmy, email-strategy — resolves at ≥1280px</div>
+    </div>
+
+    <div class="finding crit">
+      <div class="row1"><span class="chip">Critical</span></div>
+      <h3>At iPad mini width, one case study garbles its own text and another erases its titles</h3>
+      <p>At exactly 744px — iPad mini in portrait, which is narrow enough to trigger the site's separate mobile layout — two new bugs show up that don't exist anywhere else. On Fintech, the "Official Apology" card has every line of body text clipped on the left by 1–2 characters, so "Dear users," reads as "ear users," — the copy looks corrupted. On Fun Stuff, the titles on all three short-story cards ("Missing Milk & Buzzing TVs," etc.) become completely invisible — on top of already not being clickable, at this width you can't even read what they're called.</p>
+      <div class="ref">confirmed at 744×1133 only (iPad mini portrait) — does not reproduce at 390px (phone) or 820px+ (larger tablets)</div>
+    </div>
+  </section>
+
+  <!-- ============ MAJOR ============ -->
+  <section class="tier" id="major">
+    <div class="tier-head">
+      <h2>Major</h2>
+      <span class="count">damaging on their own, not site-breaking</span>
+    </div>
+
+    <div class="finding major">
+      <div class="row1"><span class="chip">Major</span></div>
+      <h3>Print Media case study ends with ~2,300px of nothing</h3>
+      <p>Scroll to the bottom of the Print Media page and the real content — including the Next Project / Get in Touch buttons — ends about 3,300px down. The page itself keeps scrolling for another ~2,300px of pure blank paper before it actually stops. That's close to three phone-screens of dead space after the "end" of the page. It reads exactly like the page is broken.</p>
+      <div class="ref">app/work/print-media/page.module.css → .canvas height 5691px vs. last content/buttons at ~3320px</div>
+    </div>
+
+    <div class="finding major">
+      <div class="row1"><span class="chip">Major</span></div>
+      <h3>"Next Project" never goes to the next project</h3>
+      <p>Every single case study — all six of them, twice each for desktop and mobile — has a "Next Project" button. Every one of the twelve links back to <code>/#work</code>, the homepage grid. None of them chain forward to another case study. The button name promises "keep reading," the behavior is "start over."</p>
+      <div class="ref">app/work/*/page.tsx → all Link href="/#work" labeled "Next Project"</div>
+    </div>
+
+    <div class="finding major">
+      <div class="row1"><span class="chip">Major</span></div>
+      <h3>The "Fun Stuff" page cannot be reached from a phone</h3>
+      <p>It isn't in the Work nav dropdown at any screen size, and the folder that peeks out from the homepage grid is explicitly set to <code>display: none</code> below 768px. So on any phone, there is no path — none — to this case study. It only exists for desktop visitors who happen to scroll far enough right on the Work grid.</p>
+      <div class="ref">components/WorkSection/WorkSection.module.css: line 176-178 (@media max-width:767px) .dontLookWrapper</div>
+    </div>
+
+    <div class="finding major">
+      <div class="row1"><span class="chip">Major</span></div>
+      <h3>"View Design Portfolio" links to Behance's homepage, not mine</h3>
+      <p>The one link meant to showcase illustration and animation work sends visitors to the bare <code>behance.net</code> front page — not a profile, not a project. Whoever clicks it lands somewhere with zero connection to Abhi.</p>
+      <div class="ref">app/work/fun-stuff/page.tsx: line 12 → DESIGN_PORTFOLIO_HREF = 'https://www.behance.net/'</div>
+    </div>
+
+    <div class="finding major">
+      <div class="row1"><span class="chip">Major</span></div>
+      <h3>Internal Comms has two "videos" that are just black rectangles</h3>
+      <p>The hero and the CSR section each show a large black frame that looks exactly like a video player, complete with rounded frame and border — except it's a plain, non-clickable <code>&lt;img&gt;</code> with nothing behind it. Compare this to the Social Media Brand Identity page, where near-identical black cards actually open a working lightbox with real Instagram data. Sitting next to that, these two just look like unfinished, forgotten placeholders.</p>
+      <div class="ref">app/work/internal-comms/page.tsx: "Rectangle 20" / "Rectangle 21" — frameImg, no link, no handler</div>
+    </div>
+
+    <div class="finding major">
+      <div class="row1"><span class="chip">Major</span></div>
+      <h3>The homepage doesn't center itself the way every case study does, and it shows on a real monitor</h3>
+      <p>Every case-study page uses a container capped at `width: min(100%, 1280px)` with auto margins, so it centers gracefully on anything wider — I confirmed this holds up cleanly all the way to 4K. The homepage's Work and Contact sections never got that same treatment; they're left-aligned at a fixed width with no auto-centering. On a normal 1080p monitor this leaves 700–1000px of dead space on the right. On a 4K display, the entire Work grid and contact form sit pooled in the left third of the screen. It's the one part of the site that looks unfinished on hardware most people actually own.</p>
+      <div class="ref">components/WorkSection/WorkSection.module.css and components/ContactSection/ContactSection.module.css — width set, no margin:auto (compare to any app/work/*/page.module.css .canvas rule)</div>
+    </div>
+
+    <div class="finding major">
+      <div class="row1"><span class="chip">Major</span></div>
+      <h3>The pink project-name bar changes width depending which case study you're on</h3>
+      <p>Five of the seven case studies (Social Media, Internal Comms, Fintech, Fully Filmy, Email Strategy) stretch that top pink bar edge-to-edge across the full browser width. The other two (Print Media, Fun Stuff) cap it to the 1280px canvas, leaving visible page-colored gutters on both sides — 116px each side on a 14" MacBook Pro, 224px each side on a 16". Click from one project to the next and that bar visibly snaps between full-width and inset. It gets more noticeable the wider the screen.</p>
+      <div class="ref">confirmed at 1512×982 and 1728×1117 — print-media and fun-stuff .projectStrip diverges from the other five page.module.css files</div>
+    </div>
+
+    <div class="finding major">
+      <div class="row1"><span class="chip">Major</span></div>
+      <h3>Two case studies clip text at in-between widescreen widths too</h3>
+      <p>Separately from the iPad-range clipping above: Fully Filmy and Email Strategy also show right-edge text/card clipping specifically at 1133–1180px (an iPad landscape range that's still below the 1280 canonical width). It resolves cleanly at 1366px and above — another data point that anything narrower than 1280px is fair game for this bug across the case-study templates, not an isolated one-page issue.</p>
+      <div class="ref">confirmed at 1133×744 and 1180×820 on fully-filmy and email-strategy</div>
+    </div>
+  </section>
+
+  <!-- ============ MODERATE ============ -->
+  <section class="tier" id="moderate">
+    <div class="tier-head">
+      <h2>Moderate</h2>
+      <span class="count">noticeable, worth fixing before this goes wide</span>
+    </div>
+
+    <div class="finding moderate">
+      <div class="row1"><span class="chip">Moderate</span></div>
+      <h3>The custom cursor sits on top of the text you're trying to read</h3>
+      <p>Hover a folder card on the homepage and the dashed cursor ring (it scales up to ~60px on hover) lands directly over the card label — I watched it obscure the middle of "Social Media Brand Identity" mid-word. It's a nice touch everywhere else on the site; on small text labels it actively fights legibility at the exact moment someone's deciding what to click.</p>
+      <div class="ref">app/fx.css: .fx-cursor-ring, html.fx-cursor-hot scale:1.6</div>
+    </div>
+
+    <div class="finding moderate">
+      <div class="row1"><span class="chip">Moderate</span></div>
+      <h3>A handful of typos made it to production copy</h3>
+      <p>"Nissin Cupnoodles" on Print Media (every other page spells it "Cup Noodles"), "Illustartion" in the Fun Stuff section heading, "doesnn't" on the Email Strategy page, and a stray "- 3/8" left inside a live subject line ("Do you know what your team is up to? - 3/8") that reads like an internal numbering note nobody removed.</p>
+      <div class="ref">app/work/print-media, app/work/fun-stuff, app/work/email-strategy</div>
+    </div>
+
+    <div class="finding moderate">
+      <div class="row1"><span class="chip">Moderate</span></div>
+      <h3>The homepage preloads 20+ assets it never uses</h3>
+      <p>Every homepage load throws 27 browser warnings for Fintech and Email Strategy images/SVGs that are preloaded but never rendered on that page. Doesn't break anything visibly, but it's wasted bandwidth on the very first page a visitor sees, and it signals a preload rule that's scoped too broadly.</p>
+      <div class="ref">console warning: "resource ... preloaded ... but not used" ×27 on "/"</div>
+    </div>
+
+    <div class="finding moderate">
+      <div class="row1"><span class="chip">Moderate</span></div>
+      <h3>Scroll-reveal content depends entirely on real scroll events</h3>
+      <p>Anything that isn't a genuine, human scroll — a full-page screenshot tool, a print-to-PDF, some crawlers — sees large blank sections where content hasn't been "revealed" yet. Real visitors scrolling normally never notice this, but it's worth knowing the content isn't actually there until scroll physically triggers it.</p>
+      <div class="ref">data-reveal attributes handled by FxProvider — IntersectionObserver-gated</div>
+    </div>
+
+    <div class="finding moderate">
+      <div class="row1"><span class="chip">Moderate</span></div>
+      <h3>The end-of-page buttons sit a little left of everything else</h3>
+      <p>On four of the six case studies (Internal Comms, Fully Filmy, Email Strategy, Fun Stuff), the closing "Next Project"/"Get in Touch" row sits 10–20px left of the margin used by the breadcrumb and headings on that same page. Fintech and Social Media Brand Identity get this right. Small, but it's the kind of thing that reads as sloppy once you notice it, and it's consistent enough across pages to be a shared-component bug rather than one-off.</p>
+      <div class="ref">confirmed at both 1280×832 and 1440×900 — offset is identical at both sizes, so it's a fixed padding value, not a responsive miscalculation</div>
+    </div>
+
+    <div class="finding moderate">
+      <div class="row1"><span class="chip">Moderate</span></div>
+      <h3>The homepage's Work grid doesn't grow with the screen either</h3>
+      <p>Same root issue as the homepage-centering finding above, isolated to the folder-card grid specifically: it stays pinned to the left third of the viewport on anything wider than 1280px, and the unused space on the right gets more pronounced the wider you go — acceptable-ish at 14" MacBook Pro width, close to half the screen sitting empty at 16" MacBook Pro width.</p>
+      <div class="ref">confirmed at 1512×982 (Moderate) and 1728×1117 (approaching Major) — components/WorkSection/WorkSection.module.css</div>
+    </div>
+
+    <div class="finding moderate">
+      <div class="row1"><span class="chip">Moderate</span></div>
+      <h3>The homepage headline wraps to three lines on an iPad Pro in landscape</h3>
+      <p>"Welcome to Abhi's Portfolio" is designed to break across two lines. At 1366px wide (iPad Pro 12.9" landscape — technically above the 1280 canonical width), it wraps to three instead, which suggests the headline's font-size is set with an unclamped viewport-relative unit that overshoots past the point the desktop layout was actually designed for.</p>
+      <div class="ref">confirmed at 1366×1024 only</div>
+    </div>
+  </section>
+
+  <!-- ============ MINOR ============ -->
+  <section class="tier" id="minor">
+    <div class="tier-head">
+      <h2>Minor</h2>
+      <span class="count">polish, not urgency</span>
+    </div>
+
+    <div class="finding minor">
+      <div class="row1"><span class="chip">Minor</span></div>
+      <h3>The circular "Creative Strategist" badge clips off-screen on mobile</h3>
+      <p>At 390px wide, the round stamp badge in the hero is cropped at the right edge instead of being resized or repositioned for the narrower canvas.</p>
+      <div class="ref">Hero, 390×844 viewport</div>
+    </div>
+
+    <div class="finding minor">
+      <div class="row1"><span class="chip">Minor</span></div>
+      <h3>Some print-media source images are large</h3>
+      <p>green-yodha-lake.jpg ships as a 3.1MB source JPEG. Next's image pipeline should be resizing this in production, but it's worth confirming the optimized output is actually small once deployed, not just assumed.</p>
+      <div class="ref">public/images/print-media/green-yodha-lake.jpg — 3,169,716 bytes</div>
+    </div>
+
+    <div class="finding minor">
+      <div class="row1"><span class="chip">Minor</span></div>
+      <h3>No branded 404 page</h3>
+      <p>Following on from the broken resume link — whatever the cause, landing on a totally generic, unstyled "404 — This page could not be found" is jarring against a site this visually considered, and leaves the visitor with no link back in.</p>
+      <div class="ref">no app/not-found.tsx present</div>
+    </div>
+
+    <div class="finding minor">
+      <div class="row1"><span class="chip">Minor</span></div>
+      <h3>Social Media Brand Identity's photo grid leaves gappy columns on a smaller tablet</h3>
+      <p>The masonry-style grid of Instagram screenshots leaves noticeably uneven vertical whitespace between shorter and taller columns at iPad mini portrait width (744px). Not broken, just a little untidy compared to how tight the same grid looks at desktop width.</p>
+      <div class="ref">confirmed at 744×1133</div>
+    </div>
+
+    <div class="finding minor">
+      <div class="row1"><span class="chip">Minor</span></div>
+      <h3>A few decorative sparkles and circles look orphaned on very wide monitors</h3>
+      <p>Small decorative motifs that sit near the edge of the 1280px canvas in the original Figma now float alone in the wide side gutters at 2560px and up — touching neither the content column nor the edge of the screen. Doesn't look broken, just a little adrift. Worth a pass if the wide-monitor experience matters to you; otherwise low priority.</p>
+      <div class="ref">confirmed at 2560×1440, various case studies</div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT WORKS ============ -->
+  <div class="good-box" id="good">
+    <div class="label">To be fair — what actually works</div>
+    <ul>
+      <li>The Instagram lightbox on Social Media Brand Identity is genuinely impressive: it pulls real post data, real like counts, real thumbnails, and opens inline without ever leaving the page. That's the bar the rest of the site should be held to.</li>
+      <li>Nothing crashes. Across all eight routes I found zero console errors — only preload warnings. The code underneath this is stable.</li>
+      <li>The visual identity — folders, washi-tape marquees, the hand-drawn underlines, the stamped badge — is distinctive and holds together. It doesn't feel templated.</li>
+      <li>The case-study writing itself is sharp and specific throughout; that's Abhi's voice coming through, not a design problem to fix.</li>
+      <li>The centering strategy the case-study pages use (a 1280px canvas with auto margins) is exactly right, and it holds up cleanly all the way from a 14" laptop to a 4K display — the homepage just needs to catch up to a pattern the rest of the site already got correct.</li>
+      <li>Nav bar and its dropdown never broke, at any of the fifteen viewport sizes I tried, including the tightest iPad landscape heights. That's a lot of surface area to get right and it did.</li>
+    </ul>
+  </div>
+
+  <!-- ============ CLOSE ============ -->
+  <div class="close" id="verdict-final">
+    <p>None of this is "start over" territory — the bones and the personality are both good. But the wider device pass changed my priorities, not just my count: a broken resume link, an entire missing diary case study, and text that goes unreadable on every iPad size are three separate reasons a real visitor bounces before they ever get to judge the writing. Fix the critical eight, bring the homepage's centering in line with the rest of the site, and give Fun Stuff a way to be found on a phone — then we talk about the rest.</p>
+    <div class="sign">— walkthrough notes, 15 viewports from 744px to 3840px, Chromium via Playwright</div>
+  </div>
+
+</div>

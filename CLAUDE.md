@@ -71,6 +71,19 @@ The design was created by an amateur in Figma. Priority is **visual fidelity**, 
 - Each section as a Framer component with editable text props
 - Navigation uses Framer's built-in page linking
 
+### Framer External Agent / Claude Code
+
+- **Framer project:** [Rational Independence](https://framer.com/projects/Rational-Independence--uj9T8YBB5n6l8waBIZIp)
+- **Project ID:** `uj9T8YBB5n6l8waBIZIp`
+- **Current branch preview:** `https://rational-independence-589976--matte-drift-mkbv014mg.framer.app`
+- **Latest verified preview version:** `0022c0556`
+- **Claude Code setup:** Framer's official external-agent setup has been run with `npx @framer/agent@latest setup`.
+- **Installed Claude skills:** `~/.claude/skills/framer`, `~/.claude/skills/framer-code-components`, and `~/.claude/skills/framer-project-uj9T8YBB5n6l8waBIZIp`.
+- **No manual MCP entry is expected:** Framer's official External Agents flow for Claude Code is skill/session based. Framer confirms a separate MCP server is not required; `claude mcp list` will not show a Framer server.
+- **First use in Claude Code:** open Claude Code in this repo and reference the Framer project URL above, or use the installed `/framer` workflow if available. The first project connection may require browser authorization.
+- **Before Framer edits:** start a project session with `npx @framer/agent@latest session new "https://framer.com/projects/Rational-Independence--uj9T8YBB5n6l8waBIZIp"`, switch to branch `mkbv014mg` / `matte-drift` before branch edits, then follow the generated project skill for reads, code-component edits, typecheck, review, and publish.
+- **Publishing rule:** publish branch previews only unless production/custom-domain deployment is explicitly requested and approved.
+
 ---
 
 ## Dev Commands (once scaffolded)

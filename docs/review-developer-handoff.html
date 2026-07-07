@@ -1,0 +1,396 @@
+<title>Developer Handoff — Abhi's Portfolio</title>
+<style>
+  :root {
+    --paper: #eef1f5;
+    --paper-raised: #ffffff;
+    --ink: #10161c;
+    --ink-soft: #4a5568;
+    --ink-faint: #7c8798;
+    --line: #d3dae3;
+    --accent: #2f5a8f;
+    --accent-bg: #e3ebf5;
+    --blocked: #b8203a;
+    --blocked-bg: #fbe7ea;
+    --needs-work: #96591a;
+    --needs-work-bg: #f8ead4;
+    --partial: #2f6fb0;
+    --partial-bg: #e2edf7;
+    --done: #2f7a4f;
+    --done-bg: #e3f0e7;
+    --font-sans: -apple-system, 'Segoe UI', 'Inter', Roboto, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12161c;
+      --paper-raised: #1a1f27;
+      --ink: #e9edf3;
+      --ink-soft: #a3adbc;
+      --ink-faint: #707c8c;
+      --line: #2b323d;
+      --accent: #8fbaea;
+      --accent-bg: #182636;
+      --blocked: #ff7c8d;
+      --blocked-bg: #3a1820;
+      --needs-work: #eab363;
+      --needs-work-bg: #372a15;
+      --partial: #7db6e0;
+      --partial-bg: #142230;
+      --done: #74d69c;
+      --done-bg: #12251a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12161c; --paper-raised: #1a1f27; --ink: #e9edf3; --ink-soft: #a3adbc; --ink-faint: #707c8c; --line: #2b323d;
+    --accent: #8fbaea; --accent-bg: #182636;
+    --blocked: #ff7c8d; --blocked-bg: #3a1820;
+    --needs-work: #eab363; --needs-work-bg: #372a15;
+    --partial: #7db6e0; --partial-bg: #142230;
+    --done: #74d69c; --done-bg: #12251a;
+  }
+  :root[data-theme="light"] {
+    --paper: #eef1f5; --paper-raised: #ffffff; --ink: #10161c; --ink-soft: #4a5568; --ink-faint: #7c8798; --line: #d3dae3;
+    --accent: #2f5a8f; --accent-bg: #e3ebf5;
+    --blocked: #b8203a; --blocked-bg: #fbe7ea;
+    --needs-work: #96591a; --needs-work-bg: #f8ead4;
+    --partial: #2f6fb0; --partial-bg: #e2edf7;
+    --done: #2f7a4f; --done-bg: #e3f0e7;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 56px 24px 96px; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+    margin-bottom: 28px;
+  }
+  h1 { font-size: clamp(28px, 4.2vw, 38px); line-height: 1.15; margin: 0 0 12px; text-wrap: balance; font-weight: 800; letter-spacing: -0.01em; }
+  h2 { font-size: 21px; margin: 0; letter-spacing: -0.005em; }
+  h3 { font-size: 16.5px; margin: 0 0 6px; }
+  .dek { font-size: 16.5px; color: var(--ink-soft); max-width: 68ch; margin: 0 0 28px; }
+
+  .callout {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+  }
+  .callout .label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .callout p { margin: 0; font-size: 15px; }
+
+  /* status dashboard */
+  .dash { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px; }
+  .dash-card { background: var(--paper-raised); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; }
+  .dash-card h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+  .dash-row { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; font-size: 14.5px; border-bottom: 1px solid var(--line); }
+  .dash-row:last-child { border-bottom: none; }
+  .dash-row .v { font-family: var(--font-mono); font-weight: 700; }
+  @media (max-width: 620px) { .dash { grid-template-columns: 1fr; } }
+
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .pill.blocked { background: var(--blocked-bg); color: var(--blocked); }
+  .pill.needs-work { background: var(--needs-work-bg); color: var(--needs-work); }
+  .pill.partial { background: var(--partial-bg); color: var(--partial); }
+  .pill.done { background: var(--done-bg); color: var(--done); }
+
+  section.block { margin-bottom: 44px; }
+  .block-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--ink);
+  }
+  .block-head .sub { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+
+  .item {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left-width: 4px;
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .item.blocked { border-left-color: var(--blocked); }
+  .item.needs-work { border-left-color: var(--needs-work); }
+  .item.partial { border-left-color: var(--partial); }
+  .item.done { border-left-color: var(--done); }
+  .item .row1 { display: flex; align-items: center; gap: 9px; margin-bottom: 7px; flex-wrap: wrap; }
+  .item h3 { font-size: 16px; margin: 0; }
+  .item p { margin: 0 0 8px; font-size: 14.5px; }
+  .item p:last-of-type { margin-bottom: 0; }
+  .ref {
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint);
+    background: var(--paper); display: inline-block; padding: 2px 7px; border-radius: 3px;
+    margin-top: 8px; word-break: break-all;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 8px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; }
+  .table-wrap { overflow-x: auto; margin-bottom: 16px; }
+
+  ol.steps, ul.plain { margin: 0; padding-left: 22px; }
+  ol.steps li, ul.plain li { margin-bottom: 10px; font-size: 14.5px; }
+  ol.steps li:last-child, ul.plain li:last-child { margin-bottom: 0; }
+
+  .checklist { list-style: none; margin: 0; padding: 0; }
+  .checklist li {
+    display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--line);
+  }
+  .checklist li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .checklist .box {
+    flex-shrink: 0; width: 16px; height: 16px; border: 2px solid var(--ink-faint); border-radius: 3px; margin-top: 2px;
+  }
+
+  .refbox {
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; margin-bottom: 16px;
+  }
+  .refbox dt { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); margin-top: 10px; }
+  .refbox dt:first-child { margin-top: 0; }
+  .refbox dd { margin: 2px 0 0; font-size: 14.5px; word-break: break-all; }
+
+  .close { border-top: 1px solid var(--line); padding-top: 24px; }
+  .close p { font-size: 15px; }
+  .sign { margin-top: 18px; font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+
+  a.link { color: var(--accent); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .item, .callout, .dash-card { animation: rise 0.35s ease both; }
+  }
+  @keyframes rise { from { opacity: 0; translate: 0 5px; } to { opacity: 1; translate: 0 0; } }
+</style>
+
+<div class="wrap">
+
+  <div class="eyebrow">
+    <span>Engineering Handoff — Internal</span>
+    <span>Next.js site + Framer migration · 2026-07-07</span>
+  </div>
+
+  <h1>Handoff brief: Abhi's Portfolio — Next.js site and the abandoned Framer migration</h1>
+  <p class="dek">You're picking this up mid-flight. There are two live surfaces to know about: the Next.js repo (the actual source of truth, in active development) and a Framer project that a previous contractor was migrating to and left partway through. Neither is launch-ready. This document is the full state of both, what's actually blocking delivery, and where to start.</p>
+
+  <div class="callout">
+    <div class="label">Read this first</div>
+    <p>The Framer branch has an extensive self-reported build log (<code>docs/framer-migration.md</code>) claiming near-pixel-perfect parity across every route, backed by dozens of "mean channel delta" screenshot-diff scores. Don't take that log at face value. I opened the live branch preview directly and found a completely non-functional contact form, a visibly broken headline, and a dropped feature that the log never mentions — none of which shows up in a screenshot-geometry diff. The log measured the wrong thing. Budget time for an independent functional pass before trusting anything marked "done" in that file.</p>
+  </div>
+
+  <div class="dash">
+    <div class="dash-card">
+      <h3>Next.js site — localhost:3000</h3>
+      <div class="dash-row"><span>Issues logged</span><span class="v">27</span></div>
+      <div class="dash-row"><span>Critical</span><span class="v">8</span></div>
+      <div class="dash-row"><span>Console errors</span><span class="v">0</span></div>
+      <div class="dash-row"><span>Status</span><span class="pill needs-work">In development</span></div>
+    </div>
+    <div class="dash-card">
+      <h3>Framer — branch matte-drift</h3>
+      <div class="dash-row"><span>New issues logged</span><span class="v">6</span></div>
+      <div class="dash-row"><span>Contact form</span><span class="pill blocked">Non-functional</span></div>
+      <div class="dash-row"><span>Client self-edit goal</span><span class="pill blocked">Not met</span></div>
+      <div class="dash-row"><span>Status</span><span class="pill blocked">Abandoned mid-build</span></div>
+    </div>
+  </div>
+
+  <!-- ===================== NEXT.JS SUMMARY ===================== -->
+  <section class="block" id="nextjs">
+    <div class="block-head">
+      <h2>1. Next.js site — condensed findings</h2>
+      <span class="sub">full detail in the companion client-review artifact</span>
+    </div>
+    <p style="font-size:14.5px;color:var(--ink-soft);margin-bottom:14px;">A full page-by-page, device-by-device QA pass was already run against the local dev server across 15 viewport sizes (phone through 4K, including every iPad size). The eight critical items below are the ones to clear before this is presentable to anyone. Full writeup with file/line references: see the "Portfolio Walkthrough — Client Notes" artifact from this session.</p>
+
+    <div class="item blocked">
+      <div class="row1"><span class="pill blocked">Blocked</span></div>
+      <h3>Resume download 404s</h3>
+      <p><code>public/resume.pdf</code> does not exist. The button on the homepage links to it directly and the site has no custom 404 page, so visitors land on a blank, unbranded Next.js error page with no way back.</p>
+      <div class="ref">need: final PDF from Abhi + app/not-found.tsx as a fallback regardless</div>
+    </div>
+
+    <div class="item blocked">
+      <div class="row1"><span class="pill blocked">Blocked</span></div>
+      <h3>Contact form has no validation and no feedback</h3>
+      <p>Empty submissions fire a blank <code>mailto:</code> anyway. No required fields, no success/error state. Silently does nothing on any machine without a default mail client.</p>
+      <div class="ref">components/ContactSection/ContactSection.tsx</div>
+    </div>
+
+    <div class="item blocked">
+      <div class="row1"><span class="pill blocked">Blocked</span></div>
+      <h3>Print Media's central deliverable was never built</h3>
+      <p>The copy describes six "Changemaker" diary spreads with pull-tab/flap-lift interactions in detail. None of it exists in the markup — the page jumps straight from that paragraph to an unrelated section. Not a bug, a missing body of work.</p>
+      <div class="ref">app/work/print-media/page.tsx: lines 63–92</div>
+    </div>
+
+    <div class="item blocked">
+      <div class="row1"><span class="pill blocked">Blocked</span></div>
+      <h3>Literal "One line here" placeholder text is live</h3>
+      <p>Appears as a real caption under two video cards on Fully Filmy, 4 times counting the mobile duplicate.</p>
+      <div class="ref">app/work/fully-filmy/page.tsx: lines 326, 390, 484, 492, 563, 570, 582, 586</div>
+    </div>
+
+    <div class="item blocked">
+      <div class="row1"><span class="pill blocked">Blocked</span></div>
+      <h3>"Click to Read E-mails" and the three short-story covers do nothing</h3>
+      <p>Email Strategy: 4 of 5 subject lines have no click handler at all; the fifth does nothing when clicked. Fun Stuff: all three book-cover cards are plain non-interactive text — zero of three "stories" can be read.</p>
+      <div class="ref">app/work/email-strategy/page.tsx, app/work/fun-stuff/page.tsx</div>
+    </div>
+
+    <div class="item blocked">
+      <div class="row1"><span class="pill blocked">Blocked</span></div>
+      <h3>Every iPad size between 768–1279px genuinely clips text</h3>
+      <p>The Figma-exact absolute-pixel layouts don't reflow below 1280px — they run off the edge instead. Email Strategy's "Tone of Voice" section disappears entirely at 820px. Resolves cleanly at ≥1280px.</p>
+      <div class="ref">confirmed at 820×1180, 1024×1366, 1133×744, 1180×820 across 4 case studies</div>
+    </div>
+
+    <div class="item needs-work">
+      <div class="row1"><span class="pill needs-work">Needs work</span></div>
+      <h3>Homepage doesn't center itself like every case-study page does</h3>
+      <p>Missing <code>margin: auto</code> on the Work/Contact containers — on anything wider than a 14" laptop, content pools on the left with growing dead space (worst at 4K).</p>
+      <div class="ref">components/WorkSection, components/ContactSection — compare to any app/work/*/page.module.css .canvas rule</div>
+    </div>
+
+    <div class="item needs-work">
+      <div class="row1"><span class="pill needs-work">Needs work</span></div>
+      <h3>"Next Project" always links back to the homepage grid</h3>
+      <p>Every case study, 12 instances total — none chain forward to the actual next project.</p>
+      <div class="ref">app/work/*/page.tsx → all Link href="/#work" labeled "Next Project"</div>
+    </div>
+
+    <p style="font-size:14px;color:var(--ink-faint);">Remaining 19 issues (typos, the pink category-bar full-bleed inconsistency, the "Fun Stuff" page being unreachable on any phone, a fake custom-cursor legibility problem, etc.) are Major/Moderate/Minor severity — see the companion artifact for the complete ranked list.</p>
+  </section>
+
+  <!-- ===================== FRAMER ===================== -->
+  <section class="block" id="framer">
+    <div class="block-head">
+      <h2>2. Framer migration — what's actually there</h2>
+      <span class="sub">branch matte-drift, live preview checked directly</span>
+    </div>
+
+    <div class="item blocked">
+      <div class="row1"><span class="pill blocked">Blocked</span></div>
+      <h3>The contact form is entirely fake — it does not capture any input</h3>
+      <p>I inspected the DOM directly: <code>document.querySelectorAll('input, textarea')</code> returns zero elements, and <code>document.querySelectorAll('form')</code> returns zero. The Name/Company/Email-id/Message boxes are static text styled to look like inputs. "Send" is a hardcoded <code>&lt;a href="mailto:abhiv1999@gmail.com"&gt;</code> with no subject or body — whatever a visitor types is never captured or sent anywhere. This is a regression from the Next.js version, which at least builds a real (if unvalidated) mailto body from real form fields.</p>
+      <p class="why" style="color:var(--ink-soft);font-style:italic;">This needs Framer Forms wired up from scratch, or a real code-component form. It was never built — this isn't a bug to patch, it's a missing feature.</p>
+    </div>
+
+    <div class="item blocked">
+      <div class="row1"><span class="pill blocked">Blocked</span></div>
+      <h3>The homepage headline visibly reads "Abhi' Portfolio" — the "s" is missing on screen</h3>
+      <p>Confirmed reproducible across multiple fresh page loads with long settle waits, at both CSS and device pixel scale — not a one-off render glitch. The underlying DOM text is correct ("Abhi's"), but the computed font-family resolves to <code>"Playfair Display", "Playfair Display Placeholder", serif</code> — that literal "Placeholder" fallback name is the tell. The real webfont isn't binding correctly for this text node's italic-bold style, and whatever it's actually rendering with drops the glyph. This is the single most visible piece of text on the entire site.</p>
+      <div class="ref">homepage hero H1, both branch preview and desktop viewport, 1280×900 and device-scale</div>
+    </div>
+
+    <div class="item blocked">
+      <div class="row1"><span class="pill blocked">Blocked</span></div>
+      <h3>None of the 7 case-study pages are actually editable — which was the entire point of doing this in Framer</h3>
+      <p><code>docs/framer-migration.md</code> confirms this itself: every one of the 7 case-study routes was implemented as a route-level React code component dropped into Framer, not native Framer layers. CLAUDE.md's stated goal for this migration is "simple enough for an amateur to edit copy, swap images, and add projects without touching code." As built, Abhi cannot change a single word of case-study copy, swap a single image, or edit a single card without a developer opening the code component. Only the homepage got a native-layer first pass. If this project ships as-is, the client-editability goal — the actual business reason for choosing Framer over just polishing the Next.js site — has not been achieved.</p>
+      <div class="ref">docs/framer-migration.md: "## Recommended Path" + per-route "implemented as a route-level code component" notes</div>
+    </div>
+
+    <div class="item needs-work">
+      <div class="row1"><span class="pill needs-work">Needs work</span></div>
+      <h3>The in-page Instagram lightbox — the best feature on the live Next.js site — doesn't exist here</h3>
+      <p>On Social Media Brand Identity, every Instagram link is a plain outbound <code>&lt;a&gt;</code> to instagram.com. There's no lightbox, no in-page overlay, no fetched post data — the feature I'd call the strongest piece of engineering on the Next.js site was dropped somewhere in the migration and never mentioned as a known gap in the build log.</p>
+    </div>
+
+    <div class="item needs-work">
+      <div class="row1"><span class="pill needs-work">Needs work</span></div>
+      <h3>Every Next.js bug I found was faithfully copied, not fixed</h3>
+      <p>Confirmed directly: the "One line here" placeholder text on Fully Filmy, the missing Changemaker diary section and matching dead-space gap on Print Media (scroll height is <code>5691px</code> on both platforms, down to the pixel), and Fun Stuff being completely unreachable on mobile (absent from both the nav dropdown and the mobile Work grid, same as Next.js) all reproduce identically on the Framer branch. The migration was a pixel-for-pixel copy of the current (buggy) state, not an opportunity to fix anything upstream.</p>
+      <p class="why" style="color:var(--ink-soft);font-style:italic;">Practical implication: fix bugs in the Next.js repo first, then re-sync to Framer — otherwise you're fixing everything twice, once per platform, and they'll drift.</p>
+    </div>
+
+    <div class="item partial">
+      <div class="row1"><span class="pill partial">Partial</span></div>
+      <h3>Resume link at least fails honestly</h3>
+      <p>Framer's placeholder route for <code>/resume.pdf</code> renders a real page: "Resume PDF pending — the local portfolio points to /resume.pdf, but public/resume.pdf is not present yet. Replace this route with the client's actual PDF before final publish." Better UX than the Next.js site's blank 404, but the underlying gap — there's still no resume anywhere — is identical.</p>
+    </div>
+
+    <div class="item partial">
+      <div class="row1"><span class="pill partial">Partial</span></div>
+      <h3>"Don't Look!" folder is more visible than the client explicitly asked for</h3>
+      <p>Session notes and Next.js source confirm Abhi asked for this folder pushed further off-screen so only a small corner peeks. On the Framer branch, roughly half the folder ("Don't Look" fully readable) is visible — closer to the original unmodified Figma spec than the deliberately-adjusted Next.js version. A specific, named client preference got lost somewhere in the rebuild.</p>
+    </div>
+
+    <div class="item done">
+      <div class="row1"><span class="pill done">Holding up</span></div>
+      <h3>Visual fidelity on desktop is genuinely close</h3>
+      <p>Side-by-side, the homepage, Social Media Brand Identity, Internal Comms, and Fintech routes on the Framer branch are visually very close to the Next.js source at desktop width, with zero console errors on every route I checked. The geometry-matching work in the build log wasn't wasted — it's the functional gaps above that are the problem, not the visual layer.</p>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT'S BLOCKING ===================== -->
+  <section class="block" id="blocking">
+    <div class="block-head"><h2>3. What's actually blocking a client handoff</h2></div>
+    <ul class="checklist">
+      <li><span class="box"></span><span>A real resume.pdf from Abhi — everything downstream of this (both platforms' Download Resume button, the Framer placeholder route) is waiting on this one file.</span></li>
+      <li><span class="box"></span><span>A decision: is Framer still the target, or does the Next.js site get polished and shipped on its own? The code-component-everywhere state means Framer currently delivers none of the self-editability that was the reason to choose it. That's a scope conversation with the client, not just an engineering fix.</span></li>
+      <li><span class="box"></span><span>If Framer stays the target: a real contact form (Framer Forms or equivalent), a font-loading fix for the hero headline, and a plan to convert at least the highest-traffic case studies from code components to native layers or Framer CMS entries.</span></li>
+      <li><span class="box"></span><span>Either way: the 8 critical Next.js items in section 1 fixed at the source, then re-synced to Framer if that branch continues.</span></li>
+      <li><span class="box"></span><span>Contact form destination confirmed with the client (still just personal Gmail via mailto on both platforms — fine for now, but worth explicitly confirming it's intentional).</span></li>
+    </ul>
+  </section>
+
+  <!-- ===================== RECOMMENDED SEQUENCE ===================== -->
+  <section class="block" id="sequence">
+    <div class="block-head"><h2>4. Recommended order of operations</h2></div>
+    <ol class="steps">
+      <li><strong>Don't trust either platform's self-reported state.</strong> Re-verify anything marked "done" in <code>docs/framer-migration.md</code> with a real click-through, the same way this handoff did — that log's screenshot-diff methodology missed the fake contact form and the broken headline entirely.</li>
+      <li><strong>Fix the 8 critical Next.js items first</strong>, in the live repo. It's the source of truth and the faster iteration loop; nothing here needs Framer's build pipeline.</li>
+      <li><strong>Get the scope decision on Framer</strong> before investing more time there — specifically whether code-component case studies are acceptable to the client or whether native/CMS rebuild is required. This changes the remaining effort estimate a lot.</li>
+      <li><strong>If Framer continues:</strong> contact form and the hero font bug are the two functional blockers; re-sync the fixed Next.js content once source-of-truth bugs are resolved, rather than patching both branches in parallel.</li>
+      <li><strong>Re-run a full responsive pass</strong> (phone, all iPad sizes, laptop, up to 4K) on whichever platform ships — the tablet-range clipping bugs found in the Next.js audit are exactly the kind of thing that's easy to reintroduce during any of the above fixes.</li>
+    </ol>
+  </section>
+
+  <!-- ===================== REFERENCE ===================== -->
+  <section class="block" id="reference">
+    <div class="block-head"><h2>5. Reference</h2></div>
+    <div class="refbox">
+      <dl>
+        <dt>Repo</dt><dd>Next.js 16.2.6 / React 19.2.4, static App Router, local dev server at localhost:3000</dd>
+        <dt>Existing docs</dt><dd>docs/framer-migration.md (build log — verify, don't trust), docs/client-handover-platform-plan.md (platform comparison + phased plan), docs/framer-preimplementation-research.md (accounts/access/CMS prerequisites)</dd>
+        <dt>Framer project</dt><dd>"Rational Independence" — project ID uj9T8YBB5n6l8waBIZIp</dd>
+        <dt>Framer branch</dt><dd>matte-drift (mkbv014mg)</dd>
+        <dt>Framer branch preview (live, checked directly for this brief)</dt><dd>https://rational-independence-589976--matte-drift-mkbv014mg.framer.app</dd>
+        <dt>Framer branch editor</dt><dd>https://framer.com/projects/Rational-Independence--uj9T8YBB5n6l8waBIZIp-2UmWW?branch=mkbv014mg</dd>
+        <dt>Production/custom domain</dt><dd>Not connected to the Framer branch — nothing has gone live from Framer yet</dd>
+        <dt>Client-editable ownership</dt><dd>Not transferred — Framer project is still developer-owned, no Content Editor invite has happened per the preimplementation doc's own plan</dd>
+      </dl>
+    </div>
+  </section>
+
+  <div class="close">
+    <p>Neither surface is a rebuild-from-scratch situation — the Next.js site's bones are solid and Framer's visual fidelity is closer than you'd expect given how it was left. But both have real, specific, verifiable gaps, and the Framer build log's confidence shouldn't be mistaken for actual readiness. Start with the critical list, get the Framer scope decision made early, and re-verify everything with your own eyes before marking it done again.</p>
+    <div class="sign">— handoff notes, Next.js checked at 15 viewports, Framer branch checked directly via Playwright, 2026-07-07</div>
+  </div>
+
+</div>

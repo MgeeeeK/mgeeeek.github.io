@@ -1,4 +1,8 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
+import Magnetic from '@/components/Fx/Magnetic'
 import styles from './ContactSection.module.css'
 
 const BIO = `As a marketer, it is in my job description to lie a little. To play fast and dirty with honesty, to exaggerate some things and hide others. But I will cross my heart and die on this hill - I love words. And because I want you to hire me as your creative strategist, I also love brand marketing and good design and GTM strategy and AI optimisation and confusing acronyms (TOFU, BOFU, AIDA, the list goes on).
@@ -12,12 +16,16 @@ P.S. I also have a Bachelor's degree in communication design and designed this p
 const PHONE_KEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 export default function ContactSection() {
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
   return (
     <>
       <section id="contact" className={`${styles.panel} ${styles.contactPage}`}>
         <div className={styles.contactContent}>
-          <h2 className={styles.contactHeading}>Got a brief or role to discuss?</h2>
-          <p className={styles.emailLine}>
+          <h2 className={styles.contactHeading} data-reveal="rise">
+            Got a brief or role to discuss?
+          </h2>
+          <p className={styles.emailLine} data-reveal="rise" data-reveal-delay="1">
             Send me an email at{' '}
             <a href="mailto:abhiv1999@gmail.com" className={styles.emailLink}>
               abhiv1999@gmail.com
@@ -28,55 +36,95 @@ export default function ContactSection() {
           <form
             aria-label="Contact form"
             className={styles.form}
+            onSubmit={(e) => {
+              e.preventDefault()
+              const data = new FormData(e.currentTarget)
+              const name = (data.get('name') || '').toString().trim()
+              const company = (data.get('company') || '').toString().trim()
+              const email = (data.get('email') || '').toString().trim()
+              const message = (data.get('message') || '').toString().trim()
+
+              if (!name || !email || !message) {
+                setStatus('error')
+                return
+              }
+
+              const subject = encodeURIComponent(
+                `Portfolio enquiry${name ? ` from ${name}` : ''}`
+              )
+              const body = encodeURIComponent(
+                `Name: ${name}\nCompany: ${company}\nEmail: ${email}\n\n${message}`
+              )
+              window.location.href = `mailto:abhiv1999@gmail.com?subject=${subject}&body=${body}`
+              setStatus('success')
+            }}
           >
-            <input className={styles.input} type="text"  placeholder="Name"     />
-            <input className={styles.input} type="text"  placeholder="Company"  />
-            <input className={styles.input} type="email" placeholder="Email-id" />
-            <textarea className={styles.textarea}        placeholder="Message"  />
-            <button type="button" className={styles.sendBtn}>Send</button>
+            <input className={styles.input} name="name"    type="text"  placeholder="Name"     required data-reveal="rise" data-reveal-delay="1" />
+            <input className={styles.input} name="company" type="text"  placeholder="Company"  data-reveal="rise" data-reveal-delay="2" />
+            <input className={styles.input} name="email"   type="email" placeholder="Email-id" required data-reveal="rise" data-reveal-delay="3" />
+            <textarea className={styles.textarea} name="message" placeholder="Message" required data-reveal="rise" data-reveal-delay="4" />
+            <Magnetic>
+              <button type="submit" className={styles.sendBtn} data-reveal="pop" data-reveal-delay="5">
+                Send
+              </button>
+            </Magnetic>
+            <p
+              className={styles.formStatus}
+              role="status"
+              aria-live="polite"
+              data-variant={status === 'idle' ? undefined : status}
+            >
+              {status === 'success' &&
+                'Opening your email app with this message filled in — send it from there to reach me.'}
+              {status === 'error' && 'Please fill in your name, email, and a message before sending.'}
+            </p>
           </form>
         </div>
       </section>
 
       <section id="about" className={`${styles.panel} ${styles.aboutPage}`}>
-        <div className={styles.phoneIllustration} aria-hidden="true">
-          <div className={styles.antennaTop} />
-          <div className={styles.antennaMid} />
-          <div className={styles.antennaBase} />
-          <div className={styles.phoneBody}>
-            <div className={styles.photoFrame}>
-              <Image
-                src="/images/about-photo.jpg"
-                alt="Abhi"
-                width={195}
-                height={462}
-                className={styles.photo}
-              />
+        <div className={styles.aboutContentWrap}>
+          <div className={styles.phoneIllustration} aria-hidden="true" data-reveal="fade">
+            <div className={styles.antennaTop} />
+            <div className={styles.antennaMid} />
+            <div className={styles.antennaBase} />
+            <div className={styles.phoneBody} data-reveal="rise">
+              <div className={styles.photoFrame}>
+                <Image
+                  src="/images/about-photo.jpg"
+                  alt="Abhi"
+                  width={202}
+                  height={426}
+                  className={styles.photo}
+                />
+              </div>
+              <div className={styles.phoneKeypad}>
+                {PHONE_KEYS.map((n) => (
+                  <div key={n} className={styles.phoneKey}>{n}</div>
+                ))}
+              </div>
             </div>
-            <div className={styles.phoneKeypad}>
-              {PHONE_KEYS.map((n) => (
-                <div key={n} className={styles.phoneKey}>{n}</div>
-              ))}
+          </div>
+
+          <div className={styles.aboutSection}>
+            <h2 className={styles.aboutHeading} data-reveal="stamp">About Me</h2>
+
+            <p className={styles.bio} data-reveal="rise" data-reveal-delay="1">{BIO}</p>
+
+            <div className={styles.footerButtons}>
+              <Magnetic>
+                <a className={styles.btnBrowse} href="#work" data-reveal="pop" data-reveal-delay="2">
+                  Browse Projects
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a className={styles.btnResume} href="/resume.pdf" download data-reveal="pop" data-reveal-delay="3">
+                  Download Resume
+                </a>
+              </Magnetic>
             </div>
           </div>
         </div>
-
-        <div className={styles.aboutSection}>
-          <h2 className={styles.aboutHeading}>About Me</h2>
-
-          <p className={styles.bio}>{BIO}</p>
-
-          <div className={styles.footerButtons}>
-            <a className={styles.btnBrowse} href="#work">
-              Browse Projects
-            </a>
-            <button className={styles.btnResume} type="button">
-              Download Resume
-            </button>
-          </div>
-        </div>
-
-        <div className={styles.footerStrip} />
       </section>
     </>
   )

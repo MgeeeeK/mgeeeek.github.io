@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import { Playfair_Display } from 'next/font/google'
 import './globals.css'
+import './fx.css'
+import MediaLightboxProvider from '@/components/MediaLightbox/MediaLightboxProvider'
+import FxProvider from '@/components/Fx/FxProvider'
+import Cursor from '@/components/Fx/Cursor'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -15,10 +19,24 @@ export const metadata: Metadata = {
   description: 'Creative strategist, copywriter, and designer',
 }
 
+// Flag motion-readiness before first paint so reveal targets never flash.
+const FX_BOOT = `try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('fx-ready')}catch(e){}`
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={playfair.variable} data-scroll-behavior="smooth">
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={playfair.variable}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: FX_BOOT }} />
+        <div className="fx-progress" aria-hidden="true" />
+        <MediaLightboxProvider>{children}</MediaLightboxProvider>
+        <FxProvider />
+        <Cursor />
+      </body>
     </html>
   )
 }

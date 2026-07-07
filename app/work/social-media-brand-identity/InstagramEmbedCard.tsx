@@ -1,78 +1,43 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './page.module.css'
+
+type RevealVariant = 'rise' | 'pop' | 'stamp' | 'tilt' | 'slide-left' | 'slide-right' | 'fade'
 
 interface InstagramEmbedCardProps {
   href: string
   className?: string
   label: string
+  /** Optional scroll-reveal variant, forwarded as a data-reveal attribute. */
+  reveal?: RevealVariant
+  /** Optional stagger step (× 80ms), forwarded as data-reveal-delay. */
+  revealDelay?: number
 }
 
-function getInstagramEmbedUrl(href: string) {
-  try {
-    const url = new URL(href)
-    const [kind, shortcode] = url.pathname.split('/').filter(Boolean)
-    if (!shortcode) return href
-
-    const embedKind = kind === 'reel' || kind === 'tv' ? kind : 'p'
-    return `https://www.instagram.com/${embedKind}/${shortcode}/embed/`
-  } catch {
-    return href
-  }
-}
-
+/**
+ * A media tile matching the Figma's black IG placeholders. Clicking it opens
+ * the global in-page MediaLightbox (handled by the app-wide click interceptor),
+ * so the reel plays inline without leaving the page — and without loading
+ * 16 heavy Instagram iframes on first paint.
+ */
 export default function InstagramEmbedCard({
   href,
   className,
   label,
+  reveal,
+  revealDelay,
 }: InstagramEmbedCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const [shouldEmbed, setShouldEmbed] = useState(false)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const embedUrl = useMemo(() => getInstagramEmbedUrl(href), [href])
-
-  useEffect(() => {
-    const card = cardRef.current
-    if (!card) return
-
-    if (!('IntersectionObserver' in window)) {
-      setShouldEmbed(true)
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldEmbed(true)
-          observer.disconnect()
-        }
-      },
-      { rootMargin: '700px 0px' }
-    )
-
-    observer.observe(card)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <div
-      ref={cardRef}
-      className={`${styles.mediaCard} ${className || ''} ${shouldEmbed ? styles.mediaCardActive : ''}`}
-      data-embedded={shouldEmbed ? 'true' : 'false'}
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      className={`${styles.mediaCard} ${className || ''}`}
+      data-reveal={reveal}
+      data-reveal-delay={reveal !== undefined ? revealDelay : undefined}
     >
-      {!isLoaded && <span className={styles.embedLoading}>Loading embed</span>}
-      {shouldEmbed && (
-        <iframe
-          className={styles.embedFrame}
-          src={embedUrl}
-          title={label}
-          loading="lazy"
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          onLoad={() => setIsLoaded(true)}
-        />
-      )}
-    </div>
+      <span className={styles.playBadge} aria-hidden="true" />
+    </a>
   )
 }

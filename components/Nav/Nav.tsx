@@ -1,13 +1,19 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, type CSSProperties } from 'react'
 import Link from 'next/link'
-import { PROJECTS } from '@/lib/projects'
+import { usePathname } from 'next/navigation'
+import { NAV_PROJECTS } from '@/lib/projects'
 import styles from './Nav.module.css'
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
+  // On the homepage the same project list is already visible one scroll
+  // down as the folder grid — a dropdown menu just duplicates it. On every
+  // case-study page there's no visible project list on screen, so the
+  // dropdown is the only way to jump laterally to another project.
+  const isHome = usePathname() === '/'
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -31,32 +37,55 @@ export default function Nav() {
     setIsOpen(false)
   }
 
+  function scrollToWork() {
+    document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <nav className={styles.nav} ref={navRef}>
       <div className={styles.links}>
-        <div className={styles.workWrapper}>
-          <button
-            className={styles.workBtn}
-            onClick={() => setIsOpen((prev) => !prev)}
-            aria-expanded={isOpen}
-            aria-haspopup="listbox"
-          >
+        {isHome ? (
+          <a className={styles.contactBtn} href="#work" onClick={scrollToWork}>
             Work
-          </button>
-          {isOpen && (
-            <div className={styles.dropdown}>
-              <ul className={styles.dropdownList} role="list">
-                {PROJECTS.map((project) => (
-                  <li key={project.slug} className={styles.dropdownItem}>
-                    <Link href={project.href} onClick={() => setIsOpen(false)}>
-                      {project.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
+          </a>
+        ) : (
+          <div className={styles.workWrapper}>
+            <button
+              className={styles.workBtn}
+              onClick={() => setIsOpen((prev) => !prev)}
+              aria-expanded={isOpen}
+              aria-haspopup="listbox"
+            >
+              Work
+              <span
+                className={isOpen ? `${styles.caret} ${styles.caretOpen}` : styles.caret}
+                aria-hidden="true"
+              >
+                ▾
+              </span>
+            </button>
+            {isOpen && (
+              <div className={styles.dropdown}>
+                <ul className={styles.dropdownList} role="list">
+                  {NAV_PROJECTS.map((project, index) => (
+                    <li
+                      key={project.slug}
+                      className={styles.dropdownItem}
+                      style={{ '--cascade': index } as CSSProperties}
+                    >
+                      <Link href={project.href} onClick={() => setIsOpen(false)}>
+                        <span className={styles.itemMark} aria-hidden="true">
+                          ✦
+                        </span>
+                        {project.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
         <a className={styles.contactBtn} href="#contact" onClick={scrollToContact}>
           Contact &amp; About
         </a>

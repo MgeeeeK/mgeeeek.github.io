@@ -300,6 +300,8 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
+  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
+  transition: filter 0.2s ease;
 }
 .pillR1AText {
   position: absolute;
@@ -327,6 +329,8 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
+  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
+  transition: filter 0.2s ease;
 }
 .pillR1BText {
   position: absolute;
@@ -350,6 +354,8 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
+  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
+  transition: filter 0.2s ease;
 }
 .pillR1CText {
   position: absolute;
@@ -412,6 +418,8 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
+  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
+  transition: filter 0.2s ease;
 }
 .pillR2AText {
   position: absolute;
@@ -438,6 +446,8 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
+  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
+  transition: filter 0.2s ease;
 }
 .pillR2BText {
   position: absolute;
@@ -461,6 +471,8 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
+  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
+  transition: filter 0.2s ease;
 }
 .pillR2CText {
   position: absolute;
@@ -477,6 +489,16 @@
   text-align: center;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+/* Gentle resting depth on the green pill nodes (diagram-safe: no transform) */
+.pillR1A:hover,
+.pillR1B:hover,
+.pillR1C:hover,
+.pillR2A:hover,
+.pillR2B:hover,
+.pillR2C:hover {
+  filter: brightness(1.04);
 }
 
 /* Scenario labels Route 2 */
@@ -527,6 +549,20 @@
 .micRotate {
   flex: none;
   transform: rotate(-28.62deg);
+  /* Gentle drift; individual properties compose with the static rotation. */
+  animation: emailMicFloat 7.5s ease-in-out infinite;
+}
+
+@keyframes emailMicFloat {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+  50% {
+    translate: 0 -12px;
+    rotate: 1.6deg;
+  }
 }
 .micImg {
   display: block;
@@ -587,7 +623,6 @@
   line-height: 1.115;
   color: black;
   text-decoration: none;
-  cursor: pointer;
   word-break: break-word;
 }
 .subj2 {
@@ -634,6 +669,11 @@
   line-height: 1.115;
   color: black;
   word-break: break-word;
+}
+
+/* Static display only — these are real subject lines, but there's no
+   expand/reveal interaction behind them, so no hover affordance either. */
+.subjLine {
 }
 
 /* ════════ The Result ════════ */
@@ -738,6 +778,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Slow ambient spin; `rotate` composes with the child's static transform. */
+  animation: emailPolySpin 26s linear infinite;
+}
+
+@keyframes emailPolySpin {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
 }
 .polyRotate {
   flex: none;
@@ -767,6 +818,7 @@
   line-height: 1.115;
   text-align: center;
   text-decoration: none;
+  transition: transform 200ms ease, box-shadow 200ms ease;
 }
 .primaryButton {
   left: 61px;
@@ -777,6 +829,40 @@
   left: 273px;
   top: 2397.5px;
   background: #ffc4e8;
+}
+
+/* Tactile press model (homepage pill language) */
+.primaryButton,
+.secondaryButton {
+  box-shadow: 0 7px 0 black;
+}
+.primaryButton:hover,
+.secondaryButton:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 11px 0 black;
+}
+.primaryButton:active,
+.secondaryButton:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 black;
+}
+
+/* Slots carry the buttons' exact Figma coordinates so the links can sit
+   statically inside the Magnetic wrapper (which moves via `translate`). */
+.btnSlot {
+  position: absolute;
+}
+.btnSlotPrimary {
+  left: 80px;
+  top: 2397.5px;
+}
+.btnSlotSecondary {
+  left: 292px;
+  top: 2397.5px;
+}
+.btnSlot .primaryButton,
+.btnSlot .secondaryButton {
+  position: static;
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -853,5 +939,31 @@
   .primaryButton,
   .secondaryButton {
     position: static;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Reduced motion — every animation added on this page settles to a
+   stable, fully-visible resting state.
+   ════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .micRotate,
+  .polyBox {
+    animation: none;
+  }
+  .primaryButton,
+  .secondaryButton,
+  .subjLine {
+    transition: none;
+  }
+  .primaryButton:hover,
+  .secondaryButton:hover,
+  .primaryButton:active,
+  .secondaryButton:active {
+    transform: none;
+    box-shadow: none;
+  }
+  .subjLine:hover {
+    transform: none;
   }
 }

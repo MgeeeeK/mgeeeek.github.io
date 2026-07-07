@@ -9,13 +9,12 @@
   scroll-snap-stop: always;
 }
 
-.section::before {
-  content: '';
+/* Pointer-parallax container for decorative elements only. */
+.decoratives {
   position: absolute;
-  inset: 28px clamp(18px, 4vw, 58px);
-  border-top: 3px solid rgb(0 0 0 / 0.12);
-  border-bottom: 3px solid rgb(0 0 0 / 0.12);
+  inset: 0;
   pointer-events: none;
+  z-index: 0;
 }
 
 .star2 {
@@ -26,7 +25,16 @@
   top: 38px;
   pointer-events: none;
   opacity: 0.86;
-  animation: workStarSpin 34s linear infinite;
+}
+
+/* Centers the heading/subtitle/grid as a unit (matching the 1280px
+   canonical canvas every case-study page uses) instead of letting them sit
+   flush against the left padding edge on very wide screens. */
+.contentWrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .heading {
@@ -41,6 +49,25 @@
   position: relative;
   z-index: 1;
   text-wrap: balance;
+}
+
+/* Inline-block so each "Work," word can pop in (scroll-reveal transforms
+   don't apply to plain inline spans). Spacing/wrapping is unchanged. */
+.headingWord {
+  display: inline-block;
+}
+
+/* Visually-hidden full heading text for assistive tech. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .subtitle {
@@ -93,7 +120,7 @@
 
 .dontLookWrapper {
   position: absolute;
-  right: clamp(-78px, -4vw, -44px);
+  right: -158px;
   bottom: clamp(76px, 8vh, 104px);
   z-index: 2;
   width: clamp(210px, 18vw, 290px);
@@ -115,7 +142,7 @@
   .dontLookWrapper {
     display: block;
     width: clamp(180px, 24vw, 230px);
-    right: -64px;
+    right: -128px;
     bottom: 76px;
   }
   .grid {
@@ -137,9 +164,6 @@
     padding: 56px 24px 72px;
     min-height: auto;
     scroll-snap-align: none;
-  }
-  .section::before {
-    inset: 18px 14px;
   }
   .heading { font-size: 38px; line-height: 1.08; }
   .subtitle { font-size: 16px; }
@@ -163,11 +187,6 @@
   .grid {
     gap: 14px 10px;
   }
-}
-
-@keyframes workStarSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 @keyframes dontLookFloat {

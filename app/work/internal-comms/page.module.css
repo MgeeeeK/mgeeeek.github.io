@@ -177,6 +177,13 @@
   display: block;
 }
 
+/* Static "sticker" depth only — these are plain decorative frames, not
+   video embeds (no video/embed content exists behind them), so they
+   shouldn't carry a hover affordance that implies they're clickable. */
+.frameImg {
+  box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22);
+}
+
 .photo {
   position: absolute;
   overflow: hidden;
@@ -184,6 +191,24 @@
 
 .photo :global(img) {
   object-fit: cover;
+}
+
+/* NO-TRANSFORM hover depth — safe with the rotated photo/album/mailer cards */
+.photo {
+  box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22);
+  transition: box-shadow 220ms ease, filter 220ms ease;
+}
+
+.photo:hover {
+  box-shadow: 0 16px 34px rgba(255, 31, 169, 0.45);
+  filter: brightness(1.06);
+  z-index: 5;
+}
+
+.photo:focus-visible {
+  outline: none;
+  box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22), 0 0 0 5px rgba(221, 255, 183, 0.75);
+  z-index: 5;
 }
 
 /* ===== Footer buttons ===== */
@@ -212,6 +237,61 @@
 
 .secondaryButton {
   background: var(--color-pink-light);
+}
+
+/* Chunky pill press model (motion + depth only — geometry untouched) */
+.primaryButton,
+.secondaryButton {
+  box-shadow: 0 7px 0 black;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.primaryButton:hover,
+.secondaryButton:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 11px 0 black;
+}
+
+.primaryButton:active,
+.secondaryButton:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 black;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: none;
+  box-shadow: 0 7px 0 black, 0 0 0 5px rgba(221, 255, 183, 0.75);
+}
+
+/* Absolutely-positioned slot that carries the Figma coordinates so the
+   Magnetic wrapper (which animates `translate`) never becomes a containing
+   block surprise for the button inside. */
+.btnSlot {
+  position: absolute;
+  z-index: 6;
+}
+
+.btnSlot .primaryButton,
+.btnSlot .secondaryButton {
+  position: static;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo,
+  .frameImg,
+  .primaryButton,
+  .secondaryButton {
+    transition: none;
+  }
+
+  .primaryButton:hover,
+  .secondaryButton:hover,
+  .primaryButton:active,
+  .secondaryButton:active {
+    transform: none;
+    box-shadow: 0 7px 0 black;
+  }
 }
 
 /* ===== Mobile fallback ===== */

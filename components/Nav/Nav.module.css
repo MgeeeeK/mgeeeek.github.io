@@ -6,6 +6,17 @@
   z-index: 50;
   width: 100%;
   overflow: visible;
+  /* one-time entrance: bar slides down from above on load */
+  animation: navDescend 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes navDescend {
+  from {
+    translate: 0 -100%;
+  }
+  to {
+    translate: 0 0;
+  }
 }
 
 .links {
@@ -34,6 +45,8 @@
   text-transform: capitalize;
   line-height: 1.45;
   padding: 0;
+  position: relative;
+  transition: rotate 200ms ease;
 }
 
 .contactBtn {
@@ -50,6 +63,67 @@
   padding: 0;
   white-space: nowrap;
   text-decoration: none;
+  position: relative;
+  display: inline-block;
+  transition: rotate 200ms ease;
+}
+
+/* Hand-drawn underline: pink bar scales X from 0 with a bouncy ease */
+.workBtn::after,
+.contactBtn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 3px;
+  background: var(--color-pink-hot);
+  border-radius: 3px;
+  rotate: -1deg;
+  scale: 0 1;
+  transform-origin: left center;
+  transition: scale 240ms cubic-bezier(0.3, 1.45, 0.45, 1);
+}
+
+.workBtn:hover,
+.contactBtn:hover {
+  rotate: -1deg;
+}
+
+.workBtn:hover::after,
+.contactBtn:hover::after,
+.workBtn:focus-visible::after,
+.contactBtn:focus-visible::after,
+.workBtn[aria-expanded='true']::after {
+  scale: 1 1;
+}
+
+/* Chunky lime focus ring (design-language vocabulary) */
+.workBtn:focus-visible,
+.contactBtn:focus-visible,
+.dropdownItem a:focus-visible {
+  outline: none;
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 4px var(--color-lime-green),
+    0 0 0 6px rgb(0 0 0 / 0.85);
+}
+
+/* Decorative caret on the Work button — rotates when the dropdown opens.
+   Absolutely positioned so it adds no layout width. */
+.caret {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  translate: 0 -46%;
+  font-size: 10px;
+  line-height: 1;
+  color: var(--color-pink-hot);
+  transition: rotate 240ms cubic-bezier(0.3, 1.45, 0.45, 1);
+}
+
+.caretOpen {
+  rotate: 180deg;
 }
 
 .dropdown {
@@ -64,6 +138,20 @@
   border-bottom-right-radius: 34px;
   padding: 8px 0 20px 0;
   z-index: 50;
+  /* springy paper-strip unfurl from the top */
+  transform-origin: top center;
+  animation: navUnfurl 280ms cubic-bezier(0.3, 1.45, 0.45, 1) both;
+}
+
+@keyframes navUnfurl {
+  from {
+    scale: 1 0.3;
+    opacity: 0;
+  }
+  to {
+    scale: 1 1;
+    opacity: 1;
+  }
 }
 
 .dropdownList {
@@ -72,8 +160,28 @@
   margin: 0;
 }
 
+/* Items cascade in one by one as the strip unrolls */
+.dropdownItem {
+  animation: navItemPop 320ms cubic-bezier(0.3, 1.45, 0.45, 1) both;
+  animation-delay: calc(var(--cascade, 0) * 45ms + 60ms);
+}
+
+@keyframes navItemPop {
+  from {
+    opacity: 0;
+    translate: 0 -8px;
+    scale: 0.92;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
 .dropdownItem a {
   display: block;
+  position: relative;
   font-family: 'Helvetica', Arial, sans-serif;
   font-weight: 700;
   font-size: 15px;
@@ -83,10 +191,38 @@
   padding: 6px 0;
   letter-spacing: -0.075px;
   line-height: 1.45;
+  transition:
+    color 180ms ease,
+    translate 200ms cubic-bezier(0.3, 1.45, 0.45, 1);
 }
 
-.dropdownItem a:hover {
+.dropdownItem a:hover,
+.dropdownItem a:focus-visible {
   color: var(--color-pink-hot);
+  translate: 5px 0;
+}
+
+/* Decorative ✦ marker pops in ahead of the label on hover/focus.
+   Absolutely positioned in the list padding — no layout shift. */
+.itemMark {
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  translate: 0 -50%;
+  scale: 0;
+  opacity: 0;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--color-pink-hot);
+  transition:
+    scale 220ms cubic-bezier(0.3, 1.45, 0.45, 1),
+    opacity 160ms ease;
+}
+
+.dropdownItem a:hover .itemMark,
+.dropdownItem a:focus-visible .itemMark {
+  scale: 1;
+  opacity: 1;
 }
 
 /* Mobile: full-width dropdown */
@@ -100,5 +236,42 @@
     width: 200px;
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;
+  }
+}
+
+/* Reduced motion: no animation, stable fully-visible end states */
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .dropdown,
+  .dropdownItem {
+    animation: none;
+    translate: none;
+    scale: none;
+    opacity: 1;
+  }
+  .workBtn,
+  .contactBtn,
+  .workBtn::after,
+  .contactBtn::after,
+  .dropdownItem a,
+  .itemMark,
+  .caret {
+    transition: none;
+  }
+  .workBtn:hover,
+  .contactBtn:hover {
+    rotate: none;
+  }
+  .workBtn::after,
+  .contactBtn::after {
+    rotate: none;
+  }
+  .dropdownItem a:hover,
+  .dropdownItem a:focus-visible {
+    translate: none;
+  }
+  .caret,
+  .caretOpen {
+    rotate: none;
   }
 }
