@@ -29,6 +29,14 @@ export function mediaEmbedUrl(m: ParsedMedia): string {
   return `https://www.youtube.com/embed/${m.id}?autoplay=1&rel=0`
 }
 
+/** Build a lightweight preview image URL supplied by the media platform. */
+export function mediaThumbnailUrl(m: ParsedMedia): string {
+  if (m.platform === 'instagram') {
+    return `/images/media-thumbnails/instagram/${m.code}.jpg`
+  }
+  return `https://i.ytimg.com/vi/${m.id}/hqdefault.jpg`
+}
+
 export function isEmbeddable(url: string): boolean {
   return parseMedia(url) !== null
 }

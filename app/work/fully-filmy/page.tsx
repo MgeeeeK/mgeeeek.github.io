@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import MediaThumbnail from '@/components/MediaThumbnail/MediaThumbnail'
 import Link from 'next/link'
 import { AmbientLayer, Starburst, Halo, Sparkle } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
@@ -220,6 +221,7 @@ function DesktopCanvas() {
             style={{ display: 'block' }}
           />
         </div>
+        <MediaThumbnail href={YT_KREDITBEE} />
         <span className={styles.playBadge} aria-hidden="true" />
       </a>
       {/* TV buttons */}
@@ -317,6 +319,7 @@ function DesktopCanvas() {
         data-reveal="tilt"
         style={{ left: 487, top: 899, width: 710, height: 400 }}
       >
+        <MediaThumbnail href={YT_SCHNEIDER_BIG} />
         <span className={styles.playBadge} aria-hidden="true" />
       </a>
       {/* Schneider tilted card 1 */}
@@ -342,6 +345,7 @@ function DesktopCanvas() {
             aria-label="Watch Schneider Electric film"
             style={{ width: 480.342, height: 270.615, position: 'relative' }}
           >
+            <MediaThumbnail href={YT_SCHNEIDER_TILT} />
             <span className={styles.playBadge} aria-hidden="true" />
           </a>
         </div>
@@ -370,6 +374,7 @@ function DesktopCanvas() {
             aria-label="Watch Schneider Electric film"
             style={{ width: 480.342, height: 270.615, position: 'relative' }}
           >
+            <MediaThumbnail href={YT_SCHNEIDER_TILT} />
             <span className={styles.playBadge} aria-hidden="true" />
           </a>
         </div>
@@ -441,6 +446,7 @@ function DesktopCanvas() {
         data-reveal="tilt"
         style={{ left: 434, top: 1955, width: 740, height: 417 }}
       >
+        <MediaThumbnail href={YT_EPSON_BIG} />
         <span className={styles.playBadge} aria-hidden="true" />
       </a>
       {/* Epson small film card */}
@@ -454,6 +460,7 @@ function DesktopCanvas() {
         data-reveal-delay="1"
         style={{ left: 86, top: 2205, width: 296, height: 167 }}
       >
+        <MediaThumbnail href={YT_EPSON_SMALL} />
         <span className={`${styles.playBadge} ${styles.playBadgeSm}`} aria-hidden="true" />
       </a>
       {/* ---- Footer buttons ---- */}
@@ -501,6 +508,7 @@ function MobileLayout() {
         <h2 className={styles.mobileHeading} data-reveal="rise">Har Tarraki Mein Sath</h2>
         <p className={styles.mobileBrand} data-reveal="rise" data-reveal-delay="1">Kreditbee</p>
         <a className={styles.mobileCard} href={YT_KREDITBEE} target="_blank" rel="noreferrer" aria-label="Watch KreditBee film" data-reveal="tilt">
+          <MediaThumbnail href={YT_KREDITBEE} />
           <span className={styles.playBadge} aria-hidden="true" />
         </a>
         <p className={styles.mobileBody} data-reveal="rise" data-reveal-delay="1">
@@ -522,12 +530,15 @@ function MobileLayout() {
           This Diwali film series makes you consider redoing your switches to match the new, updated look of your home.
         </p>
         <a className={styles.mobileCard} href={YT_SCHNEIDER_BIG} target="_blank" rel="noreferrer" aria-label="Watch Schneider Electric film" data-reveal="tilt">
+          <MediaThumbnail href={YT_SCHNEIDER_BIG} />
           <span className={styles.playBadge} aria-hidden="true" />
         </a>
         <a className={styles.mobileCard} href={YT_SCHNEIDER_TILT} target="_blank" rel="noreferrer" aria-label="Watch Schneider Electric film" data-reveal="tilt">
+          <MediaThumbnail href={YT_SCHNEIDER_TILT} />
           <span className={styles.playBadge} aria-hidden="true" />
         </a>
         <a className={styles.mobileCard} href={YT_SCHNEIDER_TILT} target="_blank" rel="noreferrer" aria-label="Watch Schneider Electric film" data-reveal="tilt" data-reveal-delay="1">
+          <MediaThumbnail href={YT_SCHNEIDER_TILT} />
           <span className={styles.playBadge} aria-hidden="true" />
         </a>
       </section>
@@ -539,9 +550,11 @@ function MobileLayout() {
           A set of short, punch, thirty second videos that highlighted a feature of the Epson office printers. (And more importantly, my first ever video scripts that got made!)
         </p>
         <a className={styles.mobileCard} href={YT_EPSON_BIG} target="_blank" rel="noreferrer" aria-label="Watch Epson Feature Short" data-reveal="tilt">
+          <MediaThumbnail href={YT_EPSON_BIG} />
           <span className={styles.playBadge} aria-hidden="true" />
         </a>
         <a className={styles.mobileCard} href={YT_EPSON_SMALL} target="_blank" rel="noreferrer" aria-label="Watch Epson Feature Short" data-reveal="tilt">
+          <MediaThumbnail href={YT_EPSON_SMALL} />
           <span className={styles.playBadge} aria-hidden="true" />
         </a>
       </section>

@@ -155,7 +155,7 @@
 .sendBtn:hover,
 .btnBrowse:hover,
 .btnResume:hover {
-  transform: translateY(-4px) rotate(-1deg);
+  transform: translateY(-4px);
   box-shadow: 0 11px 0 black;
 }
 
@@ -263,33 +263,10 @@
   box-shadow: 16px 18px 0 rgb(0 0 0 / 0.12);
 }
 
-/* ── Entrance choreography: telescoping antenna ──
-   Triggered by the scroll-reveal engine marking the illustration container.
-   Each segment grows upward from its own bottom edge, staggered ~120ms,
-   with a springy overshoot — like an aerial being pulled out. */
-
 .antennaTop,
 .antennaMid,
 .antennaBase {
   transform-origin: 50% 100%;
-}
-
-/* fx.css swaps animation-name on [data-revealed]; re-assert the ambient
-   float at higher specificity so the phone keeps drifting after reveal. */
-:global(html.fx-ready) .phoneIllustration[data-revealed] {
-  animation: phoneFloat 8s ease-in-out infinite;
-}
-
-:global(html.fx-ready) .phoneIllustration[data-revealed] .antennaBase {
-  animation: antennaGrow 0.5s cubic-bezier(0.3, 1.45, 0.45, 1) 0.1s both;
-}
-
-:global(html.fx-ready) .phoneIllustration[data-revealed] .antennaMid {
-  animation: antennaGrow 0.5s cubic-bezier(0.3, 1.45, 0.45, 1) 0.22s both;
-}
-
-:global(html.fx-ready) .phoneIllustration[data-revealed] .antennaTop {
-  animation: antennaGrow 0.5s cubic-bezier(0.3, 1.45, 0.45, 1) 0.34s both;
 }
 
 .photoFrame {
@@ -493,19 +470,13 @@
 }
 
 @keyframes phoneFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-18px) rotate(1.5deg); }
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -18px; }
 }
 
 @keyframes keypadBlink {
   0%, 8%, 100% { background: var(--color-pink-btn); }
   3% { background: var(--color-light-green); }
-}
-
-/* Individual `scale` property — composes with the float's transform. */
-@keyframes antennaGrow {
-  from { scale: 1 0; }
-  to { scale: 1 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -6,17 +6,6 @@
   z-index: 50;
   width: 100%;
   overflow: visible;
-  /* one-time entrance: bar slides down from above on load */
-  animation: navDescend 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes navDescend {
-  from {
-    translate: 0 -100%;
-  }
-  to {
-    translate: 0 0;
-  }
 }
 
 .links {
@@ -46,7 +35,6 @@
   line-height: 1.45;
   padding: 0;
   position: relative;
-  transition: rotate 200ms ease;
 }
 
 .contactBtn {
@@ -65,7 +53,6 @@
   text-decoration: none;
   position: relative;
   display: inline-block;
-  transition: rotate 200ms ease;
 }
 
 /* Hand-drawn underline: pink bar scales X from 0 with a bouncy ease */
@@ -83,11 +70,6 @@
   scale: 0 1;
   transform-origin: left center;
   transition: scale 240ms cubic-bezier(0.3, 1.45, 0.45, 1);
-}
-
-.workBtn:hover,
-.contactBtn:hover {
-  rotate: -1deg;
 }
 
 .workBtn:hover::after,
@@ -119,7 +101,7 @@
   font-size: 10px;
   line-height: 1;
   color: var(--color-pink-hot);
-  transition: rotate 240ms cubic-bezier(0.3, 1.45, 0.45, 1);
+  transition: none;
 }
 
 .caretOpen {

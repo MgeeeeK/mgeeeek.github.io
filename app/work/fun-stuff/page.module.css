@@ -268,7 +268,7 @@
    inner span so it never fights the reveal animation on the link itself. */
 .puddleLink:hover .puddleInner,
 .puddleLink:focus-visible .puddleInner {
-  animation: puddleWiggle 420ms ease-in-out;
+  animation: none;
 }
 
 /* The spilled splash hops in sympathy when the puddle is hovered. */
@@ -279,15 +279,6 @@
 /* The label floats up a touch with the wiggle. */
 .puddleLink:hover ~ .viewDesign {
   translate: 0 -3px;
-}
-
-@keyframes puddleWiggle {
-  0% { rotate: 0deg; }
-  22% { rotate: 2deg; }
-  48% { rotate: -2deg; }
-  72% { rotate: 1.1deg; }
-  88% { rotate: -0.5deg; }
-  100% { rotate: 0deg; }
 }
 
 @keyframes splashHop {
@@ -419,20 +410,18 @@
 .goBackButton,
 .getInTouchButton {
   filter: drop-shadow(0 7px 0 black);
-  transition: translate 200ms ease, rotate 200ms ease, filter 200ms ease;
+  transition: translate 200ms ease, filter 200ms ease;
 }
 
 .goBackButton:hover,
 .getInTouchButton:hover {
   translate: 0 -4px;
-  rotate: -1deg;
   filter: drop-shadow(0 11px 0 black);
 }
 
 .goBackButton:active,
 .getInTouchButton:active {
   translate: 0 2px;
-  rotate: 0deg;
   filter: drop-shadow(0 3px 0 black);
 }
 
@@ -575,7 +564,7 @@
 /* Same fun wiggle on tap/press for the mobile puddle (child img, so it
    never fights the reveal animation on the link). */
 .mobilePuddle:active .puddleImg {
-  animation: puddleWiggle 420ms ease-in-out;
+  animation: none;
 }
 
 .mobileViewDesign {

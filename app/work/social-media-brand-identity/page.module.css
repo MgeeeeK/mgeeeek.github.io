@@ -338,7 +338,7 @@
 }
 
 .mediaCard:hover {
-  transform: translateY(-6px) rotate(-1deg);
+  transform: translateY(-6px);
   filter: drop-shadow(0 14px 0 rgb(0 0 0 / 0.2));
   box-shadow: 0 0 0 4px rgb(255 67 183 / 0.16);
 }
@@ -902,7 +902,7 @@
 
 .primaryButton:hover,
 .secondaryButton:hover {
-  transform: translateY(-4px) rotate(-1deg);
+  transform: translateY(-4px);
   box-shadow: 0 11px 0 black;
 }
 
@@ -931,17 +931,12 @@
 }
 
 .starburst {
-  animation: caseStarSpin 34s linear infinite;
+  animation: none;
 }
 
 @keyframes caseTwinkle {
   0%, 100% { transform: scale(0.15); opacity: 0; }
   50% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes caseStarSpin {
-  from { transform: rotate(-0.58deg); }
-  to { transform: rotate(359.42deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {

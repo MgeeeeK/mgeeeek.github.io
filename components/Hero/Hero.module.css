@@ -24,7 +24,6 @@
   left: clamp(18px, 20vw, 311px);
   top: clamp(300px, 36vh, 350px);
   object-fit: contain;
-  animation: heroIn 0.8s ease 1.5s both;
   opacity: 0.92;
 }
 
@@ -73,11 +72,6 @@
   object-fit: contain;
   transform: rotate(12.33deg);
   /* scale/rotate props compose with the transform above — slap lands on 12.33deg */
-  animation: stampSlap 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.1) 1.45s both;
-}
-
-.stampWrapper {
-  animation: stampFloat 7s ease-in-out 2.6s infinite;
 }
 
 /* ── Headline ── */
@@ -122,23 +116,15 @@
   font-size: 48px;
   color: black;
   line-height: normal;
-  animation: heroTo 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.68s both;
 }
 
 .letter {
   display: inline-block;
-  animation: heroLetter 0.56s cubic-bezier(0.3, 1.45, 0.45, 1)
-    calc(0.12s + var(--i, 0) * 0.05s) both;
 }
 
 .titleWord,
 .titleWordB {
   display: inline-block;
-  animation: heroWord 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
-}
-
-.titleWordB {
-  animation-delay: 0.95s;
 }
 
 .srOnly {
@@ -193,7 +179,6 @@
   line-height: 1.115;
   box-shadow: 0 7px 0 black;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-  animation: heroBtn 0.55s cubic-bezier(0.3, 1.45, 0.45, 1) 1.12s both;
 }
 
 .btnSecondary {
@@ -215,13 +200,12 @@
   line-height: 1.115;
   box-shadow: 0 7px 0 black;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-  animation: heroBtn 0.55s cubic-bezier(0.3, 1.45, 0.45, 1) 1.24s both;
 }
 
 .btnPrimary:hover,
 .btnSecondary:hover {
   opacity: 1;
-  transform: translateY(-4px) rotate(-1deg);
+  transform: translateY(-4px);
   box-shadow: 0 11px 0 black;
 }
 
@@ -384,105 +368,14 @@
   50% { transform: scale(1); opacity: 1; }
 }
 
-/* ── Load choreography ──
-   Entrances use the individual translate/scale/rotate properties so they
-   compose with each element's authored transform. Final keyframes omit
-   `opacity` so elements settle back to their own authored opacity. */
-
-@keyframes heroIn {
-  from { opacity: 0; }
-}
-
-@keyframes heroLetter {
-  from {
-    opacity: 0;
-    translate: 0 0.5em;
-    rotate: -10deg;
-    scale: 0.7;
-  }
-  to {
-    translate: 0 0;
-    rotate: 0deg;
-    scale: 1;
-  }
-}
-
-@keyframes heroTo {
-  from {
-    opacity: 0;
-    translate: -12px 8px;
-    rotate: -8deg;
-  }
-  to {
-    translate: 0 0;
-    rotate: 0deg;
-  }
-}
-
-@keyframes heroWord {
-  from {
-    opacity: 0;
-    translate: 0 46px;
-    rotate: 3deg;
-  }
-  to {
-    translate: 0 0;
-    rotate: 0deg;
-  }
-}
-
-@keyframes heroBtn {
-  from {
-    opacity: 0;
-    translate: 0 16px;
-    scale: 0.55;
-  }
-  65% {
-    scale: 1.06;
-  }
-  to {
-    translate: 0 0;
-    scale: 1;
-  }
-}
-
-@keyframes stampSlap {
-  from {
-    opacity: 0;
-    scale: 2.2;
-    rotate: 16deg;
-  }
-  62% {
-    scale: 0.94;
-    rotate: -3deg;
-  }
-  to {
-    scale: 1;
-    rotate: 0deg;
-  }
-}
-
-@keyframes stampFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(2deg); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .star1,
   .ornamentA,
   .ornamentB,
-  .ornamentC,
-  .letter,
-  .titleWord,
-  .titleWordB,
-  .to,
-  .stamp,
-  .stampWrapper,
-  .btnPrimary,
-  .btnSecondary {
+  .ornamentC {
     animation: none;
     opacity: 1;
   }
+
   .btnPrimary,
   .btnSecondary {
     transition: none;

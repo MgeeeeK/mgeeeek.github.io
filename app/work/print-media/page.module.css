@@ -334,7 +334,7 @@
 
 .primaryButton:hover,
 .secondaryButton:hover {
-  transform: translateY(-4px) rotate(-1deg);
+  transform: translateY(-4px);
   box-shadow: 0 11px 0 0 black;
 }
 

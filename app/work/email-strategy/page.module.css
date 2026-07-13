@@ -557,11 +557,9 @@
   0%,
   100% {
     translate: 0 0;
-    rotate: 0deg;
   }
   50% {
     translate: 0 -12px;
-    rotate: 1.6deg;
   }
 }
 .micImg {
@@ -778,17 +776,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Slow ambient spin; `rotate` composes with the child's static transform. */
-  animation: emailPolySpin 26s linear infinite;
-}
-
-@keyframes emailPolySpin {
-  from {
-    rotate: 0deg;
-  }
-  to {
-    rotate: 360deg;
-  }
+  animation: none;
 }
 .polyRotate {
   flex: none;
@@ -838,7 +826,7 @@
 }
 .primaryButton:hover,
 .secondaryButton:hover {
-  transform: translateY(-4px) rotate(-1deg);
+  transform: translateY(-4px);
   box-shadow: 0 11px 0 black;
 }
 .primaryButton:active,

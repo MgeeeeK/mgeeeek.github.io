@@ -1,6 +1,7 @@
 'use client'
 
 import styles from './page.module.css'
+import MediaThumbnail from '@/components/MediaThumbnail/MediaThumbnail'
 
 type RevealVariant = 'rise' | 'pop' | 'stamp' | 'tilt' | 'slide-left' | 'slide-right' | 'fade'
 
@@ -37,6 +38,7 @@ export default function InstagramEmbedCard({
       data-reveal={reveal}
       data-reveal-delay={reveal !== undefined ? revealDelay : undefined}
     >
+      <MediaThumbnail href={href} />
       <span className={styles.playBadge} aria-hidden="true" />
     </a>
   )
