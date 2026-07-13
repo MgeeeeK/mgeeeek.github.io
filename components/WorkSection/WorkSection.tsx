@@ -63,18 +63,19 @@ export default function WorkSection() {
           ))}
         </div>
 
-        {/* "Don't Look!" — rotated purple card, desktop only */}
-        <div className={styles.dontLookWrapper}>
-          <ProjectCard
-            label="don't Look!"
-            href="/work/fun-stuff"
-            variant="purple"
-            rotated
-            size="large"
-            reveal="stamp"
-            revealDelay={6}
-          />
-        </div>
+      </div>
+
+      {/* "Don't Look!" — peeks from the section corner above phone sizes. */}
+      <div className={styles.dontLookWrapper}>
+        <ProjectCard
+          label="don't Look!"
+          href="/work/fun-stuff"
+          variant="purple"
+          rotated
+          size="large"
+          reveal="stamp"
+          revealDelay={6}
+        />
       </div>
     </section>
   )
