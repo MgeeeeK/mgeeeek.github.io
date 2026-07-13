@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Halo, Sparkle } from '@/components/Ambient/Ambient'
+import MediaThumbnail from '@/components/MediaThumbnail/MediaThumbnail'
 import Magnetic from '@/components/Fx/Magnetic'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import { getNextProject } from '@/lib/projects'
@@ -8,6 +8,7 @@ import styles from './page.module.css'
 
 const ASSET = '/images/print-media'
 const NEXT = getNextProject('print-media')
+const DIARY_FILM = 'https://www.youtube.com/watch?v=Qwg0dtuELIc'
 
 function Header() {
   return (
@@ -27,24 +28,11 @@ function Header() {
 
 function DesktopCanvas() {
   return (
-    <ScaledCanvas className={styles.canvas} ariaLabel="Print Media case study" height={3420}>
+    <ScaledCanvas className={styles.canvas} ariaLabel="Print Media case study" height={4540}>
       {/* Lower-section background band (Green Yodha) */}
       <div className={styles.greenBand} aria-hidden="true" />
 
       <Header />
-
-      <AmbientLayer>
-        {/* Right column beside the diary intro text (~150–700) */}
-        <Halo right={-150} top={200} size={340} />
-        <Sparkle left={960} top={300} size={32} delay={0.3} />
-        <Sparkle left={1130} top={560} size={22} delay={1.2} />
-        {/* Green Yodha band (~1380–3460) — right column is empty, keep it breathing */}
-        <Starburst reverse right={-130} top={1640} size={480} opacity={0.38} />
-        <Halo left={840} top={2620} size={340} />
-        <Sparkle left={1150} top={1560} size={24} delay={0.4} />
-        <Sparkle left={880} top={2160} size={28} delay={1.1} />
-        <Sparkle left={1000} top={3280} size={26} delay={0.7} />
-      </AmbientLayer>
 
       {/* ---------- Interactive Corporate Diary ---------- */}
       <h1 className={styles.diaryTitle} data-reveal="rise">Interactive Corporate Diary</h1>
@@ -53,13 +41,47 @@ function DesktopCanvas() {
       </p>
 
       <p className={styles.diaryBodyLeft} data-reveal="rise" data-reveal-delay="2">
-        We had helped Nissin Cup Noodles establish themselves on Instagram as a current and Gen Z brand. But
+        We had helped Nissin Cupnoodles establish themselves on Instagram as a current and Gen Z brand. But
         how does this personality translate outside of social media?
         <br />
         <br />
         For the 2025 edition of their annual corporate diary, they wanted us to showcase six
         &ldquo;Changemakers&rdquo; who transformed the world by fighting for a social cause.
       </p>
+
+      <a
+        className={styles.diaryVideo}
+        href={DIARY_FILM}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Watch the Nissin corporate diary film"
+      >
+        <MediaThumbnail href={DIARY_FILM} />
+      </a>
+
+      <div className={styles.diarySpread1} data-reveal="tilt">
+        <Image
+          src={`${ASSET}/diary-spread-1.jpg`}
+          alt="Nissin corporate diary spread featuring changemaker stories"
+          fill
+          sizes="748px"
+          className={styles.diaryImage}
+        />
+      </div>
+
+      <div className={styles.diaryPanel} aria-hidden="true">
+        <Image src={`${ASSET}/diary-panel.svg`} alt="" fill sizes="260px" />
+      </div>
+
+      <div className={styles.diarySpread2} data-reveal="tilt" data-reveal-delay="1">
+        <Image
+          src={`${ASSET}/diary-spread-2.jpg`}
+          alt="Nissin corporate diary interactive changemaker spread"
+          fill
+          sizes="747px"
+          className={styles.diaryImage}
+        />
+      </div>
 
       <p className={styles.diaryBodyRight} data-reveal="rise" data-reveal-delay="3">
         Turning real lives into simple, 100-word stories with a beginning, middle and end was definitely a
@@ -68,8 +90,22 @@ function DesktopCanvas() {
         feelings in different situations.
         <br />
         <br />
-        The result was a set of stories that remained engaging without losing their gravitas.
+        With the help of the design team, I came up with interactive elements like pull tabs and flap lifts
+        for each of the changemakers.
+        <br />
+        <br />
+        The result was a set of interactive stories that remained engaging without losing their gravitas.
       </p>
+
+      <div className={styles.diarySpread3} data-reveal="tilt" data-reveal-delay="2">
+        <Image
+          src={`${ASSET}/diary-spread-3.jpg`}
+          alt="Nissin corporate diary spread with illustrated interactive stories"
+          fill
+          sizes="747px"
+          className={styles.diaryImage}
+        />
+      </div>
 
       {/* ---------- Driving Change with Print Innovation ---------- */}
       <h2 className={styles.printTitle} data-reveal="rise">Driving Change with Print Innovation</h2>
@@ -140,7 +176,7 @@ function MobileLayout() {
           Making a fun and inspirational corporate diary for Nissin&rsquo;s employees
         </p>
         <p className={styles.mobileIntro} data-reveal="rise" data-reveal-delay="2">
-          We had helped Nissin Cup Noodles establish themselves on Instagram as a current and Gen Z brand. But
+          We had helped Nissin Cupnoodles establish themselves on Instagram as a current and Gen Z brand. But
           how does this personality translate outside of social media?
           <br />
           <br />
@@ -154,8 +190,36 @@ function MobileLayout() {
           feelings in different situations.
           <br />
           <br />
-          The result was a set of stories that remained engaging without losing their gravitas.
+          With the help of the design team, I came up with interactive elements like pull tabs and flap lifts
+          for each of the changemakers.
+          <br />
+          <br />
+          The result was a set of interactive stories that remained engaging without losing their gravitas.
         </p>
+
+        <a
+          className={styles.mobileVideo}
+          href={DIARY_FILM}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Watch the Nissin corporate diary film"
+        >
+          <MediaThumbnail href={DIARY_FILM} />
+        </a>
+
+        <div className={styles.mobileDiaryGallery}>
+          {[1, 2, 3].map((n) => (
+            <figure key={n} className={styles.mobileDiarySpread} data-reveal="tilt">
+              <Image
+                src={`${ASSET}/diary-spread-${n}.jpg`}
+                alt={`Nissin corporate diary spread ${n}`}
+                fill
+                sizes="92vw"
+                className={styles.diaryImage}
+              />
+            </figure>
+          ))}
+        </div>
       </section>
 
       <section className={styles.mobileSection}>

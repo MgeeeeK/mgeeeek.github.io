@@ -13,24 +13,18 @@
 .canvas {
   position: relative;
   width: min(100%, 1280px);
-  height: 3420px;
+  height: 4540px;
   margin: 0 auto;
   overflow: visible;
   background: #fbfff7;
 }
 
-/* Lower-section background band behind the Green Yodha work (683:189).
-   Originally ran to 3460px to make room for the "six Changemakers"
-   interactive diary spreads described in the copy above — those assets
-   were never produced, so the band (and the canvas overall) now ends
-   shortly after the real content instead of leaving ~2300px of blank
-   scroll. Re-extend this if/when the diary spreads are built. */
 .greenBand {
   position: absolute;
   left: -1px;
-  top: 1380px;
+  top: 2580px;
   width: 1281px;
-  height: 2040px;
+  height: 1840px;
   background: #f0ffdf;
 }
 
@@ -96,7 +90,7 @@
 .diaryTitle {
   position: absolute;
   left: 80px;
-  top: 140px;
+  top: 153px;
   width: 920px;
   font-family: var(--font-playfair), serif;
   font-size: 48px;
@@ -108,7 +102,7 @@
 .diarySubtitle {
   position: absolute;
   left: 80px;
-  top: 209px;
+  top: 222px;
   width: 776px;
   font-family: 'Helvetica', Arial, sans-serif;
   font-size: 20px;
@@ -120,8 +114,8 @@
 .diaryBodyLeft {
   position: absolute;
   left: 80px;
-  top: 254px;
-  width: 300px;
+  top: 267px;
+  width: 660px;
   font-family: 'Helvetica', Arial, sans-serif;
   font-size: 15px;
   line-height: 1.115;
@@ -130,20 +124,75 @@
 
 .diaryBodyRight {
   position: absolute;
-  left: 594px;
-  top: 501px;
-  width: 258px;
+  left: 150px;
+  top: 1473px;
+  width: 200px;
   font-family: 'Helvetica', Arial, sans-serif;
   font-size: 15px;
   line-height: 1.115;
   color: black;
 }
 
+.diaryVideo {
+  position: absolute;
+  left: 80px;
+  top: 400px;
+  width: 710px;
+  height: 400px;
+  overflow: hidden;
+  border: 6px solid #ff43b7;
+  border-radius: 28px;
+  background: black;
+}
+
+.diaryPanel {
+  position: absolute;
+  left: 120px;
+  top: 1260px;
+  width: 260px;
+  height: 760px;
+}
+
+.diarySpread1,
+.diarySpread2,
+.diarySpread3 {
+  position: absolute;
+  z-index: 1;
+}
+
+.diarySpread1 {
+  left: 92px;
+  top: 857px;
+  width: 748px;
+  height: 528px;
+  transform: rotate(-2.6deg);
+}
+
+.diarySpread2 {
+  left: 426px;
+  top: 1391px;
+  width: 747px;
+  height: 528px;
+  transform: rotate(6.55deg);
+}
+
+.diarySpread3 {
+  left: 116px;
+  top: 1927px;
+  width: 747px;
+  height: 528px;
+  transform: rotate(-5.02deg);
+}
+
+.diaryImage {
+  object-fit: cover;
+}
+
 /* ---------- Driving Change with Print Innovation ---------- */
 .printTitle {
   position: absolute;
   left: 80px;
-  top: 1453px;
+  top: 2640px;
   width: 1090px;
   font-family: var(--font-playfair), serif;
   font-size: 48px;
@@ -155,7 +204,7 @@
 .printSubtitle {
   position: absolute;
   left: 80px;
-  top: 1522px;
+  top: 2709px;
   width: 480px;
   font-family: 'Helvetica', Arial, sans-serif;
   font-size: 20px;
@@ -167,7 +216,7 @@
 .printBody {
   position: absolute;
   left: 80px;
-  top: 1557px;
+  top: 2744px;
   width: 442px;
   font-family: 'Helvetica', Arial, sans-serif;
   font-size: 15px;
@@ -179,7 +228,7 @@
 .star1 {
   position: absolute;
   left: 80px;
-  top: 1782px;
+  top: 2969px;
   width: 160px;
   height: 160px;
 }
@@ -187,7 +236,7 @@
 .option1 {
   position: absolute;
   left: 129px;
-  top: 1852px;
+  top: 3039px;
   width: 62px;
   font-family: var(--font-playfair), serif;
   font-size: 16px;
@@ -200,7 +249,7 @@
 .star2 {
   position: absolute;
   left: 580px;
-  top: 2530px;
+  top: 3717px;
   width: 160px;
   height: 160px;
 }
@@ -208,7 +257,7 @@
 .option2 {
   position: absolute;
   left: 624px;
-  top: 2600px;
+  top: 3787px;
   width: 72px;
   font-family: var(--font-playfair), serif;
   font-size: 16px;
@@ -222,7 +271,7 @@
 .fragranceStrip {
   position: absolute;
   left: 300px;
-  top: 1807px;
+  top: 2994px;
   width: 440px;
   height: 640px;
   overflow: hidden;
@@ -246,7 +295,7 @@
 .fragranceBody {
   position: absolute;
   left: 80px;
-  top: 1967px;
+  top: 3154px;
   width: 160px;
   font-family: 'Helvetica', Arial, sans-serif;
   font-size: 15px;
@@ -257,7 +306,7 @@
 .lake {
   position: absolute;
   left: 80px;
-  top: 2530px;
+  top: 3717px;
   width: 440px;
   height: 641px;
   overflow: hidden;
@@ -281,7 +330,7 @@
 .lakeBody {
   position: absolute;
   left: 580px;
-  top: 2727px;
+  top: 3914px;
   width: 160px;
   font-family: 'Helvetica', Arial, sans-serif;
   font-size: 15px;
@@ -297,7 +346,7 @@
 .footerButtons {
   position: absolute;
   left: 80px;
-  top: 3260px;
+  top: 4459px;
   display: flex;
   gap: 32px;
 }
@@ -391,6 +440,31 @@
   line-height: 1.45;
   color: black;
   margin: 0 0 18px;
+}
+
+.mobileVideo {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 710 / 400;
+  overflow: hidden;
+  margin: 24px 0;
+  border: 4px solid #ff43b7;
+  border-radius: 20px;
+  background: black;
+}
+
+.mobileDiaryGallery {
+  display: grid;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.mobileDiarySpread {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3508 / 2480;
+  margin: 0;
 }
 
 .mobileGrid {
