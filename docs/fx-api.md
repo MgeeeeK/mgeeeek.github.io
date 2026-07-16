@@ -33,21 +33,12 @@ Add attributes to ANY existing element. No wrappers, no structural change:
 - One variant family per section; stagger siblings 1 step apart.
 - `pop`/`stamp` for sticker-like media cards and badges; `rise`/`tilt`
   for text; `slide-*` sparingly for asymmetric layouts.
-- Do NOT put `data-reveal` on an element that also gets pointer-parallax
-  (`data-depth`) — both drive `translate`.
 
-## Pointer parallax — `ParallaxLayer`
+## Pointer parallax — removed
 
-```tsx
-import ParallaxLayer from '@/components/Fx/ParallaxLayer'
-
-<ParallaxLayer className={styles.decoratives} maxShift={26}>
-  <img ... data-depth="0.5" />   {/* 0 = pinned, 1 = full travel */}
-</ParallaxLayer>
-```
-
-Renders a `<div aria-hidden>` — use for decorative layers only. Fine
-pointers only.
+`ParallaxLayer` was removed 2026-07 at the client's request — no pointer
+parallax anywhere in the app. Decorative layers are plain
+`<div aria-hidden>` wrappers.
 
 ## Magnetic buttons — `Magnetic`
 

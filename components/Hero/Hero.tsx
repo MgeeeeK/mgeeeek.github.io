@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import styles from './Hero.module.css'
-import ParallaxLayer from '@/components/Fx/ParallaxLayer'
 import Magnetic from '@/components/Fx/Magnetic'
 
 const WELCOME = 'Welcome'
@@ -9,8 +8,8 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.contentWrap}>
-        {/* Decorative elements — absolutely positioned, pointer-parallax */}
-        <ParallaxLayer className={styles.decoratives} maxShift={26}>
+        {/* Decorative elements — absolutely positioned */}
+        <div className={styles.decoratives} aria-hidden="true">
           <Image
             src="/images/star1.svg"
             alt=""
@@ -18,7 +17,6 @@ export default function Hero() {
             height={362}
             className={styles.star1}
             loading="eager"
-            data-depth="0.5"
           />
           <Image
             src="/images/ornament-a.svg"
@@ -26,7 +24,6 @@ export default function Hero() {
             width={84}
             height={84}
             className={styles.ornamentA}
-            data-depth="0.9"
           />
           <Image
             src="/images/ornament-b.svg"
@@ -34,7 +31,6 @@ export default function Hero() {
             width={30}
             height={30}
             className={styles.ornamentB}
-            data-depth="1"
           />
           <Image
             src="/images/ornament-c.svg"
@@ -42,9 +38,8 @@ export default function Hero() {
             width={41}
             height={41}
             className={styles.ornamentC}
-            data-depth="0.75"
           />
-          <div className={styles.stampWrapper} data-depth="0.3">
+          <div className={styles.stampWrapper}>
             <Image
               src="/images/stamp-badge.png"
               alt=""
@@ -55,7 +50,7 @@ export default function Hero() {
               fetchPriority="high"
             />
           </div>
-        </ParallaxLayer>
+        </div>
 
         {/* Main content */}
         <div className={styles.content}>

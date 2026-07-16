@@ -1,24 +1,21 @@
 import Image from 'next/image'
 import ProjectCard from '@/components/ProjectCard/ProjectCard'
-import ParallaxLayer from '@/components/Fx/ParallaxLayer'
 import { PROJECTS } from '@/lib/projects'
 import styles from './WorkSection.module.css'
 
 export default function WorkSection() {
   return (
     <section id="work" className={styles.section}>
-      {/* Decorative star — desktop only, pointer-parallax */}
-      <ParallaxLayer className={styles.decoratives} maxShift={26}>
+      {/* Decorative star — desktop only */}
+      <div className={styles.decoratives} aria-hidden="true">
         <Image
           src="/images/star2.svg"
           alt=""
           width={463}
           height={463}
           className={styles.star2}
-          aria-hidden="true"
-          data-depth="0.4"
         />
-      </ParallaxLayer>
+      </div>
 
       <div className={styles.contentWrap}>
         <h2 className={styles.heading}>
