@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import MediaThumbnail from '@/components/MediaThumbnail/MediaThumbnail'
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Halo, Sparkle } from '@/components/Ambient/Ambient'
+import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import { getNextProject } from '@/lib/projects'
@@ -37,7 +37,6 @@ function DesktopCanvas() {
 
       <AmbientLayer>
         {/* top-right: open space beside the KreditBee text column */}
-        <Halo right={-150} top={120} size={360} />
         <Sparkle left={1190} top={300} size={30} delay={0.2} />
         <Sparkle left={840} top={560} size={20} delay={1.1} />
         <Sparkle left={1130} top={760} size={24} delay={0.6} />
@@ -45,7 +44,6 @@ function DesktopCanvas() {
         <Starburst left={840} top={1380} size={520} opacity={0.45} reverse />
         <Sparkle left={1080} top={1180} size={26} delay={0.9} />
         {/* drifting off the left edge below the tilted cards */}
-        <Halo lime left={-130} top={1760} size={320} />
         <Sparkle left={700} top={2010} size={22} delay={1.4} />
         {/* beside the Epson section */}
         <Sparkle left={1150} top={2260} size={28} delay={0.4} />

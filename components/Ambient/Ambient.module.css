@@ -21,18 +21,6 @@
   animation: none;
 }
 
-.halo {
-  border-radius: 50%;
-  border: 2px dashed var(--color-pink-hot, #ff43b7);
-  opacity: 0.32;
-  animation: none;
-}
-
-.haloLime {
-  border-color: var(--color-lime-green, #bbff6c);
-  opacity: 0.5;
-}
-
 .sparkle {
   animation: ambientTwinkle 2.4s ease-in-out infinite;
 }
@@ -52,7 +40,6 @@
 @media (prefers-reduced-motion: reduce) {
   .starburst,
   .starburstReverse,
-  .halo,
   .sparkle {
     animation: none;
   }

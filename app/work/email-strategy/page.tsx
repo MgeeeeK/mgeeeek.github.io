@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Halo, Sparkle } from '@/components/Ambient/Ambient'
+import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import { getNextProject } from '@/lib/projects'
@@ -66,11 +66,9 @@ function DesktopCanvas() {
 
       <AmbientLayer>
         {/* top-right empty corner, above the right-aligned solution text */}
-        <Halo right={-150} top={120} size={340} />
         <Sparkle left={980} top={250} size={30} delay={0.3} />
         <Sparkle left={1140} top={470} size={20} delay={1.0} />
         {/* left margin beside the flowchart */}
-        <Halo lime left={-160} top={980} size={320} />
         <Sparkle left={32} top={860} size={22} delay={0.7} />
         {/* roomy gap right of the toneBody, above the mic illustration */}
         <Sparkle left={1130} top={1180} size={26} delay={1.5} />

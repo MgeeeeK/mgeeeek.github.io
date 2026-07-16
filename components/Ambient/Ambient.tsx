@@ -44,17 +44,6 @@ export function Starburst({
   )
 }
 
-/** Slow-rotating dashed halo ring. Usually sits partly off-canvas. */
-export function Halo({ lime, ...pos }: Pos & { lime?: boolean }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={`${styles.obj} ${styles.halo} ${lime ? styles.haloLime : ''} ${pos.className ?? ''}`}
-      style={base(pos)}
-    />
-  )
-}
-
 /** Small twinkling star ornament. */
 export function Sparkle({
   src = '/images/star2.svg',

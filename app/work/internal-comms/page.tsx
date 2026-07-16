@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Halo, Sparkle } from '@/components/Ambient/Ambient'
+import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import { getNextProject } from '@/lib/projects'
@@ -133,15 +133,12 @@ function DesktopCanvas() {
       <AmbientLayer>
         {/* Section 1 — AI Microsite (top, steps + album cluster) */}
         <Sparkle left={1010} top={320} size={30} delay={0.2} />
-        <Halo right={-150} top={520} size={360} />
         <Starburst left={980} top={1480} size={520} opacity={0.4} />
         <Sparkle left={520} top={1020} size={22} delay={1.1} />
-        <Halo lime left={-130} top={1980} size={300} />
         <Sparkle left={1080} top={2360} size={26} delay={0.7} />
 
         {/* Section 2 — CSR pink band (mid) */}
         <Sparkle left={1130} top={3160} size={24} delay={1.4} />
-        <Halo right={-160} top={3320} size={340} />
         <Sparkle left={1090} top={3640} size={20} delay={0.5} />
 
         {/* Section 3 — Recipe / mailers (bottom) */}
@@ -152,7 +149,6 @@ function DesktopCanvas() {
         <Sparkle left={70} top={5980} size={26} delay={0.3} />
 
         {/* Footer corner (below the mailers, behind nothing readable) */}
-        <Halo right={-140} top={6080} size={300} />
         <Sparkle left={560} top={6280} size={20} delay={0.6} />
       </AmbientLayer>
 

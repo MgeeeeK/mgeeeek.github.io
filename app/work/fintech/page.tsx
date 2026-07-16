@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Halo, Sparkle } from '@/components/Ambient/Ambient'
+import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import { getNextProject } from '@/lib/projects'
@@ -44,12 +44,10 @@ function DesktopCanvas() {
       <Header />
 
       <AmbientLayer>
-        <Halo right={-140} top={36} size={360} />
         <Sparkle left={930} top={210} size={34} delay={0.2} />
         <Sparkle left={1130} top={520} size={22} delay={1.1} />
         <Sparkle left={700} top={470} size={18} delay={0.6} />
         <Starburst left={636} top={600} size={560} opacity={0.5} />
-        <Halo lime right={-70} top={1080} size={320} />
         <Sparkle left={900} top={1320} size={28} delay={0.9} />
         <Sparkle left={150} top={1640} size={24} delay={1.4} />
         <Sparkle left={60} top={740} size={20} delay={0.4} />
