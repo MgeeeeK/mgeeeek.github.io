@@ -90,34 +90,6 @@
   width: min(100%, 760px);
 }
 
-.grid > :nth-child(2) {
-  transform: translateY(34px) rotate(1.5deg);
-}
-
-.grid > :nth-child(3) {
-  transform: translateY(-10px) rotate(-1.2deg);
-}
-
-.grid > :nth-child(4) {
-  transform: translateY(6px) rotate(1deg);
-}
-
-.grid > :nth-child(5) {
-  transform: translateY(40px) rotate(-1.8deg);
-}
-
-.grid > :nth-child(6) {
-  transform: translateY(8px) rotate(1.8deg);
-}
-
-.grid > :nth-child(2):hover,
-.grid > :nth-child(3):hover,
-.grid > :nth-child(4):hover,
-.grid > :nth-child(5):hover,
-.grid > :nth-child(6):hover {
-  transform: translateY(-8px);
-}
-
 .dontLookWrapper {
   position: absolute;
   right: clamp(-112px, -5vw, -72px);
@@ -150,12 +122,6 @@
     gap: 24px;
     width: 100%;
     max-width: 720px;
-  }
-  .grid > :nth-child(n) {
-    transform: none;
-  }
-  .grid > :nth-child(n):hover {
-    transform: translateY(-8px);
   }
 }
 

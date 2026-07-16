@@ -19,14 +19,14 @@
 .contactPage {
   background: var(--color-purple);
   padding: clamp(84px, 8vw, 116px) clamp(24px, 5.5vw, 80px) 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 }
 
+/* Same 1280px centered wrap as .aboutContentWrap so the contact heading's
+   left edge lines up with "About Me" below it. */
 .contactContent {
-  width: min(720px, 100%);
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
