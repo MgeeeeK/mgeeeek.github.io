@@ -26,7 +26,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body>
-        <div className="fx-progress" aria-hidden="true" />
         <MediaLightboxProvider>{children}</MediaLightboxProvider>
       </body>
     </html>

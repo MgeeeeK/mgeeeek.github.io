@@ -3,8 +3,9 @@
 Site-wide motion infrastructure (added 2026-06). Mounted globally in
 `app/layout.tsx`: `FxProvider` (scroll reveals), `Cursor` (custom cursor — a
 writing quill with an ink-trail canvas; clicks splat an ink blot),
-`.fx-progress` (scroll ribbon), paper-grain overlay, and `app/template.tsx`
-(page-enter transition). Global styles in `app/fx.css`.
+paper-grain overlay, and `app/template.tsx` (page-enter transition).
+Global styles in `app/fx.css`. The `.fx-progress` scroll ribbon was
+removed 2026-07 at the client's request.
 
 ## Scroll reveals — `data-reveal`
 
