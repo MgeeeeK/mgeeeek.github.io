@@ -491,16 +491,6 @@
   word-break: break-word;
 }
 
-/* Gentle resting depth on the green pill nodes (diagram-safe: no transform) */
-.pillR1A:hover,
-.pillR1B:hover,
-.pillR1C:hover,
-.pillR2A:hover,
-.pillR2B:hover,
-.pillR2C:hover {
-  filter: brightness(1.04);
-}
-
 /* Scenario labels Route 2 */
 .scenA2 {
   position: absolute;
@@ -549,18 +539,6 @@
 .micRotate {
   flex: none;
   transform: rotate(-28.62deg);
-  /* Gentle drift; individual properties compose with the static rotation. */
-  animation: emailMicFloat 7.5s ease-in-out infinite;
-}
-
-@keyframes emailMicFloat {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -12px;
-  }
 }
 .micImg {
   display: block;
@@ -935,13 +913,8 @@
    stable, fully-visible resting state.
    ════════════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
-  .micRotate,
-  .polyBox {
-    animation: none;
-  }
   .primaryButton,
-  .secondaryButton,
-  .subjLine {
+  .secondaryButton {
     transition: none;
   }
   .primaryButton:hover,
@@ -950,8 +923,5 @@
   .secondaryButton:active {
     transform: none;
     box-shadow: none;
-  }
-  .subjLine:hover {
-    transform: none;
   }
 }

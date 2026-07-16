@@ -106,15 +106,6 @@
   border-radius: 17px;
   background: black;
   box-shadow: 5px 7px 0 rgb(255 67 183 / 0.22);
-  /* `translate` composes with each card's authored rotate transform. */
-  transition: box-shadow 220ms ease, filter 220ms ease, translate 200ms ease;
-}
-
-.heroCard:hover {
-  translate: 0 -6px;
-  box-shadow: 0 16px 34px rgb(255 31 169 / 0.45);
-  filter: brightness(1.06);
-  z-index: 5;
 }
 
 .heroCard:focus-visible {
@@ -334,13 +325,6 @@
   color: white;
   filter: drop-shadow(0 7px 0 rgb(0 0 0 / 0.16));
   transform-origin: center;
-  transition: transform 220ms ease, filter 220ms ease, box-shadow 220ms ease;
-}
-
-.mediaCard:hover {
-  transform: translateY(-6px);
-  filter: drop-shadow(0 14px 0 rgb(0 0 0 / 0.2));
-  box-shadow: 0 0 0 4px rgb(255 67 183 / 0.16);
 }
 
 .mediaCard:focus-visible {
@@ -364,10 +348,6 @@
   align-items: center;
   justify-content: center;
   opacity: 0.9;
-  transition: transform 200ms cubic-bezier(0.3, 1.45, 0.45, 1), opacity 200ms ease;
-  /* Idle breathing loop on the individual `scale` property so it composes
-     with the centering transform (and the hover pop below). */
-  animation: playPulse 2.4s ease-in-out infinite;
 }
 
 .playBadge::after {
@@ -380,32 +360,6 @@
   border-color: transparent transparent transparent #fff;
 }
 
-.mediaCard:hover .playBadge {
-  transform: translate(-50%, -50%) scale(1.22);
-  opacity: 1;
-}
-
-@keyframes playPulse {
-  0%,
-  100% {
-    scale: 1;
-  }
-  50% {
-    scale: 1.07;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mediaCard,
-  .playBadge {
-    transition: none;
-  }
-
-  .playBadge {
-    animation: none;
-    scale: none;
-  }
-}
 
 .mediaCardActive {
   background: white;
@@ -940,15 +894,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroCard,
-  .mediaCard,
   .primaryButton,
   .secondaryButton {
     transition: none;
-  }
-
-  .heroCard:hover {
-    translate: none;
   }
 
   .sparkleA,

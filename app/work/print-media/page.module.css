@@ -276,14 +276,6 @@
   height: 640px;
   overflow: hidden;
   box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22);
-  transition: box-shadow 220ms ease, filter 220ms ease, transform 220ms ease;
-}
-
-.fragranceStrip:hover {
-  box-shadow: 0 16px 34px rgba(255, 31, 169, 0.45);
-  filter: brightness(1.06);
-  transform: translateY(-6px) rotate(-0.8deg);
-  z-index: 5;
 }
 
 .fragranceStrip:focus-visible {
@@ -311,14 +303,6 @@
   height: 641px;
   overflow: hidden;
   box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22);
-  transition: box-shadow 220ms ease, filter 220ms ease, transform 220ms ease;
-}
-
-.lake:hover {
-  box-shadow: 0 16px 34px rgba(255, 31, 169, 0.45);
-  filter: brightness(1.06);
-  transform: translateY(-6px) rotate(0.8deg);
-  z-index: 5;
 }
 
 .lake:focus-visible {
@@ -520,13 +504,5 @@
   .secondaryButton:active {
     transform: none;
     box-shadow: 0 7px 0 0 black;
-  }
-  .fragranceStrip,
-  .lake {
-    transition: none;
-  }
-  .fragranceStrip:hover,
-  .lake:hover {
-    transform: none;
   }
 }

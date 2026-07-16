@@ -257,41 +257,6 @@
   height: 186.277px;
   display: block;
   z-index: 1;
-  transition: filter 220ms ease;
-}
-
-.puddleLink:hover {
-  filter: brightness(1.05) drop-shadow(0 10px 0 rgba(255, 67, 183, 0.22));
-}
-
-/* Especially fun hover: the milk puddle wiggles ±2° (~400ms). Runs on the
-   inner span so it never fights the reveal animation on the link itself. */
-.puddleLink:hover .puddleInner,
-.puddleLink:focus-visible .puddleInner {
-  animation: none;
-}
-
-/* The spilled splash hops in sympathy when the puddle is hovered. */
-.puddleLink:hover ~ .splash .splashInner {
-  animation: splashHop 480ms cubic-bezier(0.3, 1.45, 0.45, 1);
-}
-
-/* The label floats up a touch with the wiggle. */
-.puddleLink:hover ~ .viewDesign {
-  translate: 0 -3px;
-}
-
-@keyframes splashHop {
-  0% { translate: 0 0; }
-  40% { translate: 0 -5px; }
-  72% { translate: 0 1px; }
-  100% { translate: 0 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .puddleLink {
-    transition: none;
-  }
 }
 
 /* image overflows box per Figma inset[-1.61% -1.06% -1.61% -1.33%] */
@@ -561,12 +526,6 @@
   aspect-ratio: 283 / 186;
 }
 
-/* Same fun wiggle on tap/press for the mobile puddle (child img, so it
-   never fights the reveal animation on the link). */
-.mobilePuddle:active .puddleImg {
-  animation: none;
-}
-
 .mobileViewDesign {
   position: absolute;
   left: 45%;
@@ -644,17 +603,11 @@
 
 /* ---------- Reduced motion: disable all NEW motion, keep stable states ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .bookImg,
-  .viewDesign,
   .goBackButton,
   .getInTouchButton,
   .mobilePrimaryButton,
   .mobileSecondaryButton {
     transition: none;
-  }
-
-  .book:hover .bookImg {
-    transform: none;
   }
 
   .goBackButton:hover,
@@ -664,22 +617,9 @@
   .mobilePrimaryButton:hover,
   .mobileSecondaryButton:hover,
   .mobilePrimaryButton:active,
-  .mobileSecondaryButton:active,
-  .puddleLink:hover ~ .viewDesign {
+  .mobileSecondaryButton:active {
     translate: 0 0;
     rotate: 0deg;
     filter: none;
-  }
-
-  /* Keep the pre-existing brightness hover; drop only the new shadow lift */
-  .puddleLink:hover {
-    filter: brightness(1.05);
-  }
-
-  .puddleLink:hover .puddleInner,
-  .puddleLink:focus-visible .puddleInner,
-  .puddleLink:hover ~ .splash .splashInner,
-  .mobilePuddle:active .puddleImg {
-    animation: none;
   }
 }

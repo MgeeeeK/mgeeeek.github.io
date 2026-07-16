@@ -111,38 +111,12 @@
   cursor: pointer;
   text-decoration: none;
   box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22);
-  transition:
-    box-shadow 220ms ease,
-    filter 220ms ease,
-    transform 240ms cubic-bezier(0.3, 1.45, 0.45, 1);
-}
-
-.filmCard:hover {
-  box-shadow:
-    0 20px 44px rgba(255, 31, 169, 0.55),
-    6px 9px 0 rgba(255, 67, 183, 0.28);
-  filter: brightness(1.1);
-  transform: translateY(-6px);
-  z-index: 5;
-}
-
-.filmCard:active {
-  transform: translateY(-2px) scale(0.99);
 }
 
 .filmCard:focus-visible {
   outline: none;
   box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22), 0 0 0 5px rgba(221, 255, 183, 0.75);
   z-index: 5;
-}
-
-/* TV screen link — same irresistible-hover vocabulary, shape-aware shadow */
-.screenLink {
-  transition: filter 220ms ease;
-}
-
-.screenLink:hover {
-  filter: brightness(1.08) drop-shadow(0 12px 22px rgba(255, 31, 169, 0.4));
 }
 
 /* decorative play badge centered on every film card */
@@ -162,7 +136,6 @@
   background: #ff43b7;
   box-shadow: 0 5px 0 rgba(0, 0, 0, 0.8);
   pointer-events: none;
-  animation: ffPlayPulse 2.4s ease-in-out infinite;
 }
 
 .playBadge::after {
@@ -186,52 +159,6 @@
   margin-left: 4px;
 }
 
-.filmCard:hover .playBadge,
-.filmCard:focus-visible .playBadge,
-.screenLink:hover .playBadge,
-.screenLink:focus-visible .playBadge {
-  animation: ffPlayGrow 320ms cubic-bezier(0.3, 1.45, 0.45, 1) forwards;
-}
-
-@keyframes ffPlayPulse {
-  0%,
-  100% {
-    scale: 1;
-  }
-  50% {
-    scale: 1.08;
-  }
-}
-
-@keyframes ffPlayGrow {
-  from {
-    scale: 1;
-  }
-  to {
-    scale: 1.22;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .filmCard,
-  .screenLink {
-    transition: none;
-  }
-
-  .filmCard:hover,
-  .filmCard:active {
-    transform: none;
-  }
-
-  .playBadge,
-  .filmCard:hover .playBadge,
-  .filmCard:focus-visible .playBadge,
-  .screenLink:hover .playBadge,
-  .screenLink:focus-visible .playBadge {
-    animation: none;
-    scale: 1;
-  }
-}
 
 /* TV body */
 .tvBody {
@@ -396,15 +323,6 @@
     background: black;
     border: 6px solid #ff43b7;
     border-radius: 24px;
-    transition: transform 200ms cubic-bezier(0.3, 1.45, 0.45, 1);
-  }
-
-  .mobileCard:active {
-    transform: scale(0.985);
-  }
-
-  .mobileCard:active .playBadge {
-    animation: ffPlayGrow 320ms cubic-bezier(0.3, 1.45, 0.45, 1) forwards;
   }
 
   .mobileNote {
