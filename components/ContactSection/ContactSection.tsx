@@ -17,7 +17,7 @@ const PHONE_KEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 const CONTACT_FORM_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT?.trim()
 
 type SubmissionState = {
-  type: 'idle' | 'submitting' | 'success' | 'error'
+  type: 'idle' | 'submitting' | 'success' | 'error' | 'fallback'
   message: string
 }
 
@@ -56,7 +56,7 @@ export default function ContactSection() {
 
       window.location.href = `mailto:abhiv1999@gmail.com?subject=${subject}&body=${body}`
       setSubmission({
-        type: 'success',
+        type: 'fallback',
         message: 'Opening your email app with this message filled in — send it from there to reach me.',
       })
       return
@@ -86,7 +86,7 @@ export default function ContactSection() {
       form.reset()
       setSubmission({
         type: 'success',
-        message: 'Thanks — your message has been sent. I’ll get back to you soon.',
+        message: '',
       })
     } catch {
       setSubmission({
@@ -115,6 +115,11 @@ export default function ContactSection() {
             aria-label="Contact form"
             className={styles.form}
             onSubmit={handleSubmit}
+            onInput={() => {
+              if (submission.type !== 'idle' && submission.type !== 'submitting') {
+                setSubmission(INITIAL_SUBMISSION_STATE)
+              }
+            }}
           >
             <input className={styles.input} name="name" type="text" placeholder="Name" autoComplete="name" maxLength={100} required data-reveal="rise" data-reveal-delay="1" />
             <input className={styles.input} name="company" type="text" placeholder="Company" autoComplete="organization" maxLength={150} data-reveal="rise" data-reveal-delay="2" />
@@ -129,10 +134,15 @@ export default function ContactSection() {
                 type="submit"
                 className={styles.sendBtn}
                 disabled={submission.type === 'submitting'}
+                aria-live="polite"
                 data-reveal="pop"
                 data-reveal-delay="5"
               >
-                {submission.type === 'submitting' ? 'Sending…' : 'Send'}
+                {submission.type === 'submitting'
+                  ? 'Sending…'
+                  : submission.type === 'success'
+                    ? 'Sent!'
+                    : 'Send'}
               </button>
             </Magnetic>
             <p
@@ -183,7 +193,14 @@ export default function ContactSection() {
                 </a>
               </Magnetic>
               <Magnetic>
-                <a className={styles.btnResume} href="/resume.pdf" download data-reveal="pop" data-reveal-delay="3">
+                <a
+                  className={styles.btnResume}
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  data-reveal="pop"
+                  data-reveal-delay="3"
+                >
                   Download Resume
                 </a>
               </Magnetic>

@@ -5,7 +5,6 @@
   overflow: hidden;
   isolation: isolate;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .aboutPage {
@@ -44,7 +43,7 @@
 
 .emailLine {
   font-family: 'Helvetica', Arial, sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 20px;
   color: #ddffb7;
   line-height: 1.2;
@@ -357,9 +356,9 @@
 .aboutHeading {
   font-family: var(--font-playfair), serif;
   font-weight: 700;
-  font-size: clamp(64px, 8vw, 118px);
+  font-size: clamp(44px, 5vw, 72px);
   color: black;
-  line-height: 0.82;
+  line-height: 0.92;
 }
 
 .bio {
@@ -407,6 +406,77 @@
 }
 
 
+/* Desktop layouts also need a height axis. This compact, fluid mode keeps the
+   complete form and About content inside their snap panels on laptop screens
+   without changing the roomy presentation on taller monitors. */
+@media (min-width: 1280px) and (max-height: 820px) {
+  .contactPage {
+    padding-top: clamp(36px, 6.5svh, 68px);
+  }
+
+  .contactHeading {
+    font-size: clamp(48px, 8.5svh, 64px);
+    margin-bottom: clamp(12px, 2svh, 20px);
+  }
+
+  .emailLine {
+    font-size: clamp(16px, 2.7svh, 20px);
+    margin-bottom: clamp(14px, 3svh, 28px);
+  }
+
+  .form {
+    gap: clamp(10px, 1.9svh, 16px);
+  }
+
+  .input {
+    height: clamp(46px, 7.5svh, 54px);
+  }
+
+  .textarea {
+    height: clamp(88px, 14.5svh, 116px);
+  }
+
+  .sendBtn,
+  .btnBrowse,
+  .btnResume {
+    height: clamp(52px, 8.5svh, 61px);
+  }
+
+  .formStatus {
+    min-height: 18px;
+  }
+
+  .aboutPage {
+    padding-top: clamp(28px, 5svh, 48px);
+    padding-bottom: clamp(26px, 4svh, 40px);
+  }
+
+  .aboutSection {
+    min-height: calc(100svh - 60px - clamp(54px, 9svh, 88px));
+    gap: clamp(12px, 2.2svh, 20px);
+  }
+
+  .aboutHeading {
+    font-size: clamp(48px, 8.5svh, 64px);
+  }
+
+  .bio {
+    font-size: clamp(15px, 2.4svh, 17px);
+    line-height: 1.2;
+  }
+
+  .phoneIllustration {
+    scale: 0.92;
+    transform-origin: 50% var(--ant-total);
+  }
+}
+
+@media (min-width: 1280px) and (max-height: 700px) {
+  .phoneIllustration {
+    scale: 0.82;
+  }
+}
+
 @media (max-width: 1279px) {
   .aboutPage,
   .contactPage {
@@ -426,8 +496,64 @@
     font-size: 54px;
   }
 
+  .aboutHeading {
+    font-size: 54px;
+  }
+
   .form {
     width: min(680px, 100%);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) and (max-height: 700px) {
+  .contactPage {
+    padding-top: 40px;
+  }
+
+  .contactHeading {
+    margin-bottom: 12px;
+  }
+
+  .emailLine {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .form {
+    gap: 12px;
+  }
+
+  .input {
+    height: 48px;
+  }
+
+  .textarea {
+    height: 96px;
+  }
+
+  .sendBtn,
+  .btnBrowse,
+  .btnResume {
+    height: 54px;
+  }
+
+  .aboutPage {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .aboutSection {
+    min-height: calc(100svh - 124px);
+    gap: 14px;
+  }
+
+  .aboutHeading {
+    font-size: 54px;
+  }
+
+  .bio {
+    font-size: 15.5px;
+    line-height: 1.2;
   }
 }
 
@@ -450,7 +576,7 @@
   }
 
   .aboutHeading {
-    font-size: 56px;
+    font-size: 42px;
   }
 
   .bio {

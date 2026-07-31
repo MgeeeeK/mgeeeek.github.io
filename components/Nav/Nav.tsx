@@ -1,6 +1,12 @@
 'use client'
 
-import { useState, useEffect, useRef, type CSSProperties } from 'react'
+import {
+  useState,
+  useEffect,
+  useRef,
+  type CSSProperties,
+  type MouseEvent as ReactMouseEvent,
+} from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { NAV_PROJECTS } from '@/lib/projects'
@@ -16,7 +22,7 @@ export default function Nav() {
   const isHome = usePathname() === '/'
 
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
+    function handleClickOutside(e: globalThis.MouseEvent) {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setIsOpen(false)
       }
@@ -32,13 +38,17 @@ export default function Nav() {
     }
   }, [])
 
-  function scrollToContact() {
+  function scrollToContact(event: ReactMouseEvent<HTMLAnchorElement>) {
+    event.preventDefault()
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+    window.history.pushState(null, '', '#contact')
     setIsOpen(false)
   }
 
-  function scrollToWork() {
+  function scrollToWork(event: ReactMouseEvent<HTMLAnchorElement>) {
+    event.preventDefault()
     document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
+    window.history.pushState(null, '', '#work')
   }
 
   return (
