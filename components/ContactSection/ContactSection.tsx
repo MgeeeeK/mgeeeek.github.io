@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { type FormEvent, useState } from 'react'
 import Image from 'next/image'
 import Magnetic from '@/components/Fx/Magnetic'
 import styles from './ContactSection.module.css'
@@ -14,9 +14,87 @@ So if you want someone on your team who is meticulous, passionate and convincing
 P.S. I also have a Bachelor's degree in communication design and designed this portfolio website myself!`
 
 const PHONE_KEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const CONTACT_FORM_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT?.trim()
+
+type SubmissionState = {
+  type: 'idle' | 'submitting' | 'success' | 'error'
+  message: string
+}
+
+const INITIAL_SUBMISSION_STATE: SubmissionState = {
+  type: 'idle',
+  message: '',
+}
 
 export default function ContactSection() {
-  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submission, setSubmission] = useState<SubmissionState>(INITIAL_SUBMISSION_STATE)
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    const data = new FormData(form)
+    const name = (data.get('name') || '').toString().trim()
+    const company = (data.get('company') || '').toString().trim()
+    const email = (data.get('email') || '').toString().trim()
+    const message = (data.get('message') || '').toString().trim()
+    const website = (data.get('website') || '').toString().trim()
+
+    if (!name || !email || !message) {
+      setSubmission({
+        type: 'error',
+        message: 'Please fill in your name, email, and a message before sending.',
+      })
+      return
+    }
+
+    if (!CONTACT_FORM_ENDPOINT) {
+      const subject = encodeURIComponent(`Portfolio enquiry from ${name}`)
+      const body = encodeURIComponent(
+        `Name: ${name}\nCompany: ${company}\nEmail: ${email}\n\n${message}`
+      )
+
+      window.location.href = `mailto:abhiv1999@gmail.com?subject=${subject}&body=${body}`
+      setSubmission({
+        type: 'success',
+        message: 'Opening your email app with this message filled in — send it from there to reach me.',
+      })
+      return
+    }
+
+    setSubmission({ type: 'submitting', message: 'Sending your message…' })
+
+    const body = new URLSearchParams({
+      name,
+      company,
+      email,
+      message,
+      website,
+      source: window.location.href,
+    })
+
+    try {
+      // Apps Script ContentService responds through a Google redirect. `no-cors`
+      // lets this static site submit without requiring a server-side proxy.
+      await fetch(CONTACT_FORM_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        redirect: 'follow',
+        body,
+      })
+
+      form.reset()
+      setSubmission({
+        type: 'success',
+        message: 'Thanks — your message has been sent. I’ll get back to you soon.',
+      })
+    } catch {
+      setSubmission({
+        type: 'error',
+        message: 'Something went wrong while sending. Please email me at abhiv1999@gmail.com instead.',
+      })
+    }
+  }
 
   return (
     <>
@@ -36,47 +114,34 @@ export default function ContactSection() {
           <form
             aria-label="Contact form"
             className={styles.form}
-            onSubmit={(e) => {
-              e.preventDefault()
-              const data = new FormData(e.currentTarget)
-              const name = (data.get('name') || '').toString().trim()
-              const company = (data.get('company') || '').toString().trim()
-              const email = (data.get('email') || '').toString().trim()
-              const message = (data.get('message') || '').toString().trim()
-
-              if (!name || !email || !message) {
-                setStatus('error')
-                return
-              }
-
-              const subject = encodeURIComponent(
-                `Portfolio enquiry${name ? ` from ${name}` : ''}`
-              )
-              const body = encodeURIComponent(
-                `Name: ${name}\nCompany: ${company}\nEmail: ${email}\n\n${message}`
-              )
-              window.location.href = `mailto:abhiv1999@gmail.com?subject=${subject}&body=${body}`
-              setStatus('success')
-            }}
+            onSubmit={handleSubmit}
           >
-            <input className={styles.input} name="name"    type="text"  placeholder="Name"     required data-reveal="rise" data-reveal-delay="1" />
-            <input className={styles.input} name="company" type="text"  placeholder="Company"  data-reveal="rise" data-reveal-delay="2" />
-            <input className={styles.input} name="email"   type="email" placeholder="Email-id" required data-reveal="rise" data-reveal-delay="3" />
-            <textarea className={styles.textarea} name="message" placeholder="Message" required data-reveal="rise" data-reveal-delay="4" />
+            <input className={styles.input} name="name" type="text" placeholder="Name" autoComplete="name" maxLength={100} required data-reveal="rise" data-reveal-delay="1" />
+            <input className={styles.input} name="company" type="text" placeholder="Company" autoComplete="organization" maxLength={150} data-reveal="rise" data-reveal-delay="2" />
+            <input className={styles.input} name="email" type="email" placeholder="Email-id" autoComplete="email" maxLength={254} required data-reveal="rise" data-reveal-delay="3" />
+            <textarea className={styles.textarea} name="message" placeholder="Message" maxLength={5000} required data-reveal="rise" data-reveal-delay="4" />
+            <div className={styles.honeypot} aria-hidden="true">
+              <label htmlFor="contact-website">Leave this field empty</label>
+              <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
             <Magnetic>
-              <button type="submit" className={styles.sendBtn} data-reveal="pop" data-reveal-delay="5">
-                Send
+              <button
+                type="submit"
+                className={styles.sendBtn}
+                disabled={submission.type === 'submitting'}
+                data-reveal="pop"
+                data-reveal-delay="5"
+              >
+                {submission.type === 'submitting' ? 'Sending…' : 'Send'}
               </button>
             </Magnetic>
             <p
               className={styles.formStatus}
               role="status"
               aria-live="polite"
-              data-variant={status === 'idle' ? undefined : status}
+              data-variant={submission.type === 'success' || submission.type === 'error' ? submission.type : undefined}
             >
-              {status === 'success' &&
-                'Opening your email app with this message filled in — send it from there to reach me.'}
-              {status === 'error' && 'Please fill in your name, email, and a message before sending.'}
+              {submission.message}
             </p>
           </form>
         </div>

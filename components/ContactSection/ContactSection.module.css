@@ -129,6 +129,19 @@
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
+.sendBtn:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .formStatus {
   font-family: 'Helvetica', Arial, sans-serif;
   font-size: 14px;
