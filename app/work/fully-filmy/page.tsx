@@ -13,6 +13,7 @@ const NEXT = getNextProject('fully-filmy')
 const YT_KREDITBEE = 'https://www.youtube.com/watch?v=MhybE-eBjn0'
 const YT_SCHNEIDER_BIG = 'https://www.youtube.com/watch?v=Qwg0dtuELIc'
 const YT_SCHNEIDER_TILT = 'https://www.youtube.com/watch?v=AS58Xaa19BI'
+const YT_SCHNEIDER_TILT_ALT = 'https://www.youtube.com/watch?v=mKgfjKNF7w0'
 const YT_EPSON_BIG = 'https://www.youtube.com/watch?v=wRMV6qrXx-s'
 const YT_EPSON_SMALL = 'https://www.youtube.com/watch?v=TPIzrnSt-1k'
 
@@ -366,13 +367,13 @@ function DesktopCanvas() {
         <div style={{ transform: 'rotate(4.34deg)' }}>
           <a
             className={styles.filmCard}
-            href={YT_SCHNEIDER_TILT}
+            href={YT_SCHNEIDER_TILT_ALT}
             target="_blank"
             rel="noreferrer"
-            aria-label="Watch Schneider Electric film"
+            aria-label="Watch Schneider Electric film — second spot"
             style={{ width: 480.342, height: 270.615, position: 'relative' }}
           >
-            <MediaThumbnail href={YT_SCHNEIDER_TILT} />
+            <MediaThumbnail href={YT_SCHNEIDER_TILT_ALT} />
             <span className={styles.playBadge} aria-hidden="true" />
           </a>
         </div>
@@ -535,8 +536,8 @@ function MobileLayout() {
           <MediaThumbnail href={YT_SCHNEIDER_TILT} />
           <span className={styles.playBadge} aria-hidden="true" />
         </a>
-        <a className={styles.mobileCard} href={YT_SCHNEIDER_TILT} target="_blank" rel="noreferrer" aria-label="Watch Schneider Electric film" data-reveal="tilt" data-reveal-delay="1">
-          <MediaThumbnail href={YT_SCHNEIDER_TILT} />
+        <a className={styles.mobileCard} href={YT_SCHNEIDER_TILT_ALT} target="_blank" rel="noreferrer" aria-label="Watch Schneider Electric film — second spot" data-reveal="tilt" data-reveal-delay="1">
+          <MediaThumbnail href={YT_SCHNEIDER_TILT_ALT} />
           <span className={styles.playBadge} aria-hidden="true" />
         </a>
       </section>

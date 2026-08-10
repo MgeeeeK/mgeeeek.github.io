@@ -3,6 +3,7 @@ import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import { getNextProject } from '@/lib/projects'
+import EmailerSubject from './EmailerSubject'
 import styles from './page.module.css'
 
 const A = '/images/email-strategy'
@@ -293,10 +294,15 @@ function DesktopCanvas() {
       </div>
 
       {/* ── Email Subject Lines ── */}
-      <p className={styles.readHeading} data-reveal="rise">Email Subject Lines</p>
+      <p className={styles.readHeading} data-reveal="rise">Click to Read E-mails</p>
 
       <p className={styles.route1Tag} data-reveal="rise" data-reveal-delay="1">Route 1</p>
-      <p className={`${styles.subj1} ${styles.subjLine}`} data-reveal="tilt" data-reveal-delay="2">Subject: Your meeting-free journey begins today.</p>
+      <EmailerSubject
+        className={styles.subj1}
+        imageSrc={`${A}/emailer-r1e1.png`}
+        subject="Subject: Your meeting-free journey begins today."
+        revealDelay={2}
+      />
       <p className={`${styles.subj2} ${styles.subjLine}`} data-reveal="tilt" data-reveal-delay="3">Subject: How long does it take to see results from MyCheckins?</p>
       <p className={`${styles.subj3} ${styles.subjLine}`} data-reveal="tilt" data-reveal-delay="4">Subject: In an alternative meeting-free universe...</p>
 
@@ -392,7 +398,12 @@ function DesktopCanvas() {
       {/* ── Footer buttons ── */}
       <div className={`${styles.btnSlot} ${styles.btnSlotPrimary}`} data-reveal="pop">
         <Magnetic>
-          <Link href={NEXT.href} className={styles.primaryButton}>
+          <Link
+            href={NEXT.href}
+            className={styles.primaryButton}
+            data-secret-folder-gate="true"
+            aria-haspopup="dialog"
+          >
             Next Project
           </Link>
         </Magnetic>
@@ -477,9 +488,14 @@ function MobileLayout() {
       </section>
 
       <section className={styles.mobileSection}>
-        <h2 data-reveal="rise">Email Subject Lines</h2>
+        <h2 data-reveal="rise">Click to Read E-mails</h2>
         <p className={styles.mobilePink} data-reveal="rise">Route 1</p>
-        <p data-reveal="tilt" data-reveal-delay="1">Subject: Your meeting-free journey begins today.</p>
+        <EmailerSubject
+          className={styles.mobileSubject}
+          imageSrc={`${A}/emailer-r1e1.png`}
+          subject="Subject: Your meeting-free journey begins today."
+          revealDelay={1}
+        />
         <p data-reveal="tilt" data-reveal-delay="2">Subject: How long does it take to see results from MyCheckins?</p>
         <p data-reveal="tilt" data-reveal-delay="2">Subject: In an alternative meeting-free universe...</p>
         <p className={styles.mobilePink} data-reveal="rise">Route 2</p>
@@ -508,7 +524,13 @@ function MobileLayout() {
       <section className={styles.mobileSection}>
         <div className={styles.mobileButtons}>
           <Magnetic>
-            <Link href={NEXT.href} className={styles.primaryButton} data-reveal="pop">
+            <Link
+              href={NEXT.href}
+              className={styles.primaryButton}
+              data-reveal="pop"
+              data-secret-folder-gate="true"
+              aria-haspopup="dialog"
+            >
               Next Project
             </Link>
           </Magnetic>

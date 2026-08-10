@@ -3,6 +3,7 @@ import { Playfair_Display } from 'next/font/google'
 import './globals.css'
 import './fx.css'
 import MediaLightboxProvider from '@/components/MediaLightbox/MediaLightboxProvider'
+import SecretFolderGateProvider from '@/components/SecretFolderGate/SecretFolderGateProvider'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body>
-        <MediaLightboxProvider>{children}</MediaLightboxProvider>
+        <SecretFolderGateProvider>
+          <MediaLightboxProvider>{children}</MediaLightboxProvider>
+        </SecretFolderGateProvider>
       </body>
     </html>
   )

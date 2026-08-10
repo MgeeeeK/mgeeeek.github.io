@@ -155,11 +155,19 @@
    visual affordance that invites a click. */
 .book {
   position: absolute;
+  display: block;
   width: 200px;
   height: 280px;
   transform-origin: center;
   z-index: 1;
   box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22);
+  text-decoration: none;
+}
+
+.book:focus-visible,
+.mobileBook:focus-visible {
+  outline: 4px solid #ff43b7;
+  outline-offset: 5px;
 }
 
 .bookImg {
@@ -179,6 +187,7 @@
   white-space: pre-wrap;
   word-break: break-word;
   z-index: 2;
+  pointer-events: none;
 }
 
 /* 724:100 — center x = 200, top 437 (no rotation) */
@@ -198,6 +207,7 @@
   transform: translate(-50%, -50%) rotate(5.3deg);
   transform-origin: center;
   z-index: 2;
+  pointer-events: none;
 }
 
 .bookTextOtherGirl {
@@ -232,6 +242,7 @@
   transform: translate(-50%, -50%) rotate(-10.31deg);
   transform-origin: center;
   z-index: 2;
+  pointer-events: none;
 }
 
 .bookTextTracks {
@@ -499,7 +510,9 @@
 
 .mobileBook {
   position: relative;
+  display: block;
   aspect-ratio: 200 / 280;
+  text-decoration: none;
 }
 
 .mobileBookTitle {

@@ -647,9 +647,80 @@
   word-break: break-word;
 }
 
-/* Static display only — these are real subject lines, but there's no
-   expand/reveal interaction behind them, so no hover affordance either. */
-.subjLine {
+.subjectButton {
+  z-index: 1;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.subjectButton:hover {
+  color: #ff1fa9;
+}
+
+.subjectButton:focus-visible {
+  outline: 3px solid #ff43b7;
+  outline-offset: 4px;
+}
+
+.emailerBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(2px);
+}
+
+.emailerDialog {
+  position: relative;
+  width: min(475px, 90vw);
+  max-height: 88vh;
+}
+
+.emailerImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 88vh;
+  object-fit: contain;
+  border: 3px solid #ff43b7;
+  border-radius: 8px;
+  background: white;
+}
+
+.emailerClose {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 3px solid black;
+  border-radius: 50%;
+  background: #ff61cd;
+  color: black;
+  font: 700 18px/1 'Helvetica', Arial, sans-serif;
+  box-shadow: 0 4px 0 black;
+  cursor: pointer;
+}
+
+.emailerClose:focus-visible {
+  outline: 4px solid #ddffb7;
+  outline-offset: 3px;
 }
 
 /* ════════ The Result ════════ */
@@ -885,6 +956,16 @@
     line-height: 1.4;
     color: black;
     margin-bottom: 12px;
+  }
+
+  .mobileSubject {
+    position: static;
+    display: block;
+    margin: 0 0 14px;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+    color: black;
   }
   .mobilePink {
     color: #ff1fa9;

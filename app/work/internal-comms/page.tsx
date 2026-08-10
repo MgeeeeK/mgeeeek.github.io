@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
+import MediaThumbnail from '@/components/MediaThumbnail/MediaThumbnail'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import { getNextProject } from '@/lib/projects'
 import styles from './page.module.css'
@@ -9,6 +10,8 @@ import styles from './page.module.css'
 const NEXT = getNextProject('internal-comms')
 
 const ASSET = '/images/internal-comms'
+const MICROSITE_FILM = 'https://youtu.be/kyCRUC4ZHek'
+const CSR_FILM = 'https://youtu.be/UpadruAYbCM'
 
 // ---------------------------------------------------------------------------
 // Exact Figma coordinates — node 23:102 ("corp comms"), 1280×6473 desktop canvas.
@@ -160,18 +163,19 @@ function DesktopCanvas() {
         Intuit&rsquo;s Greatest Hits
       </p>
 
-      {/* black hero embed frame (Rectangle 20) */}
-      <Image
-        className={styles.frameImg}
-        src={`${ASSET}/frame-hero.svg`}
-        alt=""
-        width={607}
-        height={347}
-        style={{ left: 80 - 6, top: 285 - 6, width: 595 + 12, height: 335 + 12 }}
-        aria-hidden="true"
+      <a
+        className={styles.videoFrame}
+        href={MICROSITE_FILM}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Watch the Intuit Greatest Hits microsite film"
+        style={{ left: 80, top: 285, width: 595, height: 335 }}
         data-reveal="tilt"
         data-reveal-delay="2"
-      />
+      >
+        <MediaThumbnail href={MICROSITE_FILM} />
+        <span className={styles.playBadge} aria-hidden="true" />
+      </a>
 
       <p className={styles.body} style={{ left: 720, top: 280, width: 319, height: 368 }} data-reveal="rise" data-reveal-delay="2">
         Intuit India hit 2,000 employees and wanted to celebrate with something big. The goal was to create a
@@ -328,18 +332,19 @@ function DesktopCanvas() {
           touchpoint, turning curiosity into contribution.
         </p>
       </div>
-      {/* black CSR embed frame (Rectangle 21) */}
-      <Image
-        className={styles.frameImg}
-        src={`${ASSET}/frame-csr.svg`}
-        alt=""
-        width={674.874}
-        height={402.874}
-        style={{ left: 395 - 7.437, top: 3249 - 7.437, width: 660 + 14.874, height: 388 + 14.874 }}
-        aria-hidden="true"
+      <a
+        className={styles.videoFrame}
+        href={CSR_FILM}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Watch the Intuit Rise interactive classroom film"
+        style={{ left: 395, top: 3249, width: 660, height: 388 }}
         data-reveal="tilt"
         data-reveal-delay="1"
-      />
+      >
+        <MediaThumbnail href={CSR_FILM} />
+        <span className={styles.playBadge} aria-hidden="true" />
+      </a>
 
       {/* ===== Section 3: Recipe for Perfect Corporate Emailers ===== */}
       <h1 className={styles.h1} style={{ left: 80, top: 3960, width: 900 }} data-reveal="rise">
@@ -493,7 +498,18 @@ function MobileLayout() {
       <section className={styles.mobileSection}>
         <h1 data-reveal="rise">AI Powered Microsite Innovation</h1>
         <p className={styles.mobileSubhead} data-reveal="rise" data-reveal-delay="1">Intuit&rsquo;s Greatest Hits</p>
-        <div className={styles.mobileEmbed} aria-hidden="true" data-reveal="tilt" data-reveal-delay="2" />
+        <a
+          className={styles.mobileEmbed}
+          href={MICROSITE_FILM}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Watch the Intuit Greatest Hits microsite film"
+          data-reveal="tilt"
+          data-reveal-delay="2"
+        >
+          <MediaThumbnail href={MICROSITE_FILM} />
+          <span className={styles.playBadge} aria-hidden="true" />
+        </a>
         <p data-reveal="rise" data-reveal-delay="2">
           Intuit India hit 2,000 employees and wanted to celebrate with something big. The goal was to create a
           digital-first experience that gave every employee a custom keepsake. It had to be easy to execute and
@@ -556,7 +572,18 @@ function MobileLayout() {
       <section className={`${styles.mobileSection} ${styles.mobileCsr}`}>
         <h2 data-reveal="rise">Reimagining CSR as an Interactive Classroom</h2>
         <p className={styles.mobileSubhead} data-reveal="rise" data-reveal-delay="1">Intuit Rise: From India to Global</p>
-        <div className={styles.mobileEmbed} aria-hidden="true" data-reveal="tilt" data-reveal-delay="2" />
+        <a
+          className={styles.mobileEmbed}
+          href={CSR_FILM}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Watch the Intuit Rise interactive classroom film"
+          data-reveal="tilt"
+          data-reveal-delay="2"
+        >
+          <MediaThumbnail href={CSR_FILM} />
+          <span className={styles.playBadge} aria-hidden="true" />
+        </a>
         <p data-reveal="rise" data-reveal-delay="2">
           The Intuit Rise Girl Child Empowerment Program supports underprivileged girls in India from 8th grade
           through graduation. It began as an initiative funded by Intuit employees in India and was opening up for

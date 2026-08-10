@@ -137,13 +137,22 @@ function DesktopCanvas() {
       {/* CARDS (painted in Figma z-order)                          */}
       {/* ========================================================= */}
 
-      {/* rectangle96 — rotated -13.33deg wrapper, left 84 top 1061 w 283.712 h 325.296 */}
+      {/* rectangle96 — offset from the foreground card so the supporting post stays visible */}
       <div
         className={styles.rotWrap}
         data-reveal="pop"
-        style={{ left: 84, top: 1061, width: 283.712, height: 325.296 }}
+        style={{ left: 20, top: 1020, width: 283.712, height: 325.296 }}
       >
-        <div className={styles.floaty} style={{ transform: 'rotate(-13.33deg)', transformOrigin: 'center' }}>
+        <div
+          className={styles.floaty}
+          style={{
+            position: 'relative',
+            width: 225,
+            height: 281,
+            transform: 'rotate(-13.33deg)',
+            transformOrigin: 'center',
+          }}
+        >
           <a
             className={styles.card}
             style={{ width: 225, height: 281, borderRadius: 7 }}
@@ -160,13 +169,22 @@ function DesktopCanvas() {
       <div
         className={styles.rotWrap}
         data-reveal="pop"
-        style={{ left: 84, top: 1061, width: 283.725, height: 325.305 }}
+        style={{ left: 20, top: 1020, width: 283.725, height: 325.305 }}
       >
-        <div className={styles.floaty} style={{ transform: 'rotate(-13.33deg)', transformOrigin: 'center' }}>
+        <div
+          className={styles.floaty}
+          style={{
+            position: 'relative',
+            width: 225,
+            height: 281,
+            transform: 'rotate(-13.33deg)',
+            transformOrigin: 'center',
+          }}
+        >
           <a
             className={styles.cardOverlay}
             style={{ width: 225, height: 281, borderRadius: 7 }}
-            href="https://www.instagram.com/p/DR6lWEBEswk/?img_index=1"
+            href="https://www.instagram.com/p/DSwOlU3jMlR/?img_index=1"
             target="_blank"
             rel="noreferrer"
             aria-hidden
@@ -200,7 +218,7 @@ function DesktopCanvas() {
         className={styles.cardOverlay}
         data-reveal="pop"
         style={{ left: 352, top: 866, width: 225, height: 281, borderRadius: 7 }}
-        href="https://www.instagram.com/p/DR6lWEBEswk/?img_index=1"
+        href="https://www.instagram.com/p/DMxlzIiSPOu/?img_index=1"
         target="_blank"
         rel="noreferrer"
         aria-hidden
@@ -326,7 +344,7 @@ function DesktopCanvas() {
         data-reveal="pop"
         data-reveal-delay="1"
         style={{ left: 549, top: 1512, width: 225, height: 281, borderRadius: 7 }}
-        href="https://www.instagram.com/p/DR6lWEBEswk/?img_index=1"
+        href="https://www.instagram.com/p/DRW5nuSEThN/?img_index=1"
         target="_blank"
         rel="noreferrer"
         aria-hidden
@@ -357,7 +375,7 @@ function DesktopCanvas() {
         aria-hidden
       />
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="2"
         style={{
@@ -391,7 +409,7 @@ function DesktopCanvas() {
 
       {/* label "Add an interaction" 959:195 — center left 461 top 978 */}
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="1"
         style={{
@@ -413,7 +431,7 @@ function DesktopCanvas() {
 
       {/* label "Provide proof" 959:284 — center left 307.5 top 1307 */}
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="2"
         style={{
@@ -475,7 +493,7 @@ function DesktopCanvas() {
         className={styles.cardOverlay}
         data-reveal="pop"
         style={{ left: 152, top: 679, width: 159, height: 283, borderRadius: 7 }}
-        href="https://www.instagram.com/p/DRqzsdRktBc/"
+        href="https://www.instagram.com/p/DU5lwkzkda-/"
         target="_blank"
         rel="noreferrer"
         aria-hidden
@@ -483,7 +501,7 @@ function DesktopCanvas() {
 
       {/* label "Be educative" 920:26 — center left 232 top 810 */}
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="1"
         style={{
@@ -505,7 +523,7 @@ function DesktopCanvas() {
 
       {/* label "Hop on a trend" (two-line) 916:36 — center left 431 top 660 */}
       <div
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="2"
         style={{
@@ -555,7 +573,7 @@ function DesktopCanvas() {
         data-reveal="pop"
         data-reveal-delay="2"
         style={{ left: 553, top: 543, width: 158, height: 281, borderRadius: 7 }}
-        href="https://www.instagram.com/p/DRqzsdRktBc/"
+        href="https://www.instagram.com/p/DS1bkqoj0yj/"
         target="_blank"
         rel="noreferrer"
         aria-hidden
@@ -563,7 +581,7 @@ function DesktopCanvas() {
 
       {/* label "Address a problem" 916:57 — center left 632 top 660 */}
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="3"
         style={{
@@ -596,7 +614,7 @@ function DesktopCanvas() {
           <a
             className={styles.cardOverlay}
             style={{ width: 158, height: 281, borderRadius: 7 }}
-            href="https://www.instagram.com/p/DRqzsdRktBc/"
+            href="https://www.instagram.com/p/DXEMmaDEzXV/"
             target="_blank"
             rel="noreferrer"
             aria-hidden
@@ -623,7 +641,7 @@ function DesktopCanvas() {
         data-reveal="pop"
         data-reveal-delay="3"
         style={{ left: 720, top: 1189, width: 158, height: 281, borderRadius: 7 }}
-        href="https://www.instagram.com/p/DRqzsdRktBc/"
+        href="https://www.instagram.com/p/DTIN5eOgQCW/"
         target="_blank"
         rel="noreferrer"
         aria-hidden
@@ -631,7 +649,7 @@ function DesktopCanvas() {
 
       {/* label "Get a founder to speak from the heart" 959:288 — center left 799.5 top 1276 */}
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="4"
         style={{
@@ -656,7 +674,7 @@ function DesktopCanvas() {
         className={styles.cardOverlay}
         data-reveal="pop"
         style={{ left: 350, top: 1512, width: 158, height: 281, borderRadius: 7 }}
-        href="https://www.instagram.com/p/DRqzsdRktBc/"
+        href="https://www.instagram.com/p/DRR5jH6iJ-R/"
         target="_blank"
         rel="noreferrer"
         aria-hidden
@@ -668,7 +686,7 @@ function DesktopCanvas() {
         data-reveal="pop"
         data-reveal-delay="1"
         style={{ left: 618, top: 866, width: 158, height: 281, borderRadius: 7 }}
-        href="https://www.instagram.com/p/DRqzsdRktBc/"
+        href="https://www.instagram.com/p/DSZ39p-gWgz/"
         target="_blank"
         rel="noreferrer"
         aria-hidden
@@ -676,7 +694,7 @@ function DesktopCanvas() {
 
       {/* label "Reel 'em in with a hook" 403:12 — center left 695.5 top 978 */}
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="2"
         style={{
@@ -702,7 +720,7 @@ function DesktopCanvas() {
         data-reveal="pop"
         data-reveal-delay="2"
         style={{ left: 460, top: 1189, width: 225, height: 281, borderRadius: 7 }}
-        href="https://www.instagram.com/p/DR6lWEBEswk/?img_index=1"
+        href="https://www.instagram.com/p/DQwkxA3jGas/"
         target="_blank"
         rel="noreferrer"
         aria-hidden
@@ -710,7 +728,7 @@ function DesktopCanvas() {
 
       {/* label "Speak from the heart" 959:286 — center left 573 top 1313 */}
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="3"
         style={{
@@ -735,7 +753,7 @@ function DesktopCanvas() {
 
       {/* label "Gameify it" 959:292 — center left 661 top 1642 */}
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="2"
         style={{
@@ -757,7 +775,7 @@ function DesktopCanvas() {
 
       {/* label "Show the team" 959:290 — center left 433.5 top 1633 */}
       <p
-        className={styles.abs}
+        className={`${styles.abs} ${styles.cardLabel}`}
         data-reveal="rise"
         data-reveal-delay="1"
         style={{
@@ -818,17 +836,41 @@ function DesktopCanvas() {
   )
 }
 
-const mobileLinks = [
-  { href: 'https://www.instagram.com/p/DSwOlU3jMlR/?img_index=1', src: `${IMG}/rectangle96.png`, label: 'Be educative' },
-  { href: 'https://www.instagram.com/p/DMxlzIiSPOu/?img_index=1', src: `${IMG}/rectangle102.png`, label: 'Hop on a trend' },
-  { href: 'https://www.instagram.com/p/DS1bkqoj0yj/', src: `${IMG}/screenshot2.png`, label: 'Address a problem' },
-  { href: 'https://www.instagram.com/p/DXEMmaDEzXV/', src: `${IMG}/rectangle106.png`, label: 'Reel ’em in with a hook' },
-  { href: 'https://www.instagram.com/p/DR6lWEBEswk/?img_index=1', src: `${IMG}/rectangle95.png`, label: 'Add an interaction' },
-  { href: 'https://www.instagram.com/p/DTIN5eOgQCW/', src: `${IMG}/rectangle97.png`, label: 'Get a founder to speak from the heart' },
-  { href: 'https://www.instagram.com/p/DQwkxA3jGas/', src: `${IMG}/rectangle92.png`, label: 'Provide proof', objectPosition: 'left center' },
-  { href: 'https://www.instagram.com/p/DSZ39p-gWgz/', src: `${IMG}/rectangle104.png`, label: 'Speak from the heart' },
-  { href: 'https://www.instagram.com/p/DRR5jH6iJ-R/', src: `${IMG}/rectangle100.png`, label: 'Show the team' },
-  { href: 'https://www.instagram.com/p/DRW5nuSEThN/?img_index=1', src: `${IMG}/rectangle98.png`, label: 'Gameify it' },
+type MobileCardSlot =
+  | 'mobileBe'
+  | 'mobileHop'
+  | 'mobileAddress'
+  | 'mobileDecorHook'
+  | 'mobileInteraction'
+  | 'mobileHook'
+  | 'mobileDecorProof'
+  | 'mobileProof'
+  | 'mobileSpeak'
+  | 'mobileFounder'
+  | 'mobileTeam'
+  | 'mobileGamify'
+
+type MobileCard = {
+  href: string
+  src: string
+  label?: string
+  slot: MobileCardSlot
+  wide?: boolean
+}
+
+const mobileCards: MobileCard[] = [
+  { href: 'https://www.instagram.com/p/DU5lwkzkda-/', src: `${IMG}/image10.png`, label: 'Be educative', slot: 'mobileBe' },
+  { href: 'https://www.instagram.com/p/DRqzsdRktBc/', src: `${IMG}/image11.png`, label: 'Hop on a trend', slot: 'mobileHop' },
+  { href: 'https://www.instagram.com/p/DS1bkqoj0yj/', src: `${IMG}/screenshot2.png`, label: 'Address a problem', slot: 'mobileAddress' },
+  { href: 'https://www.instagram.com/p/DXEMmaDEzXV/', src: `${IMG}/rectangle106.png`, slot: 'mobileDecorHook' },
+  { href: 'https://www.instagram.com/p/DMxlzIiSPOu/?img_index=1', src: `${IMG}/rectangle102.png`, label: 'Add an interaction', slot: 'mobileInteraction', wide: true },
+  { href: 'https://www.instagram.com/p/DSZ39p-gWgz/', src: `${IMG}/rectangle104.png`, label: 'Reel ’em in with a hook', slot: 'mobileHook' },
+  { href: 'https://www.instagram.com/p/DSwOlU3jMlR/?img_index=1', src: `${IMG}/rectangle96.png`, slot: 'mobileDecorProof', wide: true },
+  { href: 'https://www.instagram.com/p/DR6lWEBEswk/?img_index=1', src: `${IMG}/rectangle95.png`, label: 'Provide proof', slot: 'mobileProof', wide: true },
+  { href: 'https://www.instagram.com/p/DQwkxA3jGas/', src: `${IMG}/rectangle92.png`, label: 'Speak from the heart', slot: 'mobileSpeak', wide: true },
+  { href: 'https://www.instagram.com/p/DTIN5eOgQCW/', src: `${IMG}/rectangle97.png`, label: 'Get a founder to speak from the heart', slot: 'mobileFounder' },
+  { href: 'https://www.instagram.com/p/DRR5jH6iJ-R/', src: `${IMG}/rectangle100.png`, label: 'Show the team', slot: 'mobileTeam' },
+  { href: 'https://www.instagram.com/p/DRW5nuSEThN/?img_index=1', src: `${IMG}/rectangle98.png`, label: 'Gameify it', slot: 'mobileGamify', wide: true },
 ]
 
 function MobileLayout() {
@@ -859,23 +901,20 @@ function MobileLayout() {
           <br />
           Here are some of my favourite ways to do so:
         </p>
-        <div className={styles.mobileGrid}>
-          {mobileLinks.map((link, i) => (
+        <div className={styles.mobileGrid} aria-label="Fintech examples">
+          {mobileCards.map((card, i) => (
             <a
-              key={link.label + link.href}
-              className={styles.mobileCard}
+              key={`${card.slot}-${card.href}`}
+              className={`${styles.mobileCard} ${styles[card.slot]} ${card.wide ? styles.mobileCardWide : ''}`}
               data-reveal="pop"
               data-reveal-delay={i % 2}
-              href={link.href}
+              href={card.href}
               target="_blank"
               rel="noreferrer"
+              aria-label={card.label || 'View supporting fintech example'}
             >
-              <img
-                src={link.src}
-                alt=""
-                style={link.objectPosition ? { objectPosition: link.objectPosition } : undefined}
-              />
-              <span>{link.label}</span>
+              <img src={card.src} alt="" />
+              {card.label && <span>{card.label}</span>}
             </a>
           ))}
         </div>

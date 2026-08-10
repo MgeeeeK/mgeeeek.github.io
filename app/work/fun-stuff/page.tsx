@@ -9,10 +9,11 @@ import styles from './page.module.css'
 const ASSET = '/images/fun-stuff'
 
 // External link to Abhi's design portfolio (the "View Design Portfolio" puddle CTA).
-const DESIGN_PORTFOLIO_HREF = 'https://www.behance.net/'
+const DESIGN_PORTFOLIO_HREF = 'https://www.behance.net/abhiv1999'
 
 type Book = {
   img: string
+  href: string
   // Exact center coordinates of the 200x280 cover in the 1280px Figma canvas.
   cx: number
   cy: number
@@ -24,11 +25,32 @@ type Book = {
 // the cover at its exact center and rotate about that center to match 1:1.
 const BOOKS: Book[] = [
   // 724:99 — left 80 / top 343, no rotation
-  { img: 'book-missing-milk', cx: 180, cy: 483, r: 0, label: 'Missing Milk & Buzzing TVs' },
+  {
+    img: 'book-missing-milk',
+    href: 'https://docs.google.com/document/d/1qiDF8TjYl1cPwmBartqOwWnrRz7bcPuHjUCTvuttJDY/edit?tab=t.0',
+    cx: 180,
+    cy: 483,
+    r: 0,
+    label: 'Missing Milk & Buzzing TVs',
+  },
   // 724:98 — bbox left 243 top 400 (224.995 x 297.268), inner rotate 5.3deg
-  { img: 'book-other-girl', cx: 355.4975, cy: 548.634, r: 5.3, label: 'The Other Girl' },
+  {
+    img: 'book-other-girl',
+    href: 'https://docs.google.com/document/d/1HMDgnqFngfyokhRWHIeSO8JwbjAOcPdXe3w6LiFpHfw/edit?usp=sharing',
+    cx: 355.4975,
+    cy: 548.634,
+    r: 5.3,
+    label: 'The Other Girl',
+  },
   // 724:97 — bbox left 413 top 318 (246.888 x 311.276), inner rotate -10.31deg
-  { img: 'book-train-tracks', cx: 536.444, cy: 473.638, r: -10.31, label: 'By The Train Tracks' },
+  {
+    img: 'book-train-tracks',
+    href: 'https://docs.google.com/document/d/1HnY9pfmpo1HKEhfHS-9SejKBFPYKIQQCrW8Lu3c9_CY/edit?usp=sharing',
+    cx: 536.444,
+    cy: 473.638,
+    r: -10.31,
+    label: 'By The Train Tracks',
+  },
 ]
 
 // Title split into per-word spans for the staggered pop-in. Visual only —
@@ -102,9 +124,13 @@ function DesktopCanvas() {
 
       {/* Short-story book covers (724:99 / 724:98 / 724:97) */}
       {BOOKS.map((book, i) => (
-        <div
+        <a
           key={book.img}
           className={styles.book}
+          href={book.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`Read ${book.label}`}
           data-reveal="stamp"
           data-reveal-delay={i}
           style={{
@@ -118,9 +144,10 @@ function DesktopCanvas() {
             alt=""
             fill
             sizes="200px"
+            loading="eager"
             className={styles.bookImg}
           />
-        </div>
+        </a>
       ))}
 
       {/* 724:100 — "Missing Milk & Buzzing TVs" (center x = 200) */}
@@ -223,16 +250,26 @@ function MobileLayout() {
         <h2 data-reveal="rise">Short Stories</h2>
         <div className={styles.mobileBooks}>
           {BOOKS.map((book, i) => (
-            <div key={book.img} className={styles.mobileBook} data-reveal="pop" data-reveal-delay={i}>
+            <a
+              key={book.img}
+              className={styles.mobileBook}
+              href={book.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Read ${book.label}`}
+              data-reveal="pop"
+              data-reveal-delay={i}
+            >
               <Image
                 src={`${ASSET}/${book.img}.svg`}
                 alt=""
                 fill
                 sizes="30vw"
+                loading="eager"
                 className={styles.bookImg}
               />
               <span className={styles.mobileBookTitle}>{book.label}</span>
-            </div>
+            </a>
           ))}
         </div>
       </section>

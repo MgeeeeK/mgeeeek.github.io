@@ -20,6 +20,8 @@ interface ProjectCardProps {
   reveal?: RevealVariant
   /** Stagger step (N × 80ms) for the scroll reveal. */
   revealDelay?: number
+  /** Open the secret-folder warning dialog before following this link. */
+  gateSecretFolder?: boolean
 }
 
 export default function ProjectCard({
@@ -30,6 +32,7 @@ export default function ProjectCard({
   size = 'normal',
   reveal,
   revealDelay,
+  gateSecretFolder = false,
 }: ProjectCardProps) {
   return (
     <Link
@@ -37,6 +40,8 @@ export default function ProjectCard({
       className={`${styles.card} ${styles[variant]} ${rotated ? styles.rotated : ''} ${size === 'large' ? styles.large : ''}`}
       data-reveal={reveal}
       data-reveal-delay={reveal !== undefined ? revealDelay : undefined}
+      data-secret-folder-gate={gateSecretFolder ? 'true' : undefined}
+      aria-haspopup={gateSecretFolder ? 'dialog' : undefined}
     >
       {/* Folder back: corner tab + back panel (tilt away as the folder opens) */}
       <div className={styles.blobCorner} />

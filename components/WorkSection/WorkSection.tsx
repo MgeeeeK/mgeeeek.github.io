@@ -72,6 +72,7 @@ export default function WorkSection() {
           size="large"
           reveal="stamp"
           revealDelay={6}
+          gateSecretFolder
         />
       </div>
     </section>

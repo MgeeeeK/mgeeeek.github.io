@@ -8,7 +8,7 @@ import styles from './page.module.css'
 
 const ASSET = '/images/print-media'
 const NEXT = getNextProject('print-media')
-const DIARY_FILM = 'https://www.youtube.com/watch?v=Qwg0dtuELIc'
+const DIARY_FILM = 'https://youtu.be/SjeddqEPw9k'
 
 function Header() {
   return (

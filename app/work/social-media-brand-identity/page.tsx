@@ -10,6 +10,7 @@ import styles from './page.module.css'
 const NEXT = getNextProject('social-media')
 
 const ASSET_PATH = '/images/social-media-brand'
+const KFC_FILM = 'https://youtube.com/shorts/ERaVt_BxSro?feature=share'
 
 // `revealDelay` alternates so the cards land like scattered polaroids
 // instead of a strict left-to-right sweep.
@@ -416,9 +417,9 @@ function DesktopCanvas() {
           An idea that won my agency the KFC Pitch
         </p>
         <InstagramEmbedCard
-          href="https://www.instagram.com/p/DIyjLjxvEzz/"
+          href={KFC_FILM}
           className={styles.kfcCard}
-          label="KFC Meta Trend Compilation post"
+          label="Watch the KFC Meta Trend Compilation film"
           reveal="tilt"
           revealDelay={0}
         />
@@ -529,8 +530,8 @@ function MobileLayout() {
           An idea that won my agency the KFC Pitch
         </p>
         <InstagramEmbedCard
-          href="https://www.instagram.com/p/DIyjLjxvEzz/"
-          label="KFC Meta Trend Compilation post"
+          href={KFC_FILM}
+          label="Watch the KFC Meta Trend Compilation film"
           reveal="tilt"
           revealDelay={0}
         />
