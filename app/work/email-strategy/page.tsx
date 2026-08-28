@@ -303,12 +303,32 @@ function DesktopCanvas() {
         subject="Subject: Your meeting-free journey begins today."
         revealDelay={2}
       />
-      <p className={`${styles.subj2} ${styles.subjLine}`} data-reveal="tilt" data-reveal-delay="3">Subject: How long does it take to see results from MyCheckins?</p>
-      <p className={`${styles.subj3} ${styles.subjLine}`} data-reveal="tilt" data-reveal-delay="4">Subject: In an alternative meeting-free universe...</p>
+      <EmailerSubject
+        className={styles.subj2}
+        imageSrc={`${A}/emailer-r1e4.png`}
+        subject="Subject: How long does it take to see results from MyCheckins?"
+        revealDelay={3}
+      />
+      <EmailerSubject
+        className={styles.subj3}
+        imageSrc={`${A}/emailer-r1e7b.png`}
+        subject="Subject: In an alternative meeting-free universe..."
+        revealDelay={4}
+      />
 
       <p className={styles.route2Tag} data-reveal="rise" data-reveal-delay="4">Route 2</p>
-      <p className={`${styles.subj4} ${styles.subjLine}`} data-reveal="tilt" data-reveal-delay="5">Subject: All meetings cancelled.</p>
-      <p className={`${styles.subj5} ${styles.subjLine}`} data-reveal="tilt" data-reveal-delay="6">Subject: Do you know what your team is up to?</p>
+      <EmailerSubject
+        className={styles.subj4}
+        imageSrc={`${A}/emailer-r2e1.png`}
+        subject="Subject: All meetings cancelled."
+        revealDelay={5}
+      />
+      <EmailerSubject
+        className={styles.subj5}
+        imageSrc={`${A}/emailer-r2e3.png`}
+        subject="Subject: Do you know what your team is up to?"
+        revealDelay={6}
+      />
 
       {/* ── The Result ── */}
       <p className={styles.resultHeading} data-reveal="rise">
@@ -496,11 +516,31 @@ function MobileLayout() {
           subject="Subject: Your meeting-free journey begins today."
           revealDelay={1}
         />
-        <p data-reveal="tilt" data-reveal-delay="2">Subject: How long does it take to see results from MyCheckins?</p>
-        <p data-reveal="tilt" data-reveal-delay="2">Subject: In an alternative meeting-free universe...</p>
+        <EmailerSubject
+          className={styles.mobileSubject}
+          imageSrc={`${A}/emailer-r1e4.png`}
+          subject="Subject: How long does it take to see results from MyCheckins?"
+          revealDelay={2}
+        />
+        <EmailerSubject
+          className={styles.mobileSubject}
+          imageSrc={`${A}/emailer-r1e7b.png`}
+          subject="Subject: In an alternative meeting-free universe..."
+          revealDelay={2}
+        />
         <p className={styles.mobilePink} data-reveal="rise">Route 2</p>
-        <p data-reveal="tilt" data-reveal-delay="1">Subject: All meetings cancelled.</p>
-        <p data-reveal="tilt" data-reveal-delay="2">Subject: Do you know what your team is up to?</p>
+        <EmailerSubject
+          className={styles.mobileSubject}
+          imageSrc={`${A}/emailer-r2e1.png`}
+          subject="Subject: All meetings cancelled."
+          revealDelay={1}
+        />
+        <EmailerSubject
+          className={styles.mobileSubject}
+          imageSrc={`${A}/emailer-r2e3.png`}
+          subject="Subject: Do you know what your team is up to?"
+          revealDelay={2}
+        />
       </section>
 
       <section className={styles.mobileSection}>
