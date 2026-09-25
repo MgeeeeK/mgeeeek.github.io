@@ -53,6 +53,9 @@
 }
 
 html {
+  /* Distance from a homepage section's top edge to its heading. Shared by
+     Work, Contact and About so the three headings line up. */
+  --section-heading-offset: clamp(72px, 8vw, 112px);
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
   scroll-padding-top: 60px;

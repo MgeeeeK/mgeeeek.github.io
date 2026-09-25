@@ -9,7 +9,7 @@
 
 .aboutPage {
   background: var(--color-purple);
-  padding: clamp(56px, 4vw, 72px) clamp(24px, 5.5vw, 80px) clamp(40px, 4vw, 56px);
+  padding: var(--section-heading-offset) clamp(24px, 5.5vw, 80px) clamp(40px, 4vw, 56px);
   /* allow the phone antenna to overflow upward into the contact section above */
   overflow-x: clip;
   overflow-y: visible;
@@ -17,7 +17,7 @@
 
 .contactPage {
   background: var(--color-purple);
-  padding: clamp(84px, 8vw, 116px) clamp(24px, 5.5vw, 80px) 0;
+  padding: var(--section-heading-offset) clamp(24px, 5.5vw, 80px) 0;
 }
 
 /* Same 1280px centered wrap as .aboutContentWrap so the contact heading's
@@ -346,10 +346,10 @@
   position: relative;
   z-index: 1;
   width: min(720px, 56vw);
-  min-height: calc(100svh - 60px - clamp(96px, 8vw, 128px));
+  /* Top-anchored (not vertically centred) so "About Me" sits at the same
+     offset as the Work and Contact headings on every screen height. */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: clamp(20px, 2.5vw, 32px);
 }
 

@@ -4,7 +4,9 @@
   width: 100%;
   min-height: calc(100svh - 60px);
   overflow: hidden;
-  padding: clamp(72px, 8vw, 112px) clamp(24px, 5.5vw, 80px) clamp(84px, 8vw, 120px);
+  /* Top padding shared with the Contact and About sections so all three
+     headings sit the same distance below their section edge. */
+  padding: var(--section-heading-offset) clamp(24px, 5.5vw, 80px) clamp(84px, 8vw, 120px);
   scroll-snap-align: start;
 }
 
