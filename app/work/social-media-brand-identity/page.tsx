@@ -16,10 +16,10 @@ const KFC_FILM = 'https://youtube.com/shorts/ERaVt_BxSro?feature=share'
 // instead of a strict left-to-right sweep.
 const heroCards = [
   {
-    className: styles.heroLeftSquareB,
-    src: `${ASSET_PATH}/hero-left-square-b.png`,
-    alt: 'Cup Noodles social media post before the revamp',
-    revealDelay: 0,
+    className: styles.heroLeftSquareA,
+    src: `${ASSET_PATH}/hero-left-square-a.png`,
+    alt: 'Cup Noodles campaign post before the revamp',
+    revealDelay: 1,
   },
   {
     className: styles.heroLeftTall,
@@ -28,16 +28,16 @@ const heroCards = [
     revealDelay: 2,
   },
   {
-    className: styles.heroLeftSquareA,
-    src: `${ASSET_PATH}/hero-left-square-a.png`,
-    alt: 'Cup Noodles campaign post before the revamp',
-    revealDelay: 1,
+    className: styles.heroLeftSquareB,
+    src: `${ASSET_PATH}/hero-left-square-b.png`,
+    alt: 'Cup Noodles social media post before the revamp',
+    revealDelay: 0,
   },
   {
-    className: styles.heroCenterTall,
-    src: `${ASSET_PATH}/hero-center-tall.png`,
-    alt: 'Revamped Cup Noodles social video frame',
-    revealDelay: 3,
+    className: styles.heroRightTall,
+    src: `${ASSET_PATH}/hero-right-tall.png`,
+    alt: 'Revamped Cup Noodles vertical social frame',
+    revealDelay: 4,
   },
   {
     className: styles.heroRightSquare,
@@ -46,10 +46,10 @@ const heroCards = [
     revealDelay: 2,
   },
   {
-    className: styles.heroRightTall,
-    src: `${ASSET_PATH}/hero-right-tall.png`,
-    alt: 'Revamped Cup Noodles vertical social frame',
-    revealDelay: 4,
+    className: styles.heroCenterTall,
+    src: `${ASSET_PATH}/hero-center-tall.png`,
+    alt: 'Revamped Cup Noodles social video frame',
+    revealDelay: 3,
   },
   {
     className: styles.heroRightBottom,
@@ -235,7 +235,7 @@ function HeroCollage() {
 
 function DesktopCanvas() {
   return (
-    <ScaledCanvas className={styles.canvas} ariaLabel="Social Media Brand Identity case study" height={5486}>
+    <ScaledCanvas className={styles.canvas} ariaLabel="Social Media Brand Identity case study" height={5620}>
       <Header />
 
       <AmbientLayer>
@@ -243,12 +243,12 @@ function DesktopCanvas() {
         {/* empty cream gap between the two hero collage clusters */}
         {/* roomy gap right of brand cards */}
         {/* roomy gap between holidays + merch */}
-        <Starburst left={840} top={3160} size={460} opacity={0.38} />
+        <Starburst left={840} top={3300} size={460} opacity={0.38} />
         {/* open cream zone right of the merch intro copy */}
         {/* Merch open right margin */}
         {/* quiet gap right of the small merch tiles, before the KFC band */}
         {/* KFC band roomy right side */}
-        <Starburst reverse left={760} top={4870} size={460} opacity={0.38} />
+        <Starburst reverse left={760} top={5010} size={460} opacity={0.38} />
       </AmbientLayer>
 
       <h1 className={styles.title} data-reveal="rise">
@@ -284,6 +284,14 @@ function DesktopCanvas() {
 
       <section className={styles.holidays}>
         <h2 data-reveal="rise">Topical Holidays</h2>
+        <Image
+          className={styles.starburst}
+          src={`${ASSET_PATH}/starburst.svg`}
+          alt=""
+          width={460}
+          height={460}
+          aria-hidden="true"
+        />
         <InstagramEmbedCard
           href="https://www.instagram.com/p/DF-dRuBPGa7/?hl=en"
           className={styles.valentineCard}
@@ -332,14 +340,6 @@ function DesktopCanvas() {
             We learnt to never expect a high degree of participation unless its a single post contest.
           </p>
         </div>
-        <Image
-          className={styles.starburst}
-          src={`${ASSET_PATH}/starburst.svg`}
-          alt=""
-          width={404}
-          height={404}
-          aria-hidden="true"
-        />
         <div className={styles.diwaloweenText}>
           <h3 data-reveal="rise">Diwaloween</h3>
           <p data-reveal="rise" data-reveal-delay="1">
