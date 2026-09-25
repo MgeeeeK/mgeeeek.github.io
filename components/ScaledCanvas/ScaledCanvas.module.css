@@ -1,0 +1,9 @@
+/* The case-study header is the first child of the scaled poster. Above 1x
+   we undo the poster scale on the header only, so the nav bar keeps the same
+   60px height and link positions as the homepage nav on wide screens. Below
+   1x (--canvas-inv = 1) it scales with the canvas as before. */
+.inner > :global(header) {
+  margin-left: calc(50% - 50vw * var(--canvas-inv, 1));
+  transform: scale(var(--canvas-inv, 1));
+  transform-origin: top left;
+}

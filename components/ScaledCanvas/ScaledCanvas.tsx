@@ -1,6 +1,7 @@
 'use client'
 
 import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
+import styles from './ScaledCanvas.module.css'
 
 const DESIGN_WIDTH = 1280
 
@@ -16,6 +17,9 @@ const DESIGN_WIDTH = 1280
  * Above 1280px it scales UP as well, so the poster fills any screen the way
  * Figma's zoom-to-fit does, and edge-bleeding art (e.g. the email mic) stays
  * off-screen at every width. Overflow is clipped so bleed never scrolls.
+ * The scale is exposed as `--canvas-scale` so the sticky page header (a
+ * direct child) can counter-scale above 1x and stay the same fluid 60px bar
+ * as the homepage nav — see ScaledCanvas.module.css.
  */
 export default function ScaledCanvas({
   height,
@@ -58,6 +62,8 @@ export default function ScaledCanvas({
       style={{ position: 'relative', width: '100%', height: height * scale, overflow: 'clip' }}
     >
       <div
+        data-scaled-canvas=""
+        className={styles.inner}
         style={{
           position: 'absolute',
           left: offsetX,
@@ -66,6 +72,9 @@ export default function ScaledCanvas({
           height,
           transform: `scale(${scale})`,
           transformOrigin: 'top left',
+          ['--canvas-scale' as string]: scale,
+          // 1/scale above 1x, 1 otherwise — lets the sticky header stay unscaled
+          ['--canvas-inv' as string]: 1 / Math.max(scale, 1),
         }}
       >
         {children}
