@@ -110,7 +110,9 @@
 .cardOverlay {
   display: block;
   position: absolute;
+  border: 3px solid #ff43b7;
   background: rgba(0, 0, 0, 0.71);
+  background-clip: padding-box;
   cursor: pointer;
   transition: background 160ms ease, box-shadow 160ms ease;
 }

@@ -130,11 +130,11 @@ function DesktopCanvas() {
       {/* CARDS (painted in Figma z-order)                          */}
       {/* ========================================================= */}
 
-      {/* rectangle96 — offset from the foreground card so the supporting post stays visible */}
+      {/* rectangle96 — Figma position, tucked behind the Provide-proof card */}
       <div
         className={styles.rotWrap}
         data-reveal="pop"
-        style={{ left: 20, top: 1020, width: 283.712, height: 325.296 }}
+        style={{ left: 65, top: 1089, width: 283.712, height: 325.296 }}
       >
         <div
           className={styles.floaty}
@@ -162,7 +162,7 @@ function DesktopCanvas() {
       <div
         className={styles.rotWrap}
         data-reveal="pop"
-        style={{ left: 20, top: 1020, width: 283.725, height: 325.305 }}
+        style={{ left: 65, top: 1089, width: 283.725, height: 325.305 }}
       >
         <div
           className={styles.floaty}
@@ -249,7 +249,7 @@ function DesktopCanvas() {
         data-reveal-delay="2"
         style={{ left: 679.24, top: 771, width: 242.041, height: 318.304 }}
       >
-        <div className={styles.floatyAlt} style={{ transform: 'rotate(20.98deg) skewX(0.49deg)', transformOrigin: 'center' }}>
+        <div style={{ position: 'relative', width: 153.853, height: 281, transform: 'rotate(20.98deg) skewX(0.49deg)', transformOrigin: 'center' }}>
           <a
             className={styles.card}
             style={{ width: 153.853, height: 281, borderRadius: 7 }}
@@ -603,7 +603,7 @@ function DesktopCanvas() {
         data-reveal-delay="2"
         style={{ left: 677.08, top: 771.03, width: 248.135, height: 318.942 }}
       >
-        <div className={styles.floatyAlt} style={{ transform: 'rotate(20.98deg)', transformOrigin: 'center' }}>
+        <div style={{ position: 'relative', width: 158, height: 281, transform: 'rotate(20.98deg)', transformOrigin: 'center' }}>
           <a
             className={styles.cardOverlay}
             style={{ width: 158, height: 281, borderRadius: 7 }}

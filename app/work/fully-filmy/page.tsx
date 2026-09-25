@@ -312,6 +312,12 @@ function DesktopCanvas() {
         <MediaThumbnail href={YT_SCHNEIDER_BIG} />
         <span className={styles.playBadge} aria-hidden="true" />
       </a>
+      <p className={`${styles.abs} ${styles.helv}`} data-reveal="rise" data-reveal-delay="1" style={{ left: 510, top: 1328, fontSize: 15, lineHeight: 1.115, color: 'black', margin: 0 }}>
+        Incomplete lighting
+      </p>
+      <p className={`${styles.abs} ${styles.helv}`} data-reveal="rise" data-reveal-delay="2" style={{ left: 210, top: 1727, fontSize: 15, lineHeight: 1.115, color: 'black', margin: 0 }}>
+        Half painted
+      </p>
       {/* Schneider tilted card 1 */}
       <div
         className={styles.abs}
@@ -454,6 +460,12 @@ function DesktopCanvas() {
         <span className={`${styles.playBadge} ${styles.playBadgeSm}`} aria-hidden="true" />
       </a>
       {/* ---- Footer buttons ---- */}
+      <p className={`${styles.abs} ${styles.helv}`} data-reveal="rise" data-reveal-delay="1" style={{ left: 95, top: 2413, fontSize: 15, lineHeight: 1.115, color: 'black', margin: 0 }}>
+        Heart of the office
+      </p>
+      <p className={`${styles.abs} ${styles.helv}`} data-reveal="rise" data-reveal-delay="2" style={{ left: 444, top: 2413, fontSize: 15, lineHeight: 1.115, color: 'black', margin: 0 }}>
+        Late for work
+      </p>
       <div className={styles.abs} data-reveal="pop" style={{ left: 79, top: 2597 }}>
         <Magnetic>
           <Link

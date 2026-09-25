@@ -105,6 +105,7 @@
 /* film cards (empty black frames with pink border) */
 .filmCard {
   display: block;
+  overflow: hidden;
   background: black;
   border: 6px solid #ff43b7;
   border-radius: 28px;
