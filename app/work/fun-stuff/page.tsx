@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
+import { AmbientLayer, Starburst } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import styles from './page.module.css'
@@ -81,17 +81,6 @@ function DesktopCanvas() {
       <AmbientLayer>
         {/* Open right zone — big lime starburst filling the empty right half */}
         <Starburst left={760} top={300} size={460} opacity={0.45} />
-        {/* Sparkles scattered in the gaps */}
-        <Sparkle left={1080} top={170} size={30} delay={0.2} />
-        <Sparkle left={900} top={620} size={22} delay={1.1} />
-        <Sparkle left={1150} top={760} size={26} delay={0.6} />
-        <Sparkle left={700} top={840} size={20} delay={1.5} />
-        <Sparkle left={960} top={1040} size={28} delay={0.9} />
-        <Sparkle left={620} top={1130} size={18} delay={1.8} />
-        {/* Extra playful sparkles in the remaining quiet zones */}
-        <Sparkle left={640} top={248} size={18} delay={0.4} />
-        <Sparkle left={470} top={1180} size={22} delay={1.3} />
-        <Sparkle left={1020} top={930} size={24} delay={0.8} />
       </AmbientLayer>
 
       {/* 26:231 */}

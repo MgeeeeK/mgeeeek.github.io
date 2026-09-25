@@ -13,6 +13,9 @@ const DESIGN_WIDTH = 1280
  * canvas in a fixed 1280px box and uniformly scales it down to fit the
  * available width instead, preserving the exact desktop layout at every size
  * down to the mobile breakpoint where a separate stacked layout takes over.
+ * Above 1280px it scales UP as well, so the poster fills any screen the way
+ * Figma's zoom-to-fit does, and edge-bleeding art (e.g. the email mic) stays
+ * off-screen at every width. Overflow is clipped so bleed never scrolls.
  */
 export default function ScaledCanvas({
   height,
@@ -34,7 +37,7 @@ export default function ScaledCanvas({
     if (!wrapper) return
     const update = () => {
       const wrapperWidth = wrapper.offsetWidth
-      const nextScale = Math.min(1, wrapperWidth / DESIGN_WIDTH)
+      const nextScale = wrapperWidth / DESIGN_WIDTH
       setScale(nextScale)
       // Percentage-based translate resolves against the element's own
       // (unscaled) box, so it can't be combined with scale() to center a
@@ -52,7 +55,7 @@ export default function ScaledCanvas({
       ref={wrapperRef}
       className={className}
       aria-label={ariaLabel}
-      style={{ position: 'relative', width: '100%', height: height * scale }}
+      style={{ position: 'relative', width: '100%', height: height * scale, overflow: 'clip' }}
     >
       <div
         style={{

@@ -17,5 +17,9 @@ body::after {
 }
 
 html {
-  scrollbar-color: var(--color-pink-hot, #ff43b7) var(--color-light-green, #ddffb7);
+  scrollbar-width: thin;
+  scrollbar-color: rgb(0 0 0 / 0.18) transparent;
 }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgb(0 0 0 / 0.18); border-radius: 8px; }

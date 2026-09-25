@@ -105,12 +105,11 @@
   border: 3px solid var(--color-pink-hot);
   border-radius: 17px;
   background: black;
-  box-shadow: 5px 7px 0 rgb(255 67 183 / 0.22);
 }
 
 .heroCard:focus-visible {
   outline: none;
-  box-shadow: 5px 7px 0 rgb(255 67 183 / 0.22), 0 0 0 5px rgb(221 255 183 / 0.75);
+  box-shadow: 0 0 0 5px rgb(221 255 183 / 0.75);
   z-index: 5;
 }
 

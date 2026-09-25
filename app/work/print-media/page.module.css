@@ -275,12 +275,11 @@
   width: 440px;
   height: 640px;
   overflow: hidden;
-  box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22);
 }
 
 .fragranceStrip:focus-visible {
   outline: none;
-  box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22), 0 0 0 5px rgba(221, 255, 183, 0.75);
+  box-shadow: 0 0 0 5px rgba(221, 255, 183, 0.75);
   z-index: 5;
 }
 
@@ -302,12 +301,11 @@
   width: 440px;
   height: 641px;
   overflow: hidden;
-  box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22);
 }
 
 .lake:focus-visible {
   outline: none;
-  box-shadow: 5px 7px 0 rgba(255, 67, 183, 0.22), 0 0 0 5px rgba(221, 255, 183, 0.75);
+  box-shadow: 0 0 0 5px rgba(221, 255, 183, 0.75);
   z-index: 5;
 }
 

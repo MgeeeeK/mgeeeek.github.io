@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import MediaThumbnail from '@/components/MediaThumbnail/MediaThumbnail'
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
+import { AmbientLayer, Starburst } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import { getNextProject } from '@/lib/projects'
@@ -38,22 +38,13 @@ function DesktopCanvas() {
 
       <AmbientLayer>
         {/* top-right: open space beside the KreditBee text column */}
-        <Sparkle left={1190} top={300} size={30} delay={0.2} />
-        <Sparkle left={840} top={560} size={20} delay={1.1} />
-        <Sparkle left={1130} top={760} size={24} delay={0.6} />
         {/* right-middle: large empty zone beside the Schneider stack */}
         <Starburst left={840} top={1380} size={520} opacity={0.45} reverse />
-        <Sparkle left={1080} top={1180} size={26} delay={0.9} />
         {/* drifting off the left edge below the tilted cards */}
-        <Sparkle left={700} top={2010} size={22} delay={1.4} />
         {/* beside the Epson section */}
-        <Sparkle left={1150} top={2260} size={28} delay={0.4} />
-        <Sparkle left={400} top={2480} size={18} delay={1.7} />
         {/* top-left: open air above the title */}
-        <Sparkle left={750} top={108} size={22} delay={0.8} />
         {/* bottom-right footer zone is otherwise empty */}
         <Starburst left={980} top={2400} size={290} opacity={0.4} />
-        <Sparkle left={560} top={2620} size={20} delay={1.2} />
       </AmbientLayer>
 
       {/* ---- Title block ---- */}

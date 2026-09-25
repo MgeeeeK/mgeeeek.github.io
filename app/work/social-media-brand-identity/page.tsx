@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
+import { AmbientLayer, Starburst } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import InstagramEmbedCard from './InstagramEmbedCard'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
@@ -240,24 +240,15 @@ function DesktopCanvas() {
 
       <AmbientLayer>
         {/* Hero / Not-Like-Other-Brands open right margin */}
-        <Sparkle left={1150} top={300} size={26} delay={0.3} />
         {/* empty cream gap between the two hero collage clusters */}
-        <Sparkle left={640} top={430} size={24} delay={0.8} />
-        <Sparkle left={770} top={1230} size={22} delay={1.0} />
         {/* roomy gap right of brand cards */}
-        <Sparkle left={950} top={1880} size={28} delay={0.6} />
-        <Sparkle left={1120} top={2900} size={24} delay={1.3} />
         {/* roomy gap between holidays + merch */}
         <Starburst left={840} top={3160} size={460} opacity={0.38} />
         {/* open cream zone right of the merch intro copy */}
-        <Sparkle left={990} top={3770} size={24} delay={0.4} />
         {/* Merch open right margin */}
-        <Sparkle left={770} top={4060} size={26} delay={0.5} />
         {/* quiet gap right of the small merch tiles, before the KFC band */}
-        <Sparkle left={660} top={4520} size={22} delay={1.1} />
         {/* KFC band roomy right side */}
         <Starburst reverse left={760} top={4870} size={460} opacity={0.38} />
-        <Sparkle left={1140} top={5260} size={22} delay={1.5} />
       </AmbientLayer>
 
       <h1 className={styles.title} data-reveal="rise">

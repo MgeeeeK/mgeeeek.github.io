@@ -62,6 +62,18 @@ body {
   font-family: 'Helvetica', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  /* Client request: no text selection / I-beam on copy. Inputs opt back in. */
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+input,
+textarea,
+[contenteditable] {
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
 }
 
 img,

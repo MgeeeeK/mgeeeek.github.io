@@ -300,7 +300,6 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
-  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
   transition: filter 0.2s ease;
 }
 .pillR1AText {
@@ -329,7 +328,6 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
-  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
   transition: filter 0.2s ease;
 }
 .pillR1BText {
@@ -354,7 +352,6 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
-  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
   transition: filter 0.2s ease;
 }
 .pillR1CText {
@@ -418,7 +415,6 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
-  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
   transition: filter 0.2s ease;
 }
 .pillR2AText {
@@ -446,7 +442,6 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
-  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
   transition: filter 0.2s ease;
 }
 .pillR2BText {
@@ -471,7 +466,6 @@
   background: #d3ffa0;
   border: 2px solid black;
   border-radius: 64.178px;
-  box-shadow: 3px 4px 0 rgba(255, 67, 183, 0.18);
   transition: filter 0.2s ease;
 }
 .pillR2CText {
@@ -813,28 +807,6 @@
   top: 1783px;
   width: 679.5px;
   height: 475.5px;
-}
-
-/* Polygon star */
-.polyBox {
-  position: absolute;
-  left: 1198px;
-  top: 2380px;
-  width: 35.596px;
-  height: 35.833px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: none;
-}
-.polyRotate {
-  flex: none;
-  transform: rotate(144.53deg);
-}
-.polyImg {
-  display: block;
-  width: 25.103px;
-  height: 26.112px;
 }
 
 /* ════════ Footer buttons ════════ */

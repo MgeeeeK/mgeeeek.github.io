@@ -33,7 +33,7 @@
 .contactHeading {
   font-family: var(--font-playfair), serif;
   font-weight: 700;
-  font-size: clamp(44px, 5vw, 72px);
+  font-size: clamp(38px, 4.5vw, 54px);
   color: black;
   line-height: 0.92;
   width: min(760px, 100%);
@@ -183,10 +183,10 @@
    * Antenna dimensions — single source of truth.
    * Changing these automatically updates every dependent top/height below.
    */
-  --ant-top-h:      138px;
-  --ant-mid-h:      196px;
-  --ant-base-h:     242px;
-  --ant-total:      calc(var(--ant-top-h) + var(--ant-mid-h) + var(--ant-base-h)); /* 576px */
+  --ant-top-h:      200px;
+  --ant-mid-h:      270px;
+  --ant-base-h:     330px;
+  --ant-total:      calc(var(--ant-top-h) + var(--ant-mid-h) + var(--ant-base-h)); /* 800px */
   --body-h:         650px;
   /* How far the phone body sits below the top of the about section */
   --body-offset:    6px;
@@ -200,7 +200,7 @@
 
   display: block;
   position: absolute;
-  right: clamp(290px, 22vw, 360px);
+  right: clamp(290px, 26.5vw, 340px);
   /*
    * Negative top = antenna total height minus the desired body offset.
    * Result: the illustration container starts above the about section,
@@ -356,7 +356,7 @@
 .aboutHeading {
   font-family: var(--font-playfair), serif;
   font-weight: 700;
-  font-size: clamp(44px, 5vw, 72px);
+  font-size: clamp(38px, 4.5vw, 54px);
   color: black;
   line-height: 0.92;
 }

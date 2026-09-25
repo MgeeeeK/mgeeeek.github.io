@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
+import { AmbientLayer, Starburst } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import MediaThumbnail from '@/components/MediaThumbnail/MediaThumbnail'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
@@ -135,24 +135,14 @@ function DesktopCanvas() {
       {/* ===== Ambient decoration (behind content; ~one slow object per section) ===== */}
       <AmbientLayer>
         {/* Section 1 — AI Microsite (top, steps + album cluster) */}
-        <Sparkle left={1010} top={320} size={30} delay={0.2} />
         <Starburst left={980} top={1480} size={520} opacity={0.4} />
-        <Sparkle left={520} top={1020} size={22} delay={1.1} />
-        <Sparkle left={1080} top={2360} size={26} delay={0.7} />
 
         {/* Section 2 — CSR pink band (mid) */}
-        <Sparkle left={1130} top={3160} size={24} delay={1.4} />
-        <Sparkle left={1090} top={3640} size={20} delay={0.5} />
 
         {/* Section 3 — Recipe / mailers (bottom) */}
-        <Sparkle left={640} top={3850} size={24} delay={1.2} />
         <Starburst reverse left={900} top={4520} size={540} opacity={0.4} />
-        <Sparkle left={1000} top={4120} size={28} delay={0.9} />
-        <Sparkle left={1140} top={5320} size={22} delay={1.6} />
-        <Sparkle left={70} top={5980} size={26} delay={0.3} />
 
         {/* Footer corner (below the mailers, behind nothing readable) */}
-        <Sparkle left={560} top={6280} size={20} delay={0.6} />
       </AmbientLayer>
 
       {/* ===== Section 1: AI Powered Microsite Innovation ===== */}

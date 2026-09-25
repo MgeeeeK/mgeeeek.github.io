@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { AmbientLayer, Starburst, Sparkle } from '@/components/Ambient/Ambient'
 import Magnetic from '@/components/Fx/Magnetic'
 import ScaledCanvas from '@/components/ScaledCanvas/ScaledCanvas'
 import { getNextProject } from '@/lib/projects'
@@ -64,25 +63,6 @@ function DesktopCanvas() {
   return (
     <ScaledCanvas className={styles.canvas} ariaLabel="Email Strategy case study" height={2642}>
       <Header />
-
-      <AmbientLayer>
-        {/* top-right empty corner, above the right-aligned solution text */}
-        <Sparkle left={980} top={250} size={30} delay={0.3} />
-        <Sparkle left={1140} top={470} size={20} delay={1.0} />
-        {/* left margin beside the flowchart */}
-        <Sparkle left={32} top={860} size={22} delay={0.7} />
-        {/* roomy gap right of the toneBody, above the mic illustration */}
-        <Sparkle left={1130} top={1180} size={26} delay={1.5} />
-        {/* big starburst in the open lower-right, clear of stat numbers + graph */}
-        <Starburst left={900} top={1880} size={460} opacity={0.4} />
-        {/* lower-left near the result/stat blocks */}
-        <Sparkle left={36} top={2120} size={24} delay={0.5} />
-        <Sparkle left={500} top={1880} size={18} delay={1.2} />
-        {/* left margin in the seam between flowchart and email subjects */}
-        <Sparkle left={40} top={1545} size={20} delay={1.8} />
-        {/* open band beneath the graph, clear of buttons and polygon star */}
-        <Sparkle left={860} top={2470} size={24} delay={0.9} />
-      </AmbientLayer>
 
       {/* ── Hero ── */}
       <h1 className={styles.title} data-reveal="rise">Designing Retention for SaaS </h1>
@@ -406,14 +386,6 @@ function DesktopCanvas() {
       {/* Line graph */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className={styles.graph} src={`${A}/vector11-graph.svg`} alt="" data-reveal="tilt" data-reveal-delay="1" />
-
-      {/* Polygon star near footer */}
-      <div className={styles.polyBox}>
-        <div className={styles.polyRotate}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${A}/polygon1.svg`} alt="" className={styles.polyImg} />
-        </div>
-      </div>
 
       {/* ── Footer buttons ── */}
       <div className={`${styles.btnSlot} ${styles.btnSlotPrimary}`} data-reveal="pop">
