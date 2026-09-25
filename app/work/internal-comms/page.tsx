@@ -1,3 +1,4 @@
+import ImagePopup from '@/components/ImagePopup/ImagePopup'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AmbientLayer, Starburst } from '@/components/Ambient/Ambient'
@@ -10,6 +11,14 @@ import styles from './page.module.css'
 const NEXT = getNextProject('internal-comms')
 
 const ASSET = '/images/internal-comms'
+
+// Intrinsic pixel sizes of the emailer creatives shown full-size in the popup.
+const FULL_SIZE: Record<string, [number, number]> = {
+  'mailer-communication.jpg': [1828, 4096],
+  'mailer-ganesh.jpg': [2264, 4096],
+  'mailer-parenting.jpg': [750, 1886],
+  'whatsapp-mailer.jpg': [800, 1388],
+}
 const MICROSITE_FILM = 'https://youtu.be/kyCRUC4ZHek'
 const CSR_FILM = 'https://youtu.be/UpadruAYbCM'
 
@@ -34,6 +43,8 @@ type Photo = {
   // scroll-reveal choreography: variant + stagger step within its visual cluster
   reveal: 'tilt' | 'pop'
   delay: number
+  /** Emailer creatives open full-size in a dialog on click (client request). */
+  popup?: boolean
 }
 
 // Each entry: wrapper left/top/width/height -> we compute center, then rotate
@@ -54,13 +65,13 @@ const PHOTOS: Photo[] = [
   // IMG_2013 1 — wrapper l119.11 t2482.8 w218.973 h282.236, inner 202.683×270.244, rot -3.54
   { img: 'img-2013.jpg', cx: 119.11 + 218.973 / 2, cy: 2482.8 + 282.236 / 2, w: 202.683, h: 270.244, rot: -3.54, alt: 'T-shirt printing workshop photo', reveal: 'pop', delay: 1 },
   // Communication mailer_4th Sep_1 1 — wrapper l71.54 t4414.97 w528.886 h906.978, inner 380×852, rot -10.5
-  { img: 'mailer-communication.jpg', cx: 71.54 + 528.886 / 2, cy: 4414.97 + 906.978 / 2, w: 380, h: 852, rot: -10.5, alt: 'Communication mailer design', reveal: 'tilt', delay: 0 },
+  { img: 'mailer-communication.jpg', cx: 266, cy: 4757, w: 285, h: 640, rot: -10.5, popup: true, alt: 'Communication mailer design', reveal: 'tilt', delay: 0 },
   // Ganesh Chathurthi_Mailer_21st Aug 1 — wrapper l465 t4608 w440.261 h706.072, inner 370×670, rot 6.21
-  { img: 'mailer-ganesh.jpg', cx: 465 + 440.261 / 2, cy: 4608 + 706.072 / 2, w: 370, h: 670, rot: 6.21, alt: 'Ganesh Chaturthi mailer design', reveal: 'tilt', delay: 1 },
+  { img: 'mailer-ganesh.jpg', cx: 550, cy: 4810, w: 277, h: 502, rot: 6.21, popup: true, alt: 'Ganesh Chaturthi mailer design', reveal: 'tilt', delay: 1 },
   // Parenting-Series-Mailer_2 1 — wrapper l154.54 t5210.3 w534.785 h1009.778, inner 382×960, rot 9.47
-  { img: 'mailer-parenting.jpg', cx: 154.54 + 534.785 / 2, cy: 5210.3 + 1009.778 / 2, w: 382, h: 960, rot: 9.47, alt: 'Parenting series mailer design', reveal: 'tilt', delay: 1 },
+  { img: 'mailer-parenting.jpg', cx: 300, cy: 5380, w: 287, h: 720, rot: 9.47, popup: true, alt: 'Parenting series mailer design', reveal: 'tilt', delay: 1 },
   // WhatsApp Image 2026-05-18 — wrapper l568 t5183 w530.456 h741.19, inner 386.255×670.152, rot -13.34
-  { img: 'whatsapp-mailer.jpg', cx: 568 + 530.456 / 2, cy: 5183 + 741.19 / 2, w: 386.255, h: 670.152, rot: -13.34, alt: 'PineLabs corporate emailer design', reveal: 'tilt', delay: 0 },
+  { img: 'whatsapp-mailer.jpg', cx: 662, cy: 5262, w: 270, h: 470, rot: -13.34, popup: true, alt: 'PineLabs corporate emailer design', reveal: 'tilt', delay: 0 },
 ]
 
 // Lime stars (Star 17) — l/t of the 20×21 box. `d` = reveal stagger step,
@@ -449,27 +460,43 @@ function DesktopCanvas() {
       ))}
 
       {/* ===== Photos / album covers / mailers ===== */}
-      {PHOTOS.map((p) => (
-        <div
-          key={p.img}
-          className={styles.photo}
-          style={{ ...rotStyle(p.cx, p.cy, p.w, p.h, p.rot), borderRadius: p.radius ?? 0 }}
-          data-reveal={p.reveal}
-          data-reveal-delay={p.delay}
-        >
-          <Image src={`${ASSET}/${p.img}`} alt={p.alt} fill sizes="430px" />
-        </div>
-      ))}
+      {PHOTOS.map((p) =>
+        p.popup ? (
+          <ImagePopup
+            key={p.img}
+            className={styles.photo}
+            style={{ ...rotStyle(p.cx, p.cy, p.w, p.h, p.rot), borderRadius: p.radius ?? 0 }}
+            src={`${ASSET}/${p.img}`}
+            alt={p.alt}
+            width={FULL_SIZE[p.img]?.[0] ?? 1024}
+            height={FULL_SIZE[p.img]?.[1] ?? 1536}
+            data-reveal={p.reveal}
+            data-reveal-delay={p.delay}
+          >
+            <Image src={`${ASSET}/${p.img}`} alt="" fill sizes="430px" />
+          </ImagePopup>
+        ) : (
+          <div
+            key={p.img}
+            className={styles.photo}
+            style={{ ...rotStyle(p.cx, p.cy, p.w, p.h, p.rot), borderRadius: p.radius ?? 0 }}
+            data-reveal={p.reveal}
+            data-reveal-delay={p.delay}
+          >
+            <Image src={`${ASSET}/${p.img}`} alt={p.alt} fill sizes="430px" />
+          </div>
+        ),
+      )}
 
       {/* ===== Footer buttons ===== */}
-      <div className={styles.btnSlot} style={{ left: 80, top: 6339 }} data-reveal="pop">
+      <div className={styles.btnSlot} style={{ left: 62, top: 5820 }} data-reveal="pop">
         <Magnetic>
           <Link className={styles.primaryButton} href={NEXT.href}>
             Next Project
           </Link>
         </Magnetic>
       </div>
-      <div className={styles.btnSlot} style={{ left: 293, top: 6340 }} data-reveal="pop" data-reveal-delay="1">
+      <div className={styles.btnSlot} style={{ left: 273, top: 5821 }} data-reveal="pop" data-reveal-delay="1">
         <Magnetic>
           <Link className={styles.secondaryButton} href="/#contact">
             Get in Touch

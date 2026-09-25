@@ -1,0 +1,70 @@
+/* Full-size creative viewer shared by Email Strategy subjects and
+   Internal Comms emailers (client: "click emailer → it pops up"). */
+.trigger {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.trigger:focus-visible {
+  outline: 3px solid #ff43b7;
+  outline-offset: 4px;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(2px);
+}
+
+.dialog {
+  position: relative;
+  width: min(475px, 90vw);
+  max-height: 88vh;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 88vh;
+  object-fit: contain;
+  border: 3px solid #ff43b7;
+  border-radius: 8px;
+  background: white;
+}
+
+.close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 3px solid black;
+  border-radius: 50%;
+  background: #ff61cd;
+  color: black;
+  font: 700 18px/1 'Helvetica', Arial, sans-serif;
+  box-shadow: 0 4px 0 black;
+  cursor: pointer;
+}
+
+.close:focus-visible {
+  outline: 4px solid #ddffb7;
+  outline-offset: 3px;
+}

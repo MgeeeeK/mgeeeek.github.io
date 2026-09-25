@@ -229,6 +229,9 @@
   line-height: 1.115;
   margin-bottom: 0;
 }
+.toneBody p:first-child {
+  margin-bottom: 17px; /* Figma leaves a blank line under the pink lead */
+}
 .toneLead {
   font-family: 'Helvetica', Arial, sans-serif;
   font-weight: 700;
@@ -396,7 +399,7 @@
   height: 41px;
   transform: translateX(-50%);
   font-family: 'Helvetica', Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 12.283px;
   line-height: 1.115;
   color: black;
@@ -659,63 +662,6 @@
   color: #ff1fa9;
 }
 
-.subjectButton:focus-visible {
-  outline: 3px solid #ff43b7;
-  outline-offset: 4px;
-}
-
-.emailerBackdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 1001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 28px;
-  background: rgba(0, 0, 0, 0.82);
-  backdrop-filter: blur(2px);
-}
-
-.emailerDialog {
-  position: relative;
-  width: min(475px, 90vw);
-  max-height: 88vh;
-}
-
-.emailerImage {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 88vh;
-  object-fit: contain;
-  border: 3px solid #ff43b7;
-  border-radius: 8px;
-  background: white;
-}
-
-.emailerClose {
-  position: absolute;
-  top: -18px;
-  right: -18px;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 3px solid black;
-  border-radius: 50%;
-  background: #ff61cd;
-  color: black;
-  font: 700 18px/1 'Helvetica', Arial, sans-serif;
-  box-shadow: 0 4px 0 black;
-  cursor: pointer;
-}
-
-.emailerClose:focus-visible {
-  outline: 4px solid #ddffb7;
-  outline-offset: 3px;
-}
 
 /* ════════ The Result ════════ */
 .resultHeading {

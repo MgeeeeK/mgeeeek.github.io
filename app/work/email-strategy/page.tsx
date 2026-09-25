@@ -292,7 +292,7 @@ function DesktopCanvas() {
       <EmailerSubject
         className={styles.subj3}
         imageSrc={`${A}/emailer-r1e7b.png`}
-        subject="Subject: In an alternative meeting-free universe..."
+        subject="Subject: In an alternative meeting-free universe... (Scenario B)"
         revealDelay={4}
       />
 
@@ -497,7 +497,7 @@ function MobileLayout() {
         <EmailerSubject
           className={styles.mobileSubject}
           imageSrc={`${A}/emailer-r1e7b.png`}
-          subject="Subject: In an alternative meeting-free universe..."
+          subject="Subject: In an alternative meeting-free universe... (Scenario B)"
           revealDelay={2}
         />
         <p className={styles.mobilePink} data-reveal="rise">Route 2</p>
