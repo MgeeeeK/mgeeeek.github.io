@@ -33,8 +33,7 @@ function Header() {
 
 function DesktopCanvas() {
   return (
-    <ScaledCanvas className={styles.canvas} ariaLabel="Ad Films case study" height={2723}>
-      <Header />
+    <ScaledCanvas className={styles.canvas} ariaLabel="Ad Films case study" height={2723} header={<Header />}>
 
       <AmbientLayer>
         {/* top-right: open space beside the KreditBee text column */}

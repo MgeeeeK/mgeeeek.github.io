@@ -1,35 +1,37 @@
 'use client'
 
 import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
-import styles from './ScaledCanvas.module.css'
 
 const DESIGN_WIDTH = 1280
 
 /**
  * Every case-study "DesktopCanvas" is authored with absolute Figma pixel
- * coordinates for an exact 1280px-wide layout. Below 1280px the canvas
- * itself used to shrink fluidly while its children kept their raw
- * coordinates, so content ran off the right edge (and some sections landed
- * fully outside the visible area) anywhere from 768–1279px. This wraps the
- * canvas in a fixed 1280px box and uniformly scales it down to fit the
- * available width instead, preserving the exact desktop layout at every size
- * down to the mobile breakpoint where a separate stacked layout takes over.
- * Above 1280px it scales UP as well, so the poster fills any screen the way
- * Figma's zoom-to-fit does, and edge-bleeding art (e.g. the email mic) stays
- * off-screen at every width. Overflow is clipped so bleed never scrolls.
- * The scale is exposed as `--canvas-scale` so the sticky page header (a
- * direct child) can counter-scale above 1x and stay the same fluid 60px bar
- * as the homepage nav — see ScaledCanvas.module.css.
+ * coordinates for an exact 1280px-wide layout. This wraps the canvas in a
+ * fixed 1280px box and uniformly scales it to the available width: down on
+ * tablets (until the mobile breakpoint's stacked layout takes over) and UP on
+ * wide screens, so the poster fills any monitor the way Figma's zoom-to-fit
+ * does and edge-bleeding art (e.g. the email mic) stays off-screen at every
+ * width. Overflow is clipped so bleed never scrolls.
+ *
+ * The sticky page header is passed via `header` and rendered OUTSIDE the
+ * scaled box, so it stays the same fluid 60px+40px bar as the homepage nav
+ * (sticky offsets and 100vw widths misbehave inside a transformed ancestor).
+ * The Figma frames reserve the top `headerHeight` px for that bar, so the
+ * scaled box is pulled up underneath the real header by that amount.
  */
 export default function ScaledCanvas({
   height,
   ariaLabel,
   className,
+  header,
+  headerHeight = 100,
   children,
 }: {
   height: number
   ariaLabel?: string
   className?: string
+  header?: ReactNode
+  headerHeight?: number
   children: ReactNode
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -56,28 +58,35 @@ export default function ScaledCanvas({
 
   return (
     <div
-      ref={wrapperRef}
       className={className}
       aria-label={ariaLabel}
-      style={{ position: 'relative', width: '100%', height: height * scale, overflow: 'clip' }}
+      style={{ position: 'relative', width: '100%', height: 'auto' }}
     >
+      {header}
       <div
-        data-scaled-canvas=""
-        className={styles.inner}
+        ref={wrapperRef}
         style={{
-          position: 'absolute',
-          left: offsetX,
-          top: 0,
-          width: DESIGN_WIDTH,
-          height,
-          transform: `scale(${scale})`,
-          transformOrigin: 'top left',
-          ['--canvas-scale' as string]: scale,
-          // 1/scale above 1x, 1 otherwise — lets the sticky header stay unscaled
-          ['--canvas-inv' as string]: 1 / Math.max(scale, 1),
+          position: 'relative',
+          width: '100%',
+          height: height * scale,
+          overflow: 'clip',
+          marginTop: header ? -headerHeight : 0,
         }}
       >
-        {children}
+        <div
+          data-scaled-canvas=""
+          style={{
+            position: 'absolute',
+            left: offsetX,
+            top: 0,
+            width: DESIGN_WIDTH,
+            height,
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
+          }}
+        >
+          {children}
+        </div>
       </div>
     </div>
   )

@@ -61,8 +61,7 @@ function Header() {
 
 function DesktopCanvas() {
   return (
-    <ScaledCanvas className={styles.canvas} ariaLabel="Email Strategy case study" height={2642}>
-      <Header />
+    <ScaledCanvas className={styles.canvas} ariaLabel="Email Strategy case study" height={2642} header={<Header />}>
 
       {/* ── Hero ── */}
       <h1 className={styles.title} data-reveal="rise">Designing Retention for SaaS </h1>

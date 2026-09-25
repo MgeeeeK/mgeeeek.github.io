@@ -75,8 +75,7 @@ function Header() {
 
 function DesktopCanvas() {
   return (
-    <ScaledCanvas className={styles.canvas} ariaLabel="Fun stuff — Abhi's secret folder" height={1309}>
-      <Header />
+    <ScaledCanvas className={styles.canvas} ariaLabel="Fun stuff — Abhi's secret folder" height={1309} header={<Header />}>
 
       <AmbientLayer>
         {/* Open right zone — big lime starburst filling the empty right half */}

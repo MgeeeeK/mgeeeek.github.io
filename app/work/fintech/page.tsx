@@ -40,8 +40,7 @@ function Header() {
 
 function DesktopCanvas() {
   return (
-    <ScaledCanvas className={styles.canvas} ariaLabel="Fintech case study" height={1964}>
-      <Header />
+    <ScaledCanvas className={styles.canvas} ariaLabel="Fintech case study" height={1964} header={<Header />}>
 
       <AmbientLayer>
         <Starburst left={636} top={600} size={560} opacity={0.5} />

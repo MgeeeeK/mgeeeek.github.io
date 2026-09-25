@@ -235,8 +235,7 @@ function HeroCollage() {
 
 function DesktopCanvas() {
   return (
-    <ScaledCanvas className={styles.canvas} ariaLabel="Social Media Brand Identity case study" height={5620}>
-      <Header />
+    <ScaledCanvas className={styles.canvas} ariaLabel="Social Media Brand Identity case study" height={5620} header={<Header />}>
 
       <AmbientLayer>
         {/* Hero / Not-Like-Other-Brands open right margin */}

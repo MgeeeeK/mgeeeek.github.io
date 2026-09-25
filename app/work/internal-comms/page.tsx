@@ -140,8 +140,7 @@ function Header() {
 
 function DesktopCanvas() {
   return (
-    <ScaledCanvas className={styles.canvas} ariaLabel="Internal Communications case study" height={6473}>
-      <Header />
+    <ScaledCanvas className={styles.canvas} ariaLabel="Internal Communications case study" height={6473} header={<Header />}>
 
       {/* ===== Ambient decoration (behind content; ~one slow object per section) ===== */}
       <AmbientLayer>

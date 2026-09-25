@@ -28,11 +28,9 @@ function Header() {
 
 function DesktopCanvas() {
   return (
-    <ScaledCanvas className={styles.canvas} ariaLabel="Print Media case study" height={4540}>
+    <ScaledCanvas className={styles.canvas} ariaLabel="Print Media case study" height={4540} header={<Header />}>
       {/* Lower-section background band (Green Yodha) */}
       <div className={styles.greenBand} aria-hidden="true" />
-
-      <Header />
 
       {/* ---------- Interactive Corporate Diary ---------- */}
       <h1 className={styles.diaryTitle} data-reveal="rise">Interactive Corporate Diary</h1>
